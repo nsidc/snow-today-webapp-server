@@ -1,0 +1,32 @@
+version: 2
+
+setup: &setup
+  working_directory: ~/snow-today-webapp
+  docker:
+    - image: continuumio/miniconda3:4.12.0
+
+jobs:
+  test:
+    <<: *setup
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            conda env create --quiet -f environment-lock.yml
+            conda init bash
+      - run:
+          name: Validate JSON indexes
+          command: |
+            /bin/bash --login -c "conda activate snow-today && ./scripts/validate_json.sh"
+
+
+workflows:
+  version: 2
+
+  build:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /.*/
