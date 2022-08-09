@@ -2,9 +2,8 @@
 # Convert EPSG:4326 non-CO GeoTIFFs to Cloud-Optimized GeoTIFFs in Web
 # Mercator.
 #
-# This script is a WIP. To use it, copy it into the directory
-# containing another directory titled "originals", which contains the
-# input files.
+# This script is a WIP. To use it, copy it into the root of the server directory.
+# It should contain $input_dir.
 set -euo pipefail
 
 THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
