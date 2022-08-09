@@ -47,3 +47,8 @@ docker-compose up
 ## License
 
 See [LICENSE](LICENSE).
+
+
+## Contributing
+
+See [doc/contributing.md](contributing docs).
