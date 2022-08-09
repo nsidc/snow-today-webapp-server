@@ -1,0 +1,8 @@
+name: snow-today 
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python ~=3.9.7
+  - gdal ~=3.5.1
+  - jsonschema ~=4.9.1

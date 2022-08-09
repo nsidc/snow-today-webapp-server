@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "patternProperties": {
+    "^.*$": {
+      "type": "object",
+      "properties": {
+        "longname": {"type": "string"},
+        "file": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

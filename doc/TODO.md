@@ -1,7 +1,7 @@
 # Data validation
 
 * Schemas
-* Schema validation tool
+* Validate relationships between json files
 
 
 # Versioning

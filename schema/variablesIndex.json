@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "patternProperties": {
+    "^.*$": {
+      "type": "object",
+      "properties": {
+        "type": {"type": "string"},
+        "longname": {"type": "string"},
+        "helptext": {"type": "string"},
+        "file": {"type": "string"},
+        "nodata_value": {"type": "integer"},
+        "colormap": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 3,
+            "maxItems": 4
+          }
+        },
+        "colormap_value_range": {
+          "type": "array",
+          "items": {"type": "number"},
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "transparent_zero": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
