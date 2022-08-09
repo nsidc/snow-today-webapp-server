@@ -1,8 +1,9 @@
 # Snow Today Webapp Server
 
-Serve data supporting the Snow Today Webapp. This data is version-controlled in
-this repository, with the exception of Cloud Optimized GeoTIFFs, which are
-populated dynamically on a daily basis.
+Serve data supporting the [Snow Today
+Webapp](https://github.com/nsidc/snow-today-webapp). This data is version-controlled in
+this repository, with the exception of Cloud Optimized GeoTIFFs, which are populated
+dynamically on a daily basis.
 
 * Index of available variables
 * Cloud-Optimized GeoTIFFs for each variable (populated dynamically)
@@ -51,4 +52,4 @@ See [LICENSE](LICENSE).
 
 ## Contributing
 
-See [doc/contributing.md](contributing docs).
+See [contributing docs](doc/contributing.md).
