@@ -1,3 +1,8 @@
+"""Convert CSV at stdin to JSON.
+
+The output will be a JSON object with the CSV headers as keys. Values will be arrays
+representing the column for each header.
+"""
 import csv, json, sys
 
 csv_as_list_of_dicts = [dict(r) for r in csv.DictReader(sys.stdin)]

@@ -22,5 +22,8 @@ for inputfile in $input_dir/*.txt; do
     cat $inputfile \
         | awk '/^$/{exit}1' - \
         | sed -e '1s/_(albedo|RF|scd|sca)//g' - \
-        | python csv_cols_to_json.py
+        | python csv_cols_to_json.py \
+        > $outputfile
 done
+
+echo "Created JSON at $output_dir"
