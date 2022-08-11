@@ -21,4 +21,8 @@ if __name__ == '__main__':
         for k in csv_as_list_of_dicts[0].keys()
     }
 
-    print(json.dumps(csv_as_dict_of_lists))
+    print(json.dumps(
+        csv_as_dict_of_lists,
+        # Convert NaNs to nulls:
+        ignore_nan=True,
+    ))
