@@ -21,7 +21,7 @@ for inputfile in $input_dir/*.txt; do
     # 3) `python`: Convert the CSV to JSON.
     cat $inputfile \
         | awk '/^$/{exit}1' - \
-        | sed -e '1s/_(albedo|RF|scd|sca)//g' - \
+        | sed '1 s/^.*$/day_of_water_year,min,prc25,median,prc75,max,year_to_date/' \
         | python csv_cols_to_json.py \
         > $outputfile
 done
