@@ -1,7 +1,9 @@
-"""Convert CSV at stdin to JSON.
+"""Convert CSV plot files to JSON and write them to the storage location.
 
 The output will be a JSON object with the CSV headers as keys. Values will be arrays
 representing the column for each header.
+
+NOTE: These outputs should not be committed!
 """
 import csv, io, json, math, sys
 from pathlib import Path
