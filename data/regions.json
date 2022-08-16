@@ -1,644 +1,644 @@
 {
     "USwest_HUC_10": {
         "file": "shapes/USwest_HUC_10.geojson",
-        "longname": "HUCMissouri Region",
-        "shortname": "10",
+        "longname": "HUC 10: Missouri Region",
+        "shortname": "HUC_10",
         "type": "HUC"
     },
     "USwest_HUC_1002": {
         "file": "shapes/USwest_HUC_1002.geojson",
-        "longname": "HUCMissouri Headwaters",
-        "shortname": "1002",
+        "longname": "HUC 1002: Missouri Headwaters",
+        "shortname": "HUC_1002",
         "type": "HUC"
     },
     "USwest_HUC_1003": {
         "file": "shapes/USwest_HUC_1003.geojson",
-        "longname": "HUCMissouri-Marias",
-        "shortname": "1003",
+        "longname": "HUC 1003: Missouri-Marias",
+        "shortname": "HUC_1003",
         "type": "HUC"
     },
     "USwest_HUC_1004": {
         "file": "shapes/USwest_HUC_1004.geojson",
-        "longname": "HUCMissouri-Musselshell",
-        "shortname": "1004",
+        "longname": "HUC 1004: Missouri-Musselshell",
+        "shortname": "HUC_1004",
         "type": "HUC"
     },
     "USwest_HUC_1005": {
         "file": "shapes/USwest_HUC_1005.geojson",
-        "longname": "HUCMilk",
-        "shortname": "1005",
+        "longname": "HUC 1005: Milk",
+        "shortname": "HUC_1005",
         "type": "HUC"
     },
     "USwest_HUC_1006": {
         "file": "shapes/USwest_HUC_1006.geojson",
-        "longname": "HUCMissouri-Poplar",
-        "shortname": "1006",
+        "longname": "HUC 1006: Missouri-Poplar",
+        "shortname": "HUC_1006",
         "type": "HUC"
     },
     "USwest_HUC_1007": {
         "file": "shapes/USwest_HUC_1007.geojson",
-        "longname": "HUCUpper Yellowstone",
-        "shortname": "1007",
+        "longname": "HUC 1007: Upper Yellowstone",
+        "shortname": "HUC_1007",
         "type": "HUC"
     },
     "USwest_HUC_1008": {
         "file": "shapes/USwest_HUC_1008.geojson",
-        "longname": "HUCBig Horn",
-        "shortname": "1008",
+        "longname": "HUC 1008: Big Horn",
+        "shortname": "HUC_1008",
         "type": "HUC"
     },
     "USwest_HUC_1009": {
         "file": "shapes/USwest_HUC_1009.geojson",
-        "longname": "HUCPowder-Tongue",
-        "shortname": "1009",
+        "longname": "HUC 1009: Powder-Tongue",
+        "shortname": "HUC_1009",
         "type": "HUC"
     },
     "USwest_HUC_1010": {
         "file": "shapes/USwest_HUC_1010.geojson",
-        "longname": "HUCLower Yellowstone",
-        "shortname": "1010",
+        "longname": "HUC 1010: Lower Yellowstone",
+        "shortname": "HUC_1010",
         "type": "HUC"
     },
     "USwest_HUC_1011": {
         "file": "shapes/USwest_HUC_1011.geojson",
-        "longname": "HUCMissouri-Little Missouri",
-        "shortname": "1011",
+        "longname": "HUC 1011: Missouri-Little Missouri",
+        "shortname": "HUC_1011",
         "type": "HUC"
     },
     "USwest_HUC_1012": {
         "file": "shapes/USwest_HUC_1012.geojson",
-        "longname": "HUCCheyenne",
-        "shortname": "1012",
+        "longname": "HUC 1012: Cheyenne",
+        "shortname": "HUC_1012",
         "type": "HUC"
     },
     "USwest_HUC_1013": {
         "file": "shapes/USwest_HUC_1013.geojson",
-        "longname": "HUCMissouri-Oahe",
-        "shortname": "1013",
+        "longname": "HUC 1013: Missouri-Oahe",
+        "shortname": "HUC_1013",
         "type": "HUC"
     },
     "USwest_HUC_1014": {
         "file": "shapes/USwest_HUC_1014.geojson",
-        "longname": "HUCMissouri-White",
-        "shortname": "1014",
+        "longname": "HUC 1014: Missouri-White",
+        "shortname": "HUC_1014",
         "type": "HUC"
     },
     "USwest_HUC_1015": {
         "file": "shapes/USwest_HUC_1015.geojson",
-        "longname": "HUCNiobrara",
-        "shortname": "1015",
+        "longname": "HUC 1015: Niobrara",
+        "shortname": "HUC_1015",
         "type": "HUC"
     },
     "USwest_HUC_1016": {
         "file": "shapes/USwest_HUC_1016.geojson",
-        "longname": "HUCJames",
-        "shortname": "1016",
+        "longname": "HUC 1016: James",
+        "shortname": "HUC_1016",
         "type": "HUC"
     },
     "USwest_HUC_1017": {
         "file": "shapes/USwest_HUC_1017.geojson",
-        "longname": "HUCMissouri-Big Sioux",
-        "shortname": "1017",
+        "longname": "HUC 1017: Missouri-Big Sioux",
+        "shortname": "HUC_1017",
         "type": "HUC"
     },
     "USwest_HUC_1018": {
         "file": "shapes/USwest_HUC_1018.geojson",
-        "longname": "HUCNorth Platte",
-        "shortname": "1018",
+        "longname": "HUC 1018: North Platte",
+        "shortname": "HUC_1018",
         "type": "HUC"
     },
     "USwest_HUC_1019": {
         "file": "shapes/USwest_HUC_1019.geojson",
-        "longname": "HUCSouth Platte",
-        "shortname": "1019",
+        "longname": "HUC 1019: South Platte",
+        "shortname": "HUC_1019",
         "type": "HUC"
     },
     "USwest_HUC_1020": {
         "file": "shapes/USwest_HUC_1020.geojson",
-        "longname": "HUCPlatte",
-        "shortname": "1020",
+        "longname": "HUC 1020: Platte",
+        "shortname": "HUC_1020",
         "type": "HUC"
     },
     "USwest_HUC_1021": {
         "file": "shapes/USwest_HUC_1021.geojson",
-        "longname": "HUCLoup",
-        "shortname": "1021",
+        "longname": "HUC 1021: Loup",
+        "shortname": "HUC_1021",
         "type": "HUC"
     },
     "USwest_HUC_1022": {
         "file": "shapes/USwest_HUC_1022.geojson",
-        "longname": "HUCElkhorn",
-        "shortname": "1022",
+        "longname": "HUC 1022: Elkhorn",
+        "shortname": "HUC_1022",
         "type": "HUC"
     },
     "USwest_HUC_1023": {
         "file": "shapes/USwest_HUC_1023.geojson",
-        "longname": "HUCMissouri-Little Sioux",
-        "shortname": "1023",
+        "longname": "HUC 1023: Missouri-Little Sioux",
+        "shortname": "HUC_1023",
         "type": "HUC"
     },
     "USwest_HUC_1024": {
         "file": "shapes/USwest_HUC_1024.geojson",
-        "longname": "HUCMissouri-Nishnabotna",
-        "shortname": "1024",
+        "longname": "HUC 1024: Missouri-Nishnabotna",
+        "shortname": "HUC_1024",
         "type": "HUC"
     },
     "USwest_HUC_1025": {
         "file": "shapes/USwest_HUC_1025.geojson",
-        "longname": "HUCRepublican",
-        "shortname": "1025",
+        "longname": "HUC 1025: Republican",
+        "shortname": "HUC_1025",
         "type": "HUC"
     },
     "USwest_HUC_1026": {
         "file": "shapes/USwest_HUC_1026.geojson",
-        "longname": "HUCSmoky Hill",
-        "shortname": "1026",
+        "longname": "HUC 1026: Smoky Hill",
+        "shortname": "HUC_1026",
         "type": "HUC"
     },
     "USwest_HUC_1027": {
         "file": "shapes/USwest_HUC_1027.geojson",
-        "longname": "HUCKansas",
-        "shortname": "1027",
+        "longname": "HUC 1027: Kansas",
+        "shortname": "HUC_1027",
         "type": "HUC"
     },
     "USwest_HUC_1028": {
         "file": "shapes/USwest_HUC_1028.geojson",
-        "longname": "HUCChariton-Grand",
-        "shortname": "1028",
+        "longname": "HUC 1028: Chariton-Grand",
+        "shortname": "HUC_1028",
         "type": "HUC"
     },
     "USwest_HUC_11": {
         "file": "shapes/USwest_HUC_11.geojson",
-        "longname": "HUCArkansas-White-Red Region",
-        "shortname": "11",
+        "longname": "HUC 11: Arkansas-White-Red Region",
+        "shortname": "HUC_11",
         "type": "HUC"
     },
     "USwest_HUC_1102": {
         "file": "shapes/USwest_HUC_1102.geojson",
-        "longname": "HUCUpper Arkansas",
-        "shortname": "1102",
+        "longname": "HUC 1102: Upper Arkansas",
+        "shortname": "HUC_1102",
         "type": "HUC"
     },
     "USwest_HUC_1103": {
         "file": "shapes/USwest_HUC_1103.geojson",
-        "longname": "HUCMiddle Arkansas",
-        "shortname": "1103",
+        "longname": "HUC 1103: Middle Arkansas",
+        "shortname": "HUC_1103",
         "type": "HUC"
     },
     "USwest_HUC_1104": {
         "file": "shapes/USwest_HUC_1104.geojson",
-        "longname": "HUCUpper Cimarron",
-        "shortname": "1104",
+        "longname": "HUC 1104: Upper Cimarron",
+        "shortname": "HUC_1104",
         "type": "HUC"
     },
     "USwest_HUC_1108": {
         "file": "shapes/USwest_HUC_1108.geojson",
-        "longname": "HUCUpper Canadian",
-        "shortname": "1108",
+        "longname": "HUC 1108: Upper Canadian",
+        "shortname": "HUC_1108",
         "type": "HUC"
     },
     "USwest_HUC_1109": {
         "file": "shapes/USwest_HUC_1109.geojson",
-        "longname": "HUCLower Canadian",
-        "shortname": "1109",
+        "longname": "HUC 1109: Lower Canadian",
+        "shortname": "HUC_1109",
         "type": "HUC"
     },
     "USwest_HUC_1110": {
         "file": "shapes/USwest_HUC_1110.geojson",
-        "longname": "HUCNorth Canadian",
-        "shortname": "1110",
+        "longname": "HUC 1110: North Canadian",
+        "shortname": "HUC_1110",
         "type": "HUC"
     },
     "USwest_HUC_1112": {
         "file": "shapes/USwest_HUC_1112.geojson",
-        "longname": "HUCRed Headwaters",
-        "shortname": "1112",
+        "longname": "HUC 1112: Red Headwaters",
+        "shortname": "HUC_1112",
         "type": "HUC"
     },
     "USwest_HUC_1113": {
         "file": "shapes/USwest_HUC_1113.geojson",
-        "longname": "HUCRed-Washita",
-        "shortname": "1113",
+        "longname": "HUC 1113: Red-Washita",
+        "shortname": "HUC_1113",
         "type": "HUC"
     },
     "USwest_HUC_12": {
         "file": "shapes/USwest_HUC_12.geojson",
-        "longname": "HUCTexas-Gulf Region",
-        "shortname": "12",
+        "longname": "HUC 12: Texas-Gulf Region",
+        "shortname": "HUC_12",
         "type": "HUC"
     },
     "USwest_HUC_1201": {
         "file": "shapes/USwest_HUC_1201.geojson",
-        "longname": "HUCSabine",
-        "shortname": "1201",
+        "longname": "HUC 1201: Sabine",
+        "shortname": "HUC_1201",
         "type": "HUC"
     },
     "USwest_HUC_1202": {
         "file": "shapes/USwest_HUC_1202.geojson",
-        "longname": "HUCNeches",
-        "shortname": "1202",
+        "longname": "HUC 1202: Neches",
+        "shortname": "HUC_1202",
         "type": "HUC"
     },
     "USwest_HUC_1203": {
         "file": "shapes/USwest_HUC_1203.geojson",
-        "longname": "HUCTrinity",
-        "shortname": "1203",
+        "longname": "HUC 1203: Trinity",
+        "shortname": "HUC_1203",
         "type": "HUC"
     },
     "USwest_HUC_1204": {
         "file": "shapes/USwest_HUC_1204.geojson",
-        "longname": "HUCGalveston Bay-San Jacinto",
-        "shortname": "1204",
+        "longname": "HUC 1204: Galveston Bay-San Jacinto",
+        "shortname": "HUC_1204",
         "type": "HUC"
     },
     "USwest_HUC_1205": {
         "file": "shapes/USwest_HUC_1205.geojson",
-        "longname": "HUCBrazos Headwaters",
-        "shortname": "1205",
+        "longname": "HUC 1205: Brazos Headwaters",
+        "shortname": "HUC_1205",
         "type": "HUC"
     },
     "USwest_HUC_1206": {
         "file": "shapes/USwest_HUC_1206.geojson",
-        "longname": "HUCMiddle Brazos",
-        "shortname": "1206",
+        "longname": "HUC 1206: Middle Brazos",
+        "shortname": "HUC_1206",
         "type": "HUC"
     },
     "USwest_HUC_1207": {
         "file": "shapes/USwest_HUC_1207.geojson",
-        "longname": "HUCLower Brazos",
-        "shortname": "1207",
+        "longname": "HUC 1207: Lower Brazos",
+        "shortname": "HUC_1207",
         "type": "HUC"
     },
     "USwest_HUC_1208": {
         "file": "shapes/USwest_HUC_1208.geojson",
-        "longname": "HUCUpper Colorado",
-        "shortname": "1208",
+        "longname": "HUC 1208: Upper Colorado",
+        "shortname": "HUC_1208",
         "type": "HUC"
     },
     "USwest_HUC_1209": {
         "file": "shapes/USwest_HUC_1209.geojson",
-        "longname": "HUCLower Colorado-San Bernard Coastal",
-        "shortname": "1209",
+        "longname": "HUC 1209: Lower Colorado-San Bernard Coastal",
+        "shortname": "HUC_1209",
         "type": "HUC"
     },
     "USwest_HUC_1210": {
         "file": "shapes/USwest_HUC_1210.geojson",
-        "longname": "HUCCentral Texas Coastal",
-        "shortname": "1210",
+        "longname": "HUC 1210: Central Texas Coastal",
+        "shortname": "HUC_1210",
         "type": "HUC"
     },
     "USwest_HUC_1211": {
         "file": "shapes/USwest_HUC_1211.geojson",
-        "longname": "HUCNueces-Southwestern Texas Coastal",
-        "shortname": "1211",
+        "longname": "HUC 1211: Nueces-Southwestern Texas Coastal",
+        "shortname": "HUC_1211",
         "type": "HUC"
     },
     "USwest_HUC_13": {
         "file": "shapes/USwest_HUC_13.geojson",
-        "longname": "HUCRio Grande Region",
-        "shortname": "13",
+        "longname": "HUC 13: Rio Grande Region",
+        "shortname": "HUC_13",
         "type": "HUC"
     },
     "USwest_HUC_1301": {
         "file": "shapes/USwest_HUC_1301.geojson",
-        "longname": "HUCRio Grande Headwaters",
-        "shortname": "1301",
+        "longname": "HUC 1301: Rio Grande Headwaters",
+        "shortname": "HUC_1301",
         "type": "HUC"
     },
     "USwest_HUC_1302": {
         "file": "shapes/USwest_HUC_1302.geojson",
-        "longname": "HUCRio Grande-Elephant Butte",
-        "shortname": "1302",
+        "longname": "HUC 1302: Rio Grande-Elephant Butte",
+        "shortname": "HUC_1302",
         "type": "HUC"
     },
     "USwest_HUC_1303": {
         "file": "shapes/USwest_HUC_1303.geojson",
-        "longname": "HUCRio Grande-Mimbres",
-        "shortname": "1303",
+        "longname": "HUC 1303: Rio Grande-Mimbres",
+        "shortname": "HUC_1303",
         "type": "HUC"
     },
     "USwest_HUC_1304": {
         "file": "shapes/USwest_HUC_1304.geojson",
-        "longname": "HUCRio Grande-Amistad",
-        "shortname": "1304",
+        "longname": "HUC 1304: Rio Grande-Amistad",
+        "shortname": "HUC_1304",
         "type": "HUC"
     },
     "USwest_HUC_1305": {
         "file": "shapes/USwest_HUC_1305.geojson",
-        "longname": "HUCRio Grande Closed Basins",
-        "shortname": "1305",
+        "longname": "HUC 1305: Rio Grande Closed Basins",
+        "shortname": "HUC_1305",
         "type": "HUC"
     },
     "USwest_HUC_1306": {
         "file": "shapes/USwest_HUC_1306.geojson",
-        "longname": "HUCUpper Pecos",
-        "shortname": "1306",
+        "longname": "HUC 1306: Upper Pecos",
+        "shortname": "HUC_1306",
         "type": "HUC"
     },
     "USwest_HUC_1307": {
         "file": "shapes/USwest_HUC_1307.geojson",
-        "longname": "HUCLower Pecos",
-        "shortname": "1307",
+        "longname": "HUC 1307: Lower Pecos",
+        "shortname": "HUC_1307",
         "type": "HUC"
     },
     "USwest_HUC_1310": {
         "file": "shapes/USwest_HUC_1310.geojson",
-        "longname": "HUCRio Conchos",
-        "shortname": "1310",
+        "longname": "HUC 1310: Rio Conchos",
+        "shortname": "HUC_1310",
         "type": "HUC"
     },
     "USwest_HUC_14": {
         "file": "shapes/USwest_HUC_14.geojson",
-        "longname": "HUCUpper Colorado Region",
-        "shortname": "14",
+        "longname": "HUC 14: Upper Colorado Region",
+        "shortname": "HUC_14",
         "type": "HUC"
     },
     "USwest_HUC_1401": {
         "file": "shapes/USwest_HUC_1401.geojson",
-        "longname": "HUCColorado Headwaters",
-        "shortname": "1401",
+        "longname": "HUC 1401: Colorado Headwaters",
+        "shortname": "HUC_1401",
         "type": "HUC"
     },
     "USwest_HUC_1402": {
         "file": "shapes/USwest_HUC_1402.geojson",
-        "longname": "HUCGunnison",
-        "shortname": "1402",
+        "longname": "HUC 1402: Gunnison",
+        "shortname": "HUC_1402",
         "type": "HUC"
     },
     "USwest_HUC_1403": {
         "file": "shapes/USwest_HUC_1403.geojson",
-        "longname": "HUCUpper Colorado-Dolores",
-        "shortname": "1403",
+        "longname": "HUC 1403: Upper Colorado-Dolores",
+        "shortname": "HUC_1403",
         "type": "HUC"
     },
     "USwest_HUC_1404": {
         "file": "shapes/USwest_HUC_1404.geojson",
-        "longname": "HUCGreat Divide-Upper Green",
-        "shortname": "1404",
+        "longname": "HUC 1404: Great Divide-Upper Green",
+        "shortname": "HUC_1404",
         "type": "HUC"
     },
     "USwest_HUC_1405": {
         "file": "shapes/USwest_HUC_1405.geojson",
-        "longname": "HUCWhite-Yampa",
-        "shortname": "1405",
+        "longname": "HUC 1405: White-Yampa",
+        "shortname": "HUC_1405",
         "type": "HUC"
     },
     "USwest_HUC_1406": {
         "file": "shapes/USwest_HUC_1406.geojson",
-        "longname": "HUCLower Green",
-        "shortname": "1406",
+        "longname": "HUC 1406: Lower Green",
+        "shortname": "HUC_1406",
         "type": "HUC"
     },
     "USwest_HUC_1407": {
         "file": "shapes/USwest_HUC_1407.geojson",
-        "longname": "HUCUpper Colorado-Dirty Devil",
-        "shortname": "1407",
+        "longname": "HUC 1407: Upper Colorado-Dirty Devil",
+        "shortname": "HUC_1407",
         "type": "HUC"
     },
     "USwest_HUC_1408": {
         "file": "shapes/USwest_HUC_1408.geojson",
-        "longname": "HUCSan Juan",
-        "shortname": "1408",
+        "longname": "HUC 1408: San Juan",
+        "shortname": "HUC_1408",
         "type": "HUC"
     },
     "USwest_HUC_15": {
         "file": "shapes/USwest_HUC_15.geojson",
-        "longname": "HUCLower Colorado Region",
-        "shortname": "15",
+        "longname": "HUC 15: Lower Colorado Region",
+        "shortname": "HUC_15",
         "type": "HUC"
     },
     "USwest_HUC_1501": {
         "file": "shapes/USwest_HUC_1501.geojson",
-        "longname": "HUCLower Colorado-Lake Mead",
-        "shortname": "1501",
+        "longname": "HUC 1501: Lower Colorado-Lake Mead",
+        "shortname": "HUC_1501",
         "type": "HUC"
     },
     "USwest_HUC_1502": {
         "file": "shapes/USwest_HUC_1502.geojson",
-        "longname": "HUCLittle Colorado",
-        "shortname": "1502",
+        "longname": "HUC 1502: Little Colorado",
+        "shortname": "HUC_1502",
         "type": "HUC"
     },
     "USwest_HUC_1503": {
         "file": "shapes/USwest_HUC_1503.geojson",
-        "longname": "HUCLower Colorado",
-        "shortname": "1503",
+        "longname": "HUC 1503: Lower Colorado",
+        "shortname": "HUC_1503",
         "type": "HUC"
     },
     "USwest_HUC_1504": {
         "file": "shapes/USwest_HUC_1504.geojson",
-        "longname": "HUCUpper Gila",
-        "shortname": "1504",
+        "longname": "HUC 1504: Upper Gila",
+        "shortname": "HUC_1504",
         "type": "HUC"
     },
     "USwest_HUC_1505": {
         "file": "shapes/USwest_HUC_1505.geojson",
-        "longname": "HUCMiddle Gila",
-        "shortname": "1505",
+        "longname": "HUC 1505: Middle Gila",
+        "shortname": "HUC_1505",
         "type": "HUC"
     },
     "USwest_HUC_1506": {
         "file": "shapes/USwest_HUC_1506.geojson",
-        "longname": "HUCSalt",
-        "shortname": "1506",
+        "longname": "HUC 1506: Salt",
+        "shortname": "HUC_1506",
         "type": "HUC"
     },
     "USwest_HUC_1507": {
         "file": "shapes/USwest_HUC_1507.geojson",
-        "longname": "HUCLower Gila",
-        "shortname": "1507",
+        "longname": "HUC 1507: Lower Gila",
+        "shortname": "HUC_1507",
         "type": "HUC"
     },
     "USwest_HUC_1508": {
         "file": "shapes/USwest_HUC_1508.geojson",
-        "longname": "HUCSonora",
-        "shortname": "1508",
+        "longname": "HUC 1508: Sonora",
+        "shortname": "HUC_1508",
         "type": "HUC"
     },
     "USwest_HUC_16": {
         "file": "shapes/USwest_HUC_16.geojson",
-        "longname": "HUCGreat Basin Region",
-        "shortname": "16",
+        "longname": "HUC 16: Great Basin Region",
+        "shortname": "HUC_16",
         "type": "HUC"
     },
     "USwest_HUC_1601": {
         "file": "shapes/USwest_HUC_1601.geojson",
-        "longname": "HUCBear",
-        "shortname": "1601",
+        "longname": "HUC 1601: Bear",
+        "shortname": "HUC_1601",
         "type": "HUC"
     },
     "USwest_HUC_1602": {
         "file": "shapes/USwest_HUC_1602.geojson",
-        "longname": "HUCGreat Salt Lake",
-        "shortname": "1602",
+        "longname": "HUC 1602: Great Salt Lake",
+        "shortname": "HUC_1602",
         "type": "HUC"
     },
     "USwest_HUC_1603": {
         "file": "shapes/USwest_HUC_1603.geojson",
-        "longname": "HUCEscalante Desert-Sevier Lake",
-        "shortname": "1603",
+        "longname": "HUC 1603: Escalante Desert-Sevier Lake",
+        "shortname": "HUC_1603",
         "type": "HUC"
     },
     "USwest_HUC_1604": {
         "file": "shapes/USwest_HUC_1604.geojson",
-        "longname": "HUCBlack Rock Desert-Humboldt",
-        "shortname": "1604",
+        "longname": "HUC 1604: Black Rock Desert-Humboldt",
+        "shortname": "HUC_1604",
         "type": "HUC"
     },
     "USwest_HUC_1605": {
         "file": "shapes/USwest_HUC_1605.geojson",
-        "longname": "HUCCentral Lahontan",
-        "shortname": "1605",
+        "longname": "HUC 1605: Central Lahontan",
+        "shortname": "HUC_1605",
         "type": "HUC"
     },
     "USwest_HUC_1606": {
         "file": "shapes/USwest_HUC_1606.geojson",
-        "longname": "HUCCentral Nevada Desert Basins",
-        "shortname": "1606",
+        "longname": "HUC 1606: Central Nevada Desert Basins",
+        "shortname": "HUC_1606",
         "type": "HUC"
     },
     "USwest_HUC_17": {
         "file": "shapes/USwest_HUC_17.geojson",
-        "longname": "HUCPacific Northwest Region",
-        "shortname": "17",
+        "longname": "HUC 17: Pacific Northwest Region",
+        "shortname": "HUC_17",
         "type": "HUC"
     },
     "USwest_HUC_1701": {
         "file": "shapes/USwest_HUC_1701.geojson",
-        "longname": "HUCKootenai-Pend Oreille-Spokane",
-        "shortname": "1701",
+        "longname": "HUC 1701: Kootenai-Pend Oreille-Spokane",
+        "shortname": "HUC_1701",
         "type": "HUC"
     },
     "USwest_HUC_1702": {
         "file": "shapes/USwest_HUC_1702.geojson",
-        "longname": "HUCUpper Columbia",
-        "shortname": "1702",
+        "longname": "HUC 1702: Upper Columbia",
+        "shortname": "HUC_1702",
         "type": "HUC"
     },
     "USwest_HUC_1703": {
         "file": "shapes/USwest_HUC_1703.geojson",
-        "longname": "HUCYakima",
-        "shortname": "1703",
+        "longname": "HUC 1703: Yakima",
+        "shortname": "HUC_1703",
         "type": "HUC"
     },
     "USwest_HUC_1704": {
         "file": "shapes/USwest_HUC_1704.geojson",
-        "longname": "HUCUpper Snake",
-        "shortname": "1704",
+        "longname": "HUC 1704: Upper Snake",
+        "shortname": "HUC_1704",
         "type": "HUC"
     },
     "USwest_HUC_1705": {
         "file": "shapes/USwest_HUC_1705.geojson",
-        "longname": "HUCMiddle Snake",
-        "shortname": "1705",
+        "longname": "HUC 1705: Middle Snake",
+        "shortname": "HUC_1705",
         "type": "HUC"
     },
     "USwest_HUC_1706": {
         "file": "shapes/USwest_HUC_1706.geojson",
-        "longname": "HUCLower Snake",
-        "shortname": "1706",
+        "longname": "HUC 1706: Lower Snake",
+        "shortname": "HUC_1706",
         "type": "HUC"
     },
     "USwest_HUC_1707": {
         "file": "shapes/USwest_HUC_1707.geojson",
-        "longname": "HUCMiddle Columbia",
-        "shortname": "1707",
+        "longname": "HUC 1707: Middle Columbia",
+        "shortname": "HUC_1707",
         "type": "HUC"
     },
     "USwest_HUC_1708": {
         "file": "shapes/USwest_HUC_1708.geojson",
-        "longname": "HUCLower Columbia",
-        "shortname": "1708",
+        "longname": "HUC 1708: Lower Columbia",
+        "shortname": "HUC_1708",
         "type": "HUC"
     },
     "USwest_HUC_1709": {
         "file": "shapes/USwest_HUC_1709.geojson",
-        "longname": "HUCWillamette",
-        "shortname": "1709",
+        "longname": "HUC 1709: Willamette",
+        "shortname": "HUC_1709",
         "type": "HUC"
     },
     "USwest_HUC_1710": {
         "file": "shapes/USwest_HUC_1710.geojson",
-        "longname": "HUCOregon-Washington Coastal",
-        "shortname": "1710",
+        "longname": "HUC 1710: Oregon-Washington Coastal",
+        "shortname": "HUC_1710",
         "type": "HUC"
     },
     "USwest_HUC_1711": {
         "file": "shapes/USwest_HUC_1711.geojson",
-        "longname": "HUCPuget Sound",
-        "shortname": "1711",
+        "longname": "HUC 1711: Puget Sound",
+        "shortname": "HUC_1711",
         "type": "HUC"
     },
     "USwest_HUC_1712": {
         "file": "shapes/USwest_HUC_1712.geojson",
-        "longname": "HUCOregon Closed Basins",
-        "shortname": "1712",
+        "longname": "HUC 1712: Oregon Closed Basins",
+        "shortname": "HUC_1712",
         "type": "HUC"
     },
     "USwest_HUC_18": {
         "file": "shapes/USwest_HUC_18.geojson",
-        "longname": "HUCCalifornia Region",
-        "shortname": "18",
+        "longname": "HUC 18: California Region",
+        "shortname": "HUC_18",
         "type": "HUC"
     },
     "USwest_HUC_1801": {
         "file": "shapes/USwest_HUC_1801.geojson",
-        "longname": "HUCKlamath-Northern California Coastal",
-        "shortname": "1801",
+        "longname": "HUC 1801: Klamath-Northern California Coastal",
+        "shortname": "HUC_1801",
         "type": "HUC"
     },
     "USwest_HUC_1802": {
         "file": "shapes/USwest_HUC_1802.geojson",
-        "longname": "HUCSacramento",
-        "shortname": "1802",
+        "longname": "HUC 1802: Sacramento",
+        "shortname": "HUC_1802",
         "type": "HUC"
     },
     "USwest_HUC_1803": {
         "file": "shapes/USwest_HUC_1803.geojson",
-        "longname": "HUCTulare-Buena Vista Lakes",
-        "shortname": "1803",
+        "longname": "HUC 1803: Tulare-Buena Vista Lakes",
+        "shortname": "HUC_1803",
         "type": "HUC"
     },
     "USwest_HUC_1804": {
         "file": "shapes/USwest_HUC_1804.geojson",
-        "longname": "HUCSan Joaquin",
-        "shortname": "1804",
+        "longname": "HUC 1804: San Joaquin",
+        "shortname": "HUC_1804",
         "type": "HUC"
     },
     "USwest_HUC_1805": {
         "file": "shapes/USwest_HUC_1805.geojson",
-        "longname": "HUCSan Francisco Bay",
-        "shortname": "1805",
+        "longname": "HUC 1805: San Francisco Bay",
+        "shortname": "HUC_1805",
         "type": "HUC"
     },
     "USwest_HUC_1806": {
         "file": "shapes/USwest_HUC_1806.geojson",
-        "longname": "HUCCentral California Coastal",
-        "shortname": "1806",
+        "longname": "HUC 1806: Central California Coastal",
+        "shortname": "HUC_1806",
         "type": "HUC"
     },
     "USwest_HUC_1807": {
         "file": "shapes/USwest_HUC_1807.geojson",
-        "longname": "HUCSouthern California Coastal",
-        "shortname": "1807",
+        "longname": "HUC 1807: Southern California Coastal",
+        "shortname": "HUC_1807",
         "type": "HUC"
     },
     "USwest_HUC_1808": {
         "file": "shapes/USwest_HUC_1808.geojson",
-        "longname": "HUCNorth Lahontan",
-        "shortname": "1808",
+        "longname": "HUC 1808: North Lahontan",
+        "shortname": "HUC_1808",
         "type": "HUC"
     },
     "USwest_HUC_1809": {
         "file": "shapes/USwest_HUC_1809.geojson",
-        "longname": "HUCNorthern Mojave-Mono Lake",
-        "shortname": "1809",
+        "longname": "HUC 1809: Northern Mojave-Mono Lake",
+        "shortname": "HUC_1809",
         "type": "HUC"
     },
     "USwest_HUC_1810": {
         "file": "shapes/USwest_HUC_1810.geojson",
-        "longname": "HUCSouthern Mojave-Salton Sea",
-        "shortname": "1810",
+        "longname": "HUC 1810: Southern Mojave-Salton Sea",
+        "shortname": "HUC_1810",
         "type": "HUC"
     },
     "USwest_State_AZ": {

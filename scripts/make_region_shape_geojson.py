@@ -27,13 +27,14 @@ RegionType = Literal['HUC', 'State']
 class RegionInfo(TypedDict):
     id: str
     type: RegionType
-    name: str
-    code: str
-    fn: str
+    longname: str
+    shortname: str
+    filename: str
 
 
 class RegionIndexEntry(TypedDict):
     longname: str
+    shortname: str
     file: str
     type: RegionType
 
@@ -52,6 +53,15 @@ SHAPEFILES: dict[ShapefileCategory, Path] = {
     'HUC4': SHAPEFILE_INPUT_DIR / 'HUC4_9to17' / 'HUC4_9to17_in5tiles.shp',
     'State': SHAPEFILE_INPUT_DIR / 'WesternUS_states_touching5tiles' / 'WesternUS_states_touching5tiles.shp',
 }
+
+# The coefficient used to calculate the simplification threshold (by multiplying this
+# number by the size of the shortest dimension of each shape's bbox). Smaller numbers
+# result in finer output resolution.
+# At .001, our biggest regions are 125KB. 7.2MB in total.
+# At .0005, our biggest regions are 237KB. 13MB in total.
+# At .0001, our biggest regions are 762KB. 41MB in total.
+SIMPLIFICATION_COEFFICIENT = .0005
+
 # NOTE: It would be really nice if the state abbreviation was included on the feature
 # data, but it's not!
 STATES_BY_ABBREV = {
@@ -110,32 +120,59 @@ STATES_BY_ABBREV = {
 STATE_ABBREVS = {v: k for k, v in STATES_BY_ABBREV.items()}
 
 
-def _region_code(region_type: RegionType, region_id: str) -> str:
-    """Unique identifier for a region."""
-    return f'USwest_{region_type}_{region_id}'
+def _simplify_geometry(feature_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    """Simplify geometry by `SIMPLIFICATION_COEFFICIENT`.
+
+    Calculates the simplification threshold by dividing the shortest dimension of the
+    feature by `SIMPLIFICATION_COEFFICIENT`.
+
+    E.g. if a shape's bounds are 4km x 10km, and the coefficient is 1000, the threshold
+    will be 4m.
+    """
+    if len(feature_gdf) != 1:
+        raise RuntimeError(f'Expected exactly 1 feature! {feature_gdf}')
+
+    bounds = feature_gdf.bounds.iloc[0]
+
+    shortest_dim = min(
+        abs(bounds.maxy - bounds.miny),
+        abs(bounds.maxx - bounds.minx),
+    )
+
+    threshold = shortest_dim * SIMPLIFICATION_COEFFICIENT
+
+    feature_gdf = feature_gdf.set_geometry(
+        feature_gdf['geometry'].simplify(threshold).buffer(0),
+    )
+
+    return feature_gdf
 
 
 def _region_info(category: ShapefileCategory, feature: gpd.GeoSeries) -> RegionInfo:
     """Extract re-usable information from each feature."""
     if category.startswith('HUC'):
         region_type = 'HUC'
+
         huc_col_name = [f for f in feature.index if f.startswith('huc')][0]
-        region_id = feature[huc_col_name]
-        region_name = f'HUC{feature["name"]}'
+        huc_id = feature[huc_col_name]
+
+        region_longname = f'HUC {huc_id}: {feature["name"]}'
+        region_shortname = f'HUC_{huc_id}'
+        region_id = f'USwest_HUC_{huc_id}'
     elif category == 'State':
         region_type = 'State'
-        region_name = feature['STATE']
-        region_id = STATE_ABBREVS[region_name]
+        region_longname = feature['STATE']
+        region_shortname = STATE_ABBREVS[region_longname]
+        region_id = f'USwest_State_{region_shortname}'
     else:
         raise RuntimeError(f'Unexpected category: {category}')
 
-    region_code = _region_code(region_type, region_id)
     return {
         'id': region_id,
         'type': region_type,
-        'name': region_name,
-        'code': region_code,
-        'fn': f'{region_code}.geojson',
+        'longname': region_longname,
+        'shortname': region_shortname,
+        'filename': f'{region_id}.geojson',
     }
 
 
@@ -146,22 +183,23 @@ def _make_geojson(category: ShapefileCategory, feature_gdf: gpd.GeoDataFrame) ->
     feature = feature_gdf.iloc[0]
 
     region_info = _region_info(category=category, feature=feature)
-    geojson_fp = SHAPE_OUTPUT_DIR / region_info['fn']
+    geojson_fp = SHAPE_OUTPUT_DIR / region_info['filename']
 
+    feature_gdf = _simplify_geometry(feature_gdf)
     feature_gdf.to_file(geojson_fp, driver='GeoJSON')
 
     return region_info
 
 
 def _update_geojson_index(region_info: RegionInfo, region_index: RegionIndex):
-    """Mutate `region_index` to add region defiend by `region_info`."""
+    """Mutate `region_index` to add region defined by `region_info`."""
     if region_info['id'] in region_index.keys():
         raise RuntimeError(f'Duplicate region ID: {region_info["id"]}')
 
-    region_index[region_info['code']] = {
-        'longname': region_info['name'],
-        'shortname': region_info['id'],
-        'file': f'shapes/{region_info["fn"]}',
+    region_index[region_info['id']] = {
+        'longname': region_info['longname'],
+        'shortname': region_info['shortname'],
+        'file': f'shapes/{region_info["filename"]}',
         'type': region_info['type'],
     }
 
@@ -175,6 +213,7 @@ def make_all_geojson():
 
     for shapefile_category, shapefile_path in SHAPEFILES.items():
         shapefile_gdf = gpd.read_file(shapefile_path)
+        shapefile_gdf = shapefile_gdf.to_crs(epsg=3857)
         for index in shapefile_gdf.index:
             feature_gdf = shapefile_gdf.iloc[[index]]
 
