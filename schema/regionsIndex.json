@@ -5,7 +5,9 @@
       "type": "object",
       "properties": {
         "longname": {"type": "string"},
-        "file": {"type": "string"}
+        "shortname": {"type": "string"},
+        "file": {"type": "string"},
+        "type": {"type": "string"}
       },
       "additionalProperties": false
     }
