@@ -132,10 +132,6 @@ STATES_BY_ABBREV = {
         'longname': 'Idaho',
         'enabled': True,
     },
-    'ID': {
-        'longname': 'Idaho',
-        'enabled': False,
-    },
     'IL': {
         'longname': 'Illinois',
         'enabled': False,
