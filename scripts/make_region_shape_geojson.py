@@ -14,14 +14,21 @@ TODO: How to organize region relationships? E.g. USwest contains all HUCs and st
 """
 import json
 from pathlib import Path
-from typing import Literal, TypedDict
+from typing import Literal
 
 import geopandas as gpd
+# TODO: After upgrading to 3.11 (PEP655), can use builtin TypedDict again.
+#       https://peps.python.org/pep-0655/#usage-in-python-3-11
+from typing_extensions import NotRequired, TypedDict
 
 
 # Types
 ShapefileCategory = Literal['HUC2', 'HUC4', 'State']
 RegionType = Literal['HUC', 'State']
+
+
+class UnsupportedRegion(Exception):
+    pass
 
 
 class RegionInfo(TypedDict):
@@ -30,6 +37,7 @@ class RegionInfo(TypedDict):
     longname: str
     shortname: str
     filename: str
+    enabled: bool
 
 
 class RegionIndexEntry(TypedDict):
@@ -37,6 +45,7 @@ class RegionIndexEntry(TypedDict):
     shortname: str
     file: str
     type: RegionType
+    enabled: NotRequired[bool]
 
 
 RegionIndex = dict[str, RegionIndexEntry]
@@ -64,69 +73,225 @@ SIMPLIFICATION_COEFFICIENT = .0005
 
 # NOTE: It would be really nice if the state abbreviation was included on the feature
 # data, but it's not!
+# NOTE: It would be really nice if the input data only included the needed regions, but
+# it may contain any.
 STATES_BY_ABBREV = {
-    'AK': 'Alaska',
-    'AL': 'Alabama',
-    'AR': 'Arkansas',
-    'AZ': 'Arizona',
-    'CA': 'California',
-    'CO': 'Colorado',
-    'CT': 'Connecticut',
-    'DC': 'District of Columbia',
-    'DE': 'Delaware',
-    'FL': 'Florida',
-    'GA': 'Georgia',
-    'HI': 'Hawaii',
-    'IA': 'Iowa',
-    'ID': 'Idaho',
-    'IL': 'Illinois',
-    'IN': 'Indiana',
-    'KS': 'Kansas',
-    'KY': 'Kentucky',
-    'LA': 'Louisiana',
-    'MA': 'Massachusetts',
-    'MD': 'Maryland',
-    'ME': 'Maine',
-    'MI': 'Michigan',
-    'MN': 'Minnesota',
-    'MO': 'Missouri',
-    'MS': 'Mississippi',
-    'MT': 'Montana',
-    'NC': 'North Carolina',
-    'ND': 'North Dakota',
-    'NE': 'Nebraska',
-    'NH': 'New Hampshire',
-    'NJ': 'New Jersey',
-    'NM': 'New Mexico',
-    'NV': 'Nevada',
-    'NY': 'New York',
-    'OH': 'Ohio',
-    'OK': 'Oklahoma',
-    'OR': 'Oregon',
-    'PA': 'Pennsylvania',
-    'RI': 'Rhode Island',
-    'SC': 'South Carolina',
-    'SD': 'South Dakota',
-    'TN': 'Tennessee',
-    'TX': 'Texas',
-    'UT': 'Utah',
-    'VA': 'Virginia',
-    'VT': 'Vermont',
-    'WA': 'Washington',
-    'WI': 'Wisconsin',
-    'WV': 'West Virginia',
-    'WY': 'Wyoming'
+    'AK': {
+        'longname': 'Alaska',
+        'enabled': False,
+    },
+    'AL': {
+        'longname': 'Alabama',
+        'enabled': False,
+    },
+    'AR': {
+        'longname': 'Arkansas',
+        'enabled': False,
+    },
+    'AZ': {
+        'longname': 'Arizona',
+        'enabled': True,
+    },
+    'CA': {
+        'longname': 'California',
+        'enabled': True,
+    },
+    'CO': {
+        'longname': 'Colorado',
+        'enabled': True,
+    },
+    'CT': {
+        'longname': 'Connecticut',
+        'enabled': False,
+    },
+    'DC': {
+        'longname': 'District of Columbia',
+        'enabled': False,
+    },
+    'DE': {
+        'longname': 'Delaware',
+        'enabled': False,
+    },
+    'FL': {
+        'longname': 'Florida',
+        'enabled': False,
+    },
+    'GA': {
+        'longname': 'Georgia',
+        'enabled': False,
+    },
+    'HI': {
+        'longname': 'Hawaii',
+        'enabled': False,
+    },
+    'IA': {
+        'longname': 'Iowa',
+        'enabled': False,
+    },
+    'ID': {
+        'longname': 'Idaho',
+        'enabled': True,
+    },
+    'ID': {
+        'longname': 'Idaho',
+        'enabled': False,
+    },
+    'IL': {
+        'longname': 'Illinois',
+        'enabled': False,
+    },
+    'IN': {
+        'longname': 'Indiana',
+        'enabled': False,
+    },
+    'KS': {
+        'longname': 'Kansas',
+        'enabled': False,
+    },
+    'KY': {
+        'longname': 'Kentucky',
+        'enabled': False,
+    },
+    'LA': {
+        'longname': 'Louisiana',
+        'enabled': False,
+    },
+    'MA': {
+        'longname': 'Massachusetts',
+        'enabled': False,
+    },
+    'MD': {
+        'longname': 'Maryland',
+        'enabled': False,
+    },
+    'ME': {
+        'longname': 'Maine',
+        'enabled': False,
+    },
+    'MI': {
+        'longname': 'Michigan',
+        'enabled': False,
+    },
+    'MN': {
+        'longname': 'Minnesota',
+        'enabled': False,
+    },
+    'MO': {
+        'longname': 'Missouri',
+        'enabled': False,
+    },
+    'MS': {
+        'longname': 'Mississippi',
+        'enabled': False,
+    },
+    'MT': {
+        'longname': 'Montana',
+        'enabled': True,
+    },
+    'NC': {
+        'longname': 'North Carolina',
+        'enabled': False,
+    },
+    'ND': {
+        'longname': 'North Dakota',
+        'enabled': False,
+    },
+    'NE': {
+        'longname': 'Nebraska',
+        'enabled': True,
+    },
+    'NM': {
+        'longname': 'New Mexico',
+        'enabled': True,
+    },
+    'NH': {
+        'longname': 'New Hampshire',
+        'enabled': False,
+    },
+    'NJ': {
+        'longname': 'New Jersey',
+        'enabled': False,
+    },
+    'NV': {
+        'longname': 'Nevada',
+        'enabled': True,
+    },
+    'NY': {
+        'longname': 'New York',
+        'enabled': False,
+    },
+    'OH': {
+        'longname': 'Ohio',
+        'enabled': False,
+    },
+    'OK': {
+        'longname': 'Oklahoma',
+        'enabled': False,
+    },
+    'OR': {
+        'longname': 'Oregon',
+        'enabled': True,
+    },
+    'PA': {
+        'longname': 'Pennsylvania',
+        'enabled': False,
+    },
+    'RI': {
+        'longname': 'Rhode Island',
+        'enabled': False,
+    },
+    'SC': {
+        'longname': 'South Carolina',
+        'enabled': False,
+    },
+    'SD': {
+        'longname': 'South Dakota',
+        'enabled': True,
+    },
+    'TN': {
+        'longname': 'Tennessee',
+        'enabled': False,
+    },
+    'TX': {
+        'longname': 'Texas',
+        'enabled': False,
+    },
+    'UT': {
+        'longname': 'Utah',
+        'enabled': True,
+    },
+    'VA': {
+        'longname': 'Virginia',
+        'enabled': False,
+    },
+    'VT': {
+        'longname': 'Vermont',
+        'enabled': False,
+    },
+    'WA': {
+        'longname': 'Washington',
+        'enabled': True,
+    },
+    'WI': {
+        'longname': 'Wisconsin',
+        'enabled': False,
+    },
+    'WY': {
+        'longname': 'Wyoming',
+        'enabled': True,
+    },
 }
-STATE_ABBREVS = {v: k for k, v in STATES_BY_ABBREV.items()}
+STATE_ABBREVS = {v['longname']: k for k, v in STATES_BY_ABBREV.items()}
+STATES_ENABLED = {v['longname'] for v in STATES_BY_ABBREV.values() if v['enabled']}
 
 
 def _simplify_geometry(feature_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     """Simplify geometry by `SIMPLIFICATION_COEFFICIENT`.
 
-    Calculates the simplification threshold by dividing the shortest dimension of the
+    Calculates the simplification threshold by multiplying the shortest dimension of the
     feature by `SIMPLIFICATION_COEFFICIENT`.
 
-    E.g. if a shape's bounds are 4km x 10km, and the coefficient is 1000, the threshold
+    E.g. if a shape's bounds are 4km x 10km, and the coefficient is .001, the threshold
     will be 4m.
     """
     if len(feature_gdf) != 1:
@@ -150,11 +315,16 @@ def _simplify_geometry(feature_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
 
 def _region_info(category: ShapefileCategory, feature: gpd.GeoSeries) -> RegionInfo:
     """Extract re-usable information from each feature."""
+    region_enabled: boolean = True
+
     if category.startswith('HUC'):
         region_type = 'HUC'
 
         huc_col_name = [f for f in feature.index if f.startswith('huc')][0]
         huc_id = feature[huc_col_name]
+
+        if huc_id.startswith('12'):
+            region_enabled = False
 
         region_longname = f'HUC {huc_id}: {feature["name"]}'
         region_shortname = f'HUC_{huc_id}'
@@ -163,17 +333,22 @@ def _region_info(category: ShapefileCategory, feature: gpd.GeoSeries) -> RegionI
         region_type = 'State'
         region_longname = feature['STATE']
         region_shortname = STATE_ABBREVS[region_longname]
+        region_enabled = region_longname in STATES_ENABLED
+
         region_id = f'USwest_State_{region_shortname}'
     else:
         raise RuntimeError(f'Unexpected category: {category}')
 
-    return {
+    region_info = {
         'id': region_id,
         'type': region_type,
         'longname': region_longname,
         'shortname': region_shortname,
         'filename': f'{region_id}.geojson',
+        'enabled': region_enabled,
     }
+
+    return region_info
 
 
 def _make_geojson(category: ShapefileCategory, feature_gdf: gpd.GeoDataFrame) -> str:
@@ -202,6 +377,8 @@ def _update_geojson_index(region_info: RegionInfo, region_index: RegionIndex):
         'file': f'shapes/{region_info["filename"]}',
         'type': region_info['type'],
     }
+    if region_info['enabled'] is False:
+        region_index[region_info['id']]['enabled'] = False
 
 
 def make_all_geojson():
@@ -221,6 +398,7 @@ def make_all_geojson():
                 category=shapefile_category,
                 feature_gdf=feature_gdf,
             )
+
             _update_geojson_index(
                 region_info=region_info,
                 region_index=region_index,

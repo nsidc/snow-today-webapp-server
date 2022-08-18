@@ -222,72 +222,84 @@
         "type": "HUC"
     },
     "USwest_HUC_12": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_12.geojson",
         "longname": "HUC 12: Texas-Gulf Region",
         "shortname": "HUC_12",
         "type": "HUC"
     },
     "USwest_HUC_1201": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_1201.geojson",
         "longname": "HUC 1201: Sabine",
         "shortname": "HUC_1201",
         "type": "HUC"
     },
     "USwest_HUC_1202": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_1202.geojson",
         "longname": "HUC 1202: Neches",
         "shortname": "HUC_1202",
         "type": "HUC"
     },
     "USwest_HUC_1203": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_1203.geojson",
         "longname": "HUC 1203: Trinity",
         "shortname": "HUC_1203",
         "type": "HUC"
     },
     "USwest_HUC_1204": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_1204.geojson",
         "longname": "HUC 1204: Galveston Bay-San Jacinto",
         "shortname": "HUC_1204",
         "type": "HUC"
     },
     "USwest_HUC_1205": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_1205.geojson",
         "longname": "HUC 1205: Brazos Headwaters",
         "shortname": "HUC_1205",
         "type": "HUC"
     },
     "USwest_HUC_1206": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_1206.geojson",
         "longname": "HUC 1206: Middle Brazos",
         "shortname": "HUC_1206",
         "type": "HUC"
     },
     "USwest_HUC_1207": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_1207.geojson",
         "longname": "HUC 1207: Lower Brazos",
         "shortname": "HUC_1207",
         "type": "HUC"
     },
     "USwest_HUC_1208": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_1208.geojson",
         "longname": "HUC 1208: Upper Colorado",
         "shortname": "HUC_1208",
         "type": "HUC"
     },
     "USwest_HUC_1209": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_1209.geojson",
         "longname": "HUC 1209: Lower Colorado-San Bernard Coastal",
         "shortname": "HUC_1209",
         "type": "HUC"
     },
     "USwest_HUC_1210": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_1210.geojson",
         "longname": "HUC 1210: Central Texas Coastal",
         "shortname": "HUC_1210",
         "type": "HUC"
     },
     "USwest_HUC_1211": {
+        "enabled": false,
         "file": "shapes/USwest_HUC_1211.geojson",
         "longname": "HUC 1211: Nueces-Southwestern Texas Coastal",
         "shortname": "HUC_1211",
@@ -660,24 +672,28 @@
         "type": "State"
     },
     "USwest_State_IA": {
+        "enabled": false,
         "file": "shapes/USwest_State_IA.geojson",
         "longname": "Iowa",
         "shortname": "IA",
         "type": "State"
     },
     "USwest_State_ID": {
+        "enabled": false,
         "file": "shapes/USwest_State_ID.geojson",
         "longname": "Idaho",
         "shortname": "ID",
         "type": "State"
     },
     "USwest_State_KS": {
+        "enabled": false,
         "file": "shapes/USwest_State_KS.geojson",
         "longname": "Kansas",
         "shortname": "KS",
         "type": "State"
     },
     "USwest_State_MO": {
+        "enabled": false,
         "file": "shapes/USwest_State_MO.geojson",
         "longname": "Missouri",
         "shortname": "MO",
@@ -690,6 +706,7 @@
         "type": "State"
     },
     "USwest_State_ND": {
+        "enabled": false,
         "file": "shapes/USwest_State_ND.geojson",
         "longname": "North Dakota",
         "shortname": "ND",
@@ -714,6 +731,7 @@
         "type": "State"
     },
     "USwest_State_OK": {
+        "enabled": false,
         "file": "shapes/USwest_State_OK.geojson",
         "longname": "Oklahoma",
         "shortname": "OK",
@@ -732,6 +750,7 @@
         "type": "State"
     },
     "USwest_State_TX": {
+        "enabled": false,
         "file": "shapes/USwest_State_TX.geojson",
         "longname": "Texas",
         "shortname": "TX",

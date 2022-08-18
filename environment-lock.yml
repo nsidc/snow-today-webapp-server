@@ -151,6 +151,8 @@ dependencies:
   - threadpoolctl=3.1.0=pyh8a188c0_0
   - tiledb=2.9.5=h1e4a385_0
   - tk=8.6.12=h27826a3_0
+  - typing-extensions=4.3.0=hd8ed1ab_0
+  - typing_extensions=4.3.0=pyha770c72_0
   - tzcode=2022b=h166bdaf_0
   - tzdata=2022b=h191b570_0
   - unicodedata2=14.0.0=py310h5764c6d_1
