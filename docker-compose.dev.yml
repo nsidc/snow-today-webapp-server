@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+
+  data-server:
+    image: "nsidc/snow-today-webapp-server:dev"
+    build: .
+    restart: "on-failure"

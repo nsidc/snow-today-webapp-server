@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+
+  data-server:
+    image: "nsidc/snow-today-webapp-server:${SERVER_VERSION:-latest}"
+    volumes:
+      - "${SERVER_COGS_DIR}:/usr/share/nginx/html/cogs:ro"
+      - "${SERVER_PLOTS_DIR}:/usr/share/nginx/html/plots:ro"
+    ports:
+      - "80:80"
+      - "443:443"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
