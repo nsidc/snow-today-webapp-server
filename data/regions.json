@@ -679,7 +679,6 @@
         "type": "State"
     },
     "USwest_State_ID": {
-        "enabled": false,
         "file": "shapes/USwest_State_ID.geojson",
         "longname": "Idaho",
         "shortname": "ID",
