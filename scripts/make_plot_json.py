@@ -5,13 +5,19 @@ representing the column for each header.
 
 NOTE: These outputs should not be committed!
 """
-import csv, io, json, math, sys
+import csv, io, json, math, os, sys
 from pathlib import Path
 from typing import Literal, TypedDict, get_args
 
-STORAGE_DIR = Path('/share/apps/snow-today')
-INPUT_DIR = STORAGE_DIR / 'snow_today_2.0_testing/linePlotsToDate'
-OUTPUT_DIR = STORAGE_DIR / 'plots'
+try:
+    STORAGE_DIR = Path(os.environ['STORAGE_DIR'])
+    OUTPUT_DIR = Path(os.environ['SERVER_PLOTS_DIR'])
+except Exception as e:
+    raise RuntimeError(
+        f'Expected $STORAGE_DIR and $SERVER_PLOTS_DIR envvars to be populated: {e}'
+    )
+
+INPUT_DIR = STORAGE_DIR / 'snow_today_2.0_testing' / 'linePlotsToDate'
 
 
 class PlotDataPoint(TypedDict):

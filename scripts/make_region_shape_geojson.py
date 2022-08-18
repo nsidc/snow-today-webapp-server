@@ -13,6 +13,7 @@ TODO: How to organize region relationships? E.g. USwest contains all HUCs and st
       Some HUCs contain other HUCs.
 """
 import json
+import os
 from pathlib import Path
 from typing import Literal
 
@@ -56,7 +57,14 @@ REPO_DATA_DIR = REPO_DIR / 'data'
 SHAPE_OUTPUT_DIR = REPO_DATA_DIR / 'shapes'
 REGION_INDEX_FP = REPO_DATA_DIR / 'regions.json'
 
-SHAPEFILE_INPUT_DIR = Path('/share/apps/snow-today/snow_today_2.0_testing/shapefiles')
+try:
+    STORAGE_DIR = Path(os.environ['STORAGE_DIR'])
+except Exception as e:
+    raise RuntimeError(
+        f'Expected $STORAGE_DIR envvar to be populated: {e}'
+    )
+
+SHAPEFILE_INPUT_DIR = STORAGE_DIR / 'snow_today_2.0_testing' / 'shapefiles'
 SHAPEFILES: dict[ShapefileCategory, Path] = {
     'HUC2': SHAPEFILE_INPUT_DIR / 'HUC2_9to17' / 'HUC2_9to17.shp',
     'HUC4': SHAPEFILE_INPUT_DIR / 'HUC4_9to17' / 'HUC4_9to17_in5tiles.shp',
