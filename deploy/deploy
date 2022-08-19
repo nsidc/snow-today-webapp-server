@@ -1,0 +1,31 @@
+#!/bin/bash
+
+ENVIRONMENT="$1"
+
+THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT_DIR="$(dirname "$THIS_DIR")"
+
+VERSION_FILE="$REPO_ROOT_DIR/VERSION.env"
+
+source /etc/profile.d/envvars.sh
+
+cd "$REPO_ROOT_DIR"
+
+if [ "$ENVIRONMENT" = "integration"]; then
+    version_desc="latest"
+    VERSION_FILE="$REPO_ROOT_DIR/VERSION.latest.env"
+else
+    version_desc="production"
+fi
+
+echo "Using $version_desc versions in $ENVIRONMENT..."
+cat "$VERSION_FILE"
+source "$VERSION_FILE"
+
+# Replace the current app
+docker-compose pull
+docker-compose down --remove-orphans
+docker-compose up -d
+
+# Cleanup
+docker system prune -af
