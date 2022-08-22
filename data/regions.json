@@ -1,4 +1,10 @@
 {
+    "USwest": {
+        "file": "shapes/USwest.geojson",
+        "longname": "US West complete",
+        "shortname": "USwest",
+        "type": null
+    },
     "USwest_HUC_10": {
         "file": "shapes/USwest_HUC_10.geojson",
         "longname": "HUC 10: Missouri Region",

@@ -25,7 +25,7 @@ from typing_extensions import NotRequired, TypedDict
 
 # Types
 ShapefileCategory = Literal['HUC2', 'HUC4', 'State']
-RegionType = Literal['HUC', 'State']
+RegionType = Literal['HUC', 'State'] | None
 
 
 class UnsupportedRegion(Exception):
@@ -355,7 +355,31 @@ def _region_info(category: ShapefileCategory, feature: gpd.GeoSeries) -> RegionI
     return region_info
 
 
-def _make_geojson(category: ShapefileCategory, feature_gdf: gpd.GeoDataFrame) -> str:
+def _make_uswest_region_geojson(all_states_gdf: gpd.GeoDataFrame) -> RegionInfo:
+    region_info: RegionInfo = {
+        'id': 'USwest',
+        'type': None,
+        'longname': 'US West complete',
+        'shortname': 'USwest',
+        'filename': 'USwest.geojson',
+        'enabled': True,
+    }
+    geojson_fp = SHAPE_OUTPUT_DIR / region_info['filename']
+
+    enabled_states_gdf = all_states_gdf[all_states_gdf['STATE'].isin(STATES_ENABLED)]
+    # Dissolve boundaries between states
+    enabled_states_outline = enabled_states_gdf.drop(
+        ['STATE', 'STATE_FIPS'],
+        axis='columns',
+    ).dissolve()
+
+    enabled_states_outline = _simplify_geometry(enabled_states_outline)
+    enabled_states_outline.to_file(geojson_fp, driver='GeoJSON')
+
+    return region_info
+
+
+def _make_geojson(category: ShapefileCategory, feature_gdf: gpd.GeoDataFrame) -> RegionInfo:
     """Make a GeoJSON from a GDF containing 1 feature."""
     if len(feature_gdf) != 1:
         raise RuntimeError(f'Expected exactly 1 feature! {feature_gdf}')
@@ -395,6 +419,15 @@ def make_all_geojson():
     for shapefile_category, shapefile_path in SHAPEFILES.items():
         shapefile_gdf = gpd.read_file(shapefile_path)
         shapefile_gdf = shapefile_gdf.to_crs(epsg=3857)
+
+        # Make shape of full USwest region:
+        if shapefile_category == 'State':
+            region_info = _make_uswest_region_geojson(shapefile_gdf)
+            _update_geojson_index(
+                region_info=region_info,
+                region_index=region_index,
+            )
+
         for index in shapefile_gdf.index:
             feature_gdf = shapefile_gdf.iloc[[index]]
 
@@ -413,6 +446,8 @@ def make_all_geojson():
 
 if __name__ == '__main__':
     region_index = make_all_geojson()
+
+    # TODO: Re-order?
 
     with open(REGION_INDEX_FP, 'w') as outfile:
         json.dump(region_index, outfile, sort_keys=True, indent=4)
