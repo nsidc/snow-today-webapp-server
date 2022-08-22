@@ -1,3 +1,8 @@
+# v0.1.2 (2022-08-22)
+
+* Fixup deployment script typo
+
+
 # v0.1.1 (2022-08-19)
 
 * Add deployment script
