@@ -1,3 +1,8 @@
+# v0.2.0 (2022-08-22)
+
+* Add "US West complete" region
+
+
 # v0.1.2 (2022-08-22)
 
 * Fixup deployment script typo
