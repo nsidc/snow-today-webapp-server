@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 ENVIRONMENT="$1"
 
@@ -11,7 +12,7 @@ source /etc/profile.d/envvars.sh
 
 cd "$REPO_ROOT_DIR"
 
-if [ "$ENVIRONMENT" = "integration"]; then
+if [ "$ENVIRONMENT" = "integration" ]; then
     version_desc="latest"
     VERSION_FILE="$REPO_ROOT_DIR/VERSION.latest.env"
 else
