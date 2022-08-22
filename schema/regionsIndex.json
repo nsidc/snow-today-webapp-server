@@ -7,7 +7,7 @@
         "longname": {"type": "string"},
         "shortname": {"type": "string"},
         "file": {"type": "string"},
-        "type": {"type": "string"},
+        "type": {"type": ["string", "null"]},
         "enabled": {"type": "boolean"}
       },
       "required": ["longname", "shortname", "file", "type"],
