@@ -114,13 +114,23 @@ def _variable_id_from_input_fn(input_fn: str) -> str:
     return mapping[input_var]
 
 
-def _region_id_from_input_fn(input_fn: str) -> ...:
-    """SnowToday_USCO_SCF_WY2022_yearToDate.txt"""
-    # TODO: Support HUCs?
-    input_region = input_fn.split('_')[1]
-    state_id = input_region[2:4]
+def _region_id_from_input_fn(input_fn: str) -> str:
+    """Extract region ID from input filename.
 
-    return f'USwest_State_{state_id}'
+    E.g.:
+        * SnowToday_USCO_SCF_WY2022_yearToDate.txt
+        * SnowToday_HUC10_Albedo_WY2022_yearToDate.txt
+    """
+    input_region = input_fn.split('_')[1]
+    if input_region.startswith('HUC'):
+        huc_id = input_region[3:]
+        return f'USwest_HUC_{huc_id}'
+    elif len(input_region) == 4 and input_region.startswith('US'):
+        state_id = input_region[2:4]
+        return f'USwest_State_{state_id}'
+    else:
+        # TODO: HMA countries, basins
+        raise NotImplementedError(f'Unexpected region in filename: {input_fn}')
 
 
 def output_fp_from_input_fp(input_fp: Path) -> Path:
