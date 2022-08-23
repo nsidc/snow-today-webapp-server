@@ -20,7 +20,7 @@ def typecheck(ctx):
     """Check for type correctness using mypy."""
     mypy_cfg_fp = REPO_ROOT_DIR / '.mypy.ini'
 
-    print_and_run(f'mypy --config-file=-{mypy_cfg_fp} .')
+    print_and_run(f'mypy --config-file={mypy_cfg_fp} .')
     print('🎉🦆 Type checking passed.')
 
 
