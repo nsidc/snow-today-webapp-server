@@ -15,7 +15,7 @@ TODO: How to organize region relationships? E.g. USwest contains all HUCs and st
 import json
 import os
 from pathlib import Path
-from typing import Literal
+from typing import Literal, Optional
 
 import geopandas as gpd
 # TODO: After upgrading to 3.11 (PEP655), can use builtin TypedDict again.
@@ -25,7 +25,7 @@ from typing_extensions import NotRequired, TypedDict
 
 # Types
 ShapefileCategory = Literal['HUC2', 'HUC4', 'State']
-RegionType = Literal['HUC', 'State'] | None
+RegionType = Optional[Literal['HUC', 'State']]
 
 
 class UnsupportedRegion(Exception):
@@ -324,6 +324,7 @@ def _simplify_geometry(feature_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
 def _region_info(category: ShapefileCategory, feature: gpd.GeoSeries) -> RegionInfo:
     """Extract re-usable information from each feature."""
     region_enabled: bool = True
+    region_type: RegionType
 
     if category.startswith('HUC'):
         region_type = 'HUC'
@@ -347,7 +348,7 @@ def _region_info(category: ShapefileCategory, feature: gpd.GeoSeries) -> RegionI
     else:
         raise RuntimeError(f'Unexpected category: {category}')
 
-    region_info = {
+    region_info: RegionInfo = {
         'id': region_id,
         'type': region_type,
         'longname': region_longname,
@@ -421,7 +422,7 @@ def make_all_geojson():
     print('Creating a GeoJSON file for each feature in shapefiles:')
     print(list(SHAPEFILES.values()))
 
-    region_index = {}
+    region_index: RegionIndex = {}
 
     for shapefile_category, shapefile_path in SHAPEFILES.items():
         shapefile_gdf = gpd.read_file(shapefile_path)
