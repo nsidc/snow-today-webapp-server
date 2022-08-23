@@ -68,7 +68,11 @@ SHAPEFILE_INPUT_DIR = STORAGE_DIR / 'snow_today_2.0_testing' / 'shapefiles'
 SHAPEFILES: dict[ShapefileCategory, Path] = {
     'HUC2': SHAPEFILE_INPUT_DIR / 'HUC2_9to17' / 'HUC2_9to17.shp',
     'HUC4': SHAPEFILE_INPUT_DIR / 'HUC4_9to17' / 'HUC4_9to17_in5tiles.shp',
-    'State': SHAPEFILE_INPUT_DIR / 'WesternUS_states_touching5tiles' / 'WesternUS_states_touching5tiles.shp',
+    'State': (
+        SHAPEFILE_INPUT_DIR
+        / 'WesternUS_states_touching5tiles'
+        / 'WesternUS_states_touching5tiles.shp'
+    ),
 }
 
 # The coefficient used to calculate the simplification threshold (by multiplying this
@@ -319,7 +323,7 @@ def _simplify_geometry(feature_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
 
 def _region_info(category: ShapefileCategory, feature: gpd.GeoSeries) -> RegionInfo:
     """Extract re-usable information from each feature."""
-    region_enabled: boolean = True
+    region_enabled: bool = True
 
     if category.startswith('HUC'):
         region_type = 'HUC'
@@ -379,7 +383,10 @@ def _make_uswest_region_geojson(all_states_gdf: gpd.GeoDataFrame) -> RegionInfo:
     return region_info
 
 
-def _make_geojson(category: ShapefileCategory, feature_gdf: gpd.GeoDataFrame) -> RegionInfo:
+def _make_geojson(
+    category: ShapefileCategory,
+    feature_gdf: gpd.GeoDataFrame,
+) -> RegionInfo:
     """Make a GeoJSON from a GDF containing 1 feature."""
     if len(feature_gdf) != 1:
         raise RuntimeError(f'Expected exactly 1 feature! {feature_gdf}')

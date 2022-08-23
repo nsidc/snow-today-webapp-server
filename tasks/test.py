@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from invoke import task
 
 from .util import REPO_ROOT_DIR, print_and_run
