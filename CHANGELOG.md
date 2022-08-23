@@ -1,3 +1,8 @@
+# v0.2.1 (2022-08-22)
+
+* Fix deploy script docker-compose invocation
+
+
 # v0.2.0 (2022-08-22)
 
 * Add "US West complete" region
