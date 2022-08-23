@@ -32,7 +32,8 @@ class UnsupportedRegion(Exception):
     pass
 
 
-class RegionInfo(TypedDict):
+class SubRegionInfo(TypedDict):
+    """An internal data structure."""
     id: str
     type: RegionType
     longname: str
@@ -41,12 +42,22 @@ class RegionInfo(TypedDict):
     enabled: bool
 
 
+class SubRegionIndexEntry(TypedDict):
+    longname: str
+    shortname: str
+    shape_path: str
+    type: RegionType
+    enabled: NotRequired[bool]
+
+
+SubRegionIndex = dict[str, SubRegionIndexEntry]
+
+
 class RegionIndexEntry(TypedDict):
     longname: str
     shortname: str
-    file: str
-    type: RegionType
-    enabled: NotRequired[bool]
+    shape_path: str
+    subregions: SubRegionIndex
 
 
 RegionIndex = dict[str, RegionIndexEntry]
@@ -289,6 +300,12 @@ STATE_ABBREVS = {v['longname']: k for k, v in STATES_BY_ABBREV.items()}
 STATES_ENABLED = {v['longname'] for v in STATES_BY_ABBREV.values() if v['enabled']}
 
 
+def _read_shapefile(shapefile_path: Path) -> gpd.GeoDataFrame:
+    shapefile_gdf = gpd.read_file(shapefile_path)
+    shapefile_gdf = shapefile_gdf.to_crs(epsg=3857)
+    return shapefile_gdf
+
+
 def _simplify_geometry(feature_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     """Simplify geometry by `SIMPLIFICATION_COEFFICIENT`.
 
@@ -355,7 +372,9 @@ def _region_info(category: ShapefileCategory, feature: gpd.GeoSeries) -> RegionI
     return region_info
 
 
-def _make_uswest_region_geojson(all_states_gdf: gpd.GeoDataFrame) -> RegionInfo:
+def _make_uswest_region_geojson() -> RegionInfo:
+    all_states_gdf = _read_shapefile(SHAPEFILES['State'])
+
     region_info: RegionInfo = {
         'id': 'USwest',
         'type': None,
@@ -416,17 +435,17 @@ def make_all_geojson():
 
     region_index = {}
 
-    for shapefile_category, shapefile_path in SHAPEFILES.items():
-        shapefile_gdf = gpd.read_file(shapefile_path)
-        shapefile_gdf = shapefile_gdf.to_crs(epsg=3857)
+    # Make shape of full USwest region:
+    region_info = _make_uswest_region_geojson()
+    # 
+    # _update_geojson_index(
+    #     region_info=region_info,
+    #     region_index=region_index,
+    # )
 
-        # Make shape of full USwest region:
-        if shapefile_category == 'State':
-            region_info = _make_uswest_region_geojson(shapefile_gdf)
-            _update_geojson_index(
-                region_info=region_info,
-                region_index=region_index,
-            )
+    # Make sub-regions
+    for shapefile_category, shapefile_path in SHAPEFILES.items():
+        shapefile_gdf = _read_shapefile(shapefile_path)
 
         for index in shapefile_gdf.index:
             feature_gdf = shapefile_gdf.iloc[[index]]
