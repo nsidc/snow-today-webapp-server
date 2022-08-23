@@ -5,7 +5,11 @@ representing the column for each header.
 
 NOTE: These outputs should not be committed!
 """
-import csv, io, json, math, os, sys
+import csv
+import io
+import json
+import math
+import os
 from pathlib import Path
 from typing import Literal, TypedDict, get_args
 
@@ -49,9 +53,11 @@ def _nan_to_none(val):
 
 
 def _normalize_value(dct: PlotDataPoint, k: Header):
-    """The "index" (doy) is integer, and the values are floats.
+    """Normalize values to expected types.
 
-    Also convert NaNs to None.
+    The "index" (doy) is integer, and the values are floats.
+
+    NaNs are converted to None.
     """
     val = dct[k]
     if k == 'day_of_water_year':
@@ -102,7 +108,12 @@ def csv_cols_to_dict(csv_rows: list[str]) -> dict[Header, list]:
 
 
 def _variable_id_from_input_fn(input_fn: str) -> str:
-    """SnowToday_USCO_SCF_WY2022_yearToDate.txt"""
+    """Extract variable identifier from input filename.
+
+    e.g.:
+        * SnowToday_USCO_SCF_WY2022_yearToDate.txt
+        * SnowToday_HUC10_Albedo_WY2022_yearToDate.txt
+    """
     mapping = {
         'Albedo': 'albedo_observed_muZ',
         'RF': 'radiative_forcing',
