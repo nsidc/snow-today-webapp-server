@@ -29,6 +29,7 @@
 #  DEALINGS IN THE SOFTWARE.
 # *****************************************************************************
 # flake8: noqa
+# type: ignore
 
 import os.path
 import struct
