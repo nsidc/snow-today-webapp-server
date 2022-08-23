@@ -6,11 +6,27 @@
       "properties": {
         "longname": {"type": "string"},
         "shortname": {"type": "string"},
-        "file": {"type": "string"},
-        "type": {"type": ["string", "null"]},
-        "enabled": {"type": "boolean"}
+        "shape_path": {"type": "string"},
+        "subregions": {
+          "type": "object",
+          "patternProperties": {
+            "^.*$": {
+              "type": "object",
+              "properties": {
+                "longname": {"type": "string"},
+                "shortname": {"type": "string"},
+                "shape_path": {"type": "string"},
+                "type": {"type": "string"},
+                "enabled": {"type": "boolean"}
+              },
+              "required": ["longname", "shortname", "shape_path", "type"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
       },
-      "required": ["longname", "shortname", "file", "type"],
+      "required": ["longname", "shortname", "shape_path"],
       "additionalProperties": false
     }
   },
