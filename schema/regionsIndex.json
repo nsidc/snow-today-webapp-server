@@ -1,25 +1,44 @@
 {
   "type": "object",
   "patternProperties": {
+    "$comment": "Unique identifier of super-region, e.g. 'USwest' or 'HMA'",
     "^.*$": {
       "type": "object",
+      "$comment": "Super-region properties",
       "properties": {
         "longname": {"type": "string"},
         "shortname": {"type": "string"},
         "shape_path": {"type": "string"},
-        "subregions": {
+        "subregion_collections": {
           "type": "object",
           "patternProperties": {
+            "$comment": "Unique identifier of sub-region collection, e.g. 'HUC', 'State', 'Basin', 'Country'",
             "^.*$": {
               "type": "object",
+              "$comment": "Sub-region collection properties",
               "properties": {
                 "longname": {"type": "string"},
                 "shortname": {"type": "string"},
-                "shape_path": {"type": "string"},
-                "type": {"type": "string"},
-                "enabled": {"type": "boolean"}
+                "items": {
+                  "type": "object",
+                  "patternProperties": {
+                    "$comment": "Unique identifier of sub-region, e.g. 'CO', '1002', 'Kyrgyzstan'",
+                    "^.*$": {
+                      "type": "object",
+                      "$comment": "Sub-region properties",
+                      "properties": {
+                        "longname": {"type": "string"},
+                        "shortname": {"type": "string"},
+                        "shape_path": {"type": "string"},
+                        "enabled": {"type": "boolean"}
+                      },
+                      "required": ["longname", "shortname", "shape_path"],
+                      "additionalProperties": false
+                    }
+                  }
+                }
               },
-              "required": ["longname", "shortname", "shape_path", "type"],
+              "required": ["longname", "shortname", "items"],
               "additionalProperties": false
             }
           },

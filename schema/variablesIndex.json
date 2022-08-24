@@ -1,6 +1,7 @@
 {
   "type": "object",
   "patternProperties": {
+    "$comment": "Unique identifier of satellite variable",
     "^.*$": {
       "type": "object",
       "properties": {
