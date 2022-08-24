@@ -28,6 +28,11 @@ dependencies:
   - cycler=0.11.0=pyhd8ed1ab_0
   - expat=2.4.8=h27087fc_0
   - fiona=1.8.21=py310h60a68a4_2
+  - flake8=5.0.4=pyhd8ed1ab_0
+  - flake8-bugbear=22.8.23=pyhd8ed1ab_0
+  - flake8-comprehensions=3.10.0=pyhd8ed1ab_0
+  - flake8-docstrings=1.6.0=pyhd8ed1ab_0
+  - flake8-use-fstring=1.4=pyhd8ed1ab_0
   - folium=0.12.1.post1=pyhd8ed1ab_1
   - font-ttf-dejavu-sans-mono=2.37=hab24e00_0
   - font-ttf-inconsolata=3.000=h77eed37_0
@@ -51,7 +56,9 @@ dependencies:
   - icu=70.1=h27087fc_0
   - idna=3.3=pyhd8ed1ab_0
   - importlib-metadata=4.11.4=py310hff52083_0
+  - importlib_metadata=4.11.4=hd8ed1ab_0
   - importlib_resources=5.9.0=pyhd8ed1ab_0
+  - invoke=1.7.1=pyhd8ed1ab_0
   - jinja2=3.1.2=pyhd8ed1ab_1
   - joblib=1.1.0=pyhd8ed1ab_0
   - jpeg=9e=h166bdaf_2
@@ -107,8 +114,11 @@ dependencies:
   - mapclassify=2.4.3=pyhd8ed1ab_0
   - markupsafe=2.1.1=py310h5764c6d_1
   - matplotlib-base=3.5.2=py310h5701ce4_1
+  - mccabe=0.7.0=pyhd8ed1ab_0
   - munch=2.5.0=py_0
   - munkres=1.1.4=pyh9f0ad1d_0
+  - mypy=0.971=py310h5764c6d_0
+  - mypy_extensions=0.4.3=py310hff52083_5
   - ncurses=6.3=h27087fc_1
   - networkx=2.8.5=pyhd8ed1ab_0
   - nspr=4.32=h9c3ff4c_1
@@ -127,14 +137,18 @@ dependencies:
   - poppler-data=0.4.11=hd8ed1ab_0
   - postgresql=14.5=hfdbbde3_0
   - proj=9.0.1=h93bde94_1
+  - psutil=5.9.1=py310h5764c6d_0
   - pthread-stubs=0.4=h36c2ea0_1001
+  - pycodestyle=2.9.1=pyhd8ed1ab_0
   - pycparser=2.21=pyhd8ed1ab_0
+  - pydocstyle=6.1.1=pyhd8ed1ab_0
+  - pyflakes=2.5.0=pyhd8ed1ab_0
   - pyopenssl=22.0.0=pyhd8ed1ab_0
   - pyparsing=3.0.9=pyhd8ed1ab_0
   - pyproj=3.3.1=py310hf94497c_1
   - pyrsistent=0.18.1=py310h5764c6d_1
   - pysocks=1.7.1=py310hff52083_5
-  - python=3.10.5=h582c2e5_0_cpython
+  - python=3.10.6=h582c2e5_0_cpython
   - python-dateutil=2.8.2=pyhd8ed1ab_0
   - python_abi=3.10=2_cp310
   - pytz=2022.2.1=pyhd8ed1ab_0
@@ -147,10 +161,12 @@ dependencies:
   - shapely=1.8.2=py310h5e49deb_3
   - six=1.16.0=pyh6c4a22f_0
   - snappy=1.1.9=hbd366e4_1
+  - snowballstemmer=2.2.0=pyhd8ed1ab_0
   - sqlite=3.39.2=h4ff8645_1
   - threadpoolctl=3.1.0=pyh8a188c0_0
   - tiledb=2.9.5=h1e4a385_0
   - tk=8.6.12=h27826a3_0
+  - tomli=2.0.1=pyhd8ed1ab_0
   - typing-extensions=4.3.0=hd8ed1ab_0
   - typing_extensions=4.3.0=pyha770c72_0
   - tzcode=2022b=h166bdaf_0

@@ -5,9 +5,13 @@ representing the column for each header.
 
 NOTE: These outputs should not be committed!
 """
-import csv, io, json, math, os, sys
+import csv
+import io
+import json
+import math
+import os
 from pathlib import Path
-from typing import Literal, TypedDict, get_args
+from typing import Literal, TypedDict, cast, get_args
 
 try:
     STORAGE_DIR = Path(os.environ['STORAGE_DIR'])
@@ -49,9 +53,11 @@ def _nan_to_none(val):
 
 
 def _normalize_value(dct: PlotDataPoint, k: Header):
-    """The "index" (doy) is integer, and the values are floats.
+    """Normalize values to expected types.
 
-    Also convert NaNs to None.
+    The "index" (doy) is integer, and the values are floats.
+
+    NaNs are converted to None.
     """
     val = dct[k]
     if k == 'day_of_water_year':
@@ -88,21 +94,34 @@ def cleanse_input(input_csv_fp: Path) -> list[str]:
     return csv_rows
 
 
-def csv_cols_to_dict(csv_rows: list[str]) -> dict[Header, list]:
+def csv_cols_to_dict(csv_rows: str) -> dict[Header, list[float] | list[int]]:
+    """Convert a string of CSV data to dict of lists."""
     csv_as_list_of_dicts = [
-        dict(r)
+        # NOTE: I don't think we can get rid of this cast; Mypy can't know about the CSV
+        # structure.
+        cast(PlotDataPoint, dict(r))
         for r in csv.DictReader(io.StringIO(''.join(csv_rows)))
     ]
+
+    # TODO: Can we get rid of this cast???
+    csv_columns = cast(set[Header], set(csv_as_list_of_dicts[0].keys()))
     csv_as_dict_of_lists = {
-        k: [_normalize_value(dct, k)
-            for dct in csv_as_list_of_dicts]
-        for k in csv_as_list_of_dicts[0].keys()
+        k: [
+            _normalize_value(dct, k)
+            for dct in csv_as_list_of_dicts
+        ]
+        for k in csv_columns
     }
     return csv_as_dict_of_lists
 
 
 def _variable_id_from_input_fn(input_fn: str) -> str:
-    """SnowToday_USCO_SCF_WY2022_yearToDate.txt"""
+    """Extract variable identifier from input filename.
+
+    e.g.:
+        * SnowToday_USCO_SCF_WY2022_yearToDate.txt
+        * SnowToday_HUC10_Albedo_WY2022_yearToDate.txt
+    """
     mapping = {
         'Albedo': 'albedo_observed_muZ',
         'RF': 'radiative_forcing',
