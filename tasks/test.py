@@ -3,6 +3,22 @@ from invoke import task
 from .util import REPO_ROOT_DIR, print_and_run
 
 
+@task(aliases=('jsonschema', 'validate'))
+def validate_json(ctx):
+    """Validate JSON against schemas."""
+    print_and_run(
+        'jsonschema'
+        f' -i {REPO_ROOT_DIR}/data/variables.json'
+        f' {REPO_ROOT_DIR}/schema/variablesIndex.json'
+    )
+    print_and_run(
+        'jsonschema'
+        f' -i {REPO_ROOT_DIR}/data/regions.json'
+        f' {REPO_ROOT_DIR}/schema/regionsIndex.json',
+    )
+    print("✔️ JSON validation passed.")
+
+
 @task(aliases=('flake8',))
 def lint(ctx):
     """Run static analysis with flake8."""
@@ -12,7 +28,7 @@ def lint(ctx):
         f'cd {REPO_ROOT_DIR}'
         f' && flake8 --config {flake8_cfg_fp} .'
     )
-    print("🎉👕 Linting passed.")
+    print("👕 Linting passed.")
 
 
 @task(aliases=('mypy',))
@@ -21,10 +37,10 @@ def typecheck(ctx):
     mypy_cfg_fp = REPO_ROOT_DIR / '.mypy.ini'
 
     print_and_run(f'mypy --config-file={mypy_cfg_fp} .')
-    print('🎉🦆 Type checking passed.')
+    print('🦆 Type checking passed.')
 
 
-@task(default=True, pre=[lint, typecheck])
+@task(default=True, pre=[validate_json, lint, typecheck])
 def static(ctx):
     """Run all static analysis tasks."""
-    pass
+    print("🎉🎉🎉 All static analysis passed.")

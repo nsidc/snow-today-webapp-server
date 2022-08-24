@@ -1,0 +1,2 @@
+class UnsupportedRegionError(Exception):
+    pass

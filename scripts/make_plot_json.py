@@ -9,17 +9,15 @@ import csv
 import io
 import json
 import math
-import os
 from pathlib import Path
 from typing import Literal, TypedDict, cast, get_args
 
-try:
-    STORAGE_DIR = Path(os.environ['STORAGE_DIR'])
-    OUTPUT_DIR = Path(os.environ['SERVER_PLOTS_DIR'])
-except Exception as e:
-    raise RuntimeError(
-        f'Expected $STORAGE_DIR and $SERVER_PLOTS_DIR envvars to be populated: {e}'
-    )
+from util.env import env_get
+from util.region import make_region_code
+
+
+STORAGE_DIR = Path(env_get('STORAGE_DIR'))
+OUTPUT_DIR = Path(env_get('SERVER_PLOTS_DIR'))
 
 INPUT_DIR = STORAGE_DIR / 'snow_today_2.0_testing' / 'linePlotsToDate'
 
@@ -143,10 +141,10 @@ def _region_id_from_input_fn(input_fn: str) -> str:
     input_region = input_fn.split('_')[1]
     if input_region.startswith('HUC'):
         huc_id = input_region[3:]
-        return f'USwest_HUC_{huc_id}'
+        return make_region_code('USwest', 'HUC', huc_id)
     elif len(input_region) == 4 and input_region.startswith('US'):
         state_id = input_region[2:4]
-        return f'USwest_State_{state_id}'
+        return make_region_code('USwest', 'State', state_id)
     else:
         # TODO: HMA countries, basins
         raise NotImplementedError(f'Unexpected region in filename: {input_fn}')

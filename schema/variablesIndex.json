@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "description": "Mapping of satellite variable unique IDs to properties",
   "patternProperties": {
     "^.*$": {
       "type": "object",

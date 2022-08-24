@@ -1,16 +1,51 @@
 {
   "type": "object",
+  "description": "Mapping of super-region unique IDs, e.g. 'USwest' or 'HMA', to their properties",
   "patternProperties": {
     "^.*$": {
       "type": "object",
+      "description": "Super-region properties",
       "properties": {
         "longname": {"type": "string"},
         "shortname": {"type": "string"},
-        "file": {"type": "string"},
-        "type": {"type": ["string", "null"]},
-        "enabled": {"type": "boolean"}
+        "shape_path": {"type": "string"},
+        "subregion_collections": {
+          "type": "object",
+          "description": "Mapping of sub-region collection unique IDs, e.g. 'HUC', 'State', 'Basin', 'Country', to their properties",
+          "patternProperties": {
+            "^.*$": {
+              "type": "object",
+              "description": "Sub-region collection properties",
+              "properties": {
+                "longname": {"type": "string"},
+                "shortname": {"type": "string"},
+                "items": {
+                  "type": "object",
+                  "description": "Mapping of sub-region unique IDs, e.g. 'CO', '1002', 'Kyrgyzstan', to their properties",
+                  "patternProperties": {
+                    "^.*$": {
+                      "type": "object",
+                      "description": "Sub-region properties",
+                      "properties": {
+                        "longname": {"type": "string"},
+                        "shortname": {"type": "string"},
+                        "shape_path": {"type": "string"},
+                        "enabled": {"type": "boolean"}
+                      },
+                      "required": ["longname", "shortname", "shape_path"],
+                      "additionalProperties": false
+                    }
+                  }
+                }
+              },
+              "required": ["longname", "shortname", "items"],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
       },
-      "required": ["longname", "shortname", "file", "type"],
+      "required": ["longname", "shortname", "shape_path"],
       "additionalProperties": false
     }
   },

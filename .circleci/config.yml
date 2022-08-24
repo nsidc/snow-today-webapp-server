@@ -16,10 +16,6 @@ jobs:
             conda env create --quiet -f environment-lock.yml
             conda init bash
       - run:
-          name: 'Validate JSON indexes'
-          command: |
-            /bin/bash --login -c "conda activate snow-today && inv test.validate-json"
-      - run:
           name: 'Static analysis'
           command: |
             /bin/bash --login -c "conda activate snow-today && inv test.static"

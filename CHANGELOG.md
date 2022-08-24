@@ -1,3 +1,10 @@
+# NEXT_VERSION
+
+* Support a 1-level region hierarchy. Each region can have many collections of many
+  sub-regions.
+* Add automated code quality checks.
+
+
 # v0.2.1 (2022-08-22)
 
 * Fix deploy script docker-compose invocation
