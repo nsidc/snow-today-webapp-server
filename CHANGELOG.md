@@ -1,8 +1,7 @@
-# NEXT_VERSION
+# v0.3.0 (2022-08-24)
 
-* Support a 1-level region hierarchy. Each region can have many collections of many
-  sub-regions.
-* Add automated code quality checks.
+* Support a 1-level region hierarchy. Each region can have many sub-region collections,
+  each containing many sub-regions.
 
 
 # v0.2.1 (2022-08-22)
