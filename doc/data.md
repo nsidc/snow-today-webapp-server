@@ -2,6 +2,8 @@
 
 ## Static, versioned data managed by this repo
 
+This data will be baked into the `snow-today-webapp-server` Docker image.
+
 * `variables.json`: Index of available variables. Maintained by hand.
 * `regions.json`: Index of available regions and their associated subregion collections.
   Produced by `scripts/make_region_shapes_and_index.py`, but hand-editing is expected
@@ -14,6 +16,8 @@
 
 These data are produced daily on the Research Computing hardware, transferred to NSIDC
 hardware, and post-processed for use by the webapp.
+
+This data is expected to be mounted at runtime.
 
 * `cogs/`: Cloud-Optimized GeoTIFFs. ~9 per day (1 for each variable). These are
   originally created on RC as regular GeoTIFFs, transferred, then post-processed by
