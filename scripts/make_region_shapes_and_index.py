@@ -15,7 +15,7 @@ TODO: How to organize region relationships? E.g. USwest contains all HUCs and st
 import functools
 import json
 from pathlib import Path
-from typing import Callable, Iterator, Literal
+from typing import Callable, Iterator
 
 import geopandas as gpd
 
@@ -32,12 +32,12 @@ from types_.regions import (
     ShapefileCategory,
     SubRegion,
     SubRegionCollection,
-    SubRegionCollectionName,
     SubRegionCollectionProcessingParams,
     SubRegionIndex,
     SuperRegion,
 )
 from util.env import env_get
+from util.region import make_region_code
 from util.simplify_geometry import simplify_geometry
 
 
@@ -53,14 +53,6 @@ USWEST_SHAPEFILES: dict[ShapefileCategory, Path] = {
         / 'WesternUS_states_touching5tiles.shp'
     ),
 }
-
-
-def _region_code(
-    super_region_name: Literal['USwest'],
-    sub_region_collection_name: SubRegionCollectionName,
-    sub_region_name: str,
-) -> str:
-    return f'{super_region_name}_{sub_region_collection_name}_{sub_region_name}'
 
 
 def _read_shapefile(shapefile_path: Path) -> gpd.GeoDataFrame:
@@ -124,7 +116,7 @@ def huc_feature_to_subregion(feature_gdf: gpd.GeoDataFrame) -> tuple[str, SubReg
     assert len(huc_cols) == 1
     huc_col_name = huc_cols[0]
     huc_id = feature[huc_col_name]
-    region_code = _region_code('USwest', 'HUC', huc_id)
+    region_code = make_region_code('USwest', 'HUC', huc_id)
 
     subregion: SubRegion = {
         'longname': f'HUC {huc_id}: {feature["name"]}',
@@ -142,7 +134,7 @@ def state_feature_to_subregion(feature_gdf: gpd.GeoDataFrame) -> tuple[str, SubR
 
     state_longname = feature['STATE']
     state_abbrev = STATE_ABBREVS[state_longname]
-    region_code = _region_code('USwest', 'State', state_abbrev)
+    region_code = make_region_code('USwest', 'State', state_abbrev)
 
     return (
         state_abbrev,

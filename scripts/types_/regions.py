@@ -20,7 +20,8 @@ ShapefileCategory = Literal['HUC2', 'HUC4', 'State']
 # The final categorization of shapes will be:
 SubRegionCollectionName = Literal['HUC', 'State']
 
-SuperRegionName = Literal['USwest', 'HMA']
+# SuperRegionName = Literal['USwest', 'HMA']
+SuperRegionName = Literal['USwest']
 
 
 class SubRegion(TypedDict):
