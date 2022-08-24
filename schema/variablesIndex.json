@@ -1,7 +1,7 @@
 {
   "type": "object",
+  "description": "Mapping of satellite variable unique IDs to properties",
   "patternProperties": {
-    "$comment": "Unique identifier of satellite variable",
     "^.*$": {
       "type": "object",
       "properties": {

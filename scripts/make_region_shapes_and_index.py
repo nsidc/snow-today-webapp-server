@@ -12,71 +12,39 @@ TODO: Should we split the different categories of regions into different files?
 TODO: How to organize region relationships? E.g. USwest contains all HUCs and states.
       Some HUCs contain other HUCs.
 """
+import functools
 import json
-import os
 from pathlib import Path
-from typing import Literal, Optional
+from typing import Callable, Iterator, Literal
 
 import geopandas as gpd
-# TODO: After upgrading to 3.11 (PEP655), can use builtin TypedDict again.
-#       https://peps.python.org/pep-0655/#usage-in-python-3-11
-from typing_extensions import NotRequired, TypedDict
+
+from constants.paths import (
+    REGION_INDEX_FP,
+    REPO_DATA_DIR,
+    REPO_SHAPES_DIR,
+)
+from constants.states import STATE_ABBREVS, STATES_ENABLED
+from types_.regions import (
+    RegionIndex,
+    RegionProcessingParams,
+    RegionProcessingStruct,
+    ShapefileCategory,
+    SubRegion,
+    SubRegionCollection,
+    SubRegionCollectionName,
+    SubRegionCollectionProcessingParams,
+    SubRegionIndex,
+    SuperRegion,
+)
+from util.env import env_get
+from util.simplify_geometry import simplify_geometry
 
 
-# Types
-ShapefileCategory = Literal['HUC2', 'HUC4', 'State']
-RegionType = Optional[Literal['HUC', 'State']]
-
-
-class UnsupportedRegion(Exception):
-    pass
-
-
-class SubRegionInfo(TypedDict):
-    """An internal data structure."""
-    id: str
-    type: RegionType
-    longname: str
-    shortname: str
-    filename: str
-    enabled: bool
-
-
-class SubRegionIndexEntry(TypedDict):
-    longname: str
-    shortname: str
-    shape_path: str
-    type: RegionType
-    enabled: NotRequired[bool]
-
-
-SubRegionIndex = dict[str, SubRegionIndexEntry]
-
-
-class RegionIndexEntry(TypedDict):
-    longname: str
-    shortname: str
-    shape_path: str
-    subregions: SubRegionIndex
-
-
-RegionIndex = dict[str, RegionIndexEntry]
-
-# Constants
-REPO_DIR = Path(__file__).parent.parent.absolute()
-REPO_DATA_DIR = REPO_DIR / 'data'
-SHAPE_OUTPUT_DIR = REPO_DATA_DIR / 'shapes'
-REGION_INDEX_FP = REPO_DATA_DIR / 'regions.json'
-
-try:
-    STORAGE_DIR = Path(os.environ['STORAGE_DIR'])
-except Exception as e:
-    raise RuntimeError(
-        f'Expected $STORAGE_DIR envvar to be populated: {e}'
-    )
+STORAGE_DIR = Path(env_get('STORAGE_DIR'))
 
 SHAPEFILE_INPUT_DIR = STORAGE_DIR / 'snow_today_2.0_testing' / 'shapefiles'
-SHAPEFILES: dict[ShapefileCategory, Path] = {
+USWEST_SHAPEFILES: dict[ShapefileCategory, Path] = {
     'HUC2': SHAPEFILE_INPUT_DIR / 'HUC2_9to17' / 'HUC2_9to17.shp',
     'HUC4': SHAPEFILE_INPUT_DIR / 'HUC4_9to17' / 'HUC4_9to17_in5tiles.shp',
     'State': (
@@ -86,222 +54,13 @@ SHAPEFILES: dict[ShapefileCategory, Path] = {
     ),
 }
 
-# The coefficient used to calculate the simplification threshold (by multiplying this
-# number by the size of the shortest dimension of each shape's bbox). Smaller numbers
-# result in finer output resolution.
-# At .001, our biggest regions are 125KB. 7.2MB in total.
-# At .0005, our biggest regions are 237KB. 13MB in total.
-# At .0001, our biggest regions are 762KB. 41MB in total.
-SIMPLIFICATION_COEFFICIENT = .0005
 
-# NOTE: It would be really nice if the state abbreviation was included on the feature
-# data, but it's not!
-# NOTE: It would be really nice if the input data only included the needed regions, but
-# it may contain any.
-STATES_BY_ABBREV = {
-    'AK': {
-        'longname': 'Alaska',
-        'enabled': False,
-    },
-    'AL': {
-        'longname': 'Alabama',
-        'enabled': False,
-    },
-    'AR': {
-        'longname': 'Arkansas',
-        'enabled': False,
-    },
-    'AZ': {
-        'longname': 'Arizona',
-        'enabled': True,
-    },
-    'CA': {
-        'longname': 'California',
-        'enabled': True,
-    },
-    'CO': {
-        'longname': 'Colorado',
-        'enabled': True,
-    },
-    'CT': {
-        'longname': 'Connecticut',
-        'enabled': False,
-    },
-    'DC': {
-        'longname': 'District of Columbia',
-        'enabled': False,
-    },
-    'DE': {
-        'longname': 'Delaware',
-        'enabled': False,
-    },
-    'FL': {
-        'longname': 'Florida',
-        'enabled': False,
-    },
-    'GA': {
-        'longname': 'Georgia',
-        'enabled': False,
-    },
-    'HI': {
-        'longname': 'Hawaii',
-        'enabled': False,
-    },
-    'IA': {
-        'longname': 'Iowa',
-        'enabled': False,
-    },
-    'ID': {
-        'longname': 'Idaho',
-        'enabled': True,
-    },
-    'IL': {
-        'longname': 'Illinois',
-        'enabled': False,
-    },
-    'IN': {
-        'longname': 'Indiana',
-        'enabled': False,
-    },
-    'KS': {
-        'longname': 'Kansas',
-        'enabled': False,
-    },
-    'KY': {
-        'longname': 'Kentucky',
-        'enabled': False,
-    },
-    'LA': {
-        'longname': 'Louisiana',
-        'enabled': False,
-    },
-    'MA': {
-        'longname': 'Massachusetts',
-        'enabled': False,
-    },
-    'MD': {
-        'longname': 'Maryland',
-        'enabled': False,
-    },
-    'ME': {
-        'longname': 'Maine',
-        'enabled': False,
-    },
-    'MI': {
-        'longname': 'Michigan',
-        'enabled': False,
-    },
-    'MN': {
-        'longname': 'Minnesota',
-        'enabled': False,
-    },
-    'MO': {
-        'longname': 'Missouri',
-        'enabled': False,
-    },
-    'MS': {
-        'longname': 'Mississippi',
-        'enabled': False,
-    },
-    'MT': {
-        'longname': 'Montana',
-        'enabled': True,
-    },
-    'NC': {
-        'longname': 'North Carolina',
-        'enabled': False,
-    },
-    'ND': {
-        'longname': 'North Dakota',
-        'enabled': False,
-    },
-    'NE': {
-        'longname': 'Nebraska',
-        'enabled': True,
-    },
-    'NM': {
-        'longname': 'New Mexico',
-        'enabled': True,
-    },
-    'NH': {
-        'longname': 'New Hampshire',
-        'enabled': False,
-    },
-    'NJ': {
-        'longname': 'New Jersey',
-        'enabled': False,
-    },
-    'NV': {
-        'longname': 'Nevada',
-        'enabled': True,
-    },
-    'NY': {
-        'longname': 'New York',
-        'enabled': False,
-    },
-    'OH': {
-        'longname': 'Ohio',
-        'enabled': False,
-    },
-    'OK': {
-        'longname': 'Oklahoma',
-        'enabled': False,
-    },
-    'OR': {
-        'longname': 'Oregon',
-        'enabled': True,
-    },
-    'PA': {
-        'longname': 'Pennsylvania',
-        'enabled': False,
-    },
-    'RI': {
-        'longname': 'Rhode Island',
-        'enabled': False,
-    },
-    'SC': {
-        'longname': 'South Carolina',
-        'enabled': False,
-    },
-    'SD': {
-        'longname': 'South Dakota',
-        'enabled': True,
-    },
-    'TN': {
-        'longname': 'Tennessee',
-        'enabled': False,
-    },
-    'TX': {
-        'longname': 'Texas',
-        'enabled': False,
-    },
-    'UT': {
-        'longname': 'Utah',
-        'enabled': True,
-    },
-    'VA': {
-        'longname': 'Virginia',
-        'enabled': False,
-    },
-    'VT': {
-        'longname': 'Vermont',
-        'enabled': False,
-    },
-    'WA': {
-        'longname': 'Washington',
-        'enabled': True,
-    },
-    'WI': {
-        'longname': 'Wisconsin',
-        'enabled': False,
-    },
-    'WY': {
-        'longname': 'Wyoming',
-        'enabled': True,
-    },
-}
-STATE_ABBREVS = {v['longname']: k for k, v in STATES_BY_ABBREV.items()}
-STATES_ENABLED = {v['longname'] for v in STATES_BY_ABBREV.values() if v['enabled']}
+def _region_code(
+    super_region_name: Literal['USwest'],
+    sub_region_collection_name: SubRegionCollectionName,
+    sub_region_name: str,
+) -> str:
+    return f'{super_region_name}_{sub_region_collection_name}_{sub_region_name}'
 
 
 def _read_shapefile(shapefile_path: Path) -> gpd.GeoDataFrame:
@@ -310,171 +69,179 @@ def _read_shapefile(shapefile_path: Path) -> gpd.GeoDataFrame:
     return shapefile_gdf
 
 
-def _simplify_geometry(feature_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
-    """Simplify geometry by `SIMPLIFICATION_COEFFICIENT`.
-
-    Calculates the simplification threshold by multiplying the shortest dimension of the
-    feature by `SIMPLIFICATION_COEFFICIENT`.
-
-    E.g. if a shape's bounds are 4km x 10km, and the coefficient is .001, the threshold
-    will be 4m.
-    """
-    if len(feature_gdf) != 1:
-        raise RuntimeError(f'Expected exactly 1 feature! {feature_gdf}')
-
-    bounds = feature_gdf.bounds.iloc[0]
-
-    shortest_dim = min(
-        abs(bounds.maxy - bounds.miny),
-        abs(bounds.maxx - bounds.minx),
-    )
-
-    threshold = shortest_dim * SIMPLIFICATION_COEFFICIENT
-
-    feature_gdf = feature_gdf.set_geometry(
-        feature_gdf['geometry'].simplify(threshold).buffer(0),
-    )
-
-    return feature_gdf
-
-
-def _region_info(category: ShapefileCategory, feature: gpd.GeoSeries) -> RegionInfo:
-    """Extract re-usable information from each feature."""
-    region_enabled: bool = True
-    region_type: RegionType
-
-    if category.startswith('HUC'):
-        region_type = 'HUC'
-
-        huc_col_name = [f for f in feature.index if f.startswith('huc')][0]
-        huc_id = feature[huc_col_name]
-
-        if huc_id.startswith('12'):
-            region_enabled = False
-
-        region_longname = f'HUC {huc_id}: {feature["name"]}'
-        region_shortname = f'HUC_{huc_id}'
-        region_id = f'USwest_HUC_{huc_id}'
-    elif category == 'State':
-        region_type = 'State'
-        region_longname = feature['STATE']
-        region_shortname = STATE_ABBREVS[region_longname]
-        region_enabled = region_longname in STATES_ENABLED
-
-        region_id = f'USwest_State_{region_shortname}'
-    else:
-        raise RuntimeError(f'Unexpected category: {category}')
-
-    region_info: RegionInfo = {
-        'id': region_id,
-        'type': region_type,
-        'longname': region_longname,
-        'shortname': region_shortname,
-        'filename': f'{region_id}.geojson',
-        'enabled': region_enabled,
-    }
-
-    return region_info
-
-
-def _make_uswest_region_geojson() -> RegionInfo:
-    all_states_gdf = _read_shapefile(SHAPEFILES['State'])
-
-    region_info: RegionInfo = {
-        'id': 'USwest',
-        'type': None,
-        'longname': 'US West complete',
-        'shortname': 'USwest',
-        'filename': 'USwest.geojson',
-        'enabled': True,
-    }
-    geojson_fp = SHAPE_OUTPUT_DIR / region_info['filename']
+def _make_uswest_super_region_gdf() -> gpd.GeoDataFrame:
+    all_states_gdf = _read_shapefile(USWEST_SHAPEFILES['State'])
 
     enabled_states_gdf = all_states_gdf[all_states_gdf['STATE'].isin(STATES_ENABLED)]
+
     # Dissolve boundaries between states
     enabled_states_outline = enabled_states_gdf.drop(
         ['STATE', 'STATE_FIPS'],
         axis='columns',
     ).dissolve()
 
-    enabled_states_outline = _simplify_geometry(enabled_states_outline)
-    enabled_states_outline.to_file(geojson_fp, driver='GeoJSON')
+    enabled_states_outline = simplify_geometry(enabled_states_outline)
 
-    return region_info
-
-
-def _make_geojson(
-    category: ShapefileCategory,
-    feature_gdf: gpd.GeoDataFrame,
-) -> RegionInfo:
-    """Make a GeoJSON from a GDF containing 1 feature."""
-    if len(feature_gdf) != 1:
-        raise RuntimeError(f'Expected exactly 1 feature! {feature_gdf}')
-    feature = feature_gdf.iloc[0]
-
-    region_info = _region_info(category=category, feature=feature)
-    geojson_fp = SHAPE_OUTPUT_DIR / region_info['filename']
-
-    feature_gdf = _simplify_geometry(feature_gdf)
-    feature_gdf.to_file(geojson_fp, driver='GeoJSON')
-
-    return region_info
+    return enabled_states_outline
 
 
-def _update_geojson_index(region_info: RegionInfo, region_index: RegionIndex):
-    """Mutate `region_index` to add region defined by `region_info`."""
-    if region_info['id'] in region_index.keys():
-        raise RuntimeError(f'Duplicate region ID: {region_info["id"]}')
-
-    region_index[region_info['id']] = {
-        'longname': region_info['longname'],
-        'shortname': region_info['shortname'],
-        'file': f'shapes/{region_info["filename"]}',
-        'type': region_info['type'],
-    }
-    if region_info['enabled'] is False:
-        region_index[region_info['id']]['enabled'] = False
-
-
-def make_all_geojson():
-    """Create a GeoJSON file for each region (feature) in SHAPEFILES."""
-    print('Creating a GeoJSON file for each feature in shapefiles:')
-    print(list(SHAPEFILES.values()))
-
-    region_index: RegionIndex = {}
-
-    # Make shape of full USwest region:
-    region_info = _make_uswest_region_geojson()
-    # 
-    # _update_geojson_index(
-    #     region_info=region_info,
-    #     region_index=region_index,
-    # )
-
-    # Make sub-regions
-    for shapefile_category, shapefile_path in SHAPEFILES.items():
+def _shapefile_features(shapefiles: list[Path]) -> Iterator[gpd.GeoDataFrame]:
+    for shapefile_path in shapefiles:
         shapefile_gdf = _read_shapefile(shapefile_path)
 
         for index in shapefile_gdf.index:
-            feature_gdf = shapefile_gdf.iloc[[index]]
+            yield shapefile_gdf.iloc[[index]]
 
-            region_info = _make_geojson(
-                category=shapefile_category,
-                feature_gdf=feature_gdf,
-            )
 
-            _update_geojson_index(
-                region_info=region_info,
-                region_index=region_index,
-            )
+def _make_geojson(*, feature_gdf: gpd.GeoDataFrame, name: str) -> str:
+    """Make a GeoJSON from a GDF containing 1 feature."""
+    if len(feature_gdf) != 1:
+        raise RuntimeError(f'Expected exactly 1 feature! {feature_gdf}')
 
-    return region_index
+    geojson_fp = REPO_SHAPES_DIR / f'{name}.geojson'
+
+    feature_gdf = simplify_geometry(feature_gdf)
+    feature_gdf.to_file(geojson_fp, driver='GeoJSON')
+
+    geojson_relpath = str(geojson_fp.relative_to(REPO_DATA_DIR))
+    return geojson_relpath
+
+
+def make_uswest_super_region_geojson() -> str:
+    uswest_gdf = _make_uswest_super_region_gdf()
+    geojson_fp = REPO_SHAPES_DIR / 'USwest.geojson'
+
+    uswest_gdf.to_file(geojson_fp, driver='GeoJSON')
+
+    geojson_relpath = str(geojson_fp.relative_to(REPO_DATA_DIR))
+    return geojson_relpath
+
+
+def huc_feature_to_subregion(feature_gdf: gpd.GeoDataFrame) -> tuple[str, SubRegion]:
+    feature = feature_gdf.iloc[0]
+
+    huc_cols = [col for col in feature.index if col.startswith('huc')]
+    assert len(huc_cols) == 1
+    huc_col_name = huc_cols[0]
+    huc_id = feature[huc_col_name]
+    region_code = _region_code('USwest', 'HUC', huc_id)
+
+    subregion: SubRegion = {
+        'longname': f'HUC {huc_id}: {feature["name"]}',
+        'shortname': f'HUC {huc_id}',
+        'shape_path': _make_geojson(feature_gdf=feature_gdf, name=region_code),
+        'enabled': not huc_id.startswith('12'),
+    }
+    if subregion['enabled']:
+        del subregion['enabled']
+    return (huc_id, subregion)
+
+
+def state_feature_to_subregion(feature_gdf: gpd.GeoDataFrame) -> tuple[str, SubRegion]:
+    feature = feature_gdf.iloc[0]
+
+    state_longname = feature['STATE']
+    state_abbrev = STATE_ABBREVS[state_longname]
+    region_code = _region_code('USwest', 'State', state_abbrev)
+
+    return (
+        state_abbrev,
+        {
+            'longname': state_longname,
+            'shortname': state_abbrev,
+            'shape_path': _make_geojson(feature_gdf=feature_gdf, name=region_code),
+            'enabled': state_longname in STATES_ENABLED,
+        },
+    )
+
+
+def make_subregions_from_shapefiles(
+    *,
+    shapefiles: list[Path],
+    feature_to_subregion_fn: Callable[[gpd.GeoDataFrame], tuple[str, SubRegion]]
+) -> SubRegionIndex:
+    subregion_ids_and_params = sorted(
+        [
+            feature_to_subregion_fn(feature)
+            for feature in _shapefile_features(shapefiles)
+        ],
+        key=lambda x: x[0],
+    )
+    return {
+        subregion_id: subregion_params
+        for subregion_id, subregion_params in subregion_ids_and_params
+    }
+
+
+TO_PROCESS_REGIONS: RegionProcessingStruct = {
+    'USwest': {
+        'longname': 'Western United States',
+        'shortname': 'Western U.S.',
+        'super_region_geojson_fn': make_uswest_super_region_geojson,
+        'subregion_collections': {
+            'HUC': {
+                'longname': 'Hydrologic Unit Codes',
+                'shortname': 'HUC',
+                'subregion_items_fn': functools.partial(
+                    make_subregions_from_shapefiles,
+                    shapefiles=[
+                        USWEST_SHAPEFILES['HUC2'],
+                        USWEST_SHAPEFILES['HUC4'],
+                    ],
+                    feature_to_subregion_fn=huc_feature_to_subregion,
+                ),
+            },
+            'State': {
+                'longname': 'U.S. States',
+                'shortname': 'State',
+                'subregion_items_fn': functools.partial(
+                    make_subregions_from_shapefiles,
+                    shapefiles=[USWEST_SHAPEFILES['State']],
+                    feature_to_subregion_fn=state_feature_to_subregion,
+                ),
+            },
+        },
+    },
+    # TODO: 'HMA': {},
+}
+
+
+def _sub_region_collection_from_params(
+    params: SubRegionCollectionProcessingParams,
+) -> SubRegionCollection:
+    return {
+        'longname': params['longname'],
+        'shortname': params['shortname'],
+        'items': params['subregion_items_fn'](),
+    }
+
+
+def _super_region_from_params(params: RegionProcessingParams) -> SuperRegion:
+    subregion_collections = {
+        collection_id: _sub_region_collection_from_params(collection_params)
+        for collection_id, collection_params in params['subregion_collections'].items()
+    }
+    return {
+        'longname': params['longname'],
+        'shortname': params['shortname'],
+        'shape_path': params['super_region_geojson_fn'](),
+        'subregion_collections': subregion_collections,
+    }
+
+
+def make_all_regions_geojson() -> RegionIndex:
+    """Create a GeoJSON file for each region and sub-region.
+
+    Return an index of regions.
+    """
+    return {
+        region_id: _super_region_from_params(params)
+        for region_id, params in TO_PROCESS_REGIONS.items()
+    }
 
 
 if __name__ == '__main__':
-    region_index = make_all_geojson()
-
-    # TODO: Re-order?
+    region_index = make_all_regions_geojson()
 
     with open(REGION_INDEX_FP, 'w') as outfile:
-        json.dump(region_index, outfile, sort_keys=True, indent=4)
+        json.dump(region_index, outfile, sort_keys=False, indent=2)

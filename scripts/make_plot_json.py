@@ -9,17 +9,13 @@ import csv
 import io
 import json
 import math
-import os
 from pathlib import Path
 from typing import Literal, TypedDict, cast, get_args
 
-try:
-    STORAGE_DIR = Path(os.environ['STORAGE_DIR'])
-    OUTPUT_DIR = Path(os.environ['SERVER_PLOTS_DIR'])
-except Exception as e:
-    raise RuntimeError(
-        f'Expected $STORAGE_DIR and $SERVER_PLOTS_DIR envvars to be populated: {e}'
-    )
+from util.env import env_get
+
+STORAGE_DIR = Path(env_get('STORAGE_DIR'))
+OUTPUT_DIR = Path(env_get('SERVER_PLOTS_DIR'))
 
 INPUT_DIR = STORAGE_DIR / 'snow_today_2.0_testing' / 'linePlotsToDate'
 

@@ -1,31 +1,31 @@
 {
   "type": "object",
+  "description": "Mapping of super-region unique IDs, e.g. 'USwest' or 'HMA', to their properties",
   "patternProperties": {
-    "$comment": "Unique identifier of super-region, e.g. 'USwest' or 'HMA'",
     "^.*$": {
       "type": "object",
-      "$comment": "Super-region properties",
+      "description": "Super-region properties",
       "properties": {
         "longname": {"type": "string"},
         "shortname": {"type": "string"},
         "shape_path": {"type": "string"},
         "subregion_collections": {
           "type": "object",
+          "description": "Mapping of sub-region collection unique IDs, e.g. 'HUC', 'State', 'Basin', 'Country', to their properties",
           "patternProperties": {
-            "$comment": "Unique identifier of sub-region collection, e.g. 'HUC', 'State', 'Basin', 'Country'",
             "^.*$": {
               "type": "object",
-              "$comment": "Sub-region collection properties",
+              "description": "Sub-region collection properties",
               "properties": {
                 "longname": {"type": "string"},
                 "shortname": {"type": "string"},
                 "items": {
                   "type": "object",
+                  "description": "Mapping of sub-region unique IDs, e.g. 'CO', '1002', 'Kyrgyzstan', to their properties",
                   "patternProperties": {
-                    "$comment": "Unique identifier of sub-region, e.g. 'CO', '1002', 'Kyrgyzstan'",
                     "^.*$": {
                       "type": "object",
-                      "$comment": "Sub-region properties",
+                      "description": "Sub-region properties",
                       "properties": {
                         "longname": {"type": "string"},
                         "shortname": {"type": "string"},
