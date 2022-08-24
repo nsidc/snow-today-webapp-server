@@ -5,4 +5,8 @@ services:
   data-server:
     image: "nsidc/snow-today-webapp-server:dev"
     build: .
+    volumes:
+      - "./data/variables.json:/usr/share/nginx/html/variables.json:ro"
+      - "./data/regions.json:/usr/share/nginx/html/regions.json:ro"
+      - "./data/shapes:/usr/share/nginx/html/shapes:ro"
     restart: "on-failure"
