@@ -53,9 +53,11 @@ def _nan_to_none(val):
 def _normalize_value(dct: PlotDataPoint, k: Header):
     """Normalize values to expected types.
 
-    The "index" (doy) is integer, and the values are floats.
+    The "index" (doy) is integer, and all other columns are floats.
 
-    NaNs are converted to None.
+    `NaN`s are converted to `None` for JSON compliance (JSON doesn't support `None` or
+    `NaN`. The Python `json.dumps` function will convert `None` to compliant value of
+    `null`, but will not convert `NaN`!)
     """
     val = dct[k]
     if k == 'day_of_water_year':
@@ -63,8 +65,7 @@ def _normalize_value(dct: PlotDataPoint, k: Header):
     else:
         float_val = float(val)
 
-        # The Python JSON encoder outputs NaNs, which are _not_ valid JSON.
-        # Convert to nulls:
+        # The Python JSON encoder outputs NaNs, which are invalid JSON numbers.
         if math.isnan(float_val):
             return None
 
@@ -72,7 +73,12 @@ def _normalize_value(dct: PlotDataPoint, k: Header):
 
 
 def cleanse_input(input_csv_fp: Path) -> list[str]:
-    """Standardize header and remove trailer."""
+    """Strip metadata in the first 11 lines of the CSV file.
+
+    NOTE: In the future, this metadata may be useful!
+    """
+    EXPECTED_BLANK_LINE = 11
+
     with open(input_csv_fp, 'r') as input_csv_file:
         input_csv = input_csv_file.readlines()
 
@@ -80,15 +86,22 @@ def cleanse_input(input_csv_fp: Path) -> list[str]:
     header_row = ','.join(HEADERS)
     input_csv[0] = f'{header_row}\n'
 
-    # Remove trailer (everything after blank line)
-    index_of_blank_line = input_csv.index('\n')
-    if index_of_blank_line != 367:
+    # Find the blank line; everything above that is metadata
+    # NOTE: We add 1 because to humans, line numbers start with 1, and list indexes
+    # start at 0.
+    blank_line_number = input_csv.index('\n') + 1
+    if blank_line_number != EXPECTED_BLANK_LINE:
         raise RuntimeError(
-            f'Blank line in {input_csv_fp} expected at line 367. Found at'
-            f' {index_of_blank_line}.'
+            f'Blank line in {input_csv_fp} expected at line {EXPECTED_BLANK_LINE}.'
+            f' Found at: {blank_line_number}.'
         )
 
-    csv_rows = input_csv[0:index_of_blank_line]
+    # Remove metadata (everything above blank line)
+    # NOTE: Remember that `blank_line_number` was incremented by 1 above to represent
+    # the human-readable line number. Since we don't want the blank line number to be
+    # included in the output, that's a good thing; a slice includes the "start" value,
+    # and we only want the lines _after, but not including_ the blank line.
+    csv_rows = input_csv[blank_line_number:]
     return csv_rows
 
 
@@ -117,29 +130,34 @@ def _variable_id_from_input_fn(input_fn: str) -> str:
     """Extract variable identifier from input filename.
 
     e.g.:
-        * SnowToday_USCO_SCF_WY2022_yearToDate.txt
-        * SnowToday_HUC10_Albedo_WY2022_yearToDate.txt
+        * SnowToday_USWY_radiative_forcing_WY2022_yearToDate.csv
+                         ^^^^^^^^^^^^^^^^^
+        * SnowToday_HUC12_snow_fraction_WY2022_yearToDate.csv
+                          ^^^^^^^^^^^^^
+        * SnowToday_USwest_albedo_observed_muZ_WY2022_yearToDate.csv
+                           ^^^^^^^^^^^^^^^^^^^
     """
-    mapping = {
-        'Albedo': 'albedo_observed_muZ',
-        'RF': 'radiative_forcing',
-        'SCF': 'snow_fraction',
-        'SCD': 'snow_cover_days',
-    }
-
-    input_var = input_fn.split('_')[2]
-    return mapping[input_var]
+    # TODO: Consider a regex. Probably doesn't matter.
+    input_var = input_fn.split('_')[2:-2]
+    result = '_'.join(input_var)
+    return result
 
 
 def _region_id_from_input_fn(input_fn: str) -> str:
-    """Extract region ID from input filename.
+    """Derive output region ID from input filename.
 
     E.g.:
-        * SnowToday_USCO_SCF_WY2022_yearToDate.txt
-        * SnowToday_HUC10_Albedo_WY2022_yearToDate.txt
+        * SnowToday_USWY_radiative_forcing_WY2022_yearToDate.csv
+                    ^^^^ State: Wyoming
+        * SnowToday_HUC12_snow_fraction_WY2022_yearToDate.csv
+                    ^^^^^ HUC: 12
+        * SnowToday_USwest_albedo_observed_muZ_WY2022_yearToDate.csv
+                    ^^^^^^ Super-region: USwest
     """
     input_region = input_fn.split('_')[1]
-    if input_region.startswith('HUC'):
+    if input_region == 'USwest':
+        return make_region_code('USwest')
+    elif input_region.startswith('HUC'):
         huc_id = input_region[3:]
         return make_region_code('USwest', 'HUC', huc_id)
     elif len(input_region) == 4 and input_region.startswith('US'):
@@ -161,7 +179,8 @@ def output_fp_from_input_fp(input_fp: Path) -> Path:
 
 
 if __name__ == '__main__':
-    for input_csv_fp in INPUT_DIR.glob('*.txt'):
+    input_files = list(INPUT_DIR.glob('*.csv'))
+    for input_csv_fp in input_files:
         cleansed_csv_rows = cleanse_input(input_csv_fp)
         dict_of_cols = csv_cols_to_dict(''.join(cleansed_csv_rows))
 
