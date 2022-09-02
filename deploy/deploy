@@ -24,7 +24,7 @@ cat "$VERSION_FILE"
 source "$VERSION_FILE"
 
 # Replace the current app
-ln -s docker-compose.live.yml docker-compose.override.yml
+ln -sf docker-compose.live.yml docker-compose.override.yml
 docker-compose pull
 docker-compose down --remove-orphans
 docker-compose up -d
