@@ -28,8 +28,20 @@
           "minItems": 2,
           "maxItems": 2
         },
-        "transparent_zero": {"type": "boolean"}
+        "transparent_zero": {"type": "boolean"},
+        "enabled": {"type": "boolean"}
       },
+      "required": [
+        "type",
+        "longname",
+        "helptext",
+        "cog_path",
+        "unit_of_measurement",
+        "nodata_value",
+        "colormap",
+        "colormap_value_range",
+        "transparent_zero"
+      ],
       "additionalProperties": false
     }
   },
