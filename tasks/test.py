@@ -5,7 +5,11 @@ from .util import REPO_ROOT_DIR, print_and_run
 
 @task(aliases=('jsonschema', 'validate'))
 def validate_json(ctx):
-    """Validate JSON against schemas."""
+    """Validate JSON against schemas.
+
+    TODO: Add runtime validations that jsonschema can't do:
+        * Only one variable is set `default: true`
+    """
     print_and_run(
         'jsonschema'
         f' -i {REPO_ROOT_DIR}/data/variables.json'

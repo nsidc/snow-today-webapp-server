@@ -6,6 +6,8 @@
       "type": "object",
       "properties": {
         "type": {"type": "string"},
+        "default": {"type": "boolean"},
+        "enabled": {"type": "boolean"},
         "longname": {"type": "string"},
         "helptext": {"type": "string"},
         "cog_path": {"type": "string"},
@@ -28,8 +30,7 @@
           "minItems": 2,
           "maxItems": 2
         },
-        "transparent_zero": {"type": "boolean"},
-        "enabled": {"type": "boolean"}
+        "transparent_zero": {"type": "boolean"}
       },
       "required": [
         "type",
