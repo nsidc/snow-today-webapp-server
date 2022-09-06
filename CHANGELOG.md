@@ -1,3 +1,8 @@
+# v0.4.0 (2022-09-06)
+
+* Support "default" and "enabled" parameters for variables.
+
+
 # v0.3.0 (2022-08-24)
 
 * Support a 1-level region hierarchy. Each region can have many sub-region collections,
