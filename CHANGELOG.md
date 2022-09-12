@@ -1,3 +1,8 @@
+# v0.5.0 (2022-09-12)
+
+* Update albedo NODATA value -> 255
+
+
 # v0.4.1 (2022-09-12)
 
 * Move `notprocessed` var to end of variables index.
