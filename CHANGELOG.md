@@ -1,3 +1,8 @@
+# v0.4.1 (2022-09-12)
+
+* Move `notprocessed` var to end of variables index.
+
+
 # v0.4.0 (2022-09-06)
 
 * Support "default" and "enabled" parameters for variables.
