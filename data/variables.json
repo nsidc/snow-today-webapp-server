@@ -86,20 +86,6 @@
     "colormap_value_range": [50, 600],
     "transparent_zero": false
   },
-  "notprocessed": {
-    "type": "overlay",
-    "longname": "Not Processed",
-    "unit_of_measurement": "TODO",
-    "helptext": "TODO",
-    "cog_path": "cogs/notprocessed.tif",
-    "nodata_value": 255,
-    "colormap": [
-      [0, 0, 0, 0],
-      [255, 0, 0]
-    ],
-    "colormap_value_range": [0, 1],
-    "transparent_zero": false
-  },
   "radiative_forcing": {
     "type": "variable",
     "longname": "Snow Radiative Forcing",
@@ -185,5 +171,19 @@
     ],
     "colormap_value_range": [1, 100],
     "transparent_zero": true
+  },
+  "notprocessed": {
+    "type": "overlay",
+    "longname": "Not Processed",
+    "unit_of_measurement": "TODO",
+    "helptext": "TODO",
+    "cog_path": "cogs/notprocessed.tif",
+    "nodata_value": 255,
+    "colormap": [
+      [0, 0, 0, 0],
+      [255, 0, 0]
+    ],
+    "colormap_value_range": [0, 1],
+    "transparent_zero": false
   }
 }
