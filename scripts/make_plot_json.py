@@ -15,7 +15,6 @@ from typing import Literal, TypedDict, cast, get_args
 from util.env import env_get
 from util.region import make_region_code
 
-
 STORAGE_DIR = Path(env_get('STORAGE_DIR'))
 OUTPUT_DIR = Path(env_get('SERVER_PLOTS_DIR'))
 
