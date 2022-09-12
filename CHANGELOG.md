@@ -1,3 +1,8 @@
+# v0.6.0 (2022-09-12)
+
+* Solidify the variable `type` field as `enum: ["variable", "notprocessed"]`
+
+
 # v0.5.0 (2022-09-12)
 
 * Update albedo NODATA value -> 255
