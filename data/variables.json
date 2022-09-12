@@ -173,7 +173,7 @@
     "transparent_zero": true
   },
   "notprocessed": {
-    "type": "overlay",
+    "type": "notprocessed",
     "longname": "Not Processed",
     "unit_of_measurement": "TODO",
     "helptext": "TODO",

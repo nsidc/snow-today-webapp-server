@@ -9,6 +9,8 @@ def validate_json(ctx):
 
     TODO: Add runtime validations that jsonschema can't do:
         * Only one variable is set `default: true`
+        * Only one variable is set to `type: notprocessed`, and the rest
+          `type: variable`
     """
     print_and_run(
         'jsonschema'

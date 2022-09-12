@@ -5,7 +5,7 @@
     "^.*$": {
       "type": "object",
       "properties": {
-        "type": {"type": "string"},
+        "type": {"type": "string", "enum": ["variable", "notprocessed"]},
         "default": {"type": "boolean"},
         "enabled": {"type": "boolean"},
         "longname": {"type": "string"},
