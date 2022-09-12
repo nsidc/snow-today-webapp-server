@@ -41,12 +41,13 @@ def update_symlink(tif_path: Path) -> Path:
     """
     symlink_fn = '_'.join(tif_path.name.split('_')[3:])
     symlink_path = OUTPUT_DIR / symlink_fn
+    symlink_target = tif_path.name
 
     if symlink_path.is_file():
         symlink_path.unlink()
-    symlink_path.symlink_to(tif_path)
+    symlink_path.symlink_to(symlink_target)
 
-    print(f'Created symlink {symlink_path} -> {tif_path}')
+    print(f'Created symlink {symlink_path} -> {symlink_target}')
     return symlink_path
 
 
@@ -58,6 +59,8 @@ if __name__ == '__main__':
 
     input_tifs = INPUT_DIR.glob('*.tif')
     for input_tif in input_tifs:
+        print()
+        print(f'Processing input file {input_tif}')
         output_tif = make_cloud_optimized(input_tif)
         symlink = update_symlink(output_tif)
 
