@@ -13,6 +13,10 @@ dependencies:
   - gdal ~=3.5.1
   # For Shapefile -> GeoJSON conversion:
   - geopandas ~=0.11.1
+  # For making legends:
+  - matplotlib-base ~=3.5
+  # For comparing JSON changes:
+  - deepdiff ~=5.8
 
 
   ###########################################

@@ -11,6 +11,7 @@
         "longname": {"type": "string"},
         "helptext": {"type": "string"},
         "cog_path": {"type": "string"},
+        "legend_path": {"type": "string"},
         "unit_of_measurement": {"type": "string"},
         "nodata_value": {"type": "integer"},
         "colormap": {
