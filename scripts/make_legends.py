@@ -4,27 +4,38 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+from matplotlib.colors import LinearSegmentedColormap
 from deepdiff import DeepDiff
 
 from constants.paths import VARIABLES_INDEX_FP, REPO_DATA_DIR, REPO_LEGENDS_DIR
 
 LEGEND_DIMENSIONS = (6, 1)
-LEGEND_COLORBAR_BOTTOM = LEGEND_DIMENSIONS[1] * 0.7
+LEGEND_COLORBAR_BOTTOM = 0.5
 
 
 def legend_from_variable(variable_id: str, variable: dict) -> Path:
     """Write a legend based on `variable` and return its path."""
+    unit_of_measurement = variable['unit_of_measurement']
+    cmap_range = variable['colormap_value_range']
+    # matplotlib colormaps use float values ranging [0.0, 1.0], but our JSON data uses
+    # 8-bit RGB values [0, 255]
+    cmap_values = [
+        tuple([v / 255.0 for v in rgb_color_8bit])
+        for rgb_color_8bit in variable['colormap']
+    ]
+
     fig, ax = plt.subplots(figsize=LEGEND_DIMENSIONS)
     fig.subplots_adjust(bottom=LEGEND_COLORBAR_BOTTOM)
 
-    cmap = mpl.cm.PuBu
-    norm = mpl.colors.Normalize(vmin=30, vmax=60)
+    bupu = mpl.cm.BuPu
+    cmap = LinearSegmentedColormap.from_list('custom_colormap', cmap_values)
+    norm = mpl.colors.Normalize(vmin=cmap_range[0], vmax=cmap_range[1])
 
     fig.colorbar(
         mpl.cm.ScalarMappable(norm=norm, cmap=cmap),
         cax=ax,
         orientation='horizontal',
-        label='units_here',
+        label=unit_of_measurement,
         extend='both',
     )
 
