@@ -15,7 +15,7 @@ LEGEND_COLORBAR_BOTTOM = 0.5
 
 def legend_from_variable(variable_id: str, variable: dict) -> Path:
     """Write a legend based on `variable` and return its path."""
-    unit_of_measurement = variable['unit_of_measurement']
+    label = variable['label_map_legend']
     cmap_range = variable['colormap_value_range']
     # matplotlib colormaps use float values ranging [0.0, 1.0], but our JSON data uses
     # 8-bit RGB values [0, 255]
@@ -34,7 +34,7 @@ def legend_from_variable(variable_id: str, variable: dict) -> Path:
         mpl.cm.ScalarMappable(norm=norm, cmap=cmap),
         cax=ax,
         orientation='horizontal',
-        label=unit_of_measurement,
+        label=label,
         extend='both',
     )
 
