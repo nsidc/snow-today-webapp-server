@@ -1,3 +1,8 @@
+# v0.7.1 (2022-09-13)
+
+* Fixup legend labels
+
+
 # v0.7.0 (2022-09-13)
 
 * Add legends images and update `variables.json` with paths to legends
