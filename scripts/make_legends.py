@@ -27,7 +27,6 @@ def legend_from_variable(variable_id: str, variable: dict) -> Path:
     fig, ax = plt.subplots(figsize=LEGEND_DIMENSIONS)
     fig.subplots_adjust(bottom=LEGEND_COLORBAR_BOTTOM)
 
-    bupu = mpl.cm.BuPu
     cmap = LinearSegmentedColormap.from_list('custom_colormap', cmap_values)
     norm = mpl.colors.Normalize(vmin=cmap_range[0], vmax=cmap_range[1])
 
@@ -62,7 +61,7 @@ def legends_from_variables_index(variables_index: dict) -> dict:
 
         updated_index[variable_id]['legend_path'] = str(rel_legend_path)
 
-    return updated_index 
+    return updated_index
 
 
 if __name__ == '__main__':
