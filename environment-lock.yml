@@ -26,6 +26,7 @@ dependencies:
   - cryptography=37.0.4=py310h597c629_0
   - curl=7.83.1=h7bff187_0
   - cycler=0.11.0=pyhd8ed1ab_0
+  - deepdiff=5.8.1=pyhd8ed1ab_0
   - expat=2.4.8=h27087fc_0
   - fiona=1.8.21=py310h60a68a4_2
   - flake8=5.0.4=pyhd8ed1ab_0
@@ -126,6 +127,7 @@ dependencies:
   - numpy=1.23.3=py310h53a5b5f_0
   - openjpeg=2.5.0=h7d73246_1
   - openssl=1.1.1q=h166bdaf_0
+  - ordered-set=4.1.0=pyhd8ed1ab_0
   - packaging=21.3=pyhd8ed1ab_0
   - pandas=1.4.4=py310h769672d_0
   - pcre=8.45=h9c3ff4c_0

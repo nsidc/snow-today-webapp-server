@@ -14,7 +14,9 @@ dependencies:
   # For Shapefile -> GeoJSON conversion:
   - geopandas ~=0.11.1
   # For making legends:
-  - matplotlib-base ~=3.5.3
+  - matplotlib-base ~=3.5
+  # For comparing JSON changes:
+  - deepdiff ~=5.8
 
 
   ###########################################
