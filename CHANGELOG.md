@@ -1,3 +1,8 @@
+# v0.7.0 (2022-09-13)
+
+* Add legends images and update `variables.json` with paths to legends
+
+
 # v0.6.0 (2022-09-12)
 
 * Solidify the variable `type` field as `enum: ["variable", "notprocessed"]`
