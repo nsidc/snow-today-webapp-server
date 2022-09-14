@@ -9,12 +9,15 @@ from deepdiff import DeepDiff
 
 from constants.paths import VARIABLES_INDEX_FP, REPO_DATA_DIR, REPO_LEGENDS_DIR
 
-LEGEND_DIMENSIONS = (6, 1)
+LEGEND_DIMENSIONS = (5, 0.5)
 LEGEND_COLORBAR_BOTTOM = 0.5
+LEGEND_FONT_SIZE = 8
 
 
 def legend_from_variable(variable_id: str, variable: dict) -> Path:
     """Write a legend based on `variable` and return its path."""
+    mpl.rcParams.update({'font.size': LEGEND_FONT_SIZE})
+
     label = variable['label_map_legend']
     cmap_range = variable['colormap_value_range']
     # matplotlib colormaps use float values ranging [0.0, 1.0], but our JSON data uses
@@ -38,10 +41,20 @@ def legend_from_variable(variable_id: str, variable: dict) -> Path:
         extend='both',
     )
 
-    output_fn = f'{variable_id}.png'
+    output_fn = f'{variable_id}.svg'
     output_path = REPO_LEGENDS_DIR / output_fn
 
-    plt.savefig(output_path, bbox_inches='tight', pad_inches=0.05)
+    plt.savefig(
+        output_path,
+
+        # Reduce the whitespace on the edges
+        bbox_inches='tight',
+        pad_inches=0.05,
+
+        # Prevent SVG raster element (color gradient) from being misaligned from vector
+        # elements:
+        dpi=200,
+    )
     return output_path
 
 
