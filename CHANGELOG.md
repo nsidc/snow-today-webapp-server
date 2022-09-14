@@ -1,3 +1,9 @@
+# v0.8.0 (2022-09-14)
+
+* Recreate legends as SVG
+* Update legend appearance to be smaller overall (including font)
+
+
 # v0.7.1 (2022-09-13)
 
 * Fixup legend labels
