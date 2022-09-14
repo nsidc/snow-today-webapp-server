@@ -41,7 +41,7 @@ def legend_from_variable(variable_id: str, variable: dict) -> Path:
     output_fn = f'{variable_id}.png'
     output_path = REPO_LEGENDS_DIR / output_fn
 
-    plt.savefig(output_path)
+    plt.savefig(output_path, bbox_inches='tight', pad_inches=0.05)
     return output_path
 
 
