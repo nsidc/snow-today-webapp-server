@@ -14,6 +14,12 @@
         "legend_path": {"type": "string"},
         "label_map_legend": {"type": "string"},
         "label_plot_yaxis": {"type": "string"},
+        "value_range": {
+          "type": "array",
+          "items": {"type": "number"},
+          "minItems": 2,
+          "maxItems": 2
+        },
         "nodata_value": {"type": "integer"},
         "colormap": {
           "type": "array",
@@ -41,6 +47,7 @@
         "cog_path",
         "label_map_legend",
         "label_plot_yaxis",
+        "value_range",
         "nodata_value",
         "colormap",
         "colormap_value_range",
