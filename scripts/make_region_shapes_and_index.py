@@ -232,8 +232,12 @@ def make_all_regions_geojson() -> RegionIndex:
     }
 
 
-if __name__ == '__main__':
+def make_region_shapes_and_index() -> None:
     region_index = make_all_regions_geojson()
 
     with open(REGION_INDEX_FP, 'w') as outfile:
         json.dump(region_index, outfile, sort_keys=False, indent=2)
+
+
+if __name__ == '__main__':
+    make_region_shapes_and_index()

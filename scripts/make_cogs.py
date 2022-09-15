@@ -51,7 +51,7 @@ def update_symlink(tif_path: Path) -> Path:
     return symlink_path
 
 
-if __name__ == '__main__':
+def make_cogs() -> None:
     OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
 
     output_tifs: list[Path] = []
@@ -76,3 +76,7 @@ if __name__ == '__main__':
     for f in output_dir_contents_to_clean:
         f.unlink()
         print(f'Removed {f}')
+
+
+if __name__ == '__main__':
+    make_cogs()

@@ -177,7 +177,7 @@ def output_fp_from_input_fp(input_fp: Path) -> Path:
     return output_fp
 
 
-if __name__ == '__main__':
+def make_plot_json() -> None:
     input_files = list(INPUT_DIR.glob('*.csv'))
     for input_csv_fp in input_files:
         cleansed_csv_rows = cleanse_input(input_csv_fp)
@@ -187,3 +187,7 @@ if __name__ == '__main__':
 
         with open(output_fp, 'w') as output_file:
             json.dump(dict_of_cols, output_file, indent=2)
+
+
+if __name__ == '__main__':
+    make_plot_json()

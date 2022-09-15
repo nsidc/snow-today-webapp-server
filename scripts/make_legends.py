@@ -115,7 +115,7 @@ def legends_from_variables_index(variables_index: dict) -> dict:
     return updated_index
 
 
-if __name__ == '__main__':
+def make_legends() -> None:
     with open(VARIABLES_INDEX_FP) as f:
         variables_index = json.loads(f.read())
 
@@ -132,3 +132,7 @@ if __name__ == '__main__':
         )
         with open(VARIABLES_INDEX_FP, 'w') as f:
             json.dump(updated_index, f, indent=2)
+
+
+if __name__ == '__main__':
+    make_legends()
