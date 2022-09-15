@@ -1,3 +1,10 @@
+# v0.10.0 (2022-09-15)
+
+* Add variable parameters to `variables.json`:
+  * `precision`: Number of digits to the right of decimal point
+  * `longname_plot`: The alternate variable longname displayed for plots
+
+
 # v0.9.0 (2022-09-15)
 
 * Calculate legend "extend" parameter dynamically based on `value_range` in
