@@ -1,6 +1,6 @@
 import click
 
-from make_cogs import make_cogs 
+from make_cogs import make_cogs
 from make_legends import make_legends
 from make_plot_json import make_plot_json
 from make_region_shapes_and_index import make_region_shapes_and_index
