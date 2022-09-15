@@ -1,3 +1,8 @@
+# v0.10.1 (2022-09-15)
+
+* Fix configured precision for Snow Cover Days variable
+
+
 # v0.10.0 (2022-09-15)
 
 * Add variable parameters to `variables.json`:

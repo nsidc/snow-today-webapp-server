@@ -141,7 +141,7 @@
     "helptext": "The number of days a region has been covered with snow as identified with snow cover percent greater than a snow cover percent threshold since a starting time. Our data uses 15% as the snow percent threshold and October 1 as the starting date for these maps.",
     "cog_path": "cogs/snow_cover_days.tif",
     "legend_path": "legends/snow_cover_days.svg",
-    "value_precision": 0,
+    "value_precision": 3,
     "value_range": [0, 366],
     "nodata_value": 65535,
     "colormap": [
