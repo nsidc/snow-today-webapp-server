@@ -1,3 +1,10 @@
+# v0.9.0 (2022-09-15)
+
+* Calculate legend "extend" parameter dynamically based on `value_range` in
+  `variables.json`.
+* Generate SVGs in a more deterministic manner to minimize superfluous differences.
+
+
 # v0.8.0 (2022-09-14)
 
 * Recreate legends as SVG
