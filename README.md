@@ -36,8 +36,29 @@ docker-compose build
 
 ## Usage
 
+Ensure envvars `$ENVIRONMENT` and `$STORAGE_DIR` are set appropriately, e.g.:
+
 ```
-docker-compose up
+export ENVIRONMENT=dev  # default: production
+export STORAGE_DIR=/tmp/snow-today-data
+```
+
+`STORAGE_DIR` is expected to contain an `incoming` subdirectory where daily data will
+arrive, and `cogs` and `plots` directories, where outputs will be written.
+
+
+### Start the data server
+
+```
+docker-compose up -d data-server
+```
+
+### Ingest data
+
+```
+./scripts/container_cli.sh --help
+./scripts/container_cli.sh make-cogs-daily
+./scripts/container_cli.sh make-plot-json-daily
 ```
 
 
