@@ -12,13 +12,8 @@ import math
 from pathlib import Path
 from typing import Literal, TypedDict, cast, get_args
 
-from util.env import env_get
+from constants.paths import INCOMING_CSV_DIR, STORAGE_PLOTS_DIR
 from util.region import make_region_code
-
-STORAGE_DIR = Path(env_get('STORAGE_DIR'))
-OUTPUT_DIR = Path(env_get('SERVER_PLOTS_DIR'))
-
-INPUT_DIR = STORAGE_DIR / 'snow_today_2.0_testing' / 'linePlotsToDate'
 
 
 class PlotDataPoint(TypedDict):
@@ -173,12 +168,12 @@ def output_fp_from_input_fp(input_fp: Path) -> Path:
     region_id = _region_id_from_input_fn(input_fn)
 
     output_fn = f'{region_id}-{variable_id}.json'
-    output_fp = OUTPUT_DIR / output_fn
+    output_fp = STORAGE_PLOTS_DIR / output_fn
     return output_fp
 
 
 def make_plot_json() -> None:
-    input_files = list(INPUT_DIR.glob('*.csv'))
+    input_files = list(INCOMING_CSV_DIR.glob('*.csv'))
     for input_csv_fp in input_files:
         cleansed_csv_rows = cleanse_input(input_csv_fp)
         dict_of_cols = csv_cols_to_dict(''.join(cleansed_csv_rows))

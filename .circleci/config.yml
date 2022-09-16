@@ -21,7 +21,7 @@ jobs:
             /bin/bash --login -c "conda activate snow-today && inv test.static"
 
 
-  build-docker-image-and-sometimes-publish:
+  build-docker-images-and-sometimes-publish:
     <<: *setup
     docker:
       - image: docker:20.10.3-git
@@ -36,31 +36,36 @@ jobs:
       - run:
           name: Build and push Docker image
           command: |
-            IMAGE_NAME="nsidc/snow-today-webapp-server"
+            for IMAGE_NAME in "nsidc/snow-today-webapp-server" "nsidc/snow-today-webapp-server-ingest"; do
+              echo "\$CIRCLE_TAG: ${CIRCLE_TAG}"
+              echo "\$CIRCLE_BRANCH: ${CIRCLE_BRANCH}"
 
-            echo "\$CIRCLE_TAG: ${CIRCLE_TAG}"
-            echo "\$CIRCLE_BRANCH: ${CIRCLE_BRANCH}"
-
-            if [[ "${CIRCLE_TAG}" ]]; then
-              TAG=${CIRCLE_TAG}
-            elif [[ "${CIRCLE_BRANCH}" = "main" ]]; then
-              TAG="latest"
-            else
-              # We don't really want images named after tags cluttering up our
-              # DH repo, so we use workflow filters to prevent this job from
-              # being triggered on a branch. Change the filters if we change
-              # our mind.
-              TAG=${CIRCLE_BRANCH}
-            fi
-            echo "\$TAG: ${TAG}"
+              if [[ "${CIRCLE_TAG}" ]]; then
+                TAG="${CIRCLE_TAG}"
+              elif [[ "${CIRCLE_BRANCH}" = "main" ]]; then
+                TAG="latest"
+              else
+                # We don't really want images named after tags cluttering up our
+                # DH repo, so we use workflow filters to prevent this job from
+                # being triggered on a branch. Change the filters if we change
+                # our mind.
+                TAG="${CIRCLE_BRANCH}"
+              fi
+              echo "\$TAG: ${TAG}"
 
 
-            DOCKER_IMAGE="${IMAGE_NAME}:${TAG}"
-            docker build -t ${DOCKER_IMAGE} .
-            echo "Built: ${DOCKER_IMAGE}"
+              if [[ "${IMAGE_NAME}" = "nsidc/snow-today-webapp-server-ingest" ]]; then
+                DOCKERFILE="Dockerfile.ingest"
+              else
+                DOCKERFILE="Dockerfile"
+              fi
+              DOCKER_IMAGE="${IMAGE_NAME}:${TAG}"
+              docker build -f "${DOCKERFILE}" -t "${DOCKER_IMAGE}" .
+              echo "Built: ${DOCKER_IMAGE}"
 
-            docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
-            docker push "${DOCKER_IMAGE}"
+              docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}"
+              docker push "${DOCKER_IMAGE}"
+            done
 
 
 workflows:
@@ -73,7 +78,7 @@ workflows:
             tags:
               only: /.*/
 
-      - build-docker-image-and-sometimes-publish:
+      - build-docker-images-and-sometimes-publish:
           context: org-global
           requires:
             - test

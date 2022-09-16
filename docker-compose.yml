@@ -5,11 +5,24 @@ services:
   data-server:
     image: "nsidc/snow-today-webapp-server:${SERVER_VERSION:-latest}"
     volumes:
-      - "${SERVER_COGS_DIR}:/usr/share/nginx/html/cogs:ro"
-      - "${SERVER_PLOTS_DIR}:/usr/share/nginx/html/plots:ro"
+      - "${STORAGE_DIR}/cogs:/usr/share/nginx/html/cogs:ro"
+      - "${STORAGE_DIR}/plots:/usr/share/nginx/html/plots:ro"
     ports:
       - "80:80"
       - "443:443"
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+
+  ingest:
+    image: "nsidc/snow-today-webapp-server-ingest:${SERVER_VERSION:-latest}"
+    volumes:
+      - "${STORAGE_DIR}/incoming:/storage/incoming:ro"
+      - "${STORAGE_DIR}/cogs:/storage/cogs:rw"
+      - "${STORAGE_DIR}/plots:/storage/plots:rw"
+    restart: 'no'
     logging:
       options:
         max-size: "10m"

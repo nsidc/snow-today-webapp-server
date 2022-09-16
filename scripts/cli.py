@@ -1,9 +1,9 @@
-import click
+"""CLI invoked by operations team.
 
-from make_cogs import make_cogs
-from make_legends import make_legends
-from make_plot_json import make_plot_json
-from make_region_shapes_and_index import make_region_shapes_and_index
+NOTE: imports are done in functions to avoid needing to evaluate code within those
+imports when doing `--help`.
+"""
+import click
 
 
 @click.group()
@@ -17,6 +17,7 @@ def make_cogs_daily():
 
     Expected to run daily.
     """
+    from make_cogs import make_cogs
     make_cogs()
 
 
@@ -26,6 +27,7 @@ def make_plot_json_daily():
 
     Expected to run daily.
     """
+    from make_plot_json import make_plot_json
     make_plot_json()
 
 
@@ -35,6 +37,7 @@ def make_legends_adhoc():
 
     Expected to run ad-hoc to create static legend files for new variables.
     """
+    from make_legends import make_legends
     make_legends()
 
 
@@ -46,6 +49,7 @@ def make_region_shapes_and_index_adhoc():
 
     Expected to run ad-hoc to initialize new regions.
     """
+    from make_region_shapes_and_index import make_region_shapes_and_index
     make_region_shapes_and_index()
 
 
