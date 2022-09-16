@@ -1,3 +1,8 @@
+# v0.11.0 (2022-09-16)
+
+* Initial release of versioned ingest code and Docker image.
+
+
 # v0.10.1 (2022-09-15)
 
 * Fix configured precision for Snow Cover Days variable
