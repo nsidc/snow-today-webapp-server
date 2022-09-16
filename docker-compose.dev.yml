@@ -10,3 +10,10 @@ services:
       - "./data/regions.json:/usr/share/nginx/html/regions.json:ro"
       - "./data/shapes:/usr/share/nginx/html/shapes:ro"
     restart: "on-failure"
+
+
+  ingest:
+    image: "nsidc/snow-today-webapp-server-ingest:dev"
+    build:
+      context: .
+      dockerfile: Dockerfile.ingest

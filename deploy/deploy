@@ -23,11 +23,15 @@ echo "Using $version_desc versions in $ENVIRONMENT..."
 cat "$VERSION_FILE"
 source "$VERSION_FILE"
 
-# Replace the current app
+# Pull down new images
 ln -sf docker-compose.live.yml docker-compose.override.yml
 docker-compose pull
+
+# Cleanup old containers
 docker-compose down --remove-orphans
-docker-compose up -d
+
+# Start the server
+docker-compose up -d data-server
 
 # Cleanup
 docker system prune -af
