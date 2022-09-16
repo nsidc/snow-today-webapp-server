@@ -23,15 +23,20 @@ echo "Using $version_desc versions in $ENVIRONMENT..."
 cat "$VERSION_FILE"
 source "$VERSION_FILE"
 
-# Pull down new images
+# Symlink correct compose override
 ln -sf docker-compose.live.yml docker-compose.override.yml
-docker-compose pull
+
+# Pull new server version
+docker-compose pull data-server
 
 # Cleanup old containers
 docker-compose down --remove-orphans
 
-# Start the server
+# Start the new server version
 docker-compose up -d data-server
 
-# Cleanup
+# Cleanup old images
 docker system prune -af
+
+# Pull new ingest container (this is for execution by ops on schedule)
+docker-compose pull ingest
