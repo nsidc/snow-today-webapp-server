@@ -22,6 +22,9 @@ services:
       - "${STORAGE_DIR}/incoming:/storage/incoming:ro"
       - "${STORAGE_DIR}/cogs:/storage/cogs:rw"
       - "${STORAGE_DIR}/plots:/storage/plots:rw"
+    environment:
+      # Use a generic storage dir within the container
+      STORAGE_DIR: "/storage"
     restart: 'no'
     logging:
       options:

@@ -1,3 +1,8 @@
+# v0.11.2 (2022-09-17)
+
+* Fixup docker-compose configuration to pass needed environment variables
+
+
 # v0.11.1 (2022-09-16)
 
 * Fixup deploy and CLI script to not clobber images or leave ended ingest containers
