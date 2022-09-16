@@ -2,18 +2,11 @@
 import subprocess
 from pathlib import Path
 
-from util.env import env_get
-
-STORAGE_DIR = Path(env_get('STORAGE_DIR'))
-OUTPUT_DIR = Path(env_get('SERVER_COGS_DIR'))
-
-INPUT_VERSION = 'v004'
-INPUT_ROOT_DIR = STORAGE_DIR / 'snow_today_2.0_testing' / f'{INPUT_VERSION}_westernUS'
-INPUT_DIR = INPUT_ROOT_DIR / 'EPSG3857' / '2021' / 'LZW'
+from constants.paths import INCOMING_TIF_DIR, STORAGE_COGS_DIR
 
 
 def make_cloud_optimized(input_tif_path: Path) -> Path:
-    output_tif_path = OUTPUT_DIR / input_tif_path.name
+    output_tif_path = STORAGE_COGS_DIR / input_tif_path.name
     if output_tif_path.is_file():
         output_tif_path.unlink()
         print(f'Removed {output_tif_path}')
@@ -40,7 +33,7 @@ def update_symlink(tif_path: Path) -> Path:
     `tif_path`.
     """
     symlink_fn = '_'.join(tif_path.name.split('_')[3:])
-    symlink_path = OUTPUT_DIR / symlink_fn
+    symlink_path = STORAGE_COGS_DIR / symlink_fn
     symlink_target = tif_path.name
 
     if symlink_path.is_file():
@@ -52,12 +45,12 @@ def update_symlink(tif_path: Path) -> Path:
 
 
 def make_cogs() -> None:
-    OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
+    STORAGE_COGS_DIR.mkdir(exist_ok=True, parents=True)
 
     output_tifs: list[Path] = []
     symlinks: list[Path] = []
 
-    input_tifs = INPUT_DIR.glob('*.tif')
+    input_tifs = INCOMING_TIF_DIR.glob('*.tif')
     for input_tif in input_tifs:
         print()
         print(f'Processing input file {input_tif}')
@@ -67,7 +60,7 @@ def make_cogs() -> None:
         output_tifs.append(output_tif)
         symlinks.append(symlink)
 
-    output_dir_contents = OUTPUT_DIR.glob('*.tif')
+    output_dir_contents = STORAGE_COGS_DIR.glob('*.tif')
     output_dir_contents_to_clean = (
         set(output_dir_contents)
         - set(output_tifs)

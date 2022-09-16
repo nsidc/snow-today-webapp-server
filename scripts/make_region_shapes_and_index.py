@@ -23,6 +23,7 @@ from constants.paths import (
     REGION_INDEX_FP,
     REPO_DATA_DIR,
     REPO_SHAPES_DIR,
+    STORAGE_DIR,
 )
 from constants.states import STATE_ABBREVS, STATES_ENABLED
 from types_.regions import (
@@ -36,13 +37,11 @@ from types_.regions import (
     SubRegionIndex,
     SuperRegion,
 )
-from util.env import env_get
 from util.region import make_region_code
 from util.simplify_geometry import simplify_geometry
 
 
-STORAGE_DIR = Path(env_get('STORAGE_DIR'))
-
+# TODO: Where will we get these operationally?
 SHAPEFILE_INPUT_DIR = STORAGE_DIR / 'snow_today_2.0_testing' / 'shapefiles'
 USWEST_SHAPEFILES: dict[ShapefileCategory, Path] = {
     'HUC2': SHAPEFILE_INPUT_DIR / 'HUC2_9to17' / 'HUC2_9to17.shp',
