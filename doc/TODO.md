@@ -1,16 +1,16 @@
+# Code organization
+
+* How should the daily data ingest functionality and the static data be related?
+  * Currently they live in the same repo and their version numbers are in lockstep.
+    Consequences include: Building ingest image when only changing dynamic data and
+    vice versa. Benefits include: No need to think about compatibility between static
+    data versions and ingest versions.
+
+
 # Data validation
 
 * Schemas
 * Validate relationships between json files
-
-
-# Stack deployment
-
-* How to deploy compatible versions of client and server in dev/test/pre-production
-  environments?
-* How to deploy the webapp and the data server together? Separate repository for
-  managing stack deployment? In prod, the server is the only piece managed by
-  operations. The webapp is deployed from NPM.
 
 
 # Python tooling
