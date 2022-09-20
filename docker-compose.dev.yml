@@ -17,3 +17,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.ingest
+    volumes:
+      - "./scripts:/snow-today-webapp-server-ingest/scripts:ro"
+      - "./data:/snow-today-webapp-server-ingest/data:rw"

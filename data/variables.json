@@ -140,7 +140,7 @@
     "label_plot_yaxis": "Snow Cover Days",
     "helptext": "The number of days a region has been covered with snow as identified with snow cover percent greater than a snow cover percent threshold since a starting time. Our data uses 15% as the snow percent threshold and October 1 as the starting date for these maps.",
     "cog_path": "cogs/snow_cover_days.tif",
-    "legend_path": "legends/snow_cover_days.svg",
+    "legend_path": "legends/dynamic/snow_cover_days.svg",
     "value_precision": 3,
     "value_range": [0, 366],
     "nodata_value": 65535,
@@ -155,7 +155,7 @@
       [84, 39, 143],
       [63, 0, 125]
     ],
-    "colormap_value_range": [1, 366],
+    "colormap_value_range": [1, "$DOWY"],
     "transparent_zero": true
   },
   "snow_fraction": {

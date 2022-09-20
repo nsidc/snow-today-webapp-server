@@ -31,14 +31,27 @@ def make_plot_json_daily():
     make_plot_json()
 
 
-@cli.command(name='make-legends')
-def make_legends_adhoc():
-    """Create legends from `variables.json` data.
+@cli.command()
+def make_dynamic_legends_daily():
+    """Create daily dynamic legend image(s) from `variables.json data.
 
-    Expected to run ad-hoc to create static legend files for new variables.
+    Expected to run daily.
+
+    Dynamic legends are recognized by presence of an expected string variablename, e.g.
+    `$DOWY`, in the `colormap_value_range` entry.
     """
-    from make_legends import make_legends
-    make_legends()
+    from make_dynamic_legends import make_dynamic_legends
+    make_dynamic_legends()
+
+
+@cli.command(name='make-static-legends')
+def make_static_legends_adhoc():
+    """Create static legend image(s) from `variables.json` data.
+
+    Expected to run ad-hoc to create static legend files for new or changed variables.
+    """
+    from make_static_legends import make_static_legends
+    make_static_legends()
 
 
 @cli.command(name='make-region-shapes-and-index')
@@ -48,6 +61,8 @@ def make_region_shapes_and_index_adhoc():
     Shapefiles are found on storage provider.
 
     Expected to run ad-hoc to initialize new regions.
+
+    TODO: How to only _update_ instead of fully recreating?
     """
     from make_region_shapes_and_index import make_region_shapes_and_index
     make_region_shapes_and_index()
