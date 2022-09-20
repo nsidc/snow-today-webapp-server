@@ -1,6 +1,6 @@
 # Development
 
-## Usage
+## CLI development usage
 
 ### Local
 
