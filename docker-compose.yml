@@ -26,6 +26,9 @@ services:
       - "${STORAGE_DIR}/plots:/storage/plots:rw"
       - "${STORAGE_DIR}/dynamic_legends:/storage/dynamic_legends:rw"
     environment:
+      # Timezone is critical because the ingest code cares about the date for
+      # generating dynamic legends
+      TZ: "America/Denver"
       # Use a generic storage dir within the container
       STORAGE_DIR: "/storage"
     restart: 'no'
