@@ -1,3 +1,9 @@
+# v0.12.0 (2022-09-20)
+
+* Add `make-dynamic-legends-daily` ops command: Generates legends which have dynamic
+  colormap value ranges specified by variable name `$DOWY` in config.
+
+
 # v0.11.2 (2022-09-17)
 
 * Fixup docker-compose configuration to pass needed environment variables
