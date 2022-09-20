@@ -1,7 +1,7 @@
 import copy
 import json
 
-from constants.paths import VARIABLES_INDEX_FP, REPO_DATA_DIR
+from constants.paths import VARIABLES_INDEX_FP
 from util.diff import variable_index_diff_with_warning
 from util.legend import (
     is_dynamic_legend,

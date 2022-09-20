@@ -1,5 +1,6 @@
 from datetime import date
 
+
 def _water_year_day_1() -> date:
     """Calculate day 1 of the current water year.
 

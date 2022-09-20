@@ -16,4 +16,4 @@ def variable_index_diff_with_warning(var_a: dict, var_b: dict, /) -> dict:
         )
         input('Enter to continue; CTRL+C to exit without overwriting.')
 
-    return diff 
+    return diff

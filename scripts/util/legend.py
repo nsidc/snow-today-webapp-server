@@ -1,5 +1,3 @@
-from datetime import date
-from pathlib import Path
 from typing import Literal
 
 import matplotlib.pyplot as plt
@@ -124,7 +122,7 @@ def _extend(variable: dict) -> ColormapExtendChoice:
     data_range = variable['value_range'].copy()
 
     if cmap_range[0] == 1 and variable['transparent_zero']:
-        cmap_range = tuple([0, cmap_range[1]])
+        cmap_range = (0, cmap_range[1])
 
     return _extend_str(
         left=data_range[0] < cmap_range[0],

@@ -1,16 +1,12 @@
 import copy
 import json
-from pprint import pprint
 
-from deepdiff import DeepDiff
-
-from constants.paths import VARIABLES_INDEX_FP, REPO_DATA_DIR
+from constants.paths import VARIABLES_INDEX_FP
 from util.diff import variable_index_diff_with_warning
 from util.legend import (
     is_dynamic_legend,
     legend_from_variable,
 )
-
 
 
 def static_legends_from_variables_index(variables_index: dict, /) -> dict:
