@@ -18,7 +18,7 @@
         "value_precision": {"type": "integer"},
         "value_range": {
           "type": "array",
-          "items": {"type": "number"},
+          "items": {"type": "integer"},
           "minItems": 2,
           "maxItems": 2
         },
@@ -36,7 +36,10 @@
         },
         "colormap_value_range": {
           "type": "array",
-          "items": {"type": "number"},
+          "items": {
+            "type": ["integer", "string"],
+            "pattern": "^\\$[a-zA-Z]+"
+          },
           "minItems": 2,
           "maxItems": 2
         },

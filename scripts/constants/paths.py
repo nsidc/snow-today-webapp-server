@@ -18,6 +18,7 @@ STORAGE_DIR = Path(os.environ['STORAGE_DIR'])
 # Where we write outputs:
 STORAGE_COGS_DIR = STORAGE_DIR / 'cogs'
 STORAGE_PLOTS_DIR = STORAGE_DIR / 'plots'
+STORAGE_DYNAMIC_LEGENDS_DIR = STORAGE_DIR / 'dynamic_legends'
 
 # Where inputs are plopped by upstream program:
 INCOMING_DIR = STORAGE_DIR / 'incoming'
