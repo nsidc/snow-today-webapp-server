@@ -100,7 +100,10 @@ def _eval_cmap_var(cmap_var: str | int) -> int:
 def _colormap_range(variable: dict) -> tuple[int, int]:
     cmap_range_in = variable['colormap_value_range'].copy()
 
-    cmap_range = tuple(_eval_cmap_var(v) for v in cmap_range_in)
+    cmap_range = (
+        _eval_cmap_var(cmap_range_in[0]),
+        _eval_cmap_var(cmap_range_in[1]),
+    )
     return cmap_range
 
 
