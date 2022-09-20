@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 from matplotlib.colors import LinearSegmentedColormap
 
-from constants.misc import WATER_YEAR_DAY_1
+from constants.misc import CURRENT_DOWY
 from constants.paths import REPO_LEGENDS_DIR, STORAGE_DYNAMIC_LEGENDS_DIR
 
 
@@ -89,22 +89,12 @@ def is_dynamic_legend(variable: dict) -> bool:
     return False
 
 
-def _day_of_water_year() -> int:
-    """Calculate the current day of water year.
-
-    Day of water year is 1-indexed by convention.
-    """
-    # Increment to achieve 1-indexed result
-    dowy = (date.today() - WATER_YEAR_DAY_1).days + 1
-    return dowy
-
-
 def _eval_cmap_var(cmap_var: str | int) -> int:
     if isinstance(cmap_var, int):
         return cmap_var
 
     if cmap_var == '$DOWY':
-        return _day_of_water_year()
+        return CURRENT_DOWY
     else:
         raise RuntimeError(f'Unexpected colormap variable: {cmap_var}.')
 
