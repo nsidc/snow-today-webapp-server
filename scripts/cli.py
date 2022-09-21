@@ -29,7 +29,7 @@ def make_plot_json_daily():
     """
     from make_plot_json import make_plot_json
     make_plot_json()
-
+    
 
 @cli.command()
 def make_dynamic_legends_daily():
@@ -42,6 +42,23 @@ def make_dynamic_legends_daily():
     """
     from make_dynamic_legends import make_dynamic_legends
     make_dynamic_legends()
+
+
+@cli.command()
+def make_metadata_daily():
+    """Create `today.json` with details about the current set of data."""
+    # { curren_dowy: ..., ...?} 
+    ...
+
+
+@cli.command()
+@click.pass_context
+def ingest_daily(ctx):
+    """Run all daily ingest tasks."""
+    ctx.invoke(make_cogs_daily)
+    ctx.invoke(make_plot_json_daily)
+    ctx.invoke(make_dynamic_legends_daily)
+    ctx.invoke(make_metadata_daily)
 
 
 @cli.command(name='make-static-legends')
