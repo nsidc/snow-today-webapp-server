@@ -46,8 +46,8 @@ def make_dynamic_legends_daily():
 
 @cli.command()
 def make_metadata_daily():
-    """Create `today.json` with details about the current set of data."""
-    # { curren_dowy: ..., ...?} 
+    """Create `daily_process.json` with details about today's set of data."""
+    # { curren_day_of_water_year: ..., ...?} 
     ...
 
 
