@@ -18,6 +18,8 @@ dependencies:
   - matplotlib-base ~=3.5
   # For comparing JSON changes:
   - deepdiff ~=5.8
+  # For simple logging:
+  - loguru ~=0.6.0
 
 
 

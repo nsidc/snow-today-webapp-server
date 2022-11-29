@@ -44,6 +44,23 @@ def make_dynamic_legends_daily():
     make_dynamic_legends()
 
 
+@cli.command()
+@click.pass_context
+def ingest_daily_ssp(ctx):
+    """Run all daily snow surface properties ingest tasks."""
+    ctx.invoke(make_cogs_daily)
+    ctx.invoke(make_plot_json_daily)
+    ctx.invoke(make_dynamic_legends_daily)
+    # ctx.invoke(make_metadata_daily)
+
+
+@cli.command()
+def ingest_daily_swe():
+    """Run daily snow-water equivalent ingest."""
+    from make_swe_json import make_swe_json
+    make_swe_json()
+
+
 @cli.command(name='make-static-legends')
 def make_static_legends_adhoc():
     """Create static legend image(s) from `variables.json` data.

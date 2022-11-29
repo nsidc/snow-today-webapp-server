@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Callable, Iterator
 
 import geopandas as gpd
+from loguru import logger
 
 from constants.paths import (
     REGION_INDEX_FP,
@@ -232,6 +233,7 @@ def make_all_regions_geojson() -> RegionIndex:
 
 
 def make_region_shapes_and_index() -> None:
+    logger.info('Generating region shapes and JSON index of regions...')
     region_index = make_all_regions_geojson()
 
     with open(REGION_INDEX_FP, 'w') as outfile:

@@ -2,6 +2,8 @@
 import subprocess
 from pathlib import Path
 
+from loguru import logger
+
 from constants.paths import INCOMING_TIF_DIR, STORAGE_COGS_DIR
 
 
@@ -50,7 +52,9 @@ def make_cogs() -> None:
     output_tifs: list[Path] = []
     symlinks: list[Path] = []
 
-    input_tifs = INCOMING_TIF_DIR.glob('*.tif')
+    input_tifs = list(INCOMING_TIF_DIR.glob('*.tif'))
+
+    logger.info(f'Generating COGS from: {input_tifs}')
     for input_tif in input_tifs:
         print()
         print(f'Processing input file {input_tif}')

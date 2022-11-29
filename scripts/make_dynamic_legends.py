@@ -1,6 +1,8 @@
 import copy
 import json
 
+from loguru import logger
+
 from constants.paths import VARIABLES_INDEX_FP
 from util.diff import variable_index_diff_with_warning
 from util.legend import (
@@ -29,6 +31,7 @@ def dynamic_legends_from_variables_index(variables_index: dict, /) -> dict:
 
 
 def make_dynamic_legends():
+    logger.info('Generating dynamic legend(s)...')
     with open(VARIABLES_INDEX_FP) as f:
         variables_index = json.loads(f.read())
 

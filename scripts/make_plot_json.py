@@ -1,4 +1,4 @@
-"""Convert CSV plot files to JSON and write them to the storage location.
+"""Convert CSV plot files to JSON and write them to disk.
 
 The output will be a JSON object with the CSV headers as keys. Values will be arrays
 representing the column for each header.
@@ -12,7 +12,9 @@ import math
 from pathlib import Path
 from typing import Literal, TypedDict, cast, get_args
 
-from constants.paths import INCOMING_CSV_DIR, STORAGE_PLOTS_DIR
+from loguru import logger
+
+from constants.paths import INCOMING_PLOT_CSV_DIR, STORAGE_PLOTS_DIR
 from util.region import make_region_code
 
 
@@ -26,7 +28,7 @@ class PlotDataPoint(TypedDict):
     year_to_date: float
 
 
-Header = Literal[
+ColumnName = Literal[
     'day_of_water_year',
     'min',
     'prc25',
@@ -35,7 +37,7 @@ Header = Literal[
     'max',
     'year_to_date',
 ]
-HEADERS = get_args(Header)
+COLUMN_NAMES = get_args(ColumnName)
 
 
 def _nan_to_none(val):
@@ -44,7 +46,7 @@ def _nan_to_none(val):
     return val
 
 
-def _normalize_value(dct: PlotDataPoint, k: Header):
+def _normalize_value(dct: PlotDataPoint, k: ColumnName):
     """Normalize values to expected types.
 
     The "index" (doy) is integer, and all other columns are floats.
@@ -77,7 +79,7 @@ def cleanse_input(input_csv_fp: Path) -> list[str]:
         input_csv = input_csv_file.readlines()
 
     # Replace header row with standard value
-    header_row = ','.join(HEADERS)
+    header_row = ','.join(COLUMN_NAMES)
     input_csv[0] = f'{header_row}\n'
 
     # Find the blank line; everything above that is metadata
@@ -99,17 +101,17 @@ def cleanse_input(input_csv_fp: Path) -> list[str]:
     return csv_rows
 
 
-def csv_cols_to_dict(csv_rows: str) -> dict[Header, list[float] | list[int]]:
+def csv_to_dict_of_cols(csv_text: str) -> dict[ColumnName, list[float] | list[int]]:
     """Convert a string of CSV data to dict of lists."""
     csv_as_list_of_dicts = [
         # NOTE: I don't think we can get rid of this cast; Mypy can't know about the CSV
         # structure.
         cast(PlotDataPoint, dict(r))
-        for r in csv.DictReader(io.StringIO(''.join(csv_rows)))
+        for r in csv.DictReader(io.StringIO(csv_text))
     ]
 
     # TODO: Can we get rid of this cast???
-    csv_columns = cast(set[Header], set(csv_as_list_of_dicts[0].keys()))
+    csv_columns = cast(set[ColumnName], set(csv_as_list_of_dicts[0].keys()))
     csv_as_dict_of_lists = {
         k: [
             _normalize_value(dct, k)
@@ -173,10 +175,14 @@ def output_fp_from_input_fp(input_fp: Path) -> Path:
 
 
 def make_plot_json() -> None:
-    input_files = list(INCOMING_CSV_DIR.glob('*.csv'))
+    input_files = list(INCOMING_PLOT_CSV_DIR.glob('*.csv'))
+
+    logger.info('Generating plot JSON from: {input_files}...')
     for input_csv_fp in input_files:
+        # TODO: use new util
         cleansed_csv_rows = cleanse_input(input_csv_fp)
-        dict_of_cols = csv_cols_to_dict(''.join(cleansed_csv_rows))
+        csv_text = ''.join(cleansed_csv_rows)
+        dict_of_cols = csv_to_dict_of_cols(csv_text)
 
         output_fp = output_fp_from_input_fp(input_csv_fp)
 
