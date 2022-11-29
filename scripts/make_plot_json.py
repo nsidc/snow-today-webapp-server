@@ -10,11 +10,13 @@ import io
 import json
 import math
 from pathlib import Path
+from pprint import pformat
 from typing import Literal, TypedDict, cast, get_args
 
 from loguru import logger
 
 from constants.paths import INCOMING_PLOT_CSV_DIR, STORAGE_PLOTS_DIR
+from util.csv import read_and_strip_before_header
 from util.region import make_region_code
 
 
@@ -66,39 +68,6 @@ def _normalize_value(dct: PlotDataPoint, k: ColumnName):
             return None
 
         return float_val
-
-
-def cleanse_input(input_csv_fp: Path) -> list[str]:
-    """Strip metadata in the first 11 lines of the CSV file.
-
-    NOTE: In the future, this metadata may be useful!
-    """
-    EXPECTED_BLANK_LINE = 11
-
-    with open(input_csv_fp, 'r') as input_csv_file:
-        input_csv = input_csv_file.readlines()
-
-    # Replace header row with standard value
-    header_row = ','.join(COLUMN_NAMES)
-    input_csv[0] = f'{header_row}\n'
-
-    # Find the blank line; everything above that is metadata
-    # NOTE: We add 1 because to humans, line numbers start with 1, and list indexes
-    # start at 0.
-    blank_line_number = input_csv.index('\n') + 1
-    if blank_line_number != EXPECTED_BLANK_LINE:
-        raise RuntimeError(
-            f'Blank line in {input_csv_fp} expected at line {EXPECTED_BLANK_LINE}.'
-            f' Found at: {blank_line_number}.'
-        )
-
-    # Remove metadata (everything above blank line)
-    # NOTE: Remember that `blank_line_number` was incremented by 1 above to represent
-    # the human-readable line number. Since we don't want the blank line number to be
-    # included in the output, that's a good thing; a slice includes the "start" value,
-    # and we only want the lines _after, but not including_ the blank line.
-    csv_rows = input_csv[blank_line_number:]
-    return csv_rows
 
 
 def csv_to_dict_of_cols(csv_text: str) -> dict[ColumnName, list[float] | list[int]]:
@@ -164,30 +133,34 @@ def _region_id_from_input_fn(input_fn: str) -> str:
         raise NotImplementedError(f'Unexpected region in filename: {input_fn}')
 
 
-def output_fp_from_input_fp(input_fp: Path) -> Path:
+def output_fp_from_input_fp(input_fp: Path, *, output_dir: Path) -> Path:
     input_fn = input_fp.name
     variable_id = _variable_id_from_input_fn(input_fn)
     region_id = _region_id_from_input_fn(input_fn)
 
     output_fn = f'{region_id}-{variable_id}.json'
-    output_fp = STORAGE_PLOTS_DIR / output_fn
+    output_fp = output_dir / output_fn
     return output_fp
 
 
 def make_plot_json() -> None:
     input_files = list(INCOMING_PLOT_CSV_DIR.glob('*.csv'))
 
-    logger.info('Generating plot JSON from: {input_files}...')
+    input_files_pretty = pformat([str(p) for p in input_files], indent=4)
+    logger.info(f'Generating plot JSON from:\n{input_files_pretty}...')
     for input_csv_fp in input_files:
         # TODO: use new util
-        cleansed_csv_rows = cleanse_input(input_csv_fp)
-        csv_text = ''.join(cleansed_csv_rows)
+        header = ','.join(COLUMN_NAMES)
+        csv_rows = read_and_strip_before_header(fp=input_csv_fp, header=header)
+        csv_text = ''.join(csv_rows)
+
         dict_of_cols = csv_to_dict_of_cols(csv_text)
 
-        output_fp = output_fp_from_input_fp(input_csv_fp)
-
+        output_fp = output_fp_from_input_fp(input_csv_fp, output_dir=STORAGE_PLOTS_DIR)
         with open(output_fp, 'w') as output_file:
             json.dump(dict_of_cols, output_file, indent=2)
+
+    logger.info(f'Plot JSON written to {STORAGE_PLOTS_DIR}')
 
 
 if __name__ == '__main__':
