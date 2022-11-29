@@ -47,7 +47,7 @@ CsvColumnName = Literal[
     'HUC04',
 ]
 CSV_COLUMN_NAMES = get_args(CsvColumnName)
-CsvDict = dict[CsvColumnName, str | float]
+CsvDict = dict[CsvColumnName, str]
 
 
 def _normalize_csv_dict(csv_dict: CsvDict) -> SweDataPoint:
