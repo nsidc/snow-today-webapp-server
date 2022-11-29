@@ -1,6 +1,7 @@
 """Convert EPSG:4326 non-CO GeoTIFFs to Cloud-Optimized GeoTIFFs in Web Mercator."""
 import subprocess
 from pathlib import Path
+from pprint import pformat
 
 from constants.paths import INCOMING_TIF_DIR, STORAGE_COGS_DIR
 from loguru import logger
@@ -53,7 +54,8 @@ def make_cogs() -> None:
 
     input_tifs = list(INCOMING_TIF_DIR.glob('*.tif'))
 
-    logger.info(f'Generating COGS from: {input_tifs}')
+    input_tifs_str = pformat([str(p) for p in input_tifs])
+    logger.info(f'Generating COGS from: {input_tifs_str}')
     for input_tif in input_tifs:
         print()
         print(f'Processing input file {input_tif}')
