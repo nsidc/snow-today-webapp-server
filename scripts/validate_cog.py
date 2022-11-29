@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# fmt: off
 # -*- coding: utf-8 -*-
 # *****************************************************************************
 #  $Id$
@@ -34,6 +35,7 @@
 import os.path
 import struct
 import sys
+
 from osgeo import gdal
 
 
@@ -407,4 +409,3 @@ def main(argv=sys.argv):
 
 if __name__ == '__main__':
     sys.exit(main(sys.argv))
-

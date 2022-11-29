@@ -1,13 +1,12 @@
 import geopandas as gpd
 
-
 # The coefficient used to calculate the simplification threshold (by multiplying this
 # number by the size of the shortest dimension of each shape's bbox). Smaller numbers
 # result in finer output resolution.
 # At .001, our biggest regions are 125KB. 7.2MB in total.
 # At .0005, our biggest regions are 237KB. 13MB in total.
 # At .0001, our biggest regions are 762KB. 41MB in total.
-SIMPLIFICATION_COEFFICIENT = .0005
+SIMPLIFICATION_COEFFICIENT = 0.0005
 
 
 def simplify_geometry(feature_gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:

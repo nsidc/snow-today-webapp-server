@@ -8,17 +8,13 @@ NOTE: These outputs should not be committed!
 import csv
 import io
 import json
-import math
-from pathlib import Path
-from typing import Callable, Literal, TypedDict, cast, get_args
-
-from loguru import logger
+from typing import Literal, TypedDict, cast, get_args
 
 import util.field_transformers as xfr
 from constants.paths import INCOMING_SWE_DIR, STORAGE_POINTS_DIR
+from loguru import logger
 from util.csv import read_and_strip_before_header
 from util.error import UnexpectedInput
-
 
 # The JSON data won't be in "column" orientation; these strings simply correspond with
 # the CSV columns.
@@ -39,6 +35,7 @@ JsonColumnName = Literal[
 
 class SweDataPoint(TypedDict):
     """A SWE station's data structure in the JSON output."""
+
     name: str
     lat: float
     lon: float
@@ -54,7 +51,7 @@ class SweDataPoint(TypedDict):
 
 
 class ColumnInfo(TypedDict):
-    new_name: JsonColumnName 
+    new_name: JsonColumnName
     transformer: xfr.Transformer | None
 
 
@@ -88,13 +85,14 @@ CsvDict = dict[CsvColumnName, str | float]
 
 
 def _normalize_csv_dict(csv_dict: CsvDict) -> SweDataPoint:
-    normalized = {
+    # TODO: Can we do this without a cast?
+    normalized = cast(SweDataPoint, {
         CSV_COLUMNS[column]['new_name']: xfr.transform_value(
             value=value,
             transformer=CSV_COLUMNS[column]['transformer'],
         )
         for column, value in csv_dict.items()
-    }
+    })
     return normalized
 
 
@@ -121,8 +119,7 @@ def make_swe_json() -> None:
     input_files = list(INCOMING_SWE_DIR.glob('*.txt'))
     if len(input_files) != 1:
         raise UnexpectedInput(
-            f'Expected 1 input file in {INCOMING_SWE_DIR}.'
-            f' Got: {input_files}'
+            f'Expected 1 input file in {INCOMING_SWE_DIR}.' f' Got: {input_files}'
         )
 
     input_csv_fp = input_files[0]

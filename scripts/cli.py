@@ -18,6 +18,7 @@ def make_cogs_daily():
     Expected to run daily.
     """
     from make_cogs import make_cogs
+
     make_cogs()
 
 
@@ -28,6 +29,7 @@ def make_plot_json_daily():
     Expected to run daily.
     """
     from make_plot_json import make_plot_json
+
     make_plot_json()
 
 
@@ -41,6 +43,7 @@ def make_dynamic_legends_daily():
     `$DOWY`, in the `colormap_value_range` entry.
     """
     from make_dynamic_legends import make_dynamic_legends
+
     make_dynamic_legends()
 
 
@@ -58,6 +61,7 @@ def ingest_daily_ssp(ctx):
 def ingest_daily_swe():
     """Run daily snow-water equivalent ingest."""
     from make_swe_json import make_swe_json
+
     make_swe_json()
 
 
@@ -68,6 +72,7 @@ def make_static_legends_adhoc():
     Expected to run ad-hoc to create static legend files for new or changed variables.
     """
     from make_static_legends import make_static_legends
+
     make_static_legends()
 
 
@@ -82,6 +87,7 @@ def make_region_shapes_and_index_adhoc():
     TODO: How to only _update_ instead of fully recreating?
     """
     from make_region_shapes_and_index import make_region_shapes_and_index
+
     make_region_shapes_and_index()
 
 

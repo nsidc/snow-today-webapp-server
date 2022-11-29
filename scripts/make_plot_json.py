@@ -13,9 +13,8 @@ from pathlib import Path
 from pprint import pformat
 from typing import Literal, TypedDict, cast, get_args
 
-from loguru import logger
-
 from constants.paths import INCOMING_PLOT_CSV_DIR, STORAGE_PLOTS_DIR
+from loguru import logger
 from util.csv import read_and_strip_before_header
 from util.region import make_region_code
 
@@ -82,10 +81,7 @@ def csv_to_dict_of_cols(csv_text: str) -> dict[ColumnName, list[float] | list[in
     # TODO: Can we get rid of this cast???
     csv_columns = cast(set[ColumnName], set(csv_as_list_of_dicts[0].keys()))
     csv_as_dict_of_lists = {
-        k: [
-            _normalize_value(dct, k)
-            for dct in csv_as_list_of_dicts
-        ]
+        k: [_normalize_value(dct, k) for dct in csv_as_list_of_dicts]
         for k in csv_columns
     }
     return csv_as_dict_of_lists

@@ -2,12 +2,24 @@
 
 Currently for SWE JSON only.
 """
-from typing import Any, Callable
+from typing import Any, Callable, TypeVar, overload
 
+T = TypeVar('T')
+V = TypeVar('V')
 Transformer = Callable[[Any], Any]
 
 
-def transform_value(*, value: Any, transformer: Transformer | None) -> Any:
+@overload
+def transform_value(*, value: V, transformer: None) -> V:
+    ...
+
+
+@overload
+def transform_value(*, value: Any, transformer: Callable[[Any], T]) -> T:
+    ...
+
+
+def transform_value(*, value, transformer):
     if transformer is None:
         return value
 

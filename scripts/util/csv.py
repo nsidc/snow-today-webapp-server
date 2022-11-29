@@ -15,7 +15,9 @@ def read_and_strip_before_header(*, fp: Path, header: str) -> list[str]:
     if len(header_rows) == 0:
         raise RuntimeError(f'Found no header row in {fp}. Expected "{header}"')
     if len(header_rows) > 1:
-        raise RuntimeError(f'Found multiple header rows in {fp} on lines: {header_rows}')
+        raise RuntimeError(
+            f'Found multiple header rows in {fp} on lines: {header_rows}'
+        )
 
     header_row = header_rows[0]
     stripped_csv_rows = input_csv_lines[header_row:]

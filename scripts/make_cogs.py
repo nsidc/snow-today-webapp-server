@@ -2,9 +2,8 @@
 import subprocess
 from pathlib import Path
 
-from loguru import logger
-
 from constants.paths import INCOMING_TIF_DIR, STORAGE_COGS_DIR
+from loguru import logger
 
 
 def make_cloud_optimized(input_tif_path: Path) -> Path:
@@ -66,9 +65,7 @@ def make_cogs() -> None:
 
     output_dir_contents = STORAGE_COGS_DIR.glob('*.tif')
     output_dir_contents_to_clean = (
-        set(output_dir_contents)
-        - set(output_tifs)
-        - set(symlinks)
+        set(output_dir_contents) - set(output_tifs) - set(symlinks)
     )
     for f in output_dir_contents_to_clean:
         f.unlink()
