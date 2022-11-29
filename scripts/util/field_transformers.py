@@ -2,28 +2,19 @@
 
 Currently for SWE JSON only.
 """
+import math
 from typing import Any, Callable, TypeVar, overload
 
-T = TypeVar('T')
-V = TypeVar('V')
-Transformer = Callable[[Any], Any]
 
+def float_nan_normalized(inp: str) -> float | None:
+    """Use None instead of NaN in floats.
 
-@overload
-def transform_value(*, value: V, transformer: None) -> V:
-    ...
-
-
-@overload
-def transform_value(*, value: Any, transformer: Callable[[Any], T]) -> T:
-    ...
-
-
-def transform_value(*, value, transformer):
-    if transformer is None:
-        return value
-
-    return transformer(value)
+    This enables standards-compliant JSON output.
+    """
+    flt = float(inp)
+    if math.isnan(flt):
+        return None
+    return flt
 
 
 def state_normalized(state: str) -> str:

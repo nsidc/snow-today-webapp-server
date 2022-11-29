@@ -41,12 +41,6 @@ ColumnName = Literal[
 COLUMN_NAMES = get_args(ColumnName)
 
 
-def _nan_to_none(val):
-    if math.isnan(val):
-        return None
-    return val
-
-
 def _normalize_value(dct: PlotDataPoint, k: ColumnName):
     """Normalize values to expected types.
 

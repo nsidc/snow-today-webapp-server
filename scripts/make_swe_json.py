@@ -16,43 +16,22 @@ from loguru import logger
 from util.csv import read_and_strip_before_header
 from util.error import UnexpectedInput
 
-# The JSON data won't be in "column" orientation; these strings simply correspond with
-# the CSV columns.
-# TODO: Extract types to another module or stub file
-JsonColumnName = Literal[
-    'name',
-    'lat',
-    'lon',
-    'elevation_meters',
-    'swe_inches',
-    'swe_normalized_inches',
-    'swe_diff_inches',
-    'state',
-    'huc2',
-    'huc4',
-]
-
 
 class SweDataPoint(TypedDict):
     """A SWE station's data structure in the JSON output."""
 
     name: str
-    lat: float
     lon: float
+    lat: float
     elevation_meters: float
-    swe_inches: float
+    swe_inches: float | None
     # SWE normalized: current SWE / average SWE for this date of each year
-    swe_normalized_inches: float
+    swe_normalized_inches: float | None
     # SWE difference: current SWE - previous day's SWE
-    swe_diff_inches: float
+    swe_diff_inches: float | None
     state: str
     huc2: int | None
     huc4: int | None
-
-
-class ColumnInfo(TypedDict):
-    new_name: JsonColumnName
-    transformer: xfr.Transformer | None
 
 
 CsvColumnName = Literal[
@@ -67,32 +46,23 @@ CsvColumnName = Literal[
     'HUC02',
     'HUC04',
 ]
-CSV_COLUMNS: dict[CsvColumnName, ColumnInfo] = {
-    'Name': {'new_name': 'name', 'transformer': str.title},
-    'Lat': {'new_name': 'lat', 'transformer': None},
-    'Lon': {'new_name': 'lon', 'transformer': None},
-    'Elev_m': {'new_name': 'elevation_meters', 'transformer': None},
-    'SWE': {'new_name': 'swe_inches', 'transformer': None},
-    'normSWE': {'new_name': 'swe_normalized_inches', 'transformer': None},
-    'dSWE': {'new_name': 'swe_diff_inches', 'transformer': None},
-    'State': {'new_name': 'state', 'transformer': xfr.state_normalized},
-    'HUC02': {'new_name': 'huc2', 'transformer': xfr.huc2_normalized},
-    'HUC04': {'new_name': 'huc4', 'transformer': xfr.huc4_normalized},
-}
 CSV_COLUMN_NAMES = get_args(CsvColumnName)
-JSON_COLUMN_NAMES = get_args(JsonColumnName)
 CsvDict = dict[CsvColumnName, str | float]
 
 
 def _normalize_csv_dict(csv_dict: CsvDict) -> SweDataPoint:
-    # TODO: Can we do this without a cast?
-    normalized = cast(SweDataPoint, {
-        CSV_COLUMNS[column]['new_name']: xfr.transform_value(
-            value=value,
-            transformer=CSV_COLUMNS[column]['transformer'],
-        )
-        for column, value in csv_dict.items()
-    })
+    normalized = SweDataPoint(
+        name=str.title(csv_dict['Name']),
+        lon=float(csv_dict['Lon']),
+        lat=float(csv_dict['Lat']),
+        elevation_meters=float(csv_dict['Elev_m']),
+        swe_inches=xfr.float_nan_normalized(csv_dict['SWE']),
+        swe_normalized_inches=xfr.float_nan_normalized(csv_dict['normSWE']),
+        swe_diff_inches=xfr.float_nan_normalized(csv_dict['dSWE']),
+        state=xfr.state_normalized(csv_dict['State']),
+        huc2=xfr.huc2_normalized(csv_dict['HUC02']),
+        huc4=xfr.huc4_normalized(csv_dict['HUC04']),
+    )
     return normalized
 
 
@@ -135,7 +105,7 @@ def make_swe_json() -> None:
 
     output_fp = STORAGE_POINTS_DIR / 'swe.json'
     with open(output_fp, 'w') as output_file:
-        json.dump(normalized, output_file, indent=2)
+        json.dump(normalized, output_file, indent=2, allow_nan=False)
 
     logger.info(f'SWE JSON written: {output_fp}')
 
