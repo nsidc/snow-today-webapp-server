@@ -7,18 +7,28 @@ jobs:
   test:
     <<: *setup
     docker:
-      - image: continuumio/miniconda3:4.12.0
+      - image: mambaorg/micromamba:1.0
     steps:
       - checkout
+      - restore_cache:
+          key: 'conda-{{ checksum "environment-lock.yml" }}'
       - run:
-          name: 'Setup conda and dependencies'
+          name: 'Setup conda environment'
           command: |
-            conda env create --quiet -f environment-lock.yml
-            conda init bash
+            if [ -d '/opt/conda/envs/snow-today' ]; then
+              echo 'Environment exists in cache. Skipping setup!'
+              exit 0
+            fi
+
+            cp environment-lock.yml environment-ci.yml
+            micromamba install -y -p /opt/conda -f environment-ci.yml
+      - save_cache:
+          key: 'conda-{{ checksum "environment-lock.yml" }}'
+          paths: '/opt/conda'
       - run:
           name: 'Static analysis'
           command: |
-            /bin/bash --login -c "conda activate snow-today && inv test.static"
+            micromamba run inv test.static
 
 
   build-docker-images-and-sometimes-publish:
