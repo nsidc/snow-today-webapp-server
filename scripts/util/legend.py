@@ -1,12 +1,10 @@
 from typing import Literal
 
-import matplotlib.pyplot as plt
 import matplotlib as mpl
-from matplotlib.colors import LinearSegmentedColormap
-
+import matplotlib.pyplot as plt
 from constants.misc import CURRENT_DOWY
 from constants.paths import REPO_LEGENDS_DIR, STORAGE_DYNAMIC_LEGENDS_DIR
-
+from matplotlib.colors import LinearSegmentedColormap
 
 ColormapExtendChoice = Literal['both', 'neither', 'min', 'max']
 
@@ -17,12 +15,14 @@ LEGEND_FONT_SIZE = 8
 
 def legend_from_variable(variable_id: str, variable: dict) -> str:
     """Write a legend based on `variable` and return its _relative_ path."""
-    mpl.rcParams.update({
-        'font.size': LEGEND_FONT_SIZE,
-        # Make internal SVG unique IDs deterministic for better diffing:
-        # https://matplotlib.org/stable/tutorials/introductory/customizing.html
-        'svg.hashsalt': 'snow-today',
-    })
+    mpl.rcParams.update(
+        {
+            'font.size': LEGEND_FONT_SIZE,
+            # Make internal SVG unique IDs deterministic for better diffing:
+            # https://matplotlib.org/stable/tutorials/introductory/customizing.html
+            'svg.hashsalt': 'snow-today',
+        }
+    )
 
     label = variable['label_map_legend']
     cmap_range = _colormap_range(variable)
@@ -62,15 +62,12 @@ def legend_from_variable(variable_id: str, variable: dict) -> str:
 
     plt.savefig(
         output_path,
-
         # Reduce the whitespace on the edges:
         bbox_inches='tight',
         pad_inches=0.05,
-
         # Prevent SVG raster element (color gradient) from being misaligned from vector
         # elements:
         dpi=200,
-
         # Make the outputs more diffable:
         metadata={'Date': None},
     )

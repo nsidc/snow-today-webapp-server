@@ -18,6 +18,8 @@ dependencies:
   - matplotlib-base ~=3.5
   # For comparing JSON changes:
   - deepdiff ~=5.8
+  # For simple logging:
+  - loguru ~=0.6.0
 
 
 
@@ -25,6 +27,8 @@ dependencies:
   # Testing dependencies
   ###########################################
   - invoke ~=1.7
+  - black ~=22.6.0
+  - isort ~=5.10
   - mypy ~=0.971
   - flake8 ~=5.0.4
   - flake8-bugbear ~=22.8
@@ -37,7 +41,5 @@ dependencies:
   - typing-extensions ~=4.3.0
 
   # TODO:
-  # - black ~=22.6.0
-  # - isort ~=5.10
   # - pytest ~=7.1
   # - shellcheck ~=0.8.0

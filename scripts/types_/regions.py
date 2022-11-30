@@ -4,7 +4,6 @@ from typing import Callable, Literal
 #       https://peps.python.org/pep-0655/#usage-in-python-3-11
 from typing_extensions import NotRequired, TypedDict
 
-
 ###############################################################################
 # Types for region input things (e.g. magic strings in shapefiles)
 ###############################################################################
@@ -68,6 +67,7 @@ RegionIndex = dict[str, SuperRegion]
 ###############################################################################
 # Types used in processing input -> output
 ###############################################################################
+
 
 class SubRegionCollectionProcessingParams(TypedDict):
     longname: str

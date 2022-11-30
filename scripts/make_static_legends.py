@@ -2,11 +2,9 @@ import copy
 import json
 
 from constants.paths import VARIABLES_INDEX_FP
+from loguru import logger
 from util.diff import variable_index_diff_with_warning
-from util.legend import (
-    is_dynamic_legend,
-    legend_from_variable,
-)
+from util.legend import is_dynamic_legend, legend_from_variable
 
 
 def static_legends_from_variables_index(variables_index: dict, /) -> dict:
@@ -36,6 +34,7 @@ def static_legends_from_variables_index(variables_index: dict, /) -> dict:
 
 
 def make_static_legends() -> None:
+    logger.info('Generating static legends...')
     with open(VARIABLES_INDEX_FP) as f:
         variables_index = json.loads(f.read())
 

@@ -18,14 +18,9 @@ from pathlib import Path
 from typing import Callable, Iterator
 
 import geopandas as gpd
-
-from constants.paths import (
-    REGION_INDEX_FP,
-    REPO_DATA_DIR,
-    REPO_SHAPES_DIR,
-    STORAGE_DIR,
-)
+from constants.paths import REGION_INDEX_FP, REPO_DATA_DIR, REPO_SHAPES_DIR, STORAGE_DIR
 from constants.states import STATE_ABBREVS, STATES_ENABLED
+from loguru import logger
 from types_.regions import (
     RegionIndex,
     RegionProcessingParams,
@@ -39,7 +34,6 @@ from types_.regions import (
 )
 from util.region import make_region_code
 from util.simplify_geometry import simplify_geometry
-
 
 # TODO: Where will we get these operationally?
 SHAPEFILE_INPUT_DIR = STORAGE_DIR / 'snow_today_2.0_testing' / 'shapefiles'
@@ -149,7 +143,7 @@ def state_feature_to_subregion(feature_gdf: gpd.GeoDataFrame) -> tuple[str, SubR
 def make_subregions_from_shapefiles(
     *,
     shapefiles: list[Path],
-    feature_to_subregion_fn: Callable[[gpd.GeoDataFrame], tuple[str, SubRegion]]
+    feature_to_subregion_fn: Callable[[gpd.GeoDataFrame], tuple[str, SubRegion]],
 ) -> SubRegionIndex:
     subregion_ids_and_params = sorted(
         [
@@ -232,6 +226,7 @@ def make_all_regions_geojson() -> RegionIndex:
 
 
 def make_region_shapes_and_index() -> None:
+    logger.info('Generating region shapes and JSON index of regions...')
     region_index = make_all_regions_geojson()
 
     with open(REGION_INDEX_FP, 'w') as outfile:
