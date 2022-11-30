@@ -15,8 +15,8 @@ jobs:
       - run:
           name: 'Setup conda environment'
           command: |
-            if [ -d '/opt/conda/envs/snow-today' ]; then
-              echo 'Environment exists in cache. Skipping setup!'
+            if [ -d '/opt/conda/lib' ]; then
+              echo 'Environment restored from cache. Skipping setup!'
               exit 0
             fi
 
