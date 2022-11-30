@@ -1,3 +1,10 @@
+# v0.13.0 (2022-11-29)
+
+* Migrate existing daily ingest task to `ingest-daily-ssp`
+* Add `ingest-daily-swe` command to create Snow-Water Equivalent JSON files from
+  incoming CSV.
+
+
 # v0.12.0 (2022-09-20)
 
 * Add `make-dynamic-legends-daily` ops command: Generates legends which have dynamic
