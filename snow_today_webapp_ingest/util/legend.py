@@ -17,6 +17,8 @@ LEGEND_COLORBAR_BOTTOM = 0.5
 LEGEND_FONT_SIZE = 8
 
 
+# TODO: Write legend to the path already specified in the variables.json, instead of
+# updating variables.json?
 def legend_from_variable(variable_id: str, variable: dict) -> str:
     """Write a legend based on `variable` and return its _relative_ path."""
     mpl.rcParams.update(

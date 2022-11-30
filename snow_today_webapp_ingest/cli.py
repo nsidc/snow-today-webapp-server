@@ -4,6 +4,7 @@ NOTE: imports are done in functions to avoid needing to evaluate code within tho
 imports when doing `--help`.
 """
 import click
+from loguru import logger
 
 
 @click.group()
@@ -22,6 +23,7 @@ def make_cogs_daily():
 
         make_cogs()
     except Exception as e:
+        logger.exception(e)
         raise click.ClickException(str(e))
 
 
@@ -36,6 +38,7 @@ def make_plot_json_daily():
 
         make_plot_json()
     except Exception as e:
+        logger.exception(e)
         raise click.ClickException(str(e))
 
 
@@ -53,6 +56,7 @@ def make_dynamic_legends_daily():
 
         make_dynamic_legends()
     except Exception as e:
+        logger.exception(e)
         raise click.ClickException(str(e))
 
 
@@ -74,6 +78,7 @@ def ingest_daily_swe():
 
         make_swe_json()
     except Exception as e:
+        logger.exception(e)
         raise click.ClickException(str(e))
 
 
@@ -88,6 +93,7 @@ def make_static_legends_adhoc():
 
         make_static_legends()
     except Exception as e:
+        logger.exception(e)
         raise click.ClickException(str(e))
 
 
@@ -108,6 +114,7 @@ def make_region_shapes_and_index_adhoc():
 
         make_region_shapes_and_index()
     except Exception as e:
+        logger.exception(e)
         raise click.ClickException(str(e))
 
 

@@ -22,6 +22,8 @@ COPY ./.mypy.ini .
 COPY ./scripts ./scripts
 COPY ./snow_today_webapp_ingest ./snow_today_webapp_ingest
 
+ENV PYTHONPATH=/snow-today-webapp-server-ingest
+
 # Test conda environment is correctly activated
 RUN python snow_today_webapp_ingest/cli.py --help
 
