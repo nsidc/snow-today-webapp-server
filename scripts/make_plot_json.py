@@ -136,6 +136,11 @@ def output_fp_from_input_fp(input_fp: Path, *, output_dir: Path) -> Path:
 def make_plot_json() -> None:
     input_files = list(INCOMING_PLOT_CSV_DIR.glob('*.csv'))
 
+    if len(input_files) == 0:
+        msg = f'Aborting: no inputs found at: {INCOMING_PLOT_CSV_DIR}'
+        logger.warning(msg)
+        raise RuntimeError(msg)
+
     input_files_pretty = pformat([str(p) for p in input_files], indent=4)
     logger.info(f'Generating plot JSON from:\n{input_files_pretty}...')
     for input_csv_fp in input_files:

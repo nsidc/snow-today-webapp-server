@@ -11,7 +11,7 @@ def make_cloud_optimized(input_tif_path: Path) -> Path:
     output_tif_path = STORAGE_COGS_DIR / input_tif_path.name
     if output_tif_path.is_file():
         output_tif_path.unlink()
-        print(f'Removed {output_tif_path}')
+        logger.info(f'Removed {output_tif_path}')
 
     # TODO: -a_nodata 65535? Currently nodata value is not defined in metadata.
     subprocess.run(
@@ -24,7 +24,7 @@ def make_cloud_optimized(input_tif_path: Path) -> Path:
         shell=True,
     )
 
-    print(f'Created COG {output_tif_path}')
+    logger.info(f'Created COG {output_tif_path}')
     return output_tif_path
 
 
@@ -42,7 +42,7 @@ def update_symlink(tif_path: Path) -> Path:
         symlink_path.unlink()
     symlink_path.symlink_to(symlink_target)
 
-    print(f'Created symlink {symlink_path} -> {symlink_target}')
+    logger.debug(f'Created symlink {symlink_path} -> {symlink_target}')
     return symlink_path
 
 
@@ -54,8 +54,13 @@ def make_cogs() -> None:
 
     input_tifs = list(INCOMING_TIF_DIR.glob('*.tif'))
 
-    input_tifs_str = pformat([str(p) for p in input_tifs])
-    logger.info(f'Generating COGS from: {input_tifs_str}')
+    if len(input_tifs) == 0:
+        msg = f'Aborting: no inputs found at: {INCOMING_TIF_DIR}'
+        logger.warning(msg)
+        raise RuntimeError(msg)
+
+    input_tifs_pretty = pformat([str(p) for p in input_tifs])
+    logger.info(f'Generating COGS from: {input_tifs_pretty}')
     for input_tif in input_tifs:
         print()
         print(f'Processing input file {input_tif}')

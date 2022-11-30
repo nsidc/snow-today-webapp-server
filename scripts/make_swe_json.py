@@ -89,7 +89,7 @@ def make_swe_json() -> None:
     input_files = list(INCOMING_SWE_DIR.glob('*.txt'))
     if len(input_files) != 1:
         raise UnexpectedInput(
-            f'Expected 1 input file in {INCOMING_SWE_DIR}.' f' Got: {input_files}'
+            f'Expected 1 input file in {INCOMING_SWE_DIR}. Got: {input_files}'
         )
 
     input_csv_fp = input_files[0]
