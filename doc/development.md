@@ -7,7 +7,7 @@
 ```
 conda env create
 # ...
-python scripts/cli.py
+python ./snow_today_webapp_ingest/cli.py
 ```
 
 

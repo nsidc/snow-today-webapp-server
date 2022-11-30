@@ -18,10 +18,16 @@ from pathlib import Path
 from typing import Callable, Iterator
 
 import geopandas as gpd
-from constants.paths import REGION_INDEX_FP, REPO_DATA_DIR, REPO_SHAPES_DIR, STORAGE_DIR
-from constants.states import STATE_ABBREVS, STATES_ENABLED
 from loguru import logger
-from types_.regions import (
+
+from snow_today_webapp_ingest.constants.paths import (
+    REGION_INDEX_FP,
+    REPO_DATA_DIR,
+    REPO_SHAPES_DIR,
+    STORAGE_DIR,
+)
+from snow_today_webapp_ingest.constants.states import STATE_ABBREVS, STATES_ENABLED
+from snow_today_webapp_ingest.types_.regions import (
     RegionIndex,
     RegionProcessingParams,
     RegionProcessingStruct,
@@ -32,8 +38,8 @@ from types_.regions import (
     SubRegionIndex,
     SuperRegion,
 )
-from util.region import make_region_code
-from util.simplify_geometry import simplify_geometry
+from snow_today_webapp_ingest.util.region import make_region_code
+from snow_today_webapp_ingest.util.simplify_geometry import simplify_geometry
 
 # TODO: Where will we get these operationally?
 SHAPEFILE_INPUT_DIR = STORAGE_DIR / 'snow_today_2.0_testing' / 'shapefiles'

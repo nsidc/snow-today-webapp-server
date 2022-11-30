@@ -1,4 +1,7 @@
-from types_.regions import SubRegionCollectionName, SuperRegionName
+from snow_today_webapp_ingest.types_.regions import (
+    SubRegionCollectionName,
+    SuperRegionName,
+)
 
 
 def make_region_code(

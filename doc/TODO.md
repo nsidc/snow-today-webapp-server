@@ -5,7 +5,6 @@
     Consequences include: Building ingest image when only changing dynamic data and
     vice versa. Benefits include: No need to think about compatibility between static
     data versions and ingest versions.
-* Move the Python ingest code out of scripts dir to its own subpackage directory
 
 
 # Data validation

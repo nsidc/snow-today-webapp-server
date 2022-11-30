@@ -20,8 +20,8 @@ statistics/           # Statistics for generating plot visualizations
 This repository contains the data needed to populate the index files and the `shapes/`
 directory.
 
-The `cogs/` directory must be populated by running `scripts/make_cogs.sh` on
-GeoTIFFs generated externally.
+The `cogs/` directory must be populated by running `make-cogs-daily` on GeoTIFFs generated
+externally.
 
 
 ## Data validation
@@ -31,5 +31,5 @@ GeoJSON can be validated with `jsonschema`, installed via `conda env create`.
 
 ## Data processing
 
-The `scripts/make_cogs.sh` script for processing external GeoTIFFs into app-ready COGs
-requires GDAL. It can be installed with `conda env create`.
+The `make-cogs-daily` script for processing external GeoTIFFs into app-ready COGs requires
+GDAL. It can be installed with `conda env create`.

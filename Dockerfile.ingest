@@ -20,9 +20,12 @@ RUN micromamba clean --all --yes
 # Install source
 COPY ./.mypy.ini .
 COPY ./scripts ./scripts
+COPY ./snow_today_webapp_ingest ./snow_today_webapp_ingest
+
+ENV PYTHONPATH=/snow-today-webapp-server-ingest
 
 # Test conda environment is correctly activated
-RUN python scripts/cli.py --help
+RUN python snow_today_webapp_ingest/cli.py --help
 
 # Activate conda environment and run CLI as entrypoint
-ENTRYPOINT ["/usr/local/bin/_entrypoint.sh", "python", "scripts/cli.py"]
+ENTRYPOINT ["/usr/local/bin/_entrypoint.sh", "python", "snow_today_webapp_ingest/cli.py"]

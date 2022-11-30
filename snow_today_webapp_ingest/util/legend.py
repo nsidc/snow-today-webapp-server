@@ -2,9 +2,13 @@ from typing import Literal
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from constants.misc import CURRENT_DOWY
-from constants.paths import REPO_LEGENDS_DIR, STORAGE_DYNAMIC_LEGENDS_DIR
 from matplotlib.colors import LinearSegmentedColormap
+
+from snow_today_webapp_ingest.constants.misc import CURRENT_DOWY
+from snow_today_webapp_ingest.constants.paths import (
+    REPO_LEGENDS_DIR,
+    STORAGE_DYNAMIC_LEGENDS_DIR,
+)
 
 ColormapExtendChoice = Literal['both', 'neither', 'min', 'max']
 
@@ -13,6 +17,8 @@ LEGEND_COLORBAR_BOTTOM = 0.5
 LEGEND_FONT_SIZE = 8
 
 
+# TODO: Write legend to the path already specified in the variables.json, instead of
+# updating variables.json?
 def legend_from_variable(variable_id: str, variable: dict) -> str:
     """Write a legend based on `variable` and return its _relative_ path."""
     mpl.rcParams.update(
