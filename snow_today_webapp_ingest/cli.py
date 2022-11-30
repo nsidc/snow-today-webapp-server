@@ -18,7 +18,7 @@ def make_cogs_daily():
     Expected to run daily.
     """
     try:
-        from make_cogs import make_cogs
+        from snow_today_webapp_ingest.make_cogs import make_cogs
 
         make_cogs()
     except Exception as e:
@@ -32,7 +32,7 @@ def make_plot_json_daily():
     Expected to run daily.
     """
     try:
-        from make_plot_json import make_plot_json
+        from snow_today_webapp_ingest.make_plot_json import make_plot_json
 
         make_plot_json()
     except Exception as e:
@@ -49,7 +49,7 @@ def make_dynamic_legends_daily():
     `$DOWY`, in the `colormap_value_range` entry.
     """
     try:
-        from make_dynamic_legends import make_dynamic_legends
+        from snow_today_webapp_ingest.make_dynamic_legends import make_dynamic_legends
 
         make_dynamic_legends()
     except Exception as e:
@@ -70,7 +70,7 @@ def ingest_daily_ssp(ctx):
 def ingest_daily_swe():
     """Run daily snow-water equivalent ingest."""
     try:
-        from make_swe_json import make_swe_json
+        from snow_today_webapp_ingest.make_swe_json import make_swe_json
 
         make_swe_json()
     except Exception as e:
@@ -84,7 +84,7 @@ def make_static_legends_adhoc():
     Expected to run ad-hoc to create static legend files for new or changed variables.
     """
     try:
-        from make_static_legends import make_static_legends
+        from snow_today_webapp_ingest.make_static_legends import make_static_legends
 
         make_static_legends()
     except Exception as e:
@@ -102,7 +102,9 @@ def make_region_shapes_and_index_adhoc():
     TODO: How to only _update_ instead of fully recreating?
     """
     try:
-        from make_region_shapes_and_index import make_region_shapes_and_index
+        from snow_today_webapp_ingest.make_region_shapes_and_index import (
+            make_region_shapes_and_index,
+        )
 
         make_region_shapes_and_index()
     except Exception as e:

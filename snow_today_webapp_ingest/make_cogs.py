@@ -3,8 +3,9 @@ import subprocess
 from pathlib import Path
 from pprint import pformat
 
-from constants.paths import INCOMING_TIF_DIR, STORAGE_COGS_DIR
 from loguru import logger
+
+from snow_today_webapp_ingest.constants.paths import INCOMING_TIF_DIR, STORAGE_COGS_DIR
 
 
 def make_cloud_optimized(input_tif_path: Path) -> Path:

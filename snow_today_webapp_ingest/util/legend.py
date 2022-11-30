@@ -2,9 +2,13 @@ from typing import Literal
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from constants.misc import CURRENT_DOWY
-from constants.paths import REPO_LEGENDS_DIR, STORAGE_DYNAMIC_LEGENDS_DIR
 from matplotlib.colors import LinearSegmentedColormap
+
+from snow_today_webapp_ingest.constants.misc import CURRENT_DOWY
+from snow_today_webapp_ingest.constants.paths import (
+    REPO_LEGENDS_DIR,
+    STORAGE_DYNAMIC_LEGENDS_DIR,
+)
 
 ColormapExtendChoice = Literal['both', 'neither', 'min', 'max']
 

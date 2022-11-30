@@ -1,10 +1,11 @@
 import copy
 import json
 
-from constants.paths import VARIABLES_INDEX_FP
 from loguru import logger
-from util.diff import variable_index_diff_with_warning
-from util.legend import is_dynamic_legend, legend_from_variable
+
+from snow_today_webapp_ingest.constants.paths import VARIABLES_INDEX_FP
+from snow_today_webapp_ingest.util.diff import variable_index_diff_with_warning
+from snow_today_webapp_ingest.util.legend import is_dynamic_legend, legend_from_variable
 
 
 # TODO: DRY / share / note need to sync more code with static legends
