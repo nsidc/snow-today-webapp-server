@@ -7,6 +7,7 @@ services:
     volumes:
       - "${STORAGE_DIR}/cogs:/usr/share/nginx/html/cogs:ro"
       - "${STORAGE_DIR}/plots:/usr/share/nginx/html/plots:ro"
+      - "${STORAGE_DIR}/points:/usr/share/nginx/html/points:ro"
       # Mount dynamic legends underneath the static legends dir
       - "${STORAGE_DIR}/dynamic_legends:/usr/share/nginx/html/legends/dynamic:ro"
     ports:
@@ -24,6 +25,7 @@ services:
       - "${STORAGE_DIR}/incoming:/storage/incoming:ro"
       - "${STORAGE_DIR}/cogs:/storage/cogs:rw"
       - "${STORAGE_DIR}/plots:/storage/plots:rw"
+      - "${STORAGE_DIR}/points:/storage/points:rw"
       - "${STORAGE_DIR}/dynamic_legends:/storage/dynamic_legends:rw"
     environment:
       # Timezone is critical because the ingest code cares about the date for
