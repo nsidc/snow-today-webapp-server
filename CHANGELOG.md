@@ -1,3 +1,8 @@
+# v0.13.1 (2022-12-01)
+
+* Bugfix: Add `./data` directory to ingest docker image
+
+
 # v0.13.0 (2022-11-29)
 
 * Migrate existing daily ingest task to `ingest-daily-ssp`
