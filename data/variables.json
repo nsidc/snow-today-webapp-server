@@ -1,6 +1,6 @@
 {
   "albedo_clean_muZ": {
-    "type": "variable",
+    "type": "raster",
     "enabled": false,
     "longname": "Clean Snow Albedo",
     "longname_plot": "Average Clean Snow Albedo",
@@ -27,7 +27,7 @@
     "transparent_zero": false
   },
   "albedo_observed_muZ": {
-    "type": "variable",
+    "type": "raster",
     "longname": "Snow Albedo",
     "longname_plot": "Average Snow Albedo",
     "label_map_legend": "Snow Albedo (%, for Snow >=10%)",
@@ -53,7 +53,7 @@
     "transparent_zero": false
   },
   "deltavis": {
-    "type": "variable",
+    "type": "raster",
     "enabled": false,
     "longname": "Decrease in visible Albedo from Dust and Soot",
     "longname_plot": "TODO",
@@ -80,7 +80,7 @@
     "transparent_zero": false
   },
   "grain_size": {
-    "type": "variable",
+    "type": "raster",
     "enabled": false,
     "longname": "Snow Grain Size",
     "longname_plot": "TODO",
@@ -107,7 +107,7 @@
     "transparent_zero": false
   },
   "radiative_forcing": {
-    "type": "variable",
+    "type": "raster",
     "longname": "Snow Radiative Forcing",
     "longname_plot": "Average Snow Radiative Forcing",
     "label_map_legend": "Energy (W m^2, for Snow >=10%)",
@@ -133,7 +133,7 @@
     "transparent_zero": false
   },
   "snow_cover_days": {
-    "type": "variable",
+    "type": "raster",
     "longname": "Snow Cover Days",
     "longname_plot": "Average Snow Cover Days",
     "label_map_legend": "Snow Cover Days (>=14)",
@@ -159,7 +159,7 @@
     "transparent_zero": true
   },
   "snow_fraction": {
-    "type": "variable",
+    "type": "raster",
     "default": true,
     "longname": "Snow Cover Percent",
     "longname_plot": "Total Snow Cover Area",
@@ -186,7 +186,7 @@
     "transparent_zero": true
   },
   "viewable_snow_fraction": {
-    "type": "variable",
+    "type": "raster",
     "enabled": false,
     "longname": "Viewable Snow Cover Percent",
     "longname_plot": "TODO",
@@ -213,7 +213,7 @@
     "transparent_zero": true
   },
   "notprocessed": {
-    "type": "notprocessed",
+    "type": "raster_notprocessed",
     "longname": "Not Processed",
     "longname_plot": "",
     "label_map_legend": "",
@@ -228,6 +228,81 @@
       [233, 203, 0]
     ],
     "colormap_value_range": [0, 1],
+    "transparent_zero": false
+  },
+  "swe_inches": {
+    "type": "point_swe",
+    "longname": "Snow-Water Equivalent",
+    "longname_plot": "",
+    "label_map_legend": "Snow-Water Equivalent (inches)",
+    "label_plot_yaxis": "",
+    "helptext": "",
+    "cog_path": "",
+    "value_precision": 0,
+    "value_range": [0, 50],
+    "nodata_value": 255,
+    "colormap": [
+      [247,251,255],
+      [222,235,247],
+      [198,219,239],
+      [158,202,225],
+      [107,174,214],
+      [66,146,198],
+      [33,113,181],
+      [8,81,156],
+      [8,48,107]
+    ],
+    "colormap_value_range": [0, 50],
+    "transparent_zero": false
+  },
+  "swe_delta_inches": {
+    "type": "point_swe",
+    "longname": "Snow-Water Equivalent Delta",
+    "longname_plot": "",
+    "label_map_legend": "Snow-Water Equivalent Delta (inches)",
+    "label_plot_yaxis": "",
+    "helptext": "",
+    "cog_path": "",
+    "value_precision": 0,
+    "value_range": [-2, 2],
+    "nodata_value": 255,
+    "colormap": [
+      [178,24,43],
+      [214,96,77],
+      [244,165,130],
+      [253,219,199],
+      [247,247,247],
+      [209,229,240],
+      [146,197,222],
+      [67,147,195],
+      [33,102,172]
+    ],
+    "colormap_value_range": [-2, 2],
+    "transparent_zero": false
+  },
+  "swe_norm_pct": {
+    "type": "point_swe",
+    "longname": "Snow-Water Equivalent Normalized",
+    "longname_plot": "",
+    "label_map_legend": "Snow-Water Equivalent Normalized (%)",
+    "label_plot_yaxis": "",
+    "helptext": "",
+    "cog_path": "",
+    "value_precision": 0,
+    "value_range": [0, 200],
+    "nodata_value": 255,
+    "colormap": [
+      [178,24,43],
+      [214,96,77],
+      [244,165,130],
+      [253,219,199],
+      [247,247,247],
+      [209,229,240],
+      [146,197,222],
+      [67,147,195],
+      [33,102,172]
+    ],
+    "colormap_value_range": [45, 155],
     "transparent_zero": false
   }
 }

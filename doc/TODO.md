@@ -1,3 +1,7 @@
+# Data structure
+
+* Split `variables.json` to `variables/raster.json` and `variables/swe.json`?
+
 # Code organization
 
 * How should the daily data ingest functionality and the static data be related?
