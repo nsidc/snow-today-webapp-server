@@ -1,3 +1,8 @@
+# NEXT_VERSION
+
+* Change `notprocessed` colormap to yellow to match other graphics
+
+
 # v0.13.1 (2022-12-01)
 
 * Bugfix: Add `./data` directory to ingest docker image
