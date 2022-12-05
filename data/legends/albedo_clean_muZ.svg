@@ -9,7 +9,7 @@
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
-      <dc:title>Matplotlib v3.5.3, https://matplotlib.org/</dc:title>
+      <dc:title>Matplotlib v3.6.2, https://matplotlib.org/</dc:title>
      </cc:Agent>
     </dc:creator>
    </cc:Work>
@@ -52,7 +52,7 @@ L 269.918182 3.6
 " style="fill: #fff7fb"/>
    </g>
    <image xlink:href="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAsEAAAAmCAYAAAAlb0ZnAAAB5klEQVR4nO3WQU7DMBAFUKen4ijc/yKwaEttMsZJBRXSf28VeRx7bFLxt8vb+0e72y7t8bwVY0W9H+/q26Wo//IeZX2Ye6CHW5/bS3ronlsxPlu3nLuoD8+zerdfu9/Daq1uvVNn6+uz+1v1+3MPl+65n3ofHz7J4b39+Cvmrvqtxv5y7pl+q/Hha5rOLdZqfX3/3tNz+33bibn9/S3q1R5n7uz63m2v2d/i8Ti561Xvk++hWHfcq9/jeL/Vd/Bsv6t7mJ1n1e/qvSPrVt9GVe/nrOrX8ep3uq/3c8Z+63Ouvoet+I2s6kMPrdhsssZ24M624s5aUe/njO9Pzvmf+l38XYc9JvtWxzjSQyvONu336/9tue238dW6+0J53m+Far/ZndVLrH//AAAQQQgGACCOEAwAQBwhGACAOEIwAABxhGAAAOIIwQAAxBGCAQCIIwQDABBHCAYAII4QDABAHCEYAIA4QjAAAHGEYAAA4gjBAADEEYIBAIgjBAMAEEcIBgAgjhAMAEAcIRgAgDhCMAAAcYRgAADiCMEAAMQRggEAiCMEAwAQRwgGACCOEAwAQBwhGACAOEIwAABxhGAAAOIIwQAAxBGCAQCIIwQDABBHCAYAII4QDABAHCEYAIA4QjAAAHE+Aeo4BDwmdkZgAAAAAElFTkSuQmCC" id="image07dd5de90a" transform="scale(1 -1)translate(0 -13.68)" x="16.2" y="-3.24" width="253.8" height="13.68"/>
+iVBORw0KGgoAAAANSUhEUgAAAsEAAAAmCAYAAAAlb0ZnAAAB5klEQVR4nO3WQU7DMBAFUKen4ijc/yKwaEttMsZJBRXSf28VeRx7bFLxt8vb+0e72y7t8bwVY0W9H+/q26Wo//IeZX2Ye6CHW5/bS3ronlsxPlu3nLuoD8+zerdfu9/Daq1uvVNn6+uz+1v1+3MPl+65n3ofHz7J4b39+Cvmrvqtxv5y7pl+q/Hha5rOLdZqfX3/3tNz+33bibn9/S3q1R5n7uz63m2v2d/i8Ti561Xvk++hWHfcq9/jeL/Vd/Bsv6t7mJ1n1e/qvSPrVt9GVe/nrOrX8ep3uq/3c8Z+63Ouvoet+I2s6kMPrdhsssZ24M624s5aUe/njO9Pzvmf+l38XYc9JvtWxzjSQyvONu336/9tue238dW6+0J53m+Far/ZndVLrH//AAAQQQgGACCOEAwAQBwhGACAOEIwAABxhGAAAOIIwQAAxBGCAQCIIwQDABBHCAYAII4QDABAHCEYAIA4QjAAAHGEYAAA4gjBAADEEYIBAIgjBAMAEEcIBgAgjhAMAEAcIRgAgDhCMAAAcYRgAADiCMEAAMQRggEAiCMEAwAQRwgGACCOEAwAQBwhGACAOEIwAABxhGAAAOIIwQAAxBGCAQCIIwQDABBHCAYAII4QDABAHCEYAIA4QjAAAHE+Aeo4BDwmdkZgAAAAAElFTkSuQmCC" id="image07dd5de90a" transform="scale(1 -1) translate(0 -13.68)" x="16.2" y="-3.24" width="253.8" height="13.68"/>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_1">
@@ -67,7 +67,7 @@ L 0 3.5
      </g>
      <g id="text_1">
       <!-- 65.0 -->
-      <g transform="translate(7.375568 30.35875)scale(0.08 -0.08)">
+      <g transform="translate(7.375568 30.35875) scale(0.08 -0.08)">
        <defs>
         <path id="DejaVuSans-36" d="M 2113 2584 
 Q 1688 2584 1439 2293 
@@ -168,7 +168,7 @@ z
      </g>
      <g id="text_2">
       <!-- 67.5 -->
-      <g transform="translate(39.080114 30.35875)scale(0.08 -0.08)">
+      <g transform="translate(39.080114 30.35875) scale(0.08 -0.08)">
        <defs>
         <path id="DejaVuSans-37" d="M 525 4666 
 L 3525 4666 
@@ -196,7 +196,7 @@ z
      </g>
      <g id="text_3">
       <!-- 70.0 -->
-      <g transform="translate(70.784659 30.35875)scale(0.08 -0.08)">
+      <g transform="translate(70.784659 30.35875) scale(0.08 -0.08)">
        <use xlink:href="#DejaVuSans-37"/>
        <use xlink:href="#DejaVuSans-30" x="63.623047"/>
        <use xlink:href="#DejaVuSans-2e" x="127.246094"/>
@@ -212,7 +212,7 @@ z
      </g>
      <g id="text_4">
       <!-- 72.5 -->
-      <g transform="translate(102.489205 30.35875)scale(0.08 -0.08)">
+      <g transform="translate(102.489205 30.35875) scale(0.08 -0.08)">
        <defs>
         <path id="DejaVuSans-32" d="M 1228 531 
 L 3431 531 
@@ -254,7 +254,7 @@ z
      </g>
      <g id="text_5">
       <!-- 75.0 -->
-      <g transform="translate(134.19375 30.35875)scale(0.08 -0.08)">
+      <g transform="translate(134.19375 30.35875) scale(0.08 -0.08)">
        <use xlink:href="#DejaVuSans-37"/>
        <use xlink:href="#DejaVuSans-35" x="63.623047"/>
        <use xlink:href="#DejaVuSans-2e" x="127.246094"/>
@@ -270,7 +270,7 @@ z
      </g>
      <g id="text_6">
       <!-- 77.5 -->
-      <g transform="translate(165.898295 30.35875)scale(0.08 -0.08)">
+      <g transform="translate(165.898295 30.35875) scale(0.08 -0.08)">
        <use xlink:href="#DejaVuSans-37"/>
        <use xlink:href="#DejaVuSans-37" x="63.623047"/>
        <use xlink:href="#DejaVuSans-2e" x="127.246094"/>
@@ -286,7 +286,7 @@ z
      </g>
      <g id="text_7">
       <!-- 80.0 -->
-      <g transform="translate(197.602841 30.35875)scale(0.08 -0.08)">
+      <g transform="translate(197.602841 30.35875) scale(0.08 -0.08)">
        <defs>
         <path id="DejaVuSans-38" d="M 2034 2216 
 Q 1584 2216 1326 1975 
@@ -343,7 +343,7 @@ z
      </g>
      <g id="text_8">
       <!-- 82.5 -->
-      <g transform="translate(229.307386 30.35875)scale(0.08 -0.08)">
+      <g transform="translate(229.307386 30.35875) scale(0.08 -0.08)">
        <use xlink:href="#DejaVuSans-38"/>
        <use xlink:href="#DejaVuSans-32" x="63.623047"/>
        <use xlink:href="#DejaVuSans-2e" x="127.246094"/>
@@ -359,7 +359,7 @@ z
      </g>
      <g id="text_9">
       <!-- 85.0 -->
-      <g transform="translate(261.011932 30.35875)scale(0.08 -0.08)">
+      <g transform="translate(261.011932 30.35875) scale(0.08 -0.08)">
        <use xlink:href="#DejaVuSans-38"/>
        <use xlink:href="#DejaVuSans-35" x="63.623047"/>
        <use xlink:href="#DejaVuSans-2e" x="127.246094"/>
@@ -369,7 +369,7 @@ z
     </g>
     <g id="text_10">
      <!-- Snow Albedo (%, for Snow &gt;=10%) -->
-     <g transform="translate(72.035 42.10125)scale(0.08 -0.08)">
+     <g transform="translate(72.035 42.10125) scale(0.08 -0.08)">
       <defs>
        <path id="DejaVuSans-53" d="M 3425 4513 
 L 3425 3897 
@@ -751,6 +751,7 @@ z
      </g>
     </g>
    </g>
+   <g id="matplotlib.axis_2"/>
    <g id="LineCollection_1"/>
    <g id="patch_6">
     <path d="M 16.281818 17.28 
