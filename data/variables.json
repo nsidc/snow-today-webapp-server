@@ -282,7 +282,7 @@
     "colormap_value_range": [-2, 2],
     "transparent_zero": false
   },
-  "swe_norm_pct": {
+  "swe_normalized_pct": {
     "type": "point_swe",
     "longname": "Snow Water Equivalent Normalized",
     "longname_plot": "",
