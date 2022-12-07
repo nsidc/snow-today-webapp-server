@@ -1,5 +1,8 @@
-# NEXT_VERSION
+# v0.14.0 (2022-12-07)
 
+* Add SWE variables to `variables.json` and redefined the `type` attribute for all
+  entries
+* Generate static SWE legends
 * Change `notprocessed` colormap to yellow to match other graphics
 
 
