@@ -6,7 +6,6 @@ REPO_ROOT_DIR = Path(__file__).parent.parent.parent.absolute()
 # Where static content is stored
 REPO_DATA_DIR = REPO_ROOT_DIR / 'data'
 REPO_SHAPES_DIR = REPO_DATA_DIR / 'shapes'
-REPO_LEGENDS_DIR = REPO_DATA_DIR / 'legends'
 
 # Index data
 REGION_INDEX_FP = REPO_DATA_DIR / 'regions.json'

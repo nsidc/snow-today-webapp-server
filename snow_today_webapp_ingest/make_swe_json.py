@@ -29,10 +29,10 @@ class SweDataPoint(TypedDict):
     lat: float
     elevation_meters: float
     swe_inches: float | None
+    # SWE delta: current SWE - previous day's SWE
+    swe_delta_inches: float | None
     # SWE normalized: current SWE / average SWE for this date of each year
-    swe_normalized_inches: float | None
-    # SWE difference: current SWE - previous day's SWE
-    swe_diff_inches: float | None
+    swe_normalized_pct: float | None
     state: str
     huc2: int | None
     huc4: int | None
@@ -61,8 +61,8 @@ def _normalize_csv_dict(csv_dict: CsvDict) -> SweDataPoint:
         lat=float(csv_dict['Lat']),
         elevation_meters=float(csv_dict['Elev_m']),
         swe_inches=xfr.float_nan_normalized(csv_dict['SWE']),
-        swe_normalized_inches=xfr.float_nan_normalized(csv_dict['normSWE']),
-        swe_diff_inches=xfr.float_nan_normalized(csv_dict['dSWE']),
+        swe_normalized_pct=xfr.float_nan_normalized(csv_dict['normSWE']),
+        swe_delta_inches=xfr.float_nan_normalized(csv_dict['dSWE']),
         state=xfr.state_normalized(csv_dict['State']),
         huc2=xfr.huc2_normalized(csv_dict['HUC02']),
         huc4=xfr.huc4_normalized(csv_dict['HUC04']),

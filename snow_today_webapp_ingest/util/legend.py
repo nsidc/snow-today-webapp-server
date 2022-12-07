@@ -1,12 +1,14 @@
+from pathlib import Path
 from typing import Literal
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from loguru import logger
 from matplotlib.colors import LinearSegmentedColormap
 
 from snow_today_webapp_ingest.constants.misc import CURRENT_DOWY
 from snow_today_webapp_ingest.constants.paths import (
-    REPO_LEGENDS_DIR,
+    REPO_DATA_DIR,
     STORAGE_DYNAMIC_LEGENDS_DIR,
 )
 
@@ -19,7 +21,7 @@ LEGEND_FONT_SIZE = 8
 
 # TODO: Write legend to the path already specified in the variables.json, instead of
 # updating variables.json?
-def legend_from_variable(variable_id: str, variable: dict) -> str:
+def legend_from_variable(variable_id: str, variable: dict) -> Path:
     """Write a legend based on `variable` and return its _relative_ path."""
     mpl.rcParams.update(
         {
@@ -56,16 +58,28 @@ def legend_from_variable(variable_id: str, variable: dict) -> str:
         extend=_extend(variable),
     )
 
-    output_fn = f'{variable_id}.svg'
-    is_dynamic = is_dynamic_legend(variable)
-    if is_dynamic:
-        STORAGE_DYNAMIC_LEGENDS_DIR.mkdir(exist_ok=True)
+    output_relpath = variable['legend_path']
+    if not output_relpath:
+        msg = f'Legend path not populated for variable {variable_id}'
+        logger.error(msg)
+        raise RuntimeError(msg)
+
+    if is_dynamic_legend(variable):
+        expected_prefix = 'legends/dynamic/'
+        if not output_relpath.startswith(expected_prefix):
+            msg = (
+                'Dynamic legend paths expected to be in form'
+                f' "{expected_prefix}<varname>". Got: {output_relpath}'
+            )
+            logger.error(msg)
+            raise RuntimeError(msg)
+
+        output_relpath = output_relpath.removeprefix(expected_prefix)
         output_dir = STORAGE_DYNAMIC_LEGENDS_DIR
     else:
-        output_dir = REPO_LEGENDS_DIR
+        output_dir = REPO_DATA_DIR
 
-    output_path = output_dir / output_fn
-
+    output_path = output_dir / output_relpath
     plt.savefig(
         output_path,
         # Reduce the whitespace on the edges:
@@ -77,10 +91,8 @@ def legend_from_variable(variable_id: str, variable: dict) -> str:
         # Make the outputs more diffable:
         metadata={'Date': None},
     )
-    if is_dynamic:
-        return f'legends/dynamic/{output_fn}'
-    else:
-        return f'legends/{output_fn}'
+
+    return output_path
 
 
 def is_dynamic_legend(variable: dict) -> bool:
