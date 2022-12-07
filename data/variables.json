@@ -258,9 +258,9 @@
   },
   "swe_delta_inches": {
     "type": "point_swe",
-    "longname": "Snow Water Equivalent Delta",
+    "longname": "Change in Snow Water Equivalent",
     "longname_plot": "",
-    "label_map_legend": "Snow Water Equivalent Delta (inches)",
+    "label_map_legend": "Change in SWE (inches) in past 24 hours",
     "label_plot_yaxis": "",
     "helptext": "",
     "cog_path": "",

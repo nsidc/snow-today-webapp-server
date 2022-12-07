@@ -1,3 +1,8 @@
+# v0.15.0 (2022-12-07)
+
+* Change SWE delta longname and legend text
+
+
 # v0.14.0 (2022-12-07)
 
 * Add SWE variables to `variables.json` and redefined the `type` attribute for all
