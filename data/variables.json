@@ -284,9 +284,9 @@
   },
   "swe_normalized_pct": {
     "type": "point_swe",
-    "longname": "Snow Water Equivalent Normalized",
+    "longname": "Percentage of Median Snow Water Equivalent",
     "longname_plot": "",
-    "label_map_legend": "Snow Water Equivalent Normalized (%)",
+    "label_map_legend": "Percentage of Median Snow Water Equivalent (%)",
     "label_plot_yaxis": "",
     "helptext": "",
     "cog_path": "",

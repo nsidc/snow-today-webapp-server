@@ -1,3 +1,8 @@
+# v0.16.0 (2022-12-13)
+
+* Tweak text for Normalized SWE legend and longname
+
+
 # v0.15.0 (2022-12-07)
 
 * Change SWE delta longname and legend text
