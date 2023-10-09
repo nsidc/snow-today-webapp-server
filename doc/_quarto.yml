@@ -1,0 +1,42 @@
+project:
+  type: "website"
+
+
+website:
+  title: "Snow Today Webapp Server Docs"
+  site-url: "https://nsidc.github.io/snow-today-webapp-server"
+  repo-url: "https://github.com/nsidc/snow-today-webapp-server"
+  repo-actions:
+    - "edit"
+    - "source"
+    - "issue"
+
+  page-footer:
+    right: "This page is built with [Quarto](https://quarto.org/)."
+    left: "&copy; NSIDC"
+
+  sidebar:
+    background: "#eee"
+    style: "docked"
+    search: true
+    contents:
+      - section: "Interfaces"
+        contents:
+          - text: "Supercomputer data"
+            href: "interfaces/supercomputer_data/index.md"
+            contents:
+              - text: "Drafts"
+                href: "interfaces/supercomputer_data/drafts/index.md"
+          - text: "Webapp data"
+            href: "interfaces/webapp_data/index.md"
+      - section: "Ingest"
+        contents:
+          - text: "TODO"
+            href: "index.md"
+
+
+format:
+  html:
+    theme: "cosmo"
+    css: "styles.css"
+    toc: true
