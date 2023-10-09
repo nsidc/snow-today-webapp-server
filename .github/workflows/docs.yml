@@ -37,12 +37,12 @@ jobs:
       - uses: "quarto-dev/quarto-actions/setup@v2"
 
       - name: "Render Quarto website"
-        run: "quarto render ."
+        run: "quarto render doc/"
 
       - name: "Upload site artifact"
         uses: "actions/upload-pages-artifact@v1"
         with:
-          path: "./_site"
+          path: "doc/_site"
 
 
   # Deploy to GH Pages
