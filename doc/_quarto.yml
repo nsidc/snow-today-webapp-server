@@ -24,6 +24,9 @@ website:
         contents:
           - text: "Supercomputer data"
             href: "interfaces/supercomputer_data/index.md"
+            contents:
+              - text: "Drafts"
+                href: "interfaces/supercomputer_data/drafts/index.md"
           - text: "Webapp data"
             href: "interfaces/webapp_data/index.md"
       - section: "Ingest"
