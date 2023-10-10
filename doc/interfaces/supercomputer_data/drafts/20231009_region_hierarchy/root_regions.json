@@ -1,0 +1,37 @@
+{
+    "26000": {
+        "name": "Western United States",
+        "code": "USwest",
+        "subdivisionType": "adm0group",
+        "EPSG": 3857,
+        "subdivisionListAndMetadataRelativePath": "subdivisionlist/subdivisionlist_26000.json"
+    },
+    "26002": {
+        "name": "ASHimalayas",
+        "code": "ASHimalayas",
+        "subdivisionType": "adm0group",
+        "EPSG": 0,
+        "subdivisionListAndMetadataRelativePath": "subdivisionlist/subdivisionlist_26002.json"
+    },
+    "26004": {
+        "name": "AMAndes",
+        "code": "AMAndes",
+        "subdivisionType": "adm0group",
+        "EPSG": 0,
+        "subdivisionListAndMetadataRelativePath": "subdivisionlist/subdivisionlist_26004.json"
+    },
+    "26100": {
+        "name": "USAlaskaWAleutian",
+        "code": "USAlaskaWAleutian",
+        "subdivisionType": "adm1part",
+        "EPSG": 0,
+        "subdivisionListAndMetadataRelativePath": "subdivisionlist/subdivisionlist_26100.json"
+    },
+    "26101": {
+        "name": "AMCanadaW",
+        "code": "AMCanadaW",
+        "subdivisionType": "adm0part",
+        "EPSG": 0,
+        "subdivisionListAndMetadataRelativePath": "subdivisionlist/subdivisionlist_26101.json"
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "11725": {
+        "name": "California",
+        "code": "US-CA",
+        "subdivisionType": "adm1"
+    },
+    "11726": {
+        "name": "Colorado",
+        "code": "US-CO",
+        "subdivisionType": "adm1"
+    },
+    "12516": {
+        "name": "Pacific Northwest",
+        "code": "HUC17",
+        "subdivisionType": "huc2"
+    },
+    "12517": {
+        "name": "California",
+        "code": "HUC18",
+        "subdivisionType": "huc2"
+    },
+    "12807": {
+        "name": "Lower Columbia",
+        "code": "HUC1708",
+        "subdivisionType": "huc4"
+    },
+    "12809": {
+        "name": "Oregon-Washington Coastal",
+        "code": "HUC1710",
+        "subdivisionType": "huc4"
+    },
+    "12815": {
+        "name": "San Joaquin",
+        "code": "HUC1804",
+        "subdivisionType": "huc4"
+    }
+}
