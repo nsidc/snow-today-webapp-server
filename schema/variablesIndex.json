@@ -5,24 +5,27 @@
     "^.*$": {
       "type": "object",
       "properties": {
-        "type": {"type": "string", "enum": ["raster", "raster_notprocessed", "point_swe"]},
-        "default": {"type": "boolean"},
-        "enabled": {"type": "boolean"},
-        "longname": {"type": "string"},
-        "longname_plot": {"type": "string"},
-        "helptext": {"type": "string"},
-        "cog_path": {"type": "string"},
-        "legend_path": {"type": "string"},
-        "label_map_legend": {"type": "string"},
-        "label_plot_yaxis": {"type": "string"},
-        "value_precision": {"type": "integer"},
+        "type": {
+          "type": "string",
+          "enum": ["raster", "raster_notprocessed", "point_swe"]
+        },
+        "default": { "type": "boolean" },
+        "enabled": { "type": "boolean" },
+        "longname": { "type": "string" },
+        "longname_plot": { "type": "string" },
+        "helptext": { "type": "string" },
+        "cog_path": { "type": "string" },
+        "legend_path": { "type": "string" },
+        "label_map_legend": { "type": "string" },
+        "label_plot_yaxis": { "type": "string" },
+        "value_precision": { "type": "integer" },
         "value_range": {
           "type": "array",
-          "items": {"type": "integer"},
+          "items": { "type": "integer" },
           "minItems": 2,
           "maxItems": 2
         },
-        "nodata_value": {"type": "integer"},
+        "nodata_value": { "type": "integer" },
         "colormap": {
           "type": "array",
           "items": {
@@ -43,7 +46,7 @@
           "minItems": 2,
           "maxItems": 2
         },
-        "transparent_zero": {"type": "boolean"}
+        "transparent_zero": { "type": "boolean" }
       },
       "required": [
         "type",
