@@ -1,3 +1,5 @@
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/nsidc/snow-today-webapp-server/main.svg)](https://results.pre-commit.ci/latest/github/nsidc/snow-today-webapp-server/main)
+
 # Snow Today Webapp Server
 
 Generate and serve data supporting the [Snow Today

@@ -25,28 +25,16 @@ def validate_json(ctx):
     print("✔️ JSON validation passed.")
 
 
-@task(aliases=('flake8',))
-def lint(ctx):
-    """Run static analysis with flake8."""
-    flake8_cfg_fp = REPO_ROOT_DIR / '.flake8'
-
-    print_and_run(
-        f'cd {REPO_ROOT_DIR}'
-        f' && flake8 --config {flake8_cfg_fp} .'
-    )
-    print("👕 Linting passed.")
-
-
 @task(aliases=('mypy',))
 def typecheck(ctx):
     """Check for type correctness using mypy."""
-    mypy_cfg_fp = REPO_ROOT_DIR / '.mypy.ini'
+    mypy_cfg_fp = REPO_ROOT_DIR / 'pyproject.toml'
 
     print_and_run(f'mypy --config-file={mypy_cfg_fp} .')
     print('🦆 Type checking passed.')
 
 
-@task(default=True, pre=[validate_json, lint, typecheck])
+@task(default=True, pre=[validate_json, typecheck])
 def static(ctx):
     """Run all static analysis tasks."""
     print("🎉🎉🎉 All static analysis passed.")

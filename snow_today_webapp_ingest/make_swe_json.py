@@ -18,7 +18,7 @@ from snow_today_webapp_ingest.constants.paths import (
     STORAGE_POINTS_DIR,
 )
 from snow_today_webapp_ingest.util.csv import read_and_strip_before_header
-from snow_today_webapp_ingest.util.error import UnexpectedInput
+from snow_today_webapp_ingest.util.error import UnexpectedInputError
 
 
 class SweDataPoint(TypedDict):
@@ -92,7 +92,7 @@ def csv_as_list_of_dicts(csv_text: str) -> list[CsvDict]:
 def make_swe_json() -> None:
     input_files = list(INCOMING_SWE_DIR.glob('*.txt'))
     if len(input_files) != 1:
-        raise UnexpectedInput(
+        raise UnexpectedInputError(
             f'Expected 1 input file in {INCOMING_SWE_DIR}. Got: {input_files}'
         )
 

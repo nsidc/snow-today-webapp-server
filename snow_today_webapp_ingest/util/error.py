@@ -2,5 +2,5 @@ class UnsupportedRegionError(Exception):
     pass
 
 
-class UnexpectedInput(Exception):
+class UnexpectedInputError(Exception):
     pass
