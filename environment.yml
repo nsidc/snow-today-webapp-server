@@ -33,11 +33,6 @@ dependencies:
   - pre-commit
   - invoke ~=1.7
   - mypy ~=0.971
-    # - flake8 ~=5.0.4
-    # - flake8-bugbear ~=22.8
-    # - flake8-comprehensions ~=3.10
-    # - flake8-docstrings ~=1.6
-    # - flake8-use-fstring ~=1.4
 
   # For schema validation:
   # TODO: is this really a runtime dep??
@@ -47,4 +42,3 @@ dependencies:
 
   # TODO:
   # - pytest ~=7.1
-  # - shellcheck ~=0.8.0
