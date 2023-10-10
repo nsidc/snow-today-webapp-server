@@ -1,0 +1,69 @@
+ci:
+  # Don't push commits on to PRs. If you want this, it can be triggered with a
+  # comment in a PR with text "pre-commit.ci autofix"
+  autofix_prs: false
+
+repos:
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: "23.9.1"
+    hooks:
+      # With notebook support:
+      # - id: black-jupyter
+      - id: black
+
+  - repo: https://github.com/asottile/blacken-docs
+    rev: "1.16.0"
+    hooks:
+      - id: blacken-docs
+        additional_dependencies: [black==23.9.1]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: "v4.4.0"
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-yaml
+      - id: debug-statements
+      # - id: end-of-file-fixer
+      # - id: mixed-line-ending
+      - id: name-tests-test
+        args: ["--pytest-test-first"]
+      # - id: trailing-whitespace
+
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: "v1.10.0"
+    hooks:
+      - id: rst-backticks
+      - id: rst-directive-colons
+      - id: rst-inline-touching-normal
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.0.291"
+    hooks:
+      - id: ruff
+        args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
+
+  # Does it make sense to run MyPy with pre-commit? I thought I'd seen the
+  # authors advise against.
+  # - repo: https://github.com/pre-commit/mirrors-mypy
+  #   rev: "v1.5.1"
+  #   hooks:
+  #     - id: mypy
+  #       files: src|tests
+  #       args: []
+  #       additional_dependencies:
+  #         - pytest
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: "v2.2.5"
+    hooks:
+      - id: codespell
+        exclude: "^.*\\.bin$|^.*\\.ipynb$|^.*json"
+
+  # TODO: ENABLE SHELLCHECK!
+  # - repo: https://github.com/shellcheck-py/shellcheck-py
+  #   rev: "v0.9.0.5"
+  #   hooks:
+  #     - id: shellcheck
