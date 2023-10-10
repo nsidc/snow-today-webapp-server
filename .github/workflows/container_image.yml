@@ -22,7 +22,7 @@ jobs:
     secrets: "inherit"
     with:
       docker-file-name: "Dockerfile"
-      docker-image-name: "snow-today-webapp-server"
+      docker-image-name: "nsidc/snow-today-webapp-server"
 
   # TODO: Decouple the two images
   build-and-release-ingest-image:
@@ -33,4 +33,4 @@ jobs:
     secrets: "inherit"
     with:
       docker-file-name: "Dockerfile.ingest"
-      docker-image-name: "snow-today-webapp-server-ingest"
+      docker-image-name: "nsidc/snow-today-webapp-server-ingest"
