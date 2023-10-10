@@ -32,7 +32,7 @@ dependencies:
   - conda-lock ~=2.3
   - pre-commit
   - invoke ~=1.7
-  - mypy ~=0.971
+  - mypy ~=1.5
 
   # For schema validation:
   # TODO: is this really a runtime dep??

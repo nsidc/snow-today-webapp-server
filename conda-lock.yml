@@ -13,14 +13,14 @@
 version: 1
 metadata:
   content_hash:
-    osx-64: f3a4079a03ae2f5104563f606db6a327fc8d63618cf959ca7772371667fd31fe
-    linux-64: 6554e9aa1c53c3c5632f04a876f0b07ad644511be1f3b07437a41674995be273
+    osx-64: 2ffe164dfccfa44fdd716aa89b3decfce3918b8028ab20ea780c612dce636d48
+    linux-64: 90afbe6e5431fd2ac8787ac8b96c955ef2270fe706668d3040a5a2150fa567cf
   channels:
   - url: conda-forge
     used_env_vars: []
   platforms:
-  - osx-64
   - linux-64
+  - osx-64
   sources:
   - environment.yml
 package:
@@ -2332,21 +2332,21 @@ package:
   category: main
   optional: false
 - name: mypy
-  version: '0.991'
+  version: 1.5.1
   manager: conda
   platform: linux-64
   dependencies:
     libgcc-ng: '>=12'
-    mypy_extensions: '>=0.4.3'
+    mypy_extensions: '>=1.0.0'
     psutil: '>=4.0'
     python: '>=3.10,<3.11.0a0'
     python_abi: 3.10.*
     tomli: '>=1.1.0'
-    typing_extensions: '>=3.10'
-  url: https://conda.anaconda.org/conda-forge/linux-64/mypy-0.991-py310h1fa729e_0.conda
+    typing_extensions: '>=4.1.0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/mypy-1.5.1-py310h2372a71_1.conda
   hash:
-    md5: ace7a3add13f314385d3f9c7220a502c
-    sha256: 3fd93289f2c8266fcdaf31ad341c9c18b46f6095c6a60906507d684ae375f295
+    md5: 84960056ea7ed3d4135bdbcae1b0b95e
+    sha256: 5361d19d13d5b9cef112ed3f0fc798885b2f15c652b04e6e8cccf0995e53bf23
   category: main
   optional: false
 - name: nodeenv
@@ -5193,20 +5193,20 @@ package:
   category: main
   optional: false
 - name: mypy
-  version: '0.991'
+  version: 1.5.1
   manager: conda
   platform: osx-64
   dependencies:
-    mypy_extensions: '>=0.4.3'
+    mypy_extensions: '>=1.0.0'
     psutil: '>=4.0'
     python: '>=3.10,<3.11.0a0'
     python_abi: 3.10.*
     tomli: '>=1.1.0'
-    typing_extensions: '>=3.10'
-  url: https://conda.anaconda.org/conda-forge/osx-64/mypy-0.991-py310h90acd4f_0.tar.bz2
+    typing_extensions: '>=4.1.0'
+  url: https://conda.anaconda.org/conda-forge/osx-64/mypy-1.5.1-py310h6729b98_1.conda
   hash:
-    md5: 9caf864c71950d7881620071a212ebb7
-    sha256: 6d06ef83a4ce6ba8fa00870c5ceea05c323223e85715e63392cba6d390045fea
+    md5: 8417379bd7648c4a53bc1a25f8d17e00
+    sha256: fb6717336e42129da8c30fb7fed6229966a6eafd01b241a56096701acff5888e
   category: main
   optional: false
 - name: nodeenv

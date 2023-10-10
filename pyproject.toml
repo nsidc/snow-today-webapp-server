@@ -16,9 +16,10 @@ module = [
 ]
 ignore_missing_imports = true
 
-# Stricter rules for our own code than our dependencies (TODO: Enable)
+# Stricter rules for our own code than our dependencies
+# TODO: Enable!!!
 [[tool.mypy.overrides]]
-module = "antarctica_today.*"
+module = "snow_today_webapp_ingest.*"
 # disallow_untyped_defs = true
 # disallow_incomplete_defs = true
 
