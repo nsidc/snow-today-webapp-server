@@ -14,8 +14,8 @@ TODO: How to organize region relationships? E.g. USwest contains all HUCs and st
 """
 import functools
 import json
+from collections.abc import Callable, Iterator
 from pathlib import Path
-from typing import Callable, Iterator
 
 import geopandas as gpd
 from loguru import logger

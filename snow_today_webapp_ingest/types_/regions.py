@@ -1,4 +1,5 @@
-from typing import Callable, Literal
+from collections.abc import Callable
+from typing import Literal
 
 # TODO: After upgrading to 3.11 (PEP655), can use builtin TypedDict again.
 #       https://peps.python.org/pep-0655/#usage-in-python-3-11

@@ -8,7 +8,7 @@ def read_and_strip_before_header(*, fp: Path, header: str) -> list[str]:
 
     Return a list of strings.
     """
-    with open(fp, 'r') as input_file:
+    with open(fp) as input_file:
         input_csv_lines = input_file.readlines()
 
     header_rows = [i for i, val in enumerate(input_csv_lines) if val == f'{header}\n']
