@@ -18,15 +18,19 @@ jobs:
     name: "Build and release the data server container image"
     needs:
       - "test"
-    uses: "nsidc/.github/.github/workflows/build-and-publish-container-image.yml@main"
+    uses: "nsidc/.github/.github/workflows/build-and-publish-container-image.yml@add-docker-image-name-param"
     secrets: "inherit"
+    with:
+      docker-file-name: "Dockerfile"
+      docker-image-name: "snow-today-webapp-server"
 
   # TODO: Decouple the two images
   build-and-release-ingest-image:
     name: "Build and release the ingest container image"
     needs:
       - "build-and-release-image"
-    uses: "nsidc/.github/.github/workflows/build-and-publish-container-image.yml@main"
+    uses: "nsidc/.github/.github/workflows/build-and-publish-container-image.yml@add-docker-image-name-param"
     secrets: "inherit"
     with:
       docker-file-name: "Dockerfile.ingest"
+      docker-image-name: "snow-today-webapp-server-ingest"
