@@ -9,9 +9,11 @@ on:
 
 
 jobs:
+  test:
+    uses: "./.github/workflows/test.yml"
+
   # When a push to the default branch occurs, build and release "latest" images
   # When a tag `vX.Y.Z` push occurs, build and release images with that tag
-
   build-and-release-image:
     name: "Build and release the data server container image"
     needs:

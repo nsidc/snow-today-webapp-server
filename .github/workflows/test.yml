@@ -1,10 +1,13 @@
 name: "Test"
 
 on:
-  push:
-    branches:
-      - "main"
+  # The tests will be run on the main branch as part of the container build workflow.
+  # push:
+  #   branches:
+  #     - "main"
   pull_request:
+  # Enable running this workflow from the container build workflow:
+  workflow_call:
 
 
 # Default to bash in login mode; key to activating conda environment
