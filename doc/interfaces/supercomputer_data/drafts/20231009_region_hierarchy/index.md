@@ -69,10 +69,103 @@ Sub regions fall in to a hierarchy, for example one HUC2 has many HUC4s.
 ## Examples
 
 <details>
-<summary>`region_hierarchy.json`</summary>
-I believe this example doesn't quite fit with the specification outline above yet, it's
-just an early draft.
-
-```{.json include="regions.json"}
+<summary>`root_regions.json`</summary>
+```{.json include="root_regions.json"}
 ```
 </details>
+
+<details>
+<summary>`region_26000.json`</summary>
+```{.json include="region_26000.json"}
+```
+</details>
+
+<details>
+<summary>`region_26101.json`</summary>
+```{.json include="region_26101.json"}
+```
+</details>
+
+<details>
+<summary>`region_hierarchy_26000.json`</summary>
+```{.json include="region_hierarchy_26000.json"}
+```
+</details>
+
+<details>
+<summary>`region_hierarchy_26101.json`</summary>
+```{.json include="region_hierarchy_26101.json"}
+```
+</details>
+
+
+## Notes
+
+I feel that we'll need a dedicated specification for the categorization of regions. E.g.
+
+`region_category_26000.json`
+```json
+{
+  "HUC2": {"long-name": "Hydrologic Unit Code (2-digit)"},
+  "USSTATE": {"long-name": "U.S. State"}
+}
+```
+
+and the hierarchy can define regions as members of categories instead of assigning
+regions to categories as an attribute of a region. e.g.:
+
+`region_hierarchy_26000.json`
+```json
+{
+  "HUC2": {
+    "children": {
+      "123123": {
+        "name": "HUC10",
+        "children": {
+          "HUC4": {
+            "234234": {
+              "name": "HUC1010",
+              "children": {
+                "HUC6": {
+                  "345345": {
+                    "name": "HUC101010"
+                  },
+                  "345346": {
+                    "name": "HUC101011"
+                  },
+                  "345347": {
+                    "name": "HUC101012"
+                  }
+                }
+              }
+            },
+            "234234": {
+              "name": "HUC1011",
+              "children": {
+                "HUC6": {
+                  "445345": {
+                    "name": "HUC101110"
+                  },
+                  "445346": {
+                    "name": "HUC101111"
+                  },
+                  "445347": {
+                    "name": "HUC101112"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Here, top-level keys and keys that are members of `children` dicts are collection
+identifiers, e.g. `HUC2` corresponds to `Hydrologic Unit Code (2-digit)` from
+`region_category_26000.json`.
+
+Perhaps instead of `children`, `items` is a more conventional name for members of a
+collection?
