@@ -158,10 +158,7 @@ def make_subregions_from_shapefiles(
         ],
         key=lambda x: x[0],
     )
-    return {
-        subregion_id: subregion_params
-        for subregion_id, subregion_params in subregion_ids_and_params
-    }
+    return dict(subregion_ids_and_params)
 
 
 TO_PROCESS_REGIONS: RegionProcessingStruct = {
