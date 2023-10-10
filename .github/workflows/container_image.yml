@@ -18,7 +18,7 @@ jobs:
     name: "Build and release the data server container image"
     needs:
       - "test"
-    uses: "nsidc/.github/.github/workflows/build-and-publish-container-image.yml@add-docker-image-name-param"
+    uses: "nsidc/.github/.github/workflows/build-and-publish-container-image.yml@main"
     secrets: "inherit"
     with:
       docker-file-name: "Dockerfile"
@@ -29,7 +29,7 @@ jobs:
     name: "Build and release the ingest container image"
     needs:
       - "build-and-release-image"
-    uses: "nsidc/.github/.github/workflows/build-and-publish-container-image.yml@add-docker-image-name-param"
+    uses: "nsidc/.github/.github/workflows/build-and-publish-container-image.yml@main"
     secrets: "inherit"
     with:
       docker-file-name: "Dockerfile.ingest"
