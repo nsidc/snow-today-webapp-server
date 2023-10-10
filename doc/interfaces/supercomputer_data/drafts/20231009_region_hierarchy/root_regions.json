@@ -3,35 +3,45 @@
         "name": "Western United States",
         "code": "USwest",
         "subdivisionType": "adm0group",
-        "EPSG": 3857,
-        "subdivisionListAndMetadataRelativePath": "subdivisionlist/subdivisionlist_26000.json"
+        "CRS": "EPSG:3857",
+        "subdivisionListAndMetadataRelativePath": "regionlist/region_list_26000.json",
+        "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26000.json",
+        "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26000.geojson"
     },
     "26002": {
         "name": "ASHimalayas",
         "code": "ASHimalayas",
         "subdivisionType": "adm0group",
-        "EPSG": 0,
-        "subdivisionListAndMetadataRelativePath": "subdivisionlist/subdivisionlist_26002.json"
+        "CRS": "",
+        "subdivisionListAndMetadataRelativePath": "regionlist/region_list_26002.json",
+        "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26002.json",
+        "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26002.geojson"
     },
     "26004": {
         "name": "AMAndes",
         "code": "AMAndes",
         "subdivisionType": "adm0group",
-        "EPSG": 0,
-        "subdivisionListAndMetadataRelativePath": "subdivisionlist/subdivisionlist_26004.json"
+        "CRS": "",
+        "subdivisionListAndMetadataRelativePath": "regionlist/region_list_26004.json",
+        "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26004.json",
+        "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26004.geojson"
     },
     "26100": {
         "name": "USAlaskaWAleutian",
         "code": "USAlaskaWAleutian",
         "subdivisionType": "adm1part",
-        "EPSG": 0,
-        "subdivisionListAndMetadataRelativePath": "subdivisionlist/subdivisionlist_26100.json"
+        "CRS": "",
+        "subdivisionListAndMetadataRelativePath": "regionlist/region_list_26100.json",
+        "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26100.json",
+        "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26100.geojson"
     },
     "26101": {
         "name": "AMCanadaW",
         "code": "AMCanadaW",
         "subdivisionType": "adm0part",
-        "EPSG": 0,
-        "subdivisionListAndMetadataRelativePath": "subdivisionlist/subdivisionlist_26101.json"
+        "CRS": "",
+        "subdivisionListAndMetadataRelativePath": "regionlist/region_list_26101.json",
+        "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26101.json",
+        "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26101.geojson"
     }
 }
