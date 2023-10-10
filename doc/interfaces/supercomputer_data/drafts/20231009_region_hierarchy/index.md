@@ -156,6 +156,7 @@ regions to categories as an attribute of a region. e.g.:
               }
             }
           }
+        }
       }
     }
   }
