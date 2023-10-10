@@ -28,7 +28,7 @@ def validate_json(ctx):
 @task(aliases=('mypy',))
 def typecheck(ctx):
     """Check for type correctness using mypy."""
-    mypy_cfg_fp = REPO_ROOT_DIR / '.mypy.ini'
+    mypy_cfg_fp = REPO_ROOT_DIR / 'pyproject.toml'
 
     print_and_run(f'mypy --config-file={mypy_cfg_fp} .')
     print('🦆 Type checking passed.')
