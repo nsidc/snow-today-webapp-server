@@ -6,9 +6,9 @@
       "type": "object",
       "description": "Super-region properties",
       "properties": {
-        "longname": {"type": "string"},
-        "shortname": {"type": "string"},
-        "shape_path": {"type": "string"},
+        "longname": { "type": "string" },
+        "shortname": { "type": "string" },
+        "shape_path": { "type": "string" },
         "subregion_collections": {
           "type": "object",
           "description": "Mapping of sub-region collection unique IDs, e.g. 'HUC', 'State', 'Basin', 'Country', to their properties",
@@ -17,8 +17,8 @@
               "type": "object",
               "description": "Sub-region collection properties",
               "properties": {
-                "longname": {"type": "string"},
-                "shortname": {"type": "string"},
+                "longname": { "type": "string" },
+                "shortname": { "type": "string" },
                 "items": {
                   "type": "object",
                   "description": "Mapping of sub-region unique IDs, e.g. 'CO', '1002', 'Kyrgyzstan', to their properties",
@@ -27,10 +27,10 @@
                       "type": "object",
                       "description": "Sub-region properties",
                       "properties": {
-                        "longname": {"type": "string"},
-                        "shortname": {"type": "string"},
-                        "shape_path": {"type": "string"},
-                        "enabled": {"type": "boolean"}
+                        "longname": { "type": "string" },
+                        "shortname": { "type": "string" },
+                        "shape_path": { "type": "string" },
+                        "enabled": { "type": "boolean" }
                       },
                       "required": ["longname", "shortname", "shape_path"],
                       "additionalProperties": false
