@@ -1,41 +1,41 @@
 {
-    "11725": {
+    11725: {
         "name": "California",
         "code": "US-CA",
         "subdivisionType": "adm1",
         "shapefileRelativePath": "regionshapefiles/11/region_shapefile_11725.geojson"
     },
-    "11726": {
+    11726: {
         "name": "Colorado",
         "code": "US-CO",
         "subdivisionType": "adm1",
         "shapefileRelativePath": "regionshapefiles/11/region_shapefile_11726.geojson"
     },
-    "12516": {
+    12516: {
         "name": "Pacific Northwest",
         "code": "HUC17",
         "subdivisionType": "huc2",
         "shapefileRelativePath": "regionshapefiles/12/region_shapefile_12516.geojson"
     },
-    "12517": {
+    12517: {
         "name": "California",
         "code": "HUC18",
         "subdivisionType": "huc2",
         "shapefileRelativePath": "regionshapefiles/12/region_shapefile_12517.geojson"
     },
-    "12807": {
+    12807: {
         "name": "Lower Columbia",
         "code": "HUC1708",
         "subdivisionType": "huc4",
         "shapefileRelativePath": "regionshapefiles/12/region_shapefile_12807.geojson"
     },
-    "12809": {
+    12809: {
         "name": "Oregon-Washington Coastal",
         "code": "HUC1710",
         "subdivisionType": "huc4",
         "shapefileRelativePath": "regionshapefiles/12/region_shapefile_12809.geojson"
     },
-    "12815": {
+    12815: {
         "name": "San Joaquin",
         "code": "HUC1804",
         "subdivisionType": "huc4",

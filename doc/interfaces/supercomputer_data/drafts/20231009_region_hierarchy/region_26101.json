@@ -1,29 +1,29 @@
 {
-    "3701": {
+    3701: {
         "name": "Alberta",
         "code": "CA-AB",
         "subdivisionType": "adm1",
         "shapefileRelativePath": "regionshapefiles/37/region_shapefile_3701.geojson"
     },
-    "24989": {
+    24989: {
         "name": "Catchment HYD78268",
         "code": "HYD78268",
         "subdivisionType": "hydro5",
         "shapefileRelativePath": "regionshapefiles/24/region_shapefile_24989.geojson"
     },
-    "17376": {
+    17376: {
         "name": "Catchment HYD7821",
         "code": "HYD7821",
         "subdivisionType": "hydro4",
         "shapefileRelativePath": "regionshapefiles/17/region_shapefile_17376.geojson"
     },
-    "17381": {
+    17381: {
         "name": "Catchment HYD7826",
         "code": "HYD7826",
         "subdivisionType": "hydro4",
         "shapefileRelativePath": "regionshapefiles/17/region_shapefile_17381.geojson"
     },
-    "15269": {
+    15269: {
         "name": "Catchment HYD782",
         "code": "HYD782",
         "subdivisionType": "hydro3",

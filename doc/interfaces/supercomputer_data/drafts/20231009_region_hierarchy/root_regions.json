@@ -1,5 +1,5 @@
 {
-    "26000": {
+    26000: {
         "name": "Western United States",
         "code": "USwest",
         "subdivisionType": "adm0group",
@@ -8,7 +8,7 @@
         "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26000.json",
         "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26000.geojson"
     },
-    "26002": {
+    26002: {
         "name": "ASHimalayas",
         "code": "ASHimalayas",
         "subdivisionType": "adm0group",
@@ -17,7 +17,7 @@
         "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26002.json",
         "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26002.geojson"
     },
-    "26004": {
+    26004: {
         "name": "AMAndes",
         "code": "AMAndes",
         "subdivisionType": "adm0group",
@@ -26,7 +26,7 @@
         "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26004.json",
         "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26004.geojson"
     },
-    "26100": {
+    26100: {
         "name": "USAlaskaWAleutian",
         "code": "USAlaskaWAleutian",
         "subdivisionType": "adm1part",
@@ -35,7 +35,7 @@
         "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26100.json",
         "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26100.geojson"
     },
-    "26101": {
+    26101: {
         "name": "AMCanadaW",
         "code": "AMCanadaW",
         "subdivisionType": "adm0part",
