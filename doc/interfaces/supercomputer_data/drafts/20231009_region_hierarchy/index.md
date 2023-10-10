@@ -86,6 +86,20 @@ Sub regions fall in to a hierarchy, for example one HUC2 has many HUC4s.
 ```
 </details>
 
+
+### Hierarchy
+
+The regions are structured in a hierarchy where, for instance with Hydrologic Unit
+Codes, one subregion can have many levels subdivisions. `region_categories.json` defines
+the grouping types, e.g. "HUC" or "US State", and `region_hierarchy_*.json` define the
+structure of groups and their members.
+
+<details>
+<summary>`region_categories.json`</summary>
+```{.json include="region_categories.json"}
+```
+</details>
+
 <details>
 <summary>`region_hierarchy_26000.json`</summary>
 ```{.json include="region_hierarchy_26000.json"}
