@@ -225,7 +225,7 @@
     "nodata_value": 255,
     "colormap": [
       [0, 0, 0, 0],
-      [233, 203, 0]
+      [208, 207, 212]
     ],
     "colormap_value_range": [0, 1],
     "transparent_zero": false
