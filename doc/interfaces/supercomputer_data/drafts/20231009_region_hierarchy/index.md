@@ -5,6 +5,7 @@ author:
   - name: "Sebastien Lenard"
   - name: "Matt Fisher"
     orcid: "0000-0003-3260-5445"
+citation: true
 filters:
   - "include-code-files"
 ---
