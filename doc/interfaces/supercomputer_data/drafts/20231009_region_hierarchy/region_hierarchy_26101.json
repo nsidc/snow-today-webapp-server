@@ -1,20 +1,24 @@
 {
-  "adm1": {
-    "items": {
-      "3701": {}
-    }
-  },
-  "hydro3": {
-    "items": {
-      "15269": {
-        "hydro4": {
-          "items": {
-            "17376": {},
-            "17381": {
-              "hydro5": {
-                "items": {
-                  "24989": {
-                    "code": "HYD78268"
+  "collections": {
+    "adm1": {
+      "regions": {
+        "3701": null 
+      }
+    },
+    "hydro3": {
+      "regions": {
+        "15269": {
+          "collections": {
+            "hydro4": {
+              "regions": {
+                "17376": null,
+                "17381": {
+                  "collections": {
+                    "hydro5": {
+                      "regions": {
+                        "24989": null
+                      }
+                    }
                   }
                 }
               }
