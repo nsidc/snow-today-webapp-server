@@ -1,7 +1,10 @@
 ---
 title: "Region Hierarchy JSON Specification"
 date: "2023-10-09"
-author: "Sebastien Lenard"
+author:
+  - name: "Sebastien Lenard"
+  - name: "Matt Fisher"
+    orcid: "0000-0003-3260-5445"
 filters:
   - "include-code-files"
 ---
