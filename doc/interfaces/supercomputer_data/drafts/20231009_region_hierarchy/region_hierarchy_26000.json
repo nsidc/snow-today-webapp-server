@@ -3,7 +3,7 @@
     "adm1": {
       "regions": {
         "11725": null,
-        "11726": null 
+        "11726": null
       }
     },
     "huc2": {
@@ -22,7 +22,7 @@
           "collections": {
             "huc4": {
               "regions": {
-                "12815": null 
+                "12815": null
               }
             }
           }
