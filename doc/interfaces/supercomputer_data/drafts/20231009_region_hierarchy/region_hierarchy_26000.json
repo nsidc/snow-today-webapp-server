@@ -2,8 +2,8 @@
   "collections": {
     "adm1": {
       "regions": {
-        "11725": null,
-        "11726": null
+        "11725": {},
+        "11726": {}
       }
     },
     "huc2": {
@@ -12,8 +12,8 @@
           "collections": {
             "huc4": {
               "regions": {
-                "12807": null,
-                "12809": null
+                "12807": {},
+                "12809": {}
               }
             }
           }
@@ -22,7 +22,7 @@
           "collections": {
             "huc4": {
               "regions": {
-                "12815": null
+                "12815": {}
               }
             }
           }
