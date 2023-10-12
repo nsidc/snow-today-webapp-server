@@ -3,6 +3,7 @@ title: "Region Hierarchy JSON Specification"
 date: "2023-10-09"
 author:
   - name: "Sebastien Lenard"
+    orcid: "0000-0003-3358-7197"
   - name: "Matt Fisher"
     orcid: "0000-0003-3260-5445"
 citation: true
