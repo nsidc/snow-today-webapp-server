@@ -6,11 +6,6 @@ shapefile for all states, one for all HUC2s, one for all HUC4s, etc.
 Since the webapp needs only one shape at a time, we must split them up into separate
 files, one file per region. We also must save them into a format that our web
 application can understand (GeoJSON).
-
-TODO: Do we need to simplify the shapes to optimize for storage space or data transfer?
-TODO: Should we split the different categories of regions into different files?
-TODO: How to organize region relationships? E.g. USwest contains all HUCs and states.
-      Some HUCs contain other HUCs.
 """
 import functools
 import json
