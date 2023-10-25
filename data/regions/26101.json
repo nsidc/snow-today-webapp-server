@@ -1,32 +1,32 @@
 {
   "3701": {
-    "name": "Alberta",
-    "code": "CA-AB",
-    "subdivisionType": "adm1",
-    "shapefileRelativePath": "regionshapefiles/37/region_shapefile_3701.geojson"
+    "longName": "Alberta",
+    "shortName": "CA-AB",
+    "subRegionCollectionId": "adm1",
+    "shapeRelativePath": "./shapes/37/3701.geojson"
   },
   "24989": {
-    "name": "Catchment HYD78268",
-    "code": "HYD78268",
-    "subdivisionType": "hydro5",
-    "shapefileRelativePath": "regionshapefiles/24/region_shapefile_24989.geojson"
+    "longName": "Catchment HYD78268",
+    "shortName": "HYD78268",
+    "subRegionCollectionId": "hydro5",
+    "shapeRelativePath": "./shapes/24/24989.geojson"
   },
   "17376": {
-    "name": "Catchment HYD7821",
-    "code": "HYD7821",
-    "subdivisionType": "hydro4",
-    "shapefileRelativePath": "regionshapefiles/17/region_shapefile_17376.geojson"
+    "longName": "Catchment HYD7821",
+    "shortName": "HYD7821",
+    "subRegionCollectionId": "hydro4",
+    "shapeRelativePath": "./shapes/17/17376.geojson"
   },
   "17381": {
-    "name": "Catchment HYD7826",
-    "code": "HYD7826",
-    "subdivisionType": "hydro4",
-    "shapefileRelativePath": "regionshapefiles/17/region_shapefile_17381.geojson"
+    "longName": "Catchment HYD7826",
+    "shortName": "HYD7826",
+    "subRegionCollectionId": "hydro4",
+    "shapeRelativePath": "./shapes/17/17381.geojson"
   },
   "15269": {
-    "name": "Catchment HYD782",
-    "code": "HYD782",
-    "subdivisionType": "hydro3",
-    "shapefileRelativePath": "regionshapefiles/15/region_shapefile_15269.geojson"
+    "longName": "Catchment HYD782",
+    "shortName": "HYD782",
+    "subRegionCollectionId": "hydro3",
+    "shapeRelativePath": "./shapes/15/15269.geojson"
   }
 }
