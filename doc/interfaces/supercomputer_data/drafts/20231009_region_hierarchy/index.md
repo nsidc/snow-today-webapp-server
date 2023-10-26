@@ -43,6 +43,9 @@ This file will contain information about each super region:
 
 ... TODO ...
 
+Supercomputer backend Rules: 
+- the super root region won't be included in the root .json if no variable are visible for the super region.
+- the super root region is included in the root .json even if no subregions are associated to the root region.
 
 ### Sub regions
 
