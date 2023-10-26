@@ -8,7 +8,7 @@
     "shapeRelativePath": "./shapes/26/26000.geojson"
   },
   "26002": {
-    "longName": "Himalayas",
+    "longName": "High Mountain Asia",
     "shortName": "ASHimalayas",
     "crs": "EPSG:3857",
     "subRegionsRelativePath": "./26002.json",
