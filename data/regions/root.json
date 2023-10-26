@@ -3,40 +3,40 @@
     "longName": "Western United States",
     "shortName": "USwest",
     "crs": "EPSG:3857",
-    "subregionsRelativePath": "./26000.json",
-    "subregionsHierarchyRelativePath": "./26000_hierarchy.json",
+    "subRegionsRelativePath": "./26000.json",
+    "subRegionsHierarchyRelativePath": "./26000_hierarchy.json",
     "shapeRelativePath": "./shapes/26/26000.geojson"
   },
   "26002": {
     "longName": "Himalayas",
     "shortName": "ASHimalayas",
     "crs": "EPSG:3857",
-    "subregionsRelativePath": "./26002.json",
-    "subregionsHierarchyRelativePath": "./26002_hierarchy.json",
+    "subRegionsRelativePath": "./26002.json",
+    "subRegionsHierarchyRelativePath": "./26002_hierarchy.json",
     "shapeRelativePath": "./shapes/26/26002.geojson"
   },
   "26004": {
     "longName": "Andes",
     "shortName": "AMAndes",
     "crs": "EPSG:3857",
-    "subregionsRelativePath": "./26004.json",
-    "subregionsHierarchyRelativePath": "./26004_hierarchy.json",
+    "subRegionsRelativePath": "./26004.json",
+    "subRegionsHierarchyRelativePath": "./26004_hierarchy.json",
     "shapeRelativePath": "./shapes/26/26004.geojson"
   },
   "26100": {
     "longName": "Alaska",
     "shortName": "USAlaskaWAleutian",
     "crs": "EPSG:3857",
-    "subregionsRelativePath": "./26100.json",
-    "subregionsHierarchyRelativePath": "./26100_hierarchy.json",
+    "subRegionsRelativePath": "./26100.json",
+    "subRegionsHierarchyRelativePath": "./26100_hierarchy.json",
     "shapeRelativePath": "./shapes/26/26100.geojson"
   },
   "26101": {
     "longName": "Canada",
     "shortName": "AMCanadaW",
     "crs": "EPSG:3857",
-    "subregionsRelativePath": "./26101.json",
-    "subregionsHierarchyRelativePath": "./26101_hierarchy.json",
+    "subRegionsRelativePath": "./26101.json",
+    "subRegionsHierarchyRelativePath": "./26101_hierarchy.json",
     "shapeRelativePath": "./shapes/26/26101.geojson"
   }
 }
