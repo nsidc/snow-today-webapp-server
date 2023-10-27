@@ -1,47 +1,154 @@
 {
-  "26000": {
-    "name": "Western United States",
-    "code": "USwest",
-    "subdivisionType": "adm0group",
-    "CRS": "EPSG:3857",
-    "subdivisionListAndMetadataRelativePath": "regionlist/region_list_26000.json",
-    "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26000.json",
-    "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26000.geojson"
-  },
-  "26002": {
-    "name": "ASHimalayas",
-    "code": "ASHimalayas",
-    "subdivisionType": "adm0group",
-    "CRS": "",
-    "subdivisionListAndMetadataRelativePath": "regionlist/region_list_26002.json",
-    "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26002.json",
-    "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26002.geojson"
-  },
-  "26004": {
-    "name": "AMAndes",
-    "code": "AMAndes",
-    "subdivisionType": "adm0group",
-    "CRS": "",
-    "subdivisionListAndMetadataRelativePath": "regionlist/region_list_26004.json",
-    "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26004.json",
-    "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26004.geojson"
-  },
-  "26100": {
-    "name": "USAlaskaWAleutian",
-    "code": "USAlaskaWAleutian",
-    "subdivisionType": "adm1part",
-    "CRS": "",
-    "subdivisionListAndMetadataRelativePath": "regionlist/region_list_26100.json",
-    "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26100.json",
-    "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26100.geojson"
-  },
-  "26101": {
-    "name": "AMCanadaW",
-    "code": "AMCanadaW",
-    "subdivisionType": "adm0part",
-    "CRS": "",
-    "subdivisionListAndMetadataRelativePath": "regionlist/region_list_26101.json",
-    "subdivisionHierarchyRelativePath": "regionhierarchy/region_hierarchy_26101.json",
-    "shapefileRelativePath": "regionshapefiles/26/region_shapefile_26101.geojson"
-  }
+    "26100": {
+        "name": "Alaska",
+        "code": "USAlaskaWAleutian",
+        "subdivisionType": "adm1part",
+        "CRS": "EPSG:3857",
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "variables": {
+            "51": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 100
+            },
+            "44": {
+                "nodata_value": 65535,
+                "min": 0,
+                "max": 500
+            },
+            "45": {
+                "nodata_value": 65535,
+                "min": 0,
+                "max": 366
+            },
+            "40": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 100
+            }
+        },
+        "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26100.json",
+        "subdivisionHierarchyRelativePath": "snow-surface-properties/regions/26100_hierarchy.json",
+        "shapefileRelativePath": "snow-surface-properties/shapes/26100.geojson"
+    },
+    "26101": {
+        "name": "Canada",
+        "code": "AMCanadaW",
+        "subdivisionType": "adm0part",
+        "CRS": "EPSG:3857",
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "variables": {
+            "51": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 100
+            },
+            "44": {
+                "nodata_value": 65535,
+                "min": 0,
+                "max": 500
+            },
+            "45": {
+                "nodata_value": 65535,
+                "min": 0,
+                "max": 366
+            },
+            "40": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 100
+            }
+        },
+        "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26101.json",
+        "subdivisionHierarchyRelativePath": "snow-surface-properties/regions/26101_hierarchy.json",
+        "shapefileRelativePath": "snow-surface-properties/shapes/26101.geojson"
+    },
+    "26002": {
+        "name": "High Mountain Asia",
+        "code": "ASHimalayas",
+        "subdivisionType": "groupadm0",
+        "CRS": "EPSG:3857",
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "variables": {
+            "51": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 100
+            },
+            "44": {
+                "nodata_value": 65535,
+                "min": 0,
+                "max": 500
+            },
+            "45": {
+                "nodata_value": 65535,
+                "min": 0,
+                "max": 366
+            },
+            "40": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 100
+            }
+        },
+        "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26002.json",
+        "subdivisionHierarchyRelativePath": "snow-surface-properties/regions/26002_hierarchy.json",
+        "shapefileRelativePath": "snow-surface-properties/shapes/26002.geojson"
+    },
+    "26000": {
+        "name": "Western United States",
+        "code": "USwest",
+        "subdivisionType": "groupadm0",
+        "CRS": "EPSG:3857",
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "variables": {
+            "51": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 100
+            },
+            "44": {
+                "nodata_value": 65535,
+                "min": 0,
+                "max": 500
+            },
+            "45": {
+                "nodata_value": 65535,
+                "min": 0,
+                "max": 366
+            },
+            "40": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 100
+            },
+            "57": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 1
+            },
+            "52": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 100
+            },
+            "56": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 100
+            },
+            "58": {
+                "nodata_value": 255,
+                "min": 0,
+                "max": 1
+            }
+        },
+        "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26000.json",
+        "subdivisionHierarchyRelativePath": "snow-surface-properties/regions/26000_hierarchy.json",
+        "shapefileRelativePath": "snow-surface-properties/shapes/26000.geojson"
+    }
 }
