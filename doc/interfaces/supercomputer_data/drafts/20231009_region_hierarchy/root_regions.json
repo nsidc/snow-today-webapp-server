@@ -6,26 +6,32 @@
         "CRS": "EPSG:3857",
         "waterYear": 2024,
         "waterYearStartDate": "2023-10-01",
+        "historicStartWaterYear": 2001,
+        "historicSource": "JPL modscag",
         "variables": {
             "51": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 100
+                "max": 100,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_51.tif"
             },
             "44": {
                 "nodata_value": 65535,
                 "min": 0,
-                "max": 500
+                "max": 500,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_44.tif"
             },
             "45": {
                 "nodata_value": 65535,
                 "min": 0,
-                "max": 366
+                "max": 366,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_45.tif"
             },
             "40": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 100
+                "max": 100,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_40.tif"
             }
         },
         "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26100.json",
@@ -39,26 +45,32 @@
         "CRS": "EPSG:3857",
         "waterYear": 2024,
         "waterYearStartDate": "2023-10-01",
+        "historicStartWaterYear": 2001,
+        "historicSource": "JPL modscag",
         "variables": {
             "51": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 100
+                "max": 100,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_51.tif"
             },
             "44": {
                 "nodata_value": 65535,
                 "min": 0,
-                "max": 500
+                "max": 500,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_44.tif"
             },
             "45": {
                 "nodata_value": 65535,
                 "min": 0,
-                "max": 366
+                "max": 366,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_45.tif"
             },
             "40": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 100
+                "max": 100,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_40.tif"
             }
         },
         "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26101.json",
@@ -72,26 +84,32 @@
         "CRS": "EPSG:3857",
         "waterYear": 2024,
         "waterYearStartDate": "2023-10-01",
+        "historicStartWaterYear": 2001,
+        "historicSource": "JPL modscag",
         "variables": {
             "51": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 100
+                "max": 100,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_51.tif"
             },
             "44": {
                 "nodata_value": 65535,
                 "min": 0,
-                "max": 500
+                "max": 500,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_44.tif"
             },
             "45": {
                 "nodata_value": 65535,
                 "min": 0,
-                "max": 366
+                "max": 366,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_45.tif"
             },
             "40": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 100
+                "max": 100,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_40.tif"
             }
         },
         "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26002.json",
@@ -105,46 +123,56 @@
         "CRS": "EPSG:3857",
         "waterYear": 2024,
         "waterYearStartDate": "2023-10-01",
+        "historicStartWaterYear": 2001,
+        "historicSource": "JPL modscag",
         "variables": {
             "51": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 100
+                "max": 100,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_51.tif"
             },
             "44": {
                 "nodata_value": 65535,
                 "min": 0,
-                "max": 500
+                "max": 500,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_44.tif"
             },
             "45": {
                 "nodata_value": 65535,
                 "min": 0,
-                "max": 366
+                "max": 366,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_45.tif"
             },
             "40": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 100
+                "max": 100,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_40.tif"
             },
             "57": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 1
+                "max": 1,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_57.tif"
             },
             "52": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 100
+                "max": 100,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_52.tif"
             },
             "56": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 100
+                "max": 100,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_56.tif"
             },
             "58": {
                 "nodata_value": 255,
                 "min": 0,
-                "max": 1
+                "max": 1,
+                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_58.tif"
             }
         },
         "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26000.json",
