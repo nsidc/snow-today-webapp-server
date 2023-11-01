@@ -6,6 +6,7 @@
         "CRS": "EPSG:3857",
         "waterYear": 2024,
         "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-09-21",
         "historicStartWaterYear": 2001,
         "historicSource": "JPL modscag",
         "variables": {
@@ -45,6 +46,7 @@
         "CRS": "EPSG:3857",
         "waterYear": 2024,
         "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-09-21",
         "historicStartWaterYear": 2001,
         "historicSource": "JPL modscag",
         "variables": {
@@ -84,6 +86,7 @@
         "CRS": "EPSG:3857",
         "waterYear": 2024,
         "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-09-21",
         "historicStartWaterYear": 2001,
         "historicSource": "JPL modscag",
         "variables": {
@@ -123,6 +126,7 @@
         "CRS": "EPSG:3857",
         "waterYear": 2024,
         "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-09-21",
         "historicStartWaterYear": 2001,
         "historicSource": "JPL modscag",
         "variables": {
