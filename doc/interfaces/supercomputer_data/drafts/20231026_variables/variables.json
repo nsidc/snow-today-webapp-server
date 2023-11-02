@@ -12,7 +12,8 @@
         "value_precision": 0,
         "colormap_id": 1,
         "transparent_zero": "false",
-        "sensor_text": "MODIS (Terra) scagdrfs/stc",
+        "source": "MODIS (Terra) scagdrfs/stc",
+        "nodata_value": 255,
         "value_range": [
             0,
             100
@@ -31,7 +32,8 @@
         "value_precision": 0,
         "colormap_id": 2,
         "transparent_zero": "false",
-        "sensor_text": "MODIS (Terra) scagdrfs/stc",
+        "source": "MODIS (Terra) scagdrfs/stc",
+        "nodata_value": 255,
         "value_range": [
             0,
             75
@@ -50,7 +52,8 @@
         "value_precision": 0,
         "colormap_id": 3,
         "transparent_zero": "false",
-        "sensor_text": "MODIS (Terra) scagdrfs/stc",
+        "source": "MODIS (Terra) scagdrfs/stc",
+        "nodata_value": 65535,
         "value_range": [
             10,
             1100
@@ -69,7 +72,8 @@
         "value_precision": 0,
         "colormap_id": 4,
         "transparent_zero": "false",
-        "sensor_text": "MODIS (Terra) scagdrfs/stc",
+        "source": "MODIS (Terra) scagdrfs/stc",
+        "nodata_value": 65535,
         "value_range": [
             0,
             500
@@ -88,7 +92,8 @@
         "value_precision": 3,
         "colormap_id": 5,
         "transparent_zero": "true",
-        "sensor_text": "MODIS (Terra) scagdrfs/stc",
+        "source": "MODIS (Terra) scagdrfs/stc",
+        "nodata_value": 65535,
         "value_range": [
             0,
             366
@@ -107,7 +112,8 @@
         "value_precision": 0,
         "colormap_id": 6,
         "transparent_zero": "true",
-        "sensor_text": "MODIS (Terra) scagdrfs/stc",
+        "source": "MODIS (Terra) scagdrfs/stc",
+        "nodata_value": 255,
         "value_range": [
             0,
             100
@@ -126,7 +132,8 @@
         "value_precision": 0,
         "colormap_id": 6,
         "transparent_zero": "true",
-        "sensor_text": "MODIS (Terra) scagdrfs/stc",
+        "source": "MODIS (Terra) scagdrfs/stc",
+        "nodata_value": 255,
         "value_range": [
             0,
             100
@@ -145,7 +152,8 @@
         "value_precision": 0,
         "colormap_id": 6,
         "transparent_zero": "true",
-        "sensor_text": "MODIS (Terra) spires",
+        "source": "MODIS (Terra) spires",
+        "nodata_value": 255,
         "value_range": [
             0,
             100
@@ -164,7 +172,8 @@
         "value_precision": 0,
         "colormap_id": 6,
         "transparent_zero": "true",
-        "sensor_text": "MODIS (Terra) spires",
+        "source": "MODIS (Terra) spires",
+        "nodata_value": 255,
         "value_range": [
             0,
             100
@@ -183,7 +192,8 @@
         "value_precision": 0,
         "colormap_id": 7,
         "transparent_zero": "false",
-        "sensor_text": "MODIS (Terra) scagdrfs/stc",
+        "source": "MODIS (Terra) scagdrfs/stc",
+        "nodata_value": 255,
         "value_range": [
             0,
             1
@@ -202,7 +212,8 @@
         "value_precision": 0,
         "colormap_id": 7,
         "transparent_zero": "false",
-        "sensor_text": "MODIS (Terra) scagdrfs/stc",
+        "source": "MODIS (Terra) scagdrfs/stc",
+        "nodata_value": 255,
         "value_range": [
             0,
             1
@@ -221,7 +232,8 @@
         "value_precision": 0,
         "colormap_id": 8,
         "transparent_zero": "false",
-        "sensor_text": "",
+        "source": "",
+        "nodata_value": 255,
         "value_range": [
             0,
             100
@@ -240,7 +252,8 @@
         "value_precision": 0,
         "colormap_id": 9,
         "transparent_zero": "false",
-        "sensor_text": "",
+        "source": "",
+        "nodata_value": 255,
         "value_range": [
             -4,
             4
@@ -259,7 +272,8 @@
         "value_precision": 0,
         "colormap_id": 9,
         "transparent_zero": "false",
-        "sensor_text": "",
+        "source": "",
+        "nodata_value": 255,
         "value_range": [
             0,
             200
