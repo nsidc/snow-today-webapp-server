@@ -9,35 +9,119 @@
         "lastDateWithData": "2023-09-21",
         "historicStartWaterYear": 2001,
         "historicSource": "JPL modscag",
-        "variables": {
-            "51": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 100,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_51.tif"
-            },
-            "44": {
-                "nodata_value": 65535,
-                "min": 0,
-                "max": 500,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_44.tif"
-            },
-            "45": {
-                "nodata_value": 65535,
-                "min": 0,
-                "max": 366,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_45.tif"
-            },
-            "40": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 100,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_40.tif"
+        "sources": {
+            "1": {
+                "source": "MODIS (Terra) scagdrfs/stc",
+                "isDefault": 1,
+                "variables": {
+                    "57": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            0,
+                            1
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_57.tif"
+                    },
+                    "51": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            65,
+                            85
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_51.tif"
+                    },
+                    "45": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            1,
+                            91
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_45.tif"
+                    },
+                    "40": {
+                        "isDefault": 1,
+                        "colormap_value_range": [
+                            1,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_40.tif"
+                    },
+                    "44": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            0,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26100_44.tif"
+                    }
+                }
             }
         },
         "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26100.json",
         "subdivisionHierarchyRelativePath": "snow-surface-properties/regions/26100_hierarchy.json",
         "shapefileRelativePath": "snow-surface-properties/shapes/26100.geojson"
+    },
+    "26004": {
+        "name": "Andes",
+        "code": "AMAndes",
+        "subdivisionType": "groupadm0",
+        "CRS": "EPSG:3857",
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-04-01",
+        "lastDateWithData": "2023-09-21",
+        "historicStartWaterYear": 2001,
+        "historicSource": "JPL modscag",
+        "sources": {
+            "1": {
+                "source": "MODIS (Terra) scagdrfs/stc",
+                "isDefault": 1,
+                "variables": {
+                    "57": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            0,
+                            1
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26004_57.tif"
+                    },
+                    "51": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            65,
+                            85
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26004_51.tif"
+                    },
+                    "45": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            1,
+                            91
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26004_45.tif"
+                    },
+                    "40": {
+                        "isDefault": 1,
+                        "colormap_value_range": [
+                            1,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26004_40.tif"
+                    },
+                    "44": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            0,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26004_44.tif"
+                    }
+                }
+            }
+        },
+        "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26004.json",
+        "subdivisionHierarchyRelativePath": "snow-surface-properties/regions/26004_hierarchy.json",
+        "shapefileRelativePath": "snow-surface-properties/shapes/26004.geojson"
     },
     "26101": {
         "name": "Canada",
@@ -49,30 +133,52 @@
         "lastDateWithData": "2023-09-21",
         "historicStartWaterYear": 2001,
         "historicSource": "JPL modscag",
-        "variables": {
-            "51": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 100,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_51.tif"
-            },
-            "44": {
-                "nodata_value": 65535,
-                "min": 0,
-                "max": 500,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_44.tif"
-            },
-            "45": {
-                "nodata_value": 65535,
-                "min": 0,
-                "max": 366,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_45.tif"
-            },
-            "40": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 100,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_40.tif"
+        "sources": {
+            "1": {
+                "source": "MODIS (Terra) scagdrfs/stc",
+                "isDefault": 1,
+                "variables": {
+                    "57": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            0,
+                            1
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_57.tif"
+                    },
+                    "51": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            65,
+                            85
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_51.tif"
+                    },
+                    "45": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            1,
+                            91
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_45.tif"
+                    },
+                    "40": {
+                        "isDefault": 1,
+                        "colormap_value_range": [
+                            1,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_40.tif"
+                    },
+                    "44": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            0,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26101_44.tif"
+                    }
+                }
             }
         },
         "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26101.json",
@@ -89,30 +195,52 @@
         "lastDateWithData": "2023-09-21",
         "historicStartWaterYear": 2001,
         "historicSource": "JPL modscag",
-        "variables": {
-            "51": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 100,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_51.tif"
-            },
-            "44": {
-                "nodata_value": 65535,
-                "min": 0,
-                "max": 500,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_44.tif"
-            },
-            "45": {
-                "nodata_value": 65535,
-                "min": 0,
-                "max": 366,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_45.tif"
-            },
-            "40": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 100,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_40.tif"
+        "sources": {
+            "1": {
+                "source": "MODIS (Terra) scagdrfs/stc",
+                "isDefault": 1,
+                "variables": {
+                    "57": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            0,
+                            1
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_57.tif"
+                    },
+                    "51": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            65,
+                            85
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_51.tif"
+                    },
+                    "45": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            1,
+                            91
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_45.tif"
+                    },
+                    "40": {
+                        "isDefault": 1,
+                        "colormap_value_range": [
+                            1,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_40.tif"
+                    },
+                    "44": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            0,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26002_44.tif"
+                    }
+                }
             }
         },
         "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26002.json",
@@ -129,54 +257,82 @@
         "lastDateWithData": "2023-09-21",
         "historicStartWaterYear": 2001,
         "historicSource": "JPL modscag",
-        "variables": {
-            "51": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 100,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_51.tif"
+        "sources": {
+            "1": {
+                "source": "MODIS (Terra) scagdrfs/stc",
+                "isDefault": 1,
+                "variables": {
+                    "57": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            0,
+                            1
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_57.tif"
+                    },
+                    "58": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            0,
+                            1
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_58.tif"
+                    },
+                    "51": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            65,
+                            85
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_51.tif"
+                    },
+                    "45": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            1,
+                            91
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_45.tif"
+                    },
+                    "40": {
+                        "isDefault": 1,
+                        "colormap_value_range": [
+                            1,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_40.tif"
+                    },
+                    "44": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            0,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_44.tif"
+                    }
+                }
             },
-            "44": {
-                "nodata_value": 65535,
-                "min": 0,
-                "max": 500,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_44.tif"
-            },
-            "45": {
-                "nodata_value": 65535,
-                "min": 0,
-                "max": 366,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_45.tif"
-            },
-            "40": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 100,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_40.tif"
-            },
-            "57": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 1,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_57.tif"
-            },
-            "52": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 100,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_52.tif"
-            },
-            "56": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 100,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_56.tif"
-            },
-            "58": {
-                "nodata_value": 255,
-                "min": 0,
-                "max": 1,
-                "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_58.tif"
+            "2": {
+                "source": "MODIS (Terra) spires",
+                "isDefault": 0,
+                "variables": {
+                    "57": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            1,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_57.tif"
+                    },
+                    "58": {
+                        "isDefault": 0,
+                        "colormap_value_range": [
+                            1,
+                            100
+                        ],
+                        "geotiffRelativePath": "snow-surface-properties/geotiffs/26000_58.tif"
+                    }
+                }
             }
         },
         "subdivisionListAndMetadataRelativePath": "snow-surface-properties/regions/26000.json",
