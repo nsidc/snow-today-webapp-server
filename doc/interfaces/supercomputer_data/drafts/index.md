@@ -9,6 +9,18 @@ listing:
   filter-ui: true
 page-layout: full
 ---
+*Root regions.*
+The root regions now include available variables for each root region, grouped by sensor, and alphabetically ordered. New attributes:
+- isDefault. When = 1, means web-app select by default the sensor/source and variable
+- colormap_value_range: dynamic for snow cover days. Development required for other variables to make it kind of dynamic (wait for Karl specs)
+- geotiffRelativePath: path of the geotiff
+- waterYear of data. Dev required for dynamic
+- lastDateWithData. idem
+- historicStartWaterYear: oldest water year with data
+- historicSource: indicate if source of historic is JPL or DAAC or a mix.
+
+NB: a dev is required to make the list of variables dynamic depending on the actual available data.
+
 *Variables.*
 
 I created the variables.json file and updated github:
