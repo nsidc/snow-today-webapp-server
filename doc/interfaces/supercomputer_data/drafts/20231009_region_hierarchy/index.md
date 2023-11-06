@@ -26,6 +26,9 @@ We're trying to balance all of these concerns:
 
 ## Specification
 
+* Regions MUST NOT be named `undefined`.
+
+
 ### Super regions
 
 Super regions are listed in their own JSON file. These are the highest-level regions,
