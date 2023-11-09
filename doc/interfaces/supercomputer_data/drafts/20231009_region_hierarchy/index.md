@@ -26,7 +26,11 @@ We're trying to balance all of these concerns:
 
 ## Specification
 
-* Regions MUST NOT be named `undefined`.
+- Regions and region categories **MUST NOT** be named any of the following:
+    - `undefined`
+    - `regions`
+    - `collections`
+    - `metadata`
 
 
 ### Super regions
