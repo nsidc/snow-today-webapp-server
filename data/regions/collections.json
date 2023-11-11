@@ -1,32 +1,42 @@
 {
   "adm0part": {
-    "name": "Country area"
+    "shortName": "Country area",
+    "longName": "Country area"
   },
   "adm0": {
-    "name": "Country"
+    "shortName": "Country",
+    "longName": "Country"
   },
   "adm1": {
-    "name": "State / Country subdivision level 1"
+    "shortName": "State",
+    "longName": "State / Country subdivision level 1"
   },
   "adm1part": {
-    "name": "State area"
+    "shortName": "State area",
+    "longName": "State area"
   },
   "huc2": {
-    "name": "U.S. Hydrologic Unit Code level 2"
+    "shortName": "HUC2",
+    "longName": "U.S. Hydrologic Unit Code level 2"
   },
   "huc4": {
-    "name": "U.S. Hydrologic Unit Code level 4"
+    "shortName": "HUC4",
+    "longName": "U.S. Hydrologic Unit Code level 4"
   },
   "huc6": {
-    "name": "U.S. Hydrologic Unit Code level 6"
+    "shortName": "HUC6",
+    "longName": "U.S. Hydrologic Unit Code level 6"
   },
   "hydro3": {
-    "name": "Hydrosheds level 3"
+    "shortName": "Hydroshed3",
+    "longName": "Hydrosheds level 3"
   },
   "hydro4": {
-    "name": "Hydrosheds level 4"
+    "shortName": "Hydroshed4",
+    "longName": "Hydrosheds level 4"
   },
   "hydro5": {
-    "name": "Hydrosheds level 5"
+    "shortName": "Hydroshed5",
+    "longName": "Hydrosheds level 5"
   }
 }
