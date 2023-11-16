@@ -1,9 +1,9 @@
 ---
 title: "Drafts"
 listing:
-  contents: "."
+  contents: "*/index.md"
   sort: "date desc"
-  type: default
+  type: "table"
   categories: true
   sort-ui: true
   filter-ui: true

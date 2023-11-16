@@ -1,28 +1,42 @@
 version: '3.4'
 
+x-common: &common
+  logging:
+    options:
+      max-size: "10m"
+      max-file: "10"
+
+
 services:
 
   data-server:
     image: "nsidc/snow-today-webapp-server:${SERVER_VERSION:-latest}"
+    container_name: "data-server"
+    <<: *common
+    # NB: These volumes are being mounted _over top of_ the data in this repo's
+    # "data" directory, which is baked into the image at build time.
     volumes:
+      - "${STORAGE_DIR}/regions:/usr/share/nginx/html/regions:ro"
       - "${STORAGE_DIR}/cogs:/usr/share/nginx/html/cogs:ro"
       - "${STORAGE_DIR}/plots:/usr/share/nginx/html/plots:ro"
       - "${STORAGE_DIR}/points:/usr/share/nginx/html/points:ro"
-      # Mount dynamic legends underneath the static legends dir
+      # Mount dynamic legends underneath the static legends dir; we can't merge
+      # the static-versioned legends that are baked into the image with legends
+      # provided from an external process into the same directory. This seemed
+      # the least-bad.
       - "${STORAGE_DIR}/dynamic_legends:/usr/share/nginx/html/legends/dynamic:ro"
     ports:
       - "80:80"
       - "443:443"
-    logging:
-      options:
-        max-size: "10m"
-        max-file: "10"
 
 
   ingest:
     image: "nsidc/snow-today-webapp-server-ingest:${SERVER_VERSION:-latest}"
+    container_name: "ingest"
+    <<: *common
     volumes:
       - "${STORAGE_DIR}/incoming:/storage/incoming:ro"
+      # - "${STORAGE_DIR}/regions:/storage/regions:ro"
       - "${STORAGE_DIR}/cogs:/storage/cogs:rw"
       - "${STORAGE_DIR}/plots:/storage/plots:rw"
       - "${STORAGE_DIR}/points:/storage/points:rw"
