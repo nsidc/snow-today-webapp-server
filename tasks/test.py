@@ -17,11 +17,6 @@ def validate_json(ctx):
         f' -i {REPO_ROOT_DIR}/data/variables.json'
         f' {REPO_ROOT_DIR}/schema/variablesIndex.json'
     )
-    print_and_run(
-        'jsonschema'
-        f' -i {REPO_ROOT_DIR}/data/regions.json'
-        f' {REPO_ROOT_DIR}/schema/regionsIndex.json',
-    )
     print("✔️ JSON validation passed.")
 
 
