@@ -23,16 +23,22 @@ per-region basis in `regions/root.json`.
 </details>
 
 
-### Sebastien notes
+### TODO
+
+- Extract SWE variables to their own dedicated file. They have different requirements
+  from the GeoTIFF variables, and overloading the JSON isn't working.
+
+
+#### Sebastien notes
 
 I created the `variables.json` file and [updated github](https://github.com/nsidc/snow-today-webapp-server/blob/region-data-draft-spec-1/doc/interfaces/supercomputer_data/drafts/20231026_variables/variables.json)
 
-#### new attributes
+##### new attributes
 
 * `sensor`, `platform`, `algorithm`, `sensor_text` (text to display)
 * `color_map_id`: refers to colormaps.json file
 
-#### attributes removed
+##### attributes removed
 
 * `enabled`: Now determined by the variables attribute in `regions/root.json`, because
   different variables can be enabled for different regions.
