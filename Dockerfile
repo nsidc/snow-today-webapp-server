@@ -12,10 +12,10 @@ RUN openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -config openssl.conf \
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
-
-# Copy in the needed data
 WORKDIR /usr/share/nginx/html
-COPY ./data .
 
 # Remove default index.html
 RUN rm index.html
+
+# Copy in the application data
+COPY ./data .
