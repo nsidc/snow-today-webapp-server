@@ -1,22 +1,16 @@
 {
   "type": "object",
-  "description": "Hierarchy of sub-region collections and their members. Collections contain sub-regions, and sub-regions may have collections at an arbitrary level of nesting.",
+  "description": "Mapping of sub-regions and their attributes within the super-region this file is named after.",
   "patternProperties": {
-    "^[0-9]+": {
+    "^[0-9]+$": {
       "type": "object",
-      "description": "A sub-region within the super-region this file is named after.",
+      "description": "A sub-region.",
       "properties": {
         "longName": { "type": "string" },
         "shortName": { "type": "string" },
-        "subRegionCollectionId": { "type": "string" },
         "shapeRelativePath": { "type": "string" }
       },
-      "required": [
-        "longName",
-        "shortName",
-        "subRegionCollectionId",
-        "shapeRelativePath"
-      ],
+      "required": ["longName", "shortName", "shapeRelativePath"],
       "additionalProperties": false
     }
   }
