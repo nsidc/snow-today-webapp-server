@@ -118,5 +118,13 @@ def make_region_shapes_and_index_adhoc():
         raise click.ClickException(str(e)) from e
 
 
+@cli.command()
+def new_ingest():
+    from snow_today_webapp_ingest.constants.tasks import ingest_tasks
+
+    for ingest_task in ingest_tasks:
+        ingest_task.run()
+
+
 if __name__ == '__main__':
     cli()

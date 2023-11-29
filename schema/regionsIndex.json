@@ -21,7 +21,7 @@
         "subRegionsHierarchyRelativePath",
         "shapeRelativePath"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     }
   },
   "additionalProperties": false

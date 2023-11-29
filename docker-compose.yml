@@ -36,7 +36,7 @@ services:
     <<: *common
     volumes:
       - "${STORAGE_DIR}/incoming:/storage/incoming:ro"
-      # - "${STORAGE_DIR}/regions:/storage/regions:ro"
+      - "${STORAGE_DIR}/regions:/storage/regions:rw"
       - "${STORAGE_DIR}/cogs:/storage/cogs:rw"
       - "${STORAGE_DIR}/plots:/storage/plots:rw"
       - "${STORAGE_DIR}/points:/storage/points:rw"

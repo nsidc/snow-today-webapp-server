@@ -18,6 +18,7 @@ RUN micromamba clean --all --yes
 COPY ./pyproject.toml .
 COPY ./scripts ./scripts
 COPY ./data ./data
+COPY ./schema ./schema
 COPY ./snow_today_webapp_ingest ./snow_today_webapp_ingest
 
 ENV PYTHONPATH=/snow-today-webapp-server-ingest

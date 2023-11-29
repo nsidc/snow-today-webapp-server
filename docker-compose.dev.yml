@@ -20,3 +20,4 @@ services:
     volumes:
       - "./snow_today_webapp_ingest:/snow-today-webapp-server-ingest/snow_today_webapp_ingest:ro"
       - "./data:/snow-today-webapp-server-ingest/data:rw"
+      - "./schema:/snow-today-webapp-server-ingest/schema:ro"
