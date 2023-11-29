@@ -21,7 +21,13 @@ schemas_by_filename_regex: dict[str, SchemaMatcher] = [
         'matcher': re.compile(r'^root.json$'),
     },
     {
-        'schema': json.loads((SCHEMAS_DIR / "subRegions.json").read_text()),
+        'schema': json.loads(
+            (SCHEMAS_DIR / "subRegionCollectionsIndex.json").read_text()
+        ),
+        'matcher': re.compile(r'^collections.json$'),
+    },
+    {
+        'schema': json.loads((SCHEMAS_DIR / "subRegionsIndex.json").read_text()),
         'matcher': re.compile(r'^\d+.json$'),
     },
     {
