@@ -2,13 +2,30 @@
 
 - [ ] Write to a temporary output location and swap! Clear the temp space before
     writing. Ensure a unique filename for temp space?
+- [ ] Review docs for out-of-date information
+
+
+### Testing
+
+- [ ] Remove "validate" invoke task? It should instead be part of the runtime behavior,
+  since much of the JSON is ingested at runtime.
+
+
+### Package names
+
+- [ ] Replace "make_" module prefix with "ingest_"? Subpackage?
 
 
 ### Storage structure
 
+- [ ] Update docs to reflect storage structure
 - [ ] `incoming` is mixed up with a bunch of other directories. Add a `live` directory
   which contains all the live data.
-    - [ ] Update provisioning code which sets permissions
+    - [ ] Update provisioning code to create this dir and set permissions
+    - [ ] Manually create this dir in staging/prod
+- [ ] Add an `ingest-wip` directory which contains temporary ingest WIP data
+    - [ ] Update provisioning code to create this dir and set permissions
+    - [ ] Manually create this dir in staging/prod
 
 
 ### Docker image
@@ -28,6 +45,7 @@
 ### Data structure
 
 * Split `variables.json` to `variables/raster.json` and `variables/swe.json`?
+
 
 ### Code organization
 
