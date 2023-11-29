@@ -19,13 +19,13 @@
 ### Storage structure
 
 - [ ] Update docs to reflect storage structure
-- [ ] `incoming` is mixed up with a bunch of other directories. Add a `live` directory
+- [x] `incoming` is mixed up with a bunch of other directories. Add a `live` directory
   which contains all the live data.
     - [ ] Update provisioning code to create this dir and set permissions
-    - [ ] Manually create this dir in staging/prod
-- [ ] Add an `ingest-wip` directory which contains temporary ingest WIP data
+    - [ ] Manually create this dir in pre-prod and prod
+- [x] Add an `ingest-wip` directory which contains temporary ingest WIP data
     - [ ] Update provisioning code to create this dir and set permissions
-    - [ ] Manually create this dir in staging/prod
+    - [ ] Manually create this dir in pre-prod and prod
 
 
 ### Docker image

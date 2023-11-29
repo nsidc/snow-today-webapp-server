@@ -3,6 +3,10 @@
 NOTE: imports are done in functions to avoid needing to evaluate code within those
 imports when doing `--help`.
 """
+from datetime import date
+from pathlib import Path
+from tempfile import mkdtemp
+
 import click
 from loguru import logger
 
@@ -120,10 +124,22 @@ def make_region_shapes_and_index_adhoc():
 
 @cli.command()
 def new_ingest():
-    from snow_today_webapp_ingest.constants.tasks import ingest_tasks
+    from snow_today_webapp_ingest.constants.paths import INGEST_WIP_DIR
+    from snow_today_webapp_ingest.ingest import ingest_tasks
 
+    # In Python 3.12, we can use TemporaryDirectory context manager with `delete=False`.
+    # with TemporaryDirectory(
+    #     dir=INGEST_WIP_DIR,
+    #     prefix=f"{date.today()}_",
+    #      delete=False,
+    # ) as tmpdir:
+
+    tmpdir = mkdtemp(dir=INGEST_WIP_DIR, prefix=f"{date.today()}_")
     for ingest_task in ingest_tasks:
-        ingest_task.run()
+        ingest_task.run(ingest_tmpdir=Path(tmpdir))
+
+    logger.info(f"🎉 Successfully ingested to '{tmpdir}'")
+    # TODO: Process/command to "promote" to final output dir?
 
 
 if __name__ == '__main__':
