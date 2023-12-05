@@ -8,7 +8,8 @@ from jsonschema import ValidationError, validate
 from loguru import logger
 
 from snow_today_webapp_ingest.constants.paths import (
-    REPO_STATIC_SCHEMAS_DIR as SCHEMAS_DIR,
+    INCOMING_REGIONS_ROOT_JSON,
+    REPO_STATIC_SCHEMAS_DIR,
 )
 
 
@@ -19,21 +20,27 @@ class SchemaMatcher(TypedDict):
 
 schemas_by_filename_regex: dict[str, SchemaMatcher] = [
     {
-        'schema': json.loads((SCHEMAS_DIR / "regionsIndex.json").read_text()),
-        'matcher': re.compile(r'^root.json$'),
+        'schema': json.loads(
+            (REPO_STATIC_SCHEMAS_DIR / "regionsIndex.json").read_text()
+        ),
+        'matcher': re.compile(fr'^{INCOMING_REGIONS_ROOT_JSON.name}$'),
     },
     {
         'schema': json.loads(
-            (SCHEMAS_DIR / "subRegionCollectionsIndex.json").read_text()
+            (REPO_STATIC_SCHEMAS_DIR / "subRegionCollectionsIndex.json").read_text()
         ),
         'matcher': re.compile(r'^collections.json$'),
     },
     {
-        'schema': json.loads((SCHEMAS_DIR / "subRegionsIndex.json").read_text()),
+        'schema': json.loads(
+            (REPO_STATIC_SCHEMAS_DIR / "subRegionsIndex.json").read_text()
+        ),
         'matcher': re.compile(r'^\d+.json$'),
     },
     {
-        'schema': json.loads((SCHEMAS_DIR / "subRegionsHierarchy.json").read_text()),
+        'schema': json.loads(
+            (REPO_STATIC_SCHEMAS_DIR / "subRegionsHierarchy.json").read_text()
+        ),
         'matcher': re.compile(r'^\d+_hierarchy.json$'),
     },
 ]
