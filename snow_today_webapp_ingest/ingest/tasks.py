@@ -6,7 +6,9 @@ from loguru import logger
 
 from snow_today_webapp_ingest.constants.paths import (
     INCOMING_REGIONS_DIR,
+    INCOMING_REGIONS_ROOT_JSON,
     INCOMING_TIF_DIR,
+    OUTPUT_LEGENDS_SUBDIR,
     OUTPUT_REGIONS_COGS_SUBDIR,
     OUTPUT_REGIONS_SUBDIR,
     REPO_STATIC_COLORMAPS_INDEX_FP,
@@ -14,6 +16,7 @@ from snow_today_webapp_ingest.constants.paths import (
     REPO_STATIC_VARIABLES_INDEX_FP,
 )
 from snow_today_webapp_ingest.ingest.cogs import ingest_cogs
+from snow_today_webapp_ingest.ingest.legends import generate_legends
 from snow_today_webapp_ingest.ingest.region_metadata import ingest_region_metadata
 from snow_today_webapp_ingest.ingest.validate_and_copy_json import (
     validate_and_copy_json,
@@ -65,12 +68,13 @@ class IngestTask:
 
 
 # TODO: _Snow Surface Properties_ ingest tasks, really. Still need to do SWE...
-ingest_tasks: list[IngestTask] = [
+# NOTE: Tasks will run in the order they are specified in the dict.
+ingest_tasks: dict[str, IngestTask] = {
     # We ingest some static data every day because we want the ingests to be idempotent.
     # The previous model wrote dynamic data next to static data in the final output
     # location, and didn't account for the possibility of static data getting
     # clobbered.
-    IngestTask(
+    "colormaps": IngestTask(
         name="Ingest static colormaps metadata JSON",
         from_path=REPO_STATIC_COLORMAPS_INDEX_FP,
         to_relative_path=REPO_STATIC_COLORMAPS_INDEX_FP.name,
@@ -79,7 +83,7 @@ ingest_tasks: list[IngestTask] = [
             "schema_path": REPO_STATIC_SCHEMAS_DIR / "colormapsIndex.json",
         },
     ),
-    IngestTask(
+    "variables": IngestTask(
         name="Ingest static variable metadata JSON",
         from_path=REPO_STATIC_VARIABLES_INDEX_FP,
         to_relative_path=REPO_STATIC_VARIABLES_INDEX_FP.name,
@@ -90,7 +94,20 @@ ingest_tasks: list[IngestTask] = [
             "schema_path": REPO_STATIC_SCHEMAS_DIR / "variablesIndex.json",
         },
     ),
-    IngestTask(
+    # TODO: Legends: Ingest dynamic legends and _copy_ static legends from this repo? Or
+    #       generate the static legends at runtime and never store them? I feel the
+    #       latter would provide more consistency in how the data is managed.
+    #       Legends should be generated based on the variables.json and
+    #       regions/root.json. e.g. legends/{region_id}_{variable_id}.svg (because snow
+    #       cover days legends will be different based on region). OR legends can be
+    #       generated in JS!!! That would be way simpler...
+    "legends": IngestTask(
+        name="Generate (static and dynamic) legends",
+        from_path=INCOMING_REGIONS_ROOT_JSON,
+        to_relative_path=OUTPUT_LEGENDS_SUBDIR,
+        ingest_func=generate_legends,
+    ),
+    "region_metadata": IngestTask(
         name="Ingest daily region metadata JSON",
         from_path=INCOMING_REGIONS_DIR,
         to_relative_path=OUTPUT_REGIONS_SUBDIR,
@@ -98,7 +115,7 @@ ingest_tasks: list[IngestTask] = [
     ),
     # TODO: Should COGs be ingested based on the contents of regions/root.json, as
     # opposed to globbing for files?
-    IngestTask(
+    "region_cogs": IngestTask(
         name="Ingest daily Cloud-Optimized GeoTIFFs",
         from_path=INCOMING_TIF_DIR,
         to_relative_path=OUTPUT_REGIONS_COGS_SUBDIR,
@@ -108,18 +125,17 @@ ingest_tasks: list[IngestTask] = [
     #       and `regions/[0-9]+.json`? E.g. look at those files, build up a plan, then
     #       ingest? Mark any extra shapes as warning, missing shapes as error.
     # TODO: Shape data
-    # IngestTask(
+    # "region_shapes": IngestTask(
     #     name="Ingest region GeoJSON shapes",
     #     from_path=INCOMING_TIF_DIR,
     #     to_relative_path=OUTPUT_REGIONS_COGS_SUBDIR,
     #     ingest_func=ingest_shapes,
     # ),
     # TODO: Plot data
-    # TODO: Legends: Ingest dynamic legends and _copy_ static legends from this repo? Or
-    #       generate the static legends at runtime and never store them? I feel the
-    #       latter would provide more consistency in how the data is managed.
-    #       Legends should be generated based on the variables.json and
-    #       regions/root.json. e.g. legends/{region_id}_{variable_id}.svg (because snow
-    #       cover days legends will be different based on region). OR legends can be
-    #       generated in JS!!! That would be way simpler...
-]
+    # "region_plots": IngestTask(
+    #     name="Ingest region plot JSON",
+    #     from_path=...,
+    #     to_relative_path=...,
+    #     ingest_func=ingest_plot_json,
+    # ),
+}

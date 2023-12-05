@@ -10,6 +10,9 @@ from tempfile import mkdtemp
 import click
 from loguru import logger
 
+# This isn't a local import because it's needed for a click decorator.
+from snow_today_webapp_ingest.ingest.tasks import ingest_tasks
+
 
 @click.group()
 def cli():
@@ -123,19 +126,33 @@ def make_region_shapes_and_index_adhoc():
 
 
 @cli.command()
-def new_ingest():
+@click.argument(
+    "tasks",
+    type=click.Choice(ingest_tasks.keys()),
+    nargs=-1,
+)
+def new_ingest(tasks: tuple[str]):
+    """Run all ingest tasks. If TASKS is provided, run those only."""
     from snow_today_webapp_ingest.constants.paths import INGEST_WIP_DIR
-    from snow_today_webapp_ingest.ingest.tasks import ingest_tasks
 
-    # In Python 3.12, we can use TemporaryDirectory context manager with `delete=False`.
-    # with TemporaryDirectory(
-    #     dir=INGEST_WIP_DIR,
-    #     prefix=f"{date.today()}_",
-    #      delete=False,
-    # ) as tmpdir:
-
+    # TODO: In Python 3.12, we can use TemporaryDirectory context manager with
+    # `delete=False`:
+    #     with TemporaryDirectory(
+    #         dir=INGEST_WIP_DIR,
+    #         prefix=f"{date.today()}_",
+    #          delete=False,
+    #     ) as tmpdir:
     tmpdir = mkdtemp(dir=INGEST_WIP_DIR, prefix=f"{date.today()}_")
-    for ingest_task in ingest_tasks:
+
+    if not tasks:
+        # Run all the tasks
+        tasks_to_run = ingest_tasks
+    else:
+        tasks_to_run = {
+            key: value for key, value in ingest_tasks.items() if key in set(tasks)
+        }
+
+    for ingest_task in tasks_to_run.values():
         ingest_task.run(ingest_tmpdir=Path(tmpdir))
 
     logger.info(f"🎉 Successfully ingested to '{tmpdir}'")
