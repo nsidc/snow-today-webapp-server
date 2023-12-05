@@ -125,7 +125,7 @@ def make_region_shapes_and_index_adhoc():
 @cli.command()
 def new_ingest():
     from snow_today_webapp_ingest.constants.paths import INGEST_WIP_DIR
-    from snow_today_webapp_ingest.ingest import ingest_tasks
+    from snow_today_webapp_ingest.ingest.tasks import ingest_tasks
 
     # In Python 3.12, we can use TemporaryDirectory context manager with `delete=False`.
     # with TemporaryDirectory(

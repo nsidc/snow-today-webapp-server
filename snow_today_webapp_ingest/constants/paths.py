@@ -9,16 +9,14 @@ STORAGE_DIR = Path(os.environ['STORAGE_DIR'])
 ###############################################
 REPO_ROOT_DIR = Path(__file__).parent.parent.parent.absolute()
 
+# Dir where static data is stored
+REPO_STATIC_DATA_DIR = REPO_ROOT_DIR / 'static'
+REPO_STATIC_COLORMAPS_INDEX_FP = REPO_STATIC_DATA_DIR / 'colormaps.json'
+REPO_STATIC_VARIABLES_INDEX_FP = REPO_STATIC_DATA_DIR / 'variables.json'
+
+# Dir where schemas are stored
 # TODO: Move schemas in to ingest package?
-SCHEMAS_DIR = REPO_ROOT_DIR / 'schema'
-
-# Where static content is stored
-REPO_DATA_DIR = REPO_ROOT_DIR / 'data'
-# REPO_SHAPES_DIR = REPO_DATA_DIR / 'shapes'
-
-# Index data
-# REGION_INDEX_FP = REPO_DATA_DIR / 'regions.json'
-VARIABLES_INDEX_FP = REPO_DATA_DIR / 'variables.json'
+REPO_STATIC_SCHEMAS_DIR = REPO_ROOT_DIR / 'schema'
 
 
 ###############################################
@@ -31,8 +29,9 @@ INGEST_WIP_DIR = STORAGE_DIR / 'ingest-wip'
 # These are strings instead of Paths because they will be created inside temporary
 # directories within INGEST_WIP_DIR
 OUTPUT_REGIONS_SUBDIR = 'regions'
-OUTPUT_COGS_SUBDIR = 'cogs'
-OUTPUT_DYNAMIC_LEGENDS_SUBDIR = 'dynamic_legends'
+OUTPUT_REGIONS_SHAPES_SUBDIR = f'{OUTPUT_REGIONS_SUBDIR}/shapes'
+OUTPUT_REGIONS_COGS_SUBDIR = f'{OUTPUT_REGIONS_SUBDIR}/cogs'
+OUTPUT_LEGENDS_SUBDIR = 'legends'
 OUTPUT_PLOTS_SUBDIR = 'plots'
 OUTPUT_POINTS_SUBDIR = 'points'
 

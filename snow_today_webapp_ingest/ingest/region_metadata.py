@@ -7,7 +7,9 @@ from typing import TypedDict
 from jsonschema import ValidationError, validate
 from loguru import logger
 
-from snow_today_webapp_ingest.constants.paths import SCHEMAS_DIR
+from snow_today_webapp_ingest.constants.paths import (
+    REPO_STATIC_SCHEMAS_DIR as SCHEMAS_DIR,
+)
 
 
 class SchemaMatcher(TypedDict):
