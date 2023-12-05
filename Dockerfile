@@ -16,6 +16,3 @@ WORKDIR /usr/share/nginx/html
 
 # Remove default index.html
 RUN rm index.html
-
-# Copy in the application data
-COPY ./data .

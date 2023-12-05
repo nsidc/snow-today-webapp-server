@@ -2,66 +2,57 @@
   "type": "object",
   "description": "Mapping of satellite variable unique IDs to properties",
   "patternProperties": {
-    "^.*$": {
+    "^[0-9]+$": {
       "type": "object",
+      "description": "A unique satellite variable (sensor, platform, algorithm)",
       "properties": {
-        "type": {
-          "type": "string",
-          "enum": ["raster", "raster_notprocessed", "point_swe"]
+        "sensor": { "type": "string" },
+        "platform": { "type": "string" },
+        "algorithm": { "type": "string" },
+        "source": { "type": "string" },
+        "default": {
+          "type": "boolean",
+          "description": "TODO: Remove? Default is passed in at region-level in `regions/root.json`."
         },
-        "default": { "type": "boolean" },
         "enabled": { "type": "boolean" },
-        "longname": { "type": "string" },
-        "longname_plot": { "type": "string" },
-        "helptext": { "type": "string" },
-        "cog_path": { "type": "string" },
-        "legend_path": { "type": "string" },
-        "label_map_legend": { "type": "string" },
-        "label_plot_yaxis": { "type": "string" },
-        "value_precision": { "type": "integer" },
-        "value_range": {
+        "layerType": {
+          "type": "string",
+          "enum": ["raster", "raster_notprocessed", "point_swe"],
+          "description": "We have to differentiate between variables selectable for rasters/plots, for not processed layer, and for SWE, because they go to separate user interface elements. TODO: These things should be in separate files!"
+        },
+        "longName": { "type": "string" },
+        "longNamePlot": { "type": "string" },
+        "helpText": { "type": "string" },
+        "labelMapLegend": { "type": "string" },
+        "labelPlotYaxis": { "type": "string" },
+        "valuePrecision": { "type": "integer" },
+        "valueRange": {
           "type": "array",
+          "description": "The range of values this variable can realistically have",
           "items": { "type": "integer" },
           "minItems": 2,
           "maxItems": 2
         },
-        "nodata_value": { "type": "integer" },
-        "colormap": {
-          "type": "array",
-          "items": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
-            "minItems": 3,
-            "maxItems": 4
-          }
-        },
-        "colormap_value_range": {
-          "type": "array",
-          "items": {
-            "type": ["integer", "string"],
-            "pattern": "^\\$[a-zA-Z]+"
-          },
-          "minItems": 2,
-          "maxItems": 2
-        },
-        "transparent_zero": { "type": "boolean" }
+        "noDataValue": { "type": "integer" },
+        "colormapId": { "type": "integer" },
+        "transparentZero": { "type": "boolean" }
       },
       "required": [
-        "type",
-        "longname",
-        "longname_plot",
-        "helptext",
-        "cog_path",
-        "label_map_legend",
-        "label_plot_yaxis",
-        "value_precision",
-        "value_range",
-        "nodata_value",
-        "colormap",
-        "colormap_value_range",
-        "transparent_zero"
+        "sensor",
+        "platform",
+        "algorithm",
+        "source",
+        "layerType",
+        "longName",
+        "longNamePlot",
+        "helpText",
+        "labelMapLegend",
+        "labelPlotYaxis",
+        "valuePrecision",
+        "valueRange",
+        "noDataValue",
+        "colormapId",
+        "transparentZero"
       ],
       "additionalProperties": false
     }

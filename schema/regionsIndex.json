@@ -9,19 +9,62 @@
         "longName": { "type": "string" },
         "shortName": { "type": "string" },
         "crs": { "type": "string" },
+        "waterYear": {
+          "type": "integer",
+          "description": "The current water year",
+          "minimum": 1900,
+          "maximum": 3000
+        },
+        "waterYearStartDate": { "type": "string", "format": "date" },
+        "lastDateWithData": { "type": "string", "format": "date" },
+        "historicStartWaterYear": {
+          "type": "integer",
+          "description": "The water year at the start of available climatology",
+          "minimum": 1900,
+          "maximum": 3000
+        },
+        "historicSource": {
+          "type": "string",
+          "description": "The source of the climatology"
+        },
         "subRegionsRelativePath": { "type": "string" },
         "subRegionsHierarchyRelativePath": { "type": "string" },
-        "shapeRelativePath": { "type": "string" }
+        "shapeRelativePath": { "type": "string" },
+        "variables": {
+          "type": "object",
+          "description": "The variables available for this region",
+          "patternProperties": {
+            "^[0-9]+$": {
+              "type": "object",
+              "description": "A variable available for this region",
+              "properties": {
+                "default": { "type": "boolean" },
+                "colormapValueRange": {
+                  "type": "array",
+                  "description": "The range of values that the colormap will span.",
+                  "items": { "type": "integer" },
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              }
+            }
+          }
+        }
       },
       "required": [
         "longName",
         "shortName",
         "crs",
+        "waterYear",
+        "waterYearStartDate",
+        "lastDateWithData",
+        "historicStartWaterYear",
         "subRegionsRelativePath",
         "subRegionsHierarchyRelativePath",
-        "shapeRelativePath"
+        "shapeRelativePath",
+        "variables"
       ],
-      "additionalProperties": true
+      "additionalProperties": false
     }
   },
   "additionalProperties": false
