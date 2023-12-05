@@ -50,6 +50,7 @@ def ingest_region_metadata(
         try:
             for schema_matcher in schemas_by_filename_regex:
                 if schema_matcher["matcher"].match(file.name):
+                    logger.debug(f"Validating '{file.name}'...")
                     file_json = json.loads(file.read_text())
                     validate(
                         schema=schema_matcher["schema"],
@@ -65,7 +66,7 @@ def ingest_region_metadata(
                 continue
         except ValidationError as e:
             logger.error(f"'{file.name}' failed validation ({e})")
-            continue
+            raise
 
         # Write JSON to destination
         output_fp = to_path / file.name
