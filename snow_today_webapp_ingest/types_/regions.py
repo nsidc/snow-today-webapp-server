@@ -1,3 +1,5 @@
+# TODO: This whole thing is really outdated; the code doesn't need to know about HUCs at
+# all.
 from collections.abc import Callable
 from typing import Literal
 

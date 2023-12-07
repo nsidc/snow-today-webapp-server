@@ -5,6 +5,14 @@
 - [ ] Review docs for out-of-date information
 
 
+### Schemas and Python types
+
+They really represent a lot of overlapping information. We can use Pydantic types to
+generate JSON schemas:
+
+<https://docs.pydantic.dev/latest/concepts/json_schema/>
+
+
 ### Testing
 
 - [ ] Remove "validate" invoke task? It should instead be part of the runtime behavior,

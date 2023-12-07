@@ -126,22 +126,23 @@ def make_region_shapes_and_index_adhoc():
 
 
 @cli.command()
+@click.option(
+    "--dry-run",
+    default=False,
+    help=(
+        "Do the ingest as normal, but skip moving the output to the final 'live'"
+        " location."
+    ),
+)
 @click.argument(
     "tasks",
     type=click.Choice(ingest_tasks.keys()),
     nargs=-1,
 )
-def new_ingest(tasks: tuple[str]):
+def new_ingest(*, tasks: tuple[str], dry_run: bool) -> None:
     """Run all ingest tasks. If TASKS is provided, run those only."""
-    from snow_today_webapp_ingest.constants.paths import INGEST_WIP_DIR
+    from snow_today_webapp_ingest.constants.paths import INGEST_WIP_DIR, OUTPUT_LIVE_DIR
 
-    # TODO: In Python 3.12, we can use TemporaryDirectory context manager with
-    # `delete=False`:
-    #     with TemporaryDirectory(
-    #         dir=INGEST_WIP_DIR,
-    #         prefix=f"{date.today()}_",
-    #          delete=False,
-    #     ) as tmpdir:
     tmpdir = mkdtemp(dir=INGEST_WIP_DIR, prefix=f"{date.today()}_")
 
     if not tasks:
@@ -155,8 +156,18 @@ def new_ingest(tasks: tuple[str]):
     for ingest_task in tasks_to_run.values():
         ingest_task.run(ingest_tmpdir=Path(tmpdir))
 
-    logger.info(f"🎉 Successfully ingested to '{tmpdir}'")
-    # TODO: Process/command to "promote" to final output dir?
+    if dry_run:
+        logger.info(f"🎉 Successfully ingested to '{tmpdir}'")
+        logger.warning("NOTE: This was a dry run, so the data remains in the WIP dir!")
+        return
+
+    bkp_dir = OUTPUT_LIVE_DIR.parent / f"bkp-{date.today()}"
+
+    OUTPUT_LIVE_DIR.rename(bkp_dir)
+    tmpdir.rename(OUTPUT_LIVE_DIR)
+    logger.info(
+        f"🎉 Successfully ingested to '{OUTPUT_LIVE_DIR}'." f" Backup: '{bkp_dir}'"
+    )
 
 
 if __name__ == '__main__':
