@@ -1,42 +1,237 @@
 {
-  "26000": {
-    "longName": "Western United States",
-    "shortName": "USwest",
-    "crs": "EPSG:3857",
-    "subRegionsRelativePath": "./regions/26000.json",
-    "subRegionsHierarchyRelativePath": "./regions/26000_hierarchy.json",
-    "shapeRelativePath": "./regions/shapes/26/26000.geojson"
-  },
-  "26002": {
-    "longName": "High Mountain Asia",
-    "shortName": "ASHimalayas",
-    "crs": "EPSG:3857",
-    "subRegionsRelativePath": "./regions/26002.json",
-    "subRegionsHierarchyRelativePath": "./regions/26002_hierarchy.json",
-    "shapeRelativePath": "./regions/shapes/26/26002.geojson"
-  },
-  "26004": {
-    "longName": "Andes",
-    "shortName": "AMAndes",
-    "crs": "EPSG:3857",
-    "subRegionsRelativePath": "./regions/26004.json",
-    "subRegionsHierarchyRelativePath": "./regions/26004_hierarchy.json",
-    "shapeRelativePath": "./regions/shapes/26/26004.geojson"
-  },
-  "26100": {
-    "longName": "Alaska",
-    "shortName": "USAlaskaWAleutian",
-    "crs": "EPSG:3857",
-    "subRegionsRelativePath": "./regions/26100.json",
-    "subRegionsHierarchyRelativePath": "./regions/26100_hierarchy.json",
-    "shapeRelativePath": "./regions/shapes/26/26100.geojson"
-  },
-  "26101": {
-    "longName": "Canada",
-    "shortName": "AMCanadaW",
-    "crs": "EPSG:3857",
-    "subRegionsRelativePath": "./regions/26101.json",
-    "subRegionsHierarchyRelativePath": "./regions/26101_hierarchy.json",
-    "shapeRelativePath": "./regions/shapes/26/26101.geojson"
-  }
+    "26100": {
+        "longName": "Alaska",
+        "shortName": "USAlaskaWAleutian",
+        "crs": "EPSG:3857",
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicStartWaterYear": 2001,
+        "historicSource": "JPL modscag/drfs",
+        "variables": {
+            "51": {
+                "default": "false",
+                "dataValueRange": [
+                    65,
+                    85
+                ],
+                "geotiffRelativePath": "cogs/26100_51.tif"
+            },
+            "45": {
+                "default": "false",
+                "dataValueRange": [
+                    1,
+                    91
+                ],
+                "geotiffRelativePath": "cogs/26100_45.tif"
+            },
+            "40": {
+                "default": "true",
+                "dataValueRange": [
+                    1,
+                    100
+                ],
+                "geotiffRelativePath": "cogs/26100_40.tif"
+            },
+            "44": {
+                "default": "false",
+                "dataValueRange": [
+                    0,
+                    100
+                ],
+                "geotiffRelativePath": "cogs/26100_44.tif"
+            }
+        },
+        "subRegionsRelativePath": "regions/26100.json",
+        "subRegionsHierarchyRelativePath": "regions/26100_hierarchy.json",
+        "shapeRelativePath": "shapes/26100.geojson"
+    },
+    "26004": {
+        "longName": "Andes",
+        "shortName": "AMAndes",
+        "crs": "EPSG:3857",
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-04-01",
+        "lastDateWithData": "2023-04-03",
+        "historicStartWaterYear": 2018,
+        "historicSource": "JPL modscag/drfs",
+        "variables": {
+            "51": {
+                "default": "false",
+                "dataValueRange": [
+                    65,
+                    85
+                ],
+                "geotiffRelativePath": "cogs/26004_51.tif"
+            },
+            "45": {
+                "default": "false",
+                "dataValueRange": [
+                    1,
+                    91
+                ],
+                "geotiffRelativePath": "cogs/26004_45.tif"
+            },
+            "40": {
+                "default": "true",
+                "dataValueRange": [
+                    1,
+                    100
+                ],
+                "geotiffRelativePath": "cogs/26004_40.tif"
+            },
+            "44": {
+                "default": "false",
+                "dataValueRange": [
+                    0,
+                    100
+                ],
+                "geotiffRelativePath": "cogs/26004_44.tif"
+            }
+        },
+        "subRegionsRelativePath": "regions/26004.json",
+        "subRegionsHierarchyRelativePath": "regions/26004_hierarchy.json",
+        "shapeRelativePath": "shapes/26004.geojson"
+    },
+    "26101": {
+        "longName": "Canada",
+        "shortName": "AMCanadaW",
+        "crs": "EPSG:3857",
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicStartWaterYear": 2001,
+        "historicSource": "JPL modscag/drfs",
+        "variables": {
+            "51": {
+                "default": "false",
+                "dataValueRange": [
+                    65,
+                    85
+                ],
+                "geotiffRelativePath": "cogs/26101_51.tif"
+            },
+            "45": {
+                "default": "false",
+                "dataValueRange": [
+                    1,
+                    91
+                ],
+                "geotiffRelativePath": "cogs/26101_45.tif"
+            },
+            "40": {
+                "default": "true",
+                "dataValueRange": [
+                    1,
+                    100
+                ],
+                "geotiffRelativePath": "cogs/26101_40.tif"
+            },
+            "44": {
+                "default": "false",
+                "dataValueRange": [
+                    0,
+                    100
+                ],
+                "geotiffRelativePath": "cogs/26101_44.tif"
+            }
+        },
+        "subRegionsRelativePath": "regions/26101.json",
+        "subRegionsHierarchyRelativePath": "regions/26101_hierarchy.json",
+        "shapeRelativePath": "shapes/26101.geojson"
+    },
+    "26002": {
+        "longName": "High Mountain Asia",
+        "shortName": "ASHimalayas",
+        "crs": "EPSG:3857",
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicStartWaterYear": 2001,
+        "historicSource": "JPL modscag/drfs",
+        "variables": {
+            "51": {
+                "default": "false",
+                "dataValueRange": [
+                    65,
+                    85
+                ],
+                "geotiffRelativePath": "cogs/26002_51.tif"
+            },
+            "45": {
+                "default": "false",
+                "dataValueRange": [
+                    1,
+                    91
+                ],
+                "geotiffRelativePath": "cogs/26002_45.tif"
+            },
+            "40": {
+                "default": "true",
+                "dataValueRange": [
+                    1,
+                    100
+                ],
+                "geotiffRelativePath": "cogs/26002_40.tif"
+            },
+            "44": {
+                "default": "false",
+                "dataValueRange": [
+                    0,
+                    100
+                ],
+                "geotiffRelativePath": "cogs/26002_44.tif"
+            }
+        },
+        "subRegionsRelativePath": "regions/26002.json",
+        "subRegionsHierarchyRelativePath": "regions/26002_hierarchy.json",
+        "shapeRelativePath": "shapes/26002.geojson"
+    },
+    "26000": {
+        "longName": "Western United States",
+        "shortName": "USwest",
+        "crs": "EPSG:3857",
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicStartWaterYear": 2001,
+        "historicSource": "JPL modscag/drfs",
+        "variables": {
+            "51": {
+                "default": "false",
+                "dataValueRange": [
+                    65,
+                    85
+                ],
+                "geotiffRelativePath": "cogs/26000_51.tif"
+            },
+            "45": {
+                "default": "false",
+                "dataValueRange": [
+                    1,
+                    91
+                ],
+                "geotiffRelativePath": "cogs/26000_45.tif"
+            },
+            "40": {
+                "default": "true",
+                "dataValueRange": [
+                    1,
+                    100
+                ],
+                "geotiffRelativePath": "cogs/26000_40.tif"
+            },
+            "44": {
+                "default": "false",
+                "dataValueRange": [
+                    0,
+                    100
+                ],
+                "geotiffRelativePath": "cogs/26000_44.tif"
+            }
+        },
+        "subRegionsRelativePath": "regions/26000.json",
+        "subRegionsHierarchyRelativePath": "regions/26000_hierarchy.json",
+        "shapeRelativePath": "shapes/26000.geojson"
+    }
 }
