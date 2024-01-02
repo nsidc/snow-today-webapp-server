@@ -8,8 +8,12 @@ author:
     orcid: "0000-0003-3260-5445"
 citation: true
 listing:
+  type: "table"
   contents:
     - "*.md"
+  fields:
+    - "title"
+    - "description"
 ---
 
 The supercomputer processes data and sends it, with SCP, to an NSIDC disk. From here,
@@ -28,8 +32,18 @@ We need to to balance all of these concerns:
 - Predictability in how the webapp will respond to data changes
 
 
+## Revisions
+
+**Current version: 1.0.0**
+
+{{< include .CHANGELOG.md >}}
+
+
 ## Terms
 
+* **Incoming directory**: Notated as `{incomingDir}` in the spec, this directory is
+  usually `incoming/snow-surface-properties`, with the exception of SWE point data which
+  goes to `incoming/snow-water-equivalent` directory instead.
 * **Water year**: An annual period that corresponds with regional melt patterns rather
   than the start and end of the calendar year. Each region's water year can be
   different.

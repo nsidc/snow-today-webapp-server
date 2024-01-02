@@ -4,9 +4,17 @@ filters:
   - "include-code-files"
 ---
 
-A color gradient used for visualizing a data variable.
+Color gradients used for visualizing a data variable.
 
-Colormaps **MUST** be defined in `colormaps.json`.
+* Colormaps definition file **MUST** be named `colormaps.json` in compliance with the schema.
+* Colormaps definition file **MUST** be pushed to the root of the incoming directory,
+  e.g. `{incomingDir}/colormaps.json`.
+
+<details>
+<summary>Schema</summary>
+```{.json include="schema/colormapsIndex.json"}
+```
+</details>
 
 <details>
 <summary>Example</summary>

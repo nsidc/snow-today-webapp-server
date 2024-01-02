@@ -39,13 +39,14 @@
               "description": "A variable available for this region",
               "properties": {
                 "default": { "type": "boolean" },
-                "colormapValueRange": {
+                "dataValueRange": {
                   "type": "array",
-                  "description": "The range of values that the colormap will span.",
+                  "description": "The range of data values that the colormap will span.",
                   "items": { "type": "integer" },
                   "minItems": 2,
                   "maxItems": 2
-                }
+                },
+                "geotiffRelativePath": { "type": "string" }
               }
             }
           }
