@@ -79,3 +79,16 @@ generate JSON schemas:
 ### Deployment / release tooling
 
 * Build static content into a versioned Dockerfile?
+
+
+### Supercomputer specification
+
+* Clarify which data is sent by supercomputer and which is a static part of this
+  repository. e.g. supercomputer SHOULD NOT send colormap data.
+
+
+#### Misc. notes
+
+* Sebastien: I created the `variables.json` file and
+  [updated github](https://github.com/nsidc/snow-today-webapp-server/blob/region-data-draft-spec-1/doc/interfaces/supercomputer_data/drafts/20231026_variables/variables.json)
+    * This 404s. Are we missing anything that was in this revision?

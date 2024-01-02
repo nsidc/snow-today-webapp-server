@@ -1,7 +1,9 @@
-### Specification
+---
+title: "Regions"
+filters:
+  - "include-code-files"
+---
 
-- All region files defined here **MUST** be pushed from the supercomputer each
-  processing cycle.
 - Regions and Region Collections **MUST NOT** be identified by any of the following
   reserved strings:
     - `undefined`
@@ -10,13 +12,13 @@
     - `metadata`
 
 
-#### Regions
+## Regions
 
 Any region that can be selected for viewing on the map or plot.
 Includes Super Regions and Sub Regions.
 
 
-##### Super Regions
+### Super Regions
 
 These are top-level regions, e.g. "Western U.S.", "Canada".
 The webapp needs to be able to quickly load the list of super-regions so it can display
@@ -34,13 +36,13 @@ display.
     - TODO
 
 <details>
-<summary>Example `regions/root.json`</summary>
-```{.json include="example_data/regions/root.json"}
+<summary>Example</summary>
+```{.json filename="regions/root.json (example)" include="example_data/regions/root.json"}
 ```
 </details>
 
 
-##### Sub Regions
+### Sub Regions
 
 Any region that is not a Super Region. Can be anywhere in the hierarchy. Must be a
 member of a Region Sollection.
@@ -56,7 +58,7 @@ member of a Region Sollection.
 </details>
 
 
-#### Sub Region Collections
+## Sub Region Collections
 
 A collection containing Sub Regions.
 
@@ -70,7 +72,7 @@ A collection containing Sub Regions.
 </details>
 
 
-#### Sub Region Hierarchy
+## Sub Region Hierarchy
 
 An expression of relationships between Sub Regions. E.g. a HUC2 Sub Region may contain a
 HUC4 Sub Region Collection containing multiple HUC4 Sub Regions, each of which may
@@ -87,12 +89,12 @@ contain a HUC 6 SubRegion Collection. The hierarchy can be arbitrarily deep.
 </details>
 
 
-### TODO
+## TODO
 
 - Incorporate `root_regions_proposal.json` fields in `example_data/`
 
 
-#### Sebastien notes
+### Sebastien notes
 
 The root regions now include available variables for each root region, grouped by
 sensor, and alphabetically ordered. New attributes:
