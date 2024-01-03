@@ -108,9 +108,11 @@ A collection containing Sub Regions.
 
 ## Sub Region Hierarchy
 
-An expression of relationships between Sub Regions. E.g. a HUC2 Sub Region may contain a
-HUC4 Sub Region Collection containing multiple HUC4 Sub Regions, each of which may
-contain a HUC 6 SubRegion Collection.
+An expression of relationships between Sub Regions. E.g.:
+
+* A State/Province may contain many multiple State subdivisions.
+* A HUC2 Sub Region may contain a HUC4 Sub Region Collection containing multiple HUC4
+  Sub Regions, each containing a collection of HUC 6 Sub Regions.
 
 The hierarchy can be arbitrarily deep.
 
