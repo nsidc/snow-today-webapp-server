@@ -34,7 +34,7 @@ We need to to balance all of these concerns:
 
 ## Revisions
 
-**Current version: 1.0.0**
+**Current version: 1.0.0beta1**
 
 {{< include .CHANGELOG.md >}}
 
