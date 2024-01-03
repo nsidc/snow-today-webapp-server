@@ -16,6 +16,9 @@ listing:
     - "description"
 ---
 
+The webapp data interface represents the **input** of the `snow_today_webapp_ingest`
+Python code in this repository.
+
 The supercomputer processes data and sends it, with SCP, to an NSIDC disk. From here,
 the webapp back-end picks it up to prepare it for visualization by the webapp.
 
