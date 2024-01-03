@@ -44,14 +44,6 @@ We need to to balance all of these concerns:
 
 ## Terms
 
-* **Incoming directory**: Notated as `{incomingDir}` in the spec, this directory is
-  usually `incoming/snow-surface-properties`, with the exception of SWE point data which
-  goes to `incoming/snow-water-equivalent` directory instead.
-* **Water year**: An annual period that corresponds with regional melt patterns rather
-  than the start and end of the calendar year. Each region's water year can be
-  different.
-
-
 ### RFC2119
 
 The terms **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **MAY**, and **OPTIONAL**
@@ -90,6 +82,17 @@ Only the latter two components are impacted by this specification.
         * **Maximum**
         * **Median**
         * **Interquartile range**
+
+
+### Misc.
+
+* **Incoming directory**: Where the supercomputer pushes files. Notated as
+  `{incomingDir}` in the spec, this directory is usually
+  `incoming/snow-surface-properties`, with the exception of SWE point data which goes to
+  `incoming/snow-water-equivalent` directory instead.
+* **Water year**: An annual period that corresponds with regional precipitation patterns
+  rather than the start and end of the calendar year. Each Super Region's water year can
+  be different.
 
 
 ## Principles
