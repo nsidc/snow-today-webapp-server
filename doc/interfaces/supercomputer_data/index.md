@@ -82,7 +82,9 @@ Only the latter two components are impacted by this specification.
 
 * **Plot**: A line chart visualization of data about a region, including:
     * This water-year's measurements of a **plot data variable**
-    * Statistical measurements calculated from full climatology for the region:
+    * Statistical measurements calculated from full climatology for the region (i.e. the
+      historical data of the same sensor/platform/variable, calculated by the
+      supercomputer):
         * **Minimum**
         * **Maximum**
         * **Median**
