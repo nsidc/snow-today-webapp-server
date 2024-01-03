@@ -88,7 +88,8 @@ Only the latter two components are impacted by this specification.
         * **Minimum**
         * **Maximum**
         * **Median**
-        * **Interquartile range**
+        * **Interquartile range** (the range between 25th percentile and 75th
+          percentile)
 
 
 ### Misc.
