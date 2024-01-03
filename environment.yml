@@ -36,7 +36,8 @@ dependencies:
   - mypy ~=1.5
 
   # For schema validation:
-  - jsonschema ~=4.20.0
+  - jsonschema ~=4.20
+  - types-jsonschema ~=4.20
   # For TypedDicts with optional keys. REMOVE after upgrading to Python 3.11
   - typing-extensions ~=4.3.0
 
