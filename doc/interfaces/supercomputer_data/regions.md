@@ -28,8 +28,8 @@ The webapp needs to be able to quickly load the list of super-regions so it can 
 a selector to the user. Depending on which is selected, different sub-regions may
 display.
 
-- Super Regions definition file **MUST** be named `root.json` in compliance with the
-  schema.
+- Super Regions definition file **MUST** be named `root.json`.
+- Super Regions definition file **MUST** be in compliance with the schema.
 - Super Regions definition file **MUST** be pushed to the `regions/` subdirectory of the
   incoming directory, e.g. `{incomingDir}/regions/root.json`.
 - Super Regions **MAY** be omitted from the Super Regions definition file if no variable
@@ -62,8 +62,8 @@ Any region that is a member of a Super Region (and therefore, cannot be a Super 
 itself).
 
 - Sub Regions definition files **MUST** be named according to the Super Region they are
-  a member of in `{superRegionId}.json`, e.g. `26000.json`, in compliance with the
-  schema.
+  a member of in `{superRegionId}.json`, e.g. `26000.json`.
+- Sub Regions definition files **MUST** be in compliance with the schema.
 - Sub Regions definition files **MUST** be pushed to the `regions/` subdirectory of the
   incoming directory, e.g. `{incomingDir}/regions/26000.json`.
 - Sub Regions **MUST** be a member of a Region Collection.
@@ -86,8 +86,8 @@ itself).
 
 A collection containing Sub Regions.
 
-- Collection definition file **MUST** be named `collections.json` in compliance
-  with the schema.
+- Collection definition file **MUST** be named `collections.json`.
+- Collection definition file **MUST** be in compliance with the schema.
 - Collection definition file **MUST** be pushed to the `regions/` subdirectory of the
   incoming directory, e.g. `{incomingDir}/regions/collections.json`.
 - A collection **MUST** contain one or many Sub Region members.
@@ -115,7 +115,8 @@ The hierarchy can be arbitrarily deep.
 
 - Sub Region Hierarchy definition files **MUST** be named according to the Super Region
   they are a member of in `{superRegionId}_hierarchy.json`, e.g.
-  `26000_hierarchy.json`, in compliance with the schema.
+  `26000_hierarchy.json`.
+- Sub Region Hierarchy definition files **MUST** be in compliance with the schema.
 - Sub Region Hierarchy definition files **MUST** be pushed to the `regions/`
   subdirectory of the incoming directory, e.g.
   `{incomingDir}/regions/26000_hierarchy.json`.
@@ -138,7 +139,8 @@ The hierarchy can be arbitrarily deep.
 GeoJSON files representing the shapes of regions.
 
 - Region Shapes definition files **MUST** be named according to their unique region
-  identifier, e.g.  `26000.geojson`, in compliance with the schema.
+  identifier, e.g.  `26000.geojson`.
+- Region Shapes definition files **MUST** be , in compliance with the schema.
 - Region Shapes definition files **MUST** be pushed to the `regions/shapes/`
   subdirectory of the incoming directory.
 - Region Shapes definition files **MUST** be organized in to sub-directories based on

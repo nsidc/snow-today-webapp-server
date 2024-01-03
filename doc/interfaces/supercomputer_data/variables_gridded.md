@@ -7,9 +7,10 @@ filters:
 Variables which are available for display as **gridded data** on the **map** user interface
 component.
 
-* Variables definition file **MUST** be named `variables.json` in compliance with the schema.
-* Variables definition file **MUST** be pushed to the root of the incoming directory,
-  e.g. `{incomingDir}/variables.json`.
+* Variables definition file **MUST** be named `variables.json`.
+* Variables definition file **MUST** be in compliance with the schema.
+* Variables definition file **MUST** be ingested by copying `static/variables.json` from
+  this repository, as this source-controlled file is the source of truth.
 
 The NoData Mask is identified by `"layerType": "raster_notprocessed"`.
 
@@ -27,7 +28,7 @@ Perhaps the NoData mask will have its own JSON config file.
 </details>
 
 <details>
-<summary>Example</summary>
-```{.json filename="variables.json (example)" include="example_data/variables.json"}
+<summary>File contents</summary>
+```{.json filename="variables.json" include="static/variables.json"}
 ```
 </details>

@@ -6,9 +6,10 @@ filters:
 
 Color gradients used for visualizing a data variable.
 
-* Colormaps definition file **MUST** be named `colormaps.json` in compliance with the schema.
-* Colormaps definition file **MUST** be pushed to the root of the incoming directory,
-  e.g. `{incomingDir}/colormaps.json`.
+* Colormaps definition file **MUST** be named `colormaps.json`.
+* Colormaps definition file **MUST** be in compliance with the schema.
+* Colormaps definition file **MUST** be ingested by copying `static/colormaps.json` from
+  this repository, as this source-controlled file is the source of truth.
 
 <details>
 <summary>Schema</summary>
@@ -17,7 +18,7 @@ Color gradients used for visualizing a data variable.
 </details>
 
 <details>
-<summary>Example</summary>
-```{.json filename="colormaps.json (example)" include="example_data/colormaps.json"}
+<summary>File contents</summary>
+```{.json filename="colormaps.json" include="static/colormaps.json"}
 ```
 </details>
