@@ -74,7 +74,7 @@ Only the latter two components are impacted by this specification.
 
 ### User interface components
 
-* **Map**: A raster visualization of a region, including:
+* **Map**: A raster visualization of a region (i.e. a land subdivision), including:
     * **Shape** of the region
     * A **gridded data variable**
     * A **NoData mask** (optional)
