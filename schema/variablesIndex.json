@@ -10,11 +10,6 @@
         "platform": { "type": "string" },
         "algorithm": { "type": "string" },
         "source": { "type": "string" },
-        "default": {
-          "type": "boolean",
-          "description": "TODO: Remove? Default is passed in at region-level in `regions/root.json`."
-        },
-        "enabled": { "type": "boolean" },
         "layerType": {
           "type": "string",
           "enum": ["raster", "raster_notprocessed", "point_swe"],
