@@ -98,6 +98,12 @@ Only the latter two components are impacted by this specification.
   `{incomingDir}` in the spec, this directory is usually
   `incoming/snow-surface-properties`, with the exception of SWE point data which goes to
   `incoming/snow-water-equivalent` directory instead.
+
+  :::{.callout-note}
+  On NSIDC infrastructure there are separate incoming directories available for testing
+  (i.e. `integration`, `qa`, `staging`) and `production`.
+  :::
+
 * **Water year**: An annual period that corresponds with regional precipitation patterns
   rather than the start and end of the calendar year. Each Super Region's water year can
   be different (e.g. the Western US water year starts on October 1), and this info is
