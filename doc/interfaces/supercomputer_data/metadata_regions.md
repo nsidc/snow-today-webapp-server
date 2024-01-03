@@ -41,6 +41,8 @@ display.
 
 - Super Regions with no Sub Regions/Collections **MAY** be included in the Super Regions
   definition file.
+- Relationships with variables **MUST** be defined at the Super Region level, and those
+  relationships **MUST** be considered inherited by all their Sub Regions.
 
 <details>
 <summary>Schema</summary>
