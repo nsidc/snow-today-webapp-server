@@ -1,5 +1,7 @@
 ---
 title: "Data: gridded" 
+# A custom field for listing display:
+provider: "Supercomputer"
 ---
 
 **Gridded data** (Cloud Optimized GeoTIFFs) that are displayed on the **map** user

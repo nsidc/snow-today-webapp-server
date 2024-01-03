@@ -1,15 +1,14 @@
 ---
-title: "Regions"
+title: "Metadata: regions"
 filters:
   - "include-code-files"
+# A custom field for listing display:
+provider: "Supercomputer"
 ---
 
-
-
-## Regions
-
-Any region that can be selected for viewing on the map or plot.
-Includes Super Regions and Sub Regions.
+Any **region** that can be selected for viewing on the map or plot.
+Includes **Super Regions** and **Sub Regions** and information about their
+relationships..
 
 - All regions (Super Regions and Sub Regions) **MUST** have a unique numeric region
   identifier.

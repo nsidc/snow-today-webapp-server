@@ -9,11 +9,16 @@ author:
 citation: true
 listing:
   type: "table"
+  sort-ui: false
+  filter-ui: false
   contents:
     - "*.md"
   fields:
     - "title"
     - "description"
+    - "provider"
+  field-display-names:
+    provider: "Provider"
 ---
 
 The webapp data interface represents the **input** of the `snow_today_webapp_ingest`
@@ -112,3 +117,11 @@ Only the latter two components are impacted by this specification.
 
 
 ## Specification
+
+:::{.callout-important}
+All **data** and **metadata** has a provider.
+
+* **Version control**: Data is version-controlled in this repository's `static/`
+  directory.
+* **Supercomputer**: Data is pushed dynamically on a schedule from the supercomputer.
+:::

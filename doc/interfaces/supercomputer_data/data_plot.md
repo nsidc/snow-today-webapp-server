@@ -1,5 +1,7 @@
 ---
 title: "Data: plots"
+# A custom field for listing display:
+provider: "Supercomputer"
 ---
 
 **Plot data** (JSON) that are displayed on the **map** user interface component.

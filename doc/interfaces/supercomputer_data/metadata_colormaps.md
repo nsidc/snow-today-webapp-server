@@ -1,10 +1,12 @@
 ---
-title: "Colormaps"
+title: "Metadata: colormaps"
 filters:
   - "include-code-files"
+# A custom field for listing display:
+provider: "Version control"
 ---
 
-Color gradients used for visualizing a data variable.
+**Color gradients** used for visualizing a data variable.
 
 * Colormaps definition file **MUST** be named `colormaps.json`.
 * Colormaps definition file **MUST** be in compliance with the schema.
