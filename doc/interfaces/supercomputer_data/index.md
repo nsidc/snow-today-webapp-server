@@ -100,7 +100,8 @@ Only the latter two components are impacted by this specification.
   `incoming/snow-water-equivalent` directory instead.
 * **Water year**: An annual period that corresponds with regional precipitation patterns
   rather than the start and end of the calendar year. Each Super Region's water year can
-  be different.
+  be different (e.g. the Western US water year starts on October 1), and this info is
+  passed by the supercomputer as metadata.
 
 
 ## Principles
