@@ -1,8 +1,8 @@
 {
     "metadata": {
         "min_year": 2013,
-        "max_year": 2022,
-    }
+        "max_year": 2022
+    },
     "data": {
         "day_of_water_year": [
             1,
@@ -737,7 +737,7 @@
             null,
             null,
             null
-            ]
+          ],
         "prc25": [
             null,
             null,
@@ -1104,7 +1104,7 @@
             null,
             null,
             null
-            ]
+            ],
         "median": [
             null,
             null,
@@ -1471,7 +1471,7 @@
             null,
             null,
             null
-            ]
+            ],
         "prc75": [
             null,
             null,
@@ -1838,7 +1838,7 @@
             null,
             null,
             null
-            ]
+            ],
         "max": [
             null,
             null,
