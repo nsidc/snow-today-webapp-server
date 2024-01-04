@@ -19,7 +19,8 @@ def cli() -> None:
     pass
 
 
-@cli.group()
+# TODO: Put the --dry-run flag at this level!
+@cli.group(help="Ingest daily payload from the supercomputer to update the webapp")
 def ingest() -> None:
     pass
 
@@ -27,7 +28,7 @@ def ingest() -> None:
 @ingest.command()
 @click.option(
     "--dry-run",
-    default=False,
+    is_flag=True,
     help=(
         "Do the ingest as normal, but skip moving the output to the final 'live'"
         " location."
