@@ -6,11 +6,11 @@
       "properties": {
         "minYear": {
           "type": "integer",
-          "description": "The year in which the minimum for this region and variable occurred."
+          "description": "The water year in which the average (depending on the variable, could be median, mean, or sum) of all days in the water year represents a historical minimum for this region and variable."
         },
         "maxYear": {
           "type": "integer",
-          "description": "The year in which the maximum for this region and variable occurred."
+          "description": "The water year in which the average (depending on the variable, could be median, mean, or sum) of all days in the water year represents a historical maximum for this region and variable."
         }
       },
       "required": ["minYear", "maxYear"],
