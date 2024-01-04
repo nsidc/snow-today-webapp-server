@@ -48,17 +48,17 @@
         "median": {
           "type": "array",
           "items": { "type": ["number", "null"] },
-          "description": "Climatological median for each day of the water year."
+          "description": "Historical median for each day of the water year."
         },
         "prc25": {
           "type": "array",
           "items": { "type": ["number", "null"] },
-          "description": "Climatological 25th percentile for each day of the water year."
+          "description": "Historical 25th percentile for each day of the water year."
         },
         "prc75": {
           "type": "array",
           "items": { "type": ["number", "null"] },
-          "description": "Climatological 75th percentile for each day of the water year."
+          "description": "Historical 75th percentile for each day of the water year."
         }
       },
       "required": [
