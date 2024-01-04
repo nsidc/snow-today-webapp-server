@@ -1,0 +1,23 @@
+# IMPORTANT: ReadTheDocs is not our main doc site; GitHub Pages is. This is
+#            ONLY for PR previews :)
+# TODO: The version string is repeated, and there seems to be no current way to
+#       avoid this. When a way becomes available, use it!
+#         https://github.com/readthedocs/readthedocs.org/issues/6311
+version: 2
+
+
+build:
+  os: "ubuntu-22.04"
+  # TODO: There must be a more readable way to express this...
+  commands:
+    # Install Quarto ( https://quarto.org/docs/download/tarball.html)
+    - "wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.534/quarto-1.4.534-linux-amd64.tar.gz"
+    - "mkdir ~/opt && tar -C ~/opt -xvzf quarto*.tar.gz"
+    - "mkdir ~/bin && ln -s ~/opt/quarto-1.4.534/bin/quarto ~/bin/quarto"
+
+    # Render site
+    - "cd doc && ~/bin/quarto render"
+
+    # Put the rendered site in place
+    - "mkdir --parents $READTHEDOCS_OUTPUT/html/"
+    - "mv doc/_site/* $READTHEDOCS_OUTPUT/html/."

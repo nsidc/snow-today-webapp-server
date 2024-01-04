@@ -1,51 +1,70 @@
 {
   "type": "object",
-  "description": "Mapping of super-region unique IDs, e.g. 'USwest' or 'HMA', to their properties",
+  "description": "Mapping of super-region unique IDs, e.g. '26000' or '26004', to their properties",
   "patternProperties": {
-    "^.*$": {
+    "^[0-9]+$": {
       "type": "object",
       "description": "Super-region properties",
       "properties": {
-        "longname": { "type": "string" },
-        "shortname": { "type": "string" },
-        "shape_path": { "type": "string" },
-        "subregion_collections": {
+        "longName": { "type": "string" },
+        "shortName": { "type": "string" },
+        "crs": { "type": "string" },
+        "waterYear": {
+          "type": "integer",
+          "description": "The current water year",
+          "minimum": 1900,
+          "maximum": 3000
+        },
+        "waterYearStartDate": { "type": "string", "format": "date" },
+        "lastDateWithData": { "type": "string", "format": "date" },
+        "historicStartWaterYear": {
+          "type": "integer",
+          "description": "The water year at the start of available climatology",
+          "minimum": 1900,
+          "maximum": 3000
+        },
+        "historicSource": {
+          "type": "string",
+          "description": "The source of the climatology"
+        },
+        "subRegionsRelativePath": { "type": "string" },
+        "subRegionsHierarchyRelativePath": { "type": "string" },
+        "shapeRelativePath": { "type": "string" },
+        "variables": {
           "type": "object",
-          "description": "Mapping of sub-region collection unique IDs, e.g. 'HUC', 'State', 'Basin', 'Country', to their properties",
+          "description": "The variables available for this region",
           "patternProperties": {
-            "^.*$": {
+            "^[0-9]+$": {
               "type": "object",
-              "description": "Sub-region collection properties",
+              "description": "A variable available for this region",
               "properties": {
-                "longname": { "type": "string" },
-                "shortname": { "type": "string" },
-                "items": {
-                  "type": "object",
-                  "description": "Mapping of sub-region unique IDs, e.g. 'CO', '1002', 'Kyrgyzstan', to their properties",
-                  "patternProperties": {
-                    "^.*$": {
-                      "type": "object",
-                      "description": "Sub-region properties",
-                      "properties": {
-                        "longname": { "type": "string" },
-                        "shortname": { "type": "string" },
-                        "shape_path": { "type": "string" },
-                        "enabled": { "type": "boolean" }
-                      },
-                      "required": ["longname", "shortname", "shape_path"],
-                      "additionalProperties": false
-                    }
-                  }
-                }
-              },
-              "required": ["longname", "shortname", "items"],
-              "additionalProperties": false
+                "default": { "type": "boolean" },
+                "dataValueRange": {
+                  "type": "array",
+                  "description": "The range of data values that the colormap will span.",
+                  "items": { "type": "integer" },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "geotiffRelativePath": { "type": "string" }
+              }
             }
-          },
-          "additionalProperties": false
+          }
         }
       },
-      "required": ["longname", "shortname", "shape_path"],
+      "required": [
+        "longName",
+        "shortName",
+        "crs",
+        "waterYear",
+        "waterYearStartDate",
+        "lastDateWithData",
+        "historicStartWaterYear",
+        "subRegionsRelativePath",
+        "subRegionsHierarchyRelativePath",
+        "shapeRelativePath",
+        "variables"
+      ],
       "additionalProperties": false
     }
   },

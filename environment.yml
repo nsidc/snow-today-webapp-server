@@ -3,8 +3,9 @@ channels:
   - conda-forge
   - nodefaults
 platforms:
-  - osx-64
   - linux-64
+  # Temporarily disabled osx due to weird JSON parsing errors when enabled.
+  # - osx-64
 dependencies:
   - python ~=3.10.5
 
@@ -35,8 +36,8 @@ dependencies:
   - mypy ~=1.5
 
   # For schema validation:
-  # TODO: is this really a runtime dep??
-  - jsonschema ~=4.9.1
+  - jsonschema ~=4.20
+  - types-jsonschema ~=4.20
   # For TypedDicts with optional keys. REMOVE after upgrading to Python 3.11
   - typing-extensions ~=4.3.0
 
