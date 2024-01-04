@@ -18,7 +18,7 @@ class SchemaMatcher(TypedDict):
     matcher: Pattern
 
 
-schemas_by_filename_regex: dict[str, SchemaMatcher] = [
+schemas_by_filename_regex: list[SchemaMatcher] = [
     {
         'schema': json.loads(
             (REPO_STATIC_SCHEMAS_DIR / "regionsIndex.json").read_text()
@@ -47,7 +47,6 @@ schemas_by_filename_regex: dict[str, SchemaMatcher] = [
 
 
 def ingest_region_metadata(
-    *,
     from_path: Path,
     to_path: Path,
 ) -> None:

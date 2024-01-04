@@ -11,7 +11,6 @@ from snow_today_webapp_ingest.util.legend import make_legend
 
 
 def generate_legends(
-    *,
     from_path: Path,
     to_path: Path,
 ):

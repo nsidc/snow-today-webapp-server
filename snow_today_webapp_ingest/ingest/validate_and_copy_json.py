@@ -6,9 +6,9 @@ from loguru import logger
 
 
 def validate_and_copy_json(
-    *,
-    to_path: Path,
     from_path: Path,
+    to_path: Path,
+    *,
     schema_path: Path,
 ) -> None:
     source_json = json.loads(from_path.read_text())

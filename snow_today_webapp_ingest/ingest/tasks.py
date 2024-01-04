@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Protocol
+from typing import Any, ParamSpec, Protocol, TypeVar
 
 from loguru import logger
 
@@ -22,10 +22,21 @@ from snow_today_webapp_ingest.ingest.validate_and_copy_json import (
     validate_and_copy_json,
 )
 
+P = ParamSpec("P")
+FromPath = TypeVar("FromPath", Path, dict[str, Path], contravariant=True)
 
-class IngestFunc(Protocol):
-    def __call__(self, *, from_path: Path, to_path: Path, **kwargs: Any) -> None:
-        ...
+
+class IngestFunc(Protocol[FromPath, P]):
+    def __call__(
+        self,
+        # TODO: I would really love for these to be keyword-only arguments, but PEP612
+        #       forbids that when using ParamSpec: https://peps.python.org/pep-0612/#id2
+        from_path: FromPath,
+        to_path: Path,
+        *args: P.args,
+        **kwargs: P.kwargs,
+    ) -> None:
+        pass
 
 
 @dataclass

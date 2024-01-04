@@ -31,7 +31,6 @@ def make_cloud_optimized(
 
 
 def ingest_cogs(
-    *,
     from_path: Path,
     to_path: Path,
 ) -> None:
@@ -52,7 +51,3 @@ def ingest_cogs(
             input_tif_path=input_tif,
             output_tif_path=(to_path / input_tif.name),
         )
-
-
-if __name__ == '__main__':
-    ingest_cogs()
