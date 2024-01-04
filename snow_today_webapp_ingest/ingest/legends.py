@@ -15,7 +15,8 @@ def generate_legends(
     to_path: Path,
 ):
     """Generate legends based on super-region metadata."""
-    # TODO: TYPES!!!
+    # TODO: TYPES!!! We should use Pydantic to define types and generate JSON schemas
+    #       from them.
     # TODO: Instead of using repo paths directly, they should be passed in as a dict to
     #       `from_path`.
     regions_json: dict[str, dict] = json.loads(from_path.read_text())

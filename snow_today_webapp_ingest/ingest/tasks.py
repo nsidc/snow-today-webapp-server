@@ -86,7 +86,7 @@ ingest_tasks: dict[str, IngestTask] = {
     # location, and didn't account for the possibility of static data getting
     # clobbered.
     "colormaps": IngestTask(
-        name="Ingest static colormaps metadata JSON",
+        name="Ingest metadata: version-controlled colormaps JSON",
         from_path=REPO_STATIC_COLORMAPS_INDEX_FP,
         to_relative_path=REPO_STATIC_COLORMAPS_INDEX_FP.name,
         ingest_func=validate_and_copy_json,
@@ -95,7 +95,7 @@ ingest_tasks: dict[str, IngestTask] = {
         },
     ),
     "variables": IngestTask(
-        name="Ingest static variable metadata JSON",
+        name="Ingest metadata: version-controlled variable JSON",
         from_path=REPO_STATIC_VARIABLES_INDEX_FP,
         to_relative_path=REPO_STATIC_VARIABLES_INDEX_FP.name,
         # TODO: Filter to only the variables that we care about (based on
@@ -105,29 +105,24 @@ ingest_tasks: dict[str, IngestTask] = {
             "schema_path": REPO_STATIC_SCHEMAS_DIR / "variablesIndex.json",
         },
     ),
-    # TODO: Legends: Ingest dynamic legends and _copy_ static legends from this repo? Or
-    #       generate the static legends at runtime and never store them? I feel the
-    #       latter would provide more consistency in how the data is managed.
-    #       Legends should be generated based on the variables.json and
-    #       regions/root.json. e.g. legends/{region_id}_{variable_id}.svg (because snow
-    #       cover days legends will be different based on region). OR legends can be
-    #       generated in JS!!! That would be way simpler...
+    # TODO: Consider generating legends in JS. These are generated entirely based on
+    #       data available to the webapp.
     "legends": IngestTask(
-        name="Generate (static and dynamic) legends",
+        name="Ingest metadata: legends (static and dynamic) SVG",
         from_path=INCOMING_REGIONS_ROOT_JSON,
         to_relative_path=OUTPUT_LEGENDS_SUBDIR,
         ingest_func=generate_legends,
     ),
     "region_metadata": IngestTask(
-        name="Ingest daily region metadata JSON",
+        name="Ingest metadata: region JSON",
         from_path=INCOMING_REGIONS_DIR,
         to_relative_path=OUTPUT_REGIONS_SUBDIR,
         ingest_func=ingest_region_metadata,
     ),
     # TODO: Should COGs be ingested based on the contents of regions/root.json, as
-    # opposed to globbing for files?
+    #       opposed to globbing for files?
     "region_cogs": IngestTask(
-        name="Ingest daily Cloud-Optimized GeoTIFFs",
+        name="Ingest data: Cloud-Optimized GeoTIFFs",
         from_path=INCOMING_TIF_DIR,
         to_relative_path=OUTPUT_REGIONS_COGS_SUBDIR,
         ingest_func=ingest_cogs,
