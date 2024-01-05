@@ -81,7 +81,7 @@ class IngestTask:
             to_path=ingest_tmpdir / self.to_relative_path,
             **ingest_kwargs,
         )
-        logger.info(f"✅✅✅ Completed task: {self.name} ✅✅✅")
+        logger.success(f"✅✅✅ Completed task: {self.name} ✅✅✅")
 
 
 # TODO: _Snow Surface Properties_ ingest tasks, really. Still need to do SWE...

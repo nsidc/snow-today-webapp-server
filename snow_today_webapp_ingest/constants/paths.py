@@ -1,7 +1,10 @@
 import os
 from pathlib import Path
 
-STORAGE_DIR = Path(os.environ['STORAGE_DIR'])
+# IMPORTANT: Defaults to tmp to allow e.g. --help, but is checked by the CLI command
+# before running anything.
+storage_dir_default = "/tmp/snow-today-webapp-ingest"
+STORAGE_DIR = Path(os.environ.get("STORAGE_DIR", storage_dir_default))
 
 
 ###############################################

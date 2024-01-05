@@ -13,7 +13,7 @@
 version: 1
 metadata:
   content_hash:
-    linux-64: b54008eb9ccdd575f477b990738d21ba4774e245af0ee670a36a6057cb64f0d0
+    linux-64: 021b533726c43b8804b953cfd5891a9995c8ac143d7564bc0562e40f7eafcd58
   channels:
   - url: conda-forge
     used_env_vars: []
@@ -357,6 +357,19 @@ package:
   hash:
     md5: 7c2b6931f9b3548ed78478332095c3e9
     sha256: b36e35d735ddd29d7c592eb3de4b3979e13a9f76f1b4bc939f2cb4402758d6d0
+  category: main
+  optional: false
+- name: click-loglevel
+  version: 0.5.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    click: '>=8'
+    python: '>=3.7'
+  url: https://conda.anaconda.org/conda-forge/noarch/click-loglevel-0.5.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: 60043113bbcf87a952a0424231db93bd
+    sha256: d6642015f9812c158791641f339a98b84be8cdcb31d329df6651ee5dd3a7d4bc
   category: main
   optional: false
 - name: click-plugins
@@ -1866,16 +1879,16 @@ package:
   category: main
   optional: false
 - name: loguru
-  version: 0.6.0
+  version: 0.7.2
   manager: conda
   platform: linux-64
   dependencies:
     python: '>=3.10,<3.11.0a0'
     python_abi: 3.10.*
-  url: https://conda.anaconda.org/conda-forge/linux-64/loguru-0.6.0-py310hff52083_2.tar.bz2
+  url: https://conda.anaconda.org/conda-forge/linux-64/loguru-0.7.2-py310hff52083_1.conda
   hash:
-    md5: 63995a6d7323a83eb1c9cbde5a8435e6
-    sha256: 719b11562f270454e9054e66734e18b76a3269a3950c1fd8f6b02f201ba96003
+    md5: 157e6221a079a60c7f6f6fcb87c722aa
+    sha256: 35319fe904289949e78af080ac05907bb545ecad64bd2eaea95efb8526069ee5
   category: main
   optional: false
 - name: lz4-c
