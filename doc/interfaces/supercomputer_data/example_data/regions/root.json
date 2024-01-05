@@ -12,27 +12,27 @@
       "51": {
         "default": "false",
         "dataValueRange": [65, 85],
-        "geotiffRelativePath": "cogs/26100_51.tif"
+        "geotiffRelativePath": "regions/cogs/26100_51.tif"
       },
       "45": {
         "default": "false",
         "dataValueRange": [1, 91],
-        "geotiffRelativePath": "cogs/26100_45.tif"
+        "geotiffRelativePath": "regions/cogs/26100_45.tif"
       },
       "40": {
         "default": "true",
         "dataValueRange": [1, 100],
-        "geotiffRelativePath": "cogs/26100_40.tif"
+        "geotiffRelativePath": "regions/cogs/26100_40.tif"
       },
       "44": {
         "default": "false",
         "dataValueRange": [0, 100],
-        "geotiffRelativePath": "cogs/26100_44.tif"
+        "geotiffRelativePath": "regions/cogs/26100_44.tif"
       }
     },
     "subRegionsRelativePath": "regions/26100.json",
     "subRegionsHierarchyRelativePath": "regions/26100_hierarchy.json",
-    "shapeRelativePath": "shapes/26100.geojson"
+    "shapeRelativePath": "regions/shapes/26100.geojson"
   },
   "26004": {
     "longName": "Andes",
@@ -47,27 +47,27 @@
       "51": {
         "default": "false",
         "dataValueRange": [65, 85],
-        "geotiffRelativePath": "cogs/26004_51.tif"
+        "geotiffRelativePath": "regions/cogs/26004_51.tif"
       },
       "45": {
         "default": "false",
         "dataValueRange": [1, 91],
-        "geotiffRelativePath": "cogs/26004_45.tif"
+        "geotiffRelativePath": "regions/cogs/26004_45.tif"
       },
       "40": {
         "default": "true",
         "dataValueRange": [1, 100],
-        "geotiffRelativePath": "cogs/26004_40.tif"
+        "geotiffRelativePath": "regions/cogs/26004_40.tif"
       },
       "44": {
         "default": "false",
         "dataValueRange": [0, 100],
-        "geotiffRelativePath": "cogs/26004_44.tif"
+        "geotiffRelativePath": "regions/cogs/26004_44.tif"
       }
     },
     "subRegionsRelativePath": "regions/26004.json",
     "subRegionsHierarchyRelativePath": "regions/26004_hierarchy.json",
-    "shapeRelativePath": "shapes/26004.geojson"
+    "shapeRelativePath": "regions/shapes/26004.geojson"
   },
   "26101": {
     "longName": "Canada",
@@ -82,27 +82,27 @@
       "51": {
         "default": "false",
         "dataValueRange": [65, 85],
-        "geotiffRelativePath": "cogs/26101_51.tif"
+        "geotiffRelativePath": "regions/cogs/26101_51.tif"
       },
       "45": {
         "default": "false",
         "dataValueRange": [1, 91],
-        "geotiffRelativePath": "cogs/26101_45.tif"
+        "geotiffRelativePath": "regions/cogs/26101_45.tif"
       },
       "40": {
         "default": "true",
         "dataValueRange": [1, 100],
-        "geotiffRelativePath": "cogs/26101_40.tif"
+        "geotiffRelativePath": "regions/cogs/26101_40.tif"
       },
       "44": {
         "default": "false",
         "dataValueRange": [0, 100],
-        "geotiffRelativePath": "cogs/26101_44.tif"
+        "geotiffRelativePath": "regions/cogs/26101_44.tif"
       }
     },
     "subRegionsRelativePath": "regions/26101.json",
     "subRegionsHierarchyRelativePath": "regions/26101_hierarchy.json",
-    "shapeRelativePath": "shapes/26101.geojson"
+    "shapeRelativePath": "regions/shapes/26101.geojson"
   },
   "26002": {
     "longName": "High Mountain Asia",
@@ -117,27 +117,27 @@
       "51": {
         "default": "false",
         "dataValueRange": [65, 85],
-        "geotiffRelativePath": "cogs/26002_51.tif"
+        "geotiffRelativePath": "regions/cogs/26002_51.tif"
       },
       "45": {
         "default": "false",
         "dataValueRange": [1, 91],
-        "geotiffRelativePath": "cogs/26002_45.tif"
+        "geotiffRelativePath": "regions/cogs/26002_45.tif"
       },
       "40": {
         "default": "true",
         "dataValueRange": [1, 100],
-        "geotiffRelativePath": "cogs/26002_40.tif"
+        "geotiffRelativePath": "regions/cogs/26002_40.tif"
       },
       "44": {
         "default": "false",
         "dataValueRange": [0, 100],
-        "geotiffRelativePath": "cogs/26002_44.tif"
+        "geotiffRelativePath": "regions/cogs/26002_44.tif"
       }
     },
     "subRegionsRelativePath": "regions/26002.json",
     "subRegionsHierarchyRelativePath": "regions/26002_hierarchy.json",
-    "shapeRelativePath": "shapes/26002.geojson"
+    "shapeRelativePath": "regions/shapes/26002.geojson"
   },
   "26000": {
     "longName": "Western United States",
@@ -152,26 +152,26 @@
       "51": {
         "default": "false",
         "dataValueRange": [65, 85],
-        "geotiffRelativePath": "cogs/26000_51.tif"
+        "geotiffRelativePath": "regions/cogs/26000_51.tif"
       },
       "45": {
         "default": "false",
         "dataValueRange": [1, 91],
-        "geotiffRelativePath": "cogs/26000_45.tif"
+        "geotiffRelativePath": "regions/cogs/26000_45.tif"
       },
       "40": {
         "default": "true",
         "dataValueRange": [1, 100],
-        "geotiffRelativePath": "cogs/26000_40.tif"
+        "geotiffRelativePath": "regions/cogs/26000_40.tif"
       },
       "44": {
         "default": "false",
         "dataValueRange": [0, 100],
-        "geotiffRelativePath": "cogs/26000_44.tif"
+        "geotiffRelativePath": "regions/cogs/26000_44.tif"
       }
     },
     "subRegionsRelativePath": "regions/26000.json",
     "subRegionsHierarchyRelativePath": "regions/26000_hierarchy.json",
-    "shapeRelativePath": "shapes/26000.geojson"
+    "shapeRelativePath": "regions/shapes/26000.geojson"
   }
 }
