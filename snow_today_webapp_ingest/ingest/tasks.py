@@ -8,10 +8,12 @@ from snow_today_webapp_ingest.constants.paths import (
     INCOMING_PLOT_JSON_DIR,
     INCOMING_REGIONS_DIR,
     INCOMING_REGIONS_ROOT_JSON,
+    INCOMING_SHAPES_DIR,
     INCOMING_TIF_DIR,
     OUTPUT_LEGENDS_SUBDIR,
     OUTPUT_PLOTS_SUBDIR,
     OUTPUT_REGIONS_COGS_SUBDIR,
+    OUTPUT_REGIONS_SHAPES_SUBDIR,
     OUTPUT_REGIONS_SUBDIR,
     REPO_STATIC_COLORMAPS_INDEX_FP,
     REPO_STATIC_VARIABLES_INDEX_FP,
@@ -21,6 +23,7 @@ from snow_today_webapp_ingest.constants.schemas import (
     VARIABLES_INDEX_SCHEMA_FP,
 )
 from snow_today_webapp_ingest.ingest.cogs import ingest_cogs
+from snow_today_webapp_ingest.ingest.copy_files import copy_files
 from snow_today_webapp_ingest.ingest.legends import generate_legends
 from snow_today_webapp_ingest.ingest.plot_json import ingest_plot_json
 from snow_today_webapp_ingest.ingest.region_metadata import ingest_region_metadata
@@ -120,11 +123,21 @@ ingest_tasks: dict[str, IngestTask] = {
         to_relative_path=OUTPUT_LEGENDS_SUBDIR,
         ingest_func=generate_legends,
     ),
-    "region_metadata": IngestTask(
+    "region-metadata": IngestTask(
         name="Ingest metadata: region JSON",
         from_path=INCOMING_REGIONS_DIR,
         to_relative_path=OUTPUT_REGIONS_SUBDIR,
         ingest_func=ingest_region_metadata,
+    ),
+    # TODO: Should shape data be ingested based on the contents of `regions/root.json`
+    #       and `regions/[0-9]+.json`? E.g. look at those files, build up a plan, then
+    #       ingest? Mark any extra shapes as warning, missing shapes as error.
+    # TODO: Should shape data outputs be validated as GeoJSON?
+    "region-shapes": IngestTask(
+        name="Ingest metadata: region GeoJSON shapes",
+        from_path=INCOMING_SHAPES_DIR,
+        to_relative_path=OUTPUT_REGIONS_SHAPES_SUBDIR,
+        ingest_func=copy_files,
     ),
     # TODO: Should COGs be ingested based on the contents of regions/root.json, as
     #       opposed to globbing for files?
@@ -137,21 +150,11 @@ ingest_tasks: dict[str, IngestTask] = {
     # NOTE: Plot JSON files are not referenced anywhere, but they exist for each region
     #       (super- or sub-) and variable combination.
     # TODO: Update some metadata file so it references these files.
-    "plot_json": IngestTask(
+    "plot-json": IngestTask(
         name="Ingest data: Plot JSON for each region/variable",
         from_path=INCOMING_PLOT_JSON_DIR,
         to_relative_path=OUTPUT_PLOTS_SUBDIR,
         ingest_func=ingest_plot_json,
     ),
-    # TODO: Should shape data be ingested based on the contents of `regions/root.json`
-    #       and `regions/[0-9]+.json`? E.g. look at those files, build up a plan, then
-    #       ingest? Mark any extra shapes as warning, missing shapes as error.
-    # TODO: Shape data
-    # "region_shapes": IngestTask(
-    #     name="Ingest region GeoJSON shapes",
-    #     from_path=INCOMING_TIF_DIR,
-    #     to_relative_path=OUTPUT_REGIONS_COGS_SUBDIR,
-    #     ingest_func=ingest_shapes,
-    # ),
     # TODO: SWE!
 }
