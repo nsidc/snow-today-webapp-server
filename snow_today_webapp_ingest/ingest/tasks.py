@@ -5,18 +5,24 @@ from typing import Any, ParamSpec, Protocol, TypeVar
 from loguru import logger
 
 from snow_today_webapp_ingest.constants.paths import (
+    INCOMING_PLOT_JSON_DIR,
     INCOMING_REGIONS_DIR,
     INCOMING_REGIONS_ROOT_JSON,
     INCOMING_TIF_DIR,
     OUTPUT_LEGENDS_SUBDIR,
+    OUTPUT_PLOTS_SUBDIR,
     OUTPUT_REGIONS_COGS_SUBDIR,
     OUTPUT_REGIONS_SUBDIR,
     REPO_STATIC_COLORMAPS_INDEX_FP,
-    REPO_STATIC_SCHEMAS_DIR,
     REPO_STATIC_VARIABLES_INDEX_FP,
+)
+from snow_today_webapp_ingest.constants.schemas import (
+    COLORMAPS_INDEX_SCHEMA_FP,
+    VARIABLES_INDEX_SCHEMA_FP,
 )
 from snow_today_webapp_ingest.ingest.cogs import ingest_cogs
 from snow_today_webapp_ingest.ingest.legends import generate_legends
+from snow_today_webapp_ingest.ingest.plot_json import ingest_plot_json
 from snow_today_webapp_ingest.ingest.region_metadata import ingest_region_metadata
 from snow_today_webapp_ingest.ingest.validate_and_copy_json import (
     validate_and_copy_json,
@@ -91,7 +97,7 @@ ingest_tasks: dict[str, IngestTask] = {
         to_relative_path=REPO_STATIC_COLORMAPS_INDEX_FP.name,
         ingest_func=validate_and_copy_json,
         ingest_kwargs={
-            "schema_path": REPO_STATIC_SCHEMAS_DIR / "colormapsIndex.json",
+            "schema_path": COLORMAPS_INDEX_SCHEMA_FP,
         },
     ),
     "variables": IngestTask(
@@ -101,14 +107,15 @@ ingest_tasks: dict[str, IngestTask] = {
         # TODO: Filter to only the variables that we care about (based on
         #       what are shown in `regions/root.json`)
         ingest_func=validate_and_copy_json,
-        ingest_kwargs={
-            "schema_path": REPO_STATIC_SCHEMAS_DIR / "variablesIndex.json",
-        },
+        ingest_kwargs={"schema_path": VARIABLES_INDEX_SCHEMA_FP},
     ),
     # TODO: Consider generating legends in JS. These are generated entirely based on
-    #       data available to the webapp.
+    #       data available to the webapp already.
     "legends": IngestTask(
-        name="Ingest metadata: legends (static and dynamic) SVG",
+        name=(
+            "Ingest metadata: legends (static and dynamic) SVG for each"
+            "super-region/variable"
+        ),
         from_path=INCOMING_REGIONS_ROOT_JSON,
         to_relative_path=OUTPUT_LEGENDS_SUBDIR,
         ingest_func=generate_legends,
@@ -121,11 +128,20 @@ ingest_tasks: dict[str, IngestTask] = {
     ),
     # TODO: Should COGs be ingested based on the contents of regions/root.json, as
     #       opposed to globbing for files?
-    "region_cogs": IngestTask(
-        name="Ingest data: Cloud-Optimized GeoTIFFs",
+    "cogs": IngestTask(
+        name="Ingest data: Cloud-Optimized GeoTIFFs for each super-region/variable",
         from_path=INCOMING_TIF_DIR,
         to_relative_path=OUTPUT_REGIONS_COGS_SUBDIR,
         ingest_func=ingest_cogs,
+    ),
+    # NOTE: Plot JSON files are not referenced anywhere, but they exist for each region
+    #       (super- or sub-) and variable combination.
+    # TODO: Update some metadata file so it references these files.
+    "plot_json": IngestTask(
+        name="Ingest data: Plot JSON for each region/variable",
+        from_path=INCOMING_PLOT_JSON_DIR,
+        to_relative_path=OUTPUT_PLOTS_SUBDIR,
+        ingest_func=ingest_plot_json,
     ),
     # TODO: Should shape data be ingested based on the contents of `regions/root.json`
     #       and `regions/[0-9]+.json`? E.g. look at those files, build up a plan, then
@@ -137,11 +153,5 @@ ingest_tasks: dict[str, IngestTask] = {
     #     to_relative_path=OUTPUT_REGIONS_COGS_SUBDIR,
     #     ingest_func=ingest_shapes,
     # ),
-    # TODO: Plot data
-    # "region_plots": IngestTask(
-    #     name="Ingest region plot JSON",
-    #     from_path=...,
-    #     to_relative_path=...,
-    #     ingest_func=ingest_plot_json,
-    # ),
+    # TODO: SWE!
 }
