@@ -16,10 +16,11 @@ dependencies:
   - click ~=8.1
   # For adding a --log-level parameter to CLI:
   - click-loglevel ~=0.5.0
-  # For making Cloud-Optimized GeoTIFFs:
+  # For making Cloud-Optimized GeoTIFFs (pinned more strictly because GDAL is
+  # brittle):
   - gdal ~=3.5.1
   # For making legends:
-  - matplotlib-base ~=3.5
+  - matplotlib-base ~=3.8
   # For comparing JSON changes:
   - deepdiff ~=5.8
   # For simple logging:
@@ -30,16 +31,16 @@ dependencies:
   ###########################################
   # Development & testing dependencies
   ###########################################
-  - conda-lock ~=2.3
+  - conda-lock ~=2.5
   - pre-commit
-  - invoke ~=1.7
-  - mypy ~=1.5
+  - invoke ~=2.2
+  - mypy ~=1.8
 
   # For schema validation:
   - jsonschema ~=4.20
   - types-jsonschema ~=4.20
   # For TypedDicts with optional keys. REMOVE after upgrading to Python 3.11
-  - typing-extensions ~=4.3.0
+  - typing-extensions ~=4.9
 
   # TODO:
   # - pytest ~=7.1
