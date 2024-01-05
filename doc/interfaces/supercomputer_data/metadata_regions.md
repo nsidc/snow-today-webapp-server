@@ -43,6 +43,12 @@ display.
   definition file.
 - Relationships with variables **MUST** be defined at the Super Region level, and those
   relationships **MUST** be considered inherited by all their Sub Regions.
+- The following Super Regions **MUST** always be assigned the following identifiers.
+  This is to enable Snow Surface Properties and Snow Water Equivalent codebases to be
+  compatible.
+    - Western US: `26000`
+    - Alaska: `26100`
+    - Canada: `26101`
 
 <details>
 <summary>Schema</summary>
