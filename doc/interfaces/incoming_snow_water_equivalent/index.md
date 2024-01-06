@@ -33,7 +33,10 @@ It's expected that this spec will be updated with:
 
 * New filename spec
 * List of expected-supported super-regions
-* Requirement for data provider to stay in sync with changes to Snow Surface Properties.
+* Requirement for data provider to stay in sync with changes to Snow Surface Properties'
+  region definitions.  The
+  [source of truth](https://github.com/sebastien-lenard/esp/blob/master/tbx/conf/configuration_of_landsubdivisions.csv)
+  is available in a private GitHub repo.
 :::
 
 
