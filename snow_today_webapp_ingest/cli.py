@@ -144,9 +144,16 @@ def _ingest(
         logger.warning("This was a dry run; skipped moving data from WIP dir!")
         return
 
-    # Do a swap: Live -> backup; new -> live
     bkp_dir = OUTPUT_BKP_DIR / source / f"bkp-{date.today()}"
-    output_dir.rename(bkp_dir)
+    if output_dir.is_dir():
+        # Do a swap: Live -> backup
+        bkp_dir.parent.mkdir(parents=True, exist_ok=True)
+        output_dir.rename(bkp_dir)
+    else:
+        # If it doesn't exist, we can't be sure its parents do:
+        output_dir.parent.mkdir(parents=True, exist_ok=True)
+
+    # Then another swap: New -> Live
     tmpdir.rename(output_dir)
     logger.success(f"🎉 Ingested to '{output_dir}'. Backup: '{bkp_dir}'")
 
