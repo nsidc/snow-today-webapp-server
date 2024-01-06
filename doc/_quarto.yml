@@ -20,13 +20,11 @@ website:
     style: "docked"
     search: true
     contents:
-      - section: "Interfaces"
-        contents: "interfaces"
-      - text: "Ingest"
-        href: "index.md"
-        contents:
-          - text: "TODO"
-            href: "index.md"
+      - auto: "interfaces"
+      - auto: "how-to"
+      - auto: "reference"
+      - text: "TODO"
+        href: "TODO.md"
 
 
 format:

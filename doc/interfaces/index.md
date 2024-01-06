@@ -2,6 +2,8 @@
 title: "Interface specifications"
 listing:
   type: "table"
+  sort-ui: false
+  filter-ui: false
   contents:
     - "*/index.md"
 ---
@@ -68,3 +70,6 @@ are defined by [RFC2119](https://www.ietf.org/rfc/rfc2119.txt).
   rather than the start and end of the calendar year. Each Super Region's water year can
   be different (e.g. the Western US water year starts on October 1), and this info is
   passed by the supercomputer as metadata.
+
+
+## Specifications
