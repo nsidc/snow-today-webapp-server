@@ -9,9 +9,11 @@ from snow_today_webapp_ingest.constants.paths import (
     INCOMING_REGIONS_DIR,
     INCOMING_REGIONS_ROOT_JSON,
     INCOMING_SHAPES_DIR,
+    INCOMING_SWE_POINTS_DIR,
     INCOMING_TIF_DIR,
     OUTPUT_LEGENDS_SUBDIR,
     OUTPUT_PLOTS_SUBDIR,
+    OUTPUT_POINTS_SUBDIR,
     OUTPUT_REGIONS_COGS_SUBDIR,
     OUTPUT_REGIONS_SHAPES_SUBDIR,
     OUTPUT_REGIONS_SUBDIR,
@@ -27,6 +29,7 @@ from snow_today_webapp_ingest.ingest.copy_files import copy_files
 from snow_today_webapp_ingest.ingest.legends import generate_legends
 from snow_today_webapp_ingest.ingest.plot_json import ingest_plot_json
 from snow_today_webapp_ingest.ingest.region_metadata import ingest_region_metadata
+from snow_today_webapp_ingest.ingest.swe_json import ingest_swe_json
 from snow_today_webapp_ingest.ingest.validate_and_copy_json import (
     validate_and_copy_json,
 )
@@ -89,7 +92,7 @@ class IngestTask:
 
 # TODO: _Snow Surface Properties_ ingest tasks, really. Still need to do SWE...
 # NOTE: Tasks will run in the order they are specified in the dict.
-ingest_tasks: dict[str, IngestTask] = {
+ssp_ingest_tasks: dict[str, IngestTask] = {
     # We ingest some static data every day because we want the ingests to be idempotent.
     # The previous model wrote dynamic data next to static data in the final output
     # location, and didn't account for the possibility of static data getting
@@ -156,5 +159,13 @@ ingest_tasks: dict[str, IngestTask] = {
         to_relative_path=OUTPUT_PLOTS_SUBDIR,
         ingest_func=ingest_plot_json,
     ),
-    # TODO: SWE!
+}
+
+swe_ingest_tasks = {
+    "swe-point-json": IngestTask(
+        name="Ingest data: Snow Water Equivalent Point JSON",
+        from_path=INCOMING_SWE_POINTS_DIR,
+        to_relative_path=OUTPUT_POINTS_SUBDIR,
+        ingest_func=ingest_swe_json,
+    ),
 }

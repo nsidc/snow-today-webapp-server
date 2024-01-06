@@ -16,6 +16,8 @@ dependencies:
   - click ~=8.1
   # For adding a --log-level parameter to CLI:
   - click-loglevel ~=0.5.0
+  # For data models:
+  - pydantic ~=2.5
   # For making Cloud-Optimized GeoTIFFs (pinned more strictly because GDAL is
   # brittle):
   - gdal ~=3.5.1

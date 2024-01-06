@@ -19,6 +19,7 @@ def ingest_plot_json(
     from_path: Path,
     to_path: Path,
 ) -> None:
+    """Copy and validate incoming JSON."""
     input_files = list(from_path.glob('*.json'))
 
     if len(input_files) == 0:
