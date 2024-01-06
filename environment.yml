@@ -27,7 +27,12 @@ dependencies:
   - deepdiff ~=5.8
   # For simple logging:
   - loguru ~=0.7.2
-
+  # For schema validation:
+  - jsonschema ~=4.20
+  - types-jsonschema ~=4.20
+  # For reading metadata front-matter:
+  - pyyaml ~=6.0
+  - types-pyyaml ~=6.0
 
 
   ###########################################
@@ -38,9 +43,6 @@ dependencies:
   - invoke ~=2.2
   - mypy ~=1.8
 
-  # For schema validation:
-  - jsonschema ~=4.20
-  - types-jsonschema ~=4.20
   # For TypedDicts with optional keys. REMOVE after upgrading to Python 3.11
   - typing-extensions ~=4.9
 

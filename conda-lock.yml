@@ -13,7 +13,7 @@
 version: 1
 metadata:
   content_hash:
-    linux-64: 513c66dfca1bfa7edb1176ef416aa02379927675381ab169b4d93ab4db2feb8b
+    linux-64: d49470351a3e9a873eb8d216cb1fee8fe7aa515587543d8e6056e34db1adb6ae
   channels:
   - url: conda-forge
     used_env_vars: []
@@ -2389,17 +2389,17 @@ package:
   category: main
   optional: false
 - name: referencing
-  version: 0.32.0
+  version: 0.32.1
   manager: conda
   platform: linux-64
   dependencies:
     attrs: '>=22.2.0'
     python: '>=3.8'
     rpds-py: '>=0.7.0'
-  url: https://conda.anaconda.org/conda-forge/noarch/referencing-0.32.0-pyhd8ed1ab_0.conda
+  url: https://conda.anaconda.org/conda-forge/noarch/referencing-0.32.1-pyhd8ed1ab_0.conda
   hash:
-    md5: a7b5a535cd614e384594530aee7e6061
-    sha256: dfd40282910a45e58882ed94b502b2a09f475efb04eaaa3bd8b3b5a9b21a19c3
+    md5: 753a592b4e99d7d2cde6a8fd0797f414
+    sha256: 658beff40c6355af0eeec624bbe4e892b4c68c0af2d8ff4c06677e6547140506
   category: main
   optional: false
 - name: requests
@@ -2623,6 +2623,18 @@ package:
   hash:
     md5: 548c1218030d3d61c26833e5b9992725
     sha256: 7b5e258742422e00415be55ff4386c825ff7bfe28bd80379770d6f68361ca57f
+  category: main
+  optional: false
+- name: types-pyyaml
+  version: 6.0.12.12
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.6'
+  url: https://conda.anaconda.org/conda-forge/noarch/types-pyyaml-6.0.12.12-pyhd8ed1ab_0.conda
+  hash:
+    md5: 0cb14c80f66937df894d60626dd1921f
+    sha256: 91873f91a58337d0573584bcdc540ff5545bc460eda0fdd8bd2f471c808c0e4c
   category: main
   optional: false
 - name: typing-extensions
