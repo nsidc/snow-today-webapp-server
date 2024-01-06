@@ -1,7 +1,7 @@
 import datetime as dt
-from typing import TypedDict
 
 from pydantic import BaseModel
+from typing_extensions import TypedDict
 
 from snow_today_webapp_ingest.types_.json import JsonMetadataAndData
 

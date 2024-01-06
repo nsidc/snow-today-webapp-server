@@ -2,10 +2,10 @@ import json
 import re
 from pathlib import Path
 from re import Pattern
-from typing import TypedDict
 
 from jsonschema import ValidationError, validate
 from loguru import logger
+from typing_extensions import TypedDict
 
 from snow_today_webapp_ingest.constants.paths import INCOMING_REGIONS_ROOT_JSON
 from snow_today_webapp_ingest.constants.schemas import (
