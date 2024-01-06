@@ -1,9 +1,12 @@
 ---
-title: "Webapp data interface"
+title: "Data service"
+filters:
+  - "include-code-files"
 ---
 
-The webapp data interface represents the **output** of the `snow_today_webapp_ingest`
-Python code in this repository.
+The data service interface represents the **output** of the `snow_today_webapp_ingest`
+Python code in this repository, and the **input** of the
+[`snow-today-webapp` application](https://github.com/nsidc/snow-today-webapp).
 
 This output is written to a directory hosted by a web server so that the files can be
 accessed by the browsers of users using the webapp.
@@ -15,3 +18,13 @@ differences between the supercomputer interface and this one are:
 * We dynamically generate **legends** based on the data sent by the supercomputer.
 * We convert GeoTIFFs sent by the super computer to **Cloud Optimized GeoTIFFs**.
 * We copy over some **static** data from this repository (in the `static/` directory).
+* SWE data is transformed. More below.
+
+
+## SWE transformation
+
+<details>
+<summary>Example</summary>
+```{.json filename="snow-water-equivalent/points/swe.json (example)" include="example_data/live/snow-water-equivalent/points/swe.json"}
+```
+</details>

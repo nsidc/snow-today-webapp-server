@@ -87,7 +87,13 @@ repos:
     rev: "v2.2.6"
     hooks:
       - id: codespell
-        exclude: "^.*\\.bin$|^.*\\.ipynb$|^.*json"
+        exclude: >
+          (?x)^(
+            ^.*/example_data/.*
+            |^.*\\.bin
+            |^.*\\.ipynb
+            |^.*json
+          )$
 
   # TODO: ENABLE SHELLCHECK!
   # - repo: https://github.com/shellcheck-py/shellcheck-py

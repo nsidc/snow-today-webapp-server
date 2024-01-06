@@ -15,10 +15,9 @@ provider: "Supercomputer"
   directory, e.g. `{incomingDir}/plots/11726_40.json`.
 
 
-
 <details>
 <summary>Schema</summary>
-```{.json include="schema/plotData.json"}
+```{.json include="../schema/plotData.json"}
 ```
 </details>
 

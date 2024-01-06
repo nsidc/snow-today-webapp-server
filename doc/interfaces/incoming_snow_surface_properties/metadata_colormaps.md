@@ -15,12 +15,12 @@ provider: "Version control"
 
 <details>
 <summary>Schema</summary>
-```{.json include="schema/colormapsIndex.json"}
+```{.json include="../schema/colormapsIndex.json"}
 ```
 </details>
 
 <details>
 <summary>File contents</summary>
-```{.json filename="colormaps.json" include="static/colormaps.json"}
+```{.json filename="colormaps.json" include="../static/colormaps.json"}
 ```
 </details>

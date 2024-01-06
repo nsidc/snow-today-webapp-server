@@ -52,7 +52,7 @@ display.
 
 <details>
 <summary>Schema</summary>
-```{.json include="schema/regionsIndex.json"}
+```{.json include="../schema/regionsIndex.json"}
 ```
 </details>
 
@@ -78,7 +78,7 @@ itself).
 
 <details>
 <summary>Schema</summary>
-```{.json include="schema/subRegionsIndex.json"}
+```{.json include="../schema/subRegionsIndex.json"}
 ```
 </details>
 
@@ -101,7 +101,7 @@ A collection containing Sub Regions.
 
 <details>
 <summary>Schema</summary>
-```{.json include="schema/subRegionCollectionsIndex.json"}
+```{.json include="../schema/subRegionCollectionsIndex.json"}
 ```
 </details>
 
@@ -132,13 +132,13 @@ The hierarchy can be arbitrarily deep.
 
 <details>
 <summary>Schema</summary>
-```{.json include="schema/subRegionsHierarchy.json"}
+```{.json include="../schema/subRegionsHierarchy.json"}
 ```
 </details>
 
 <details>
 <summary>Example</summary>
-```{.json include="example_data/regions/26000_hierarchy.json"}
+```{.json filename="regions/26000_hierarchy.json" include="example_data/regions/26000_hierarchy.json"}
 ```
 </details>
 
@@ -159,6 +159,6 @@ GeoJSON files representing the shapes of regions.
 
 <details>
 <summary>Example</summary>
-```{.json include="example_data/regions/shapes/26/26000.geojson"}
+```{.json filename="regions/shapes/26/26000.geojson" include="example_data/regions/shapes/26/26000.geojson"}
 ```
 </details>

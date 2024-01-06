@@ -21,13 +21,9 @@ website:
     search: true
     contents:
       - section: "Interfaces"
-        contents:
-          - text: "Supercomputer data"
-            href: "interfaces/supercomputer_data/index.md"
-            contents: "interfaces/supercomputer_data/*.md"
-          - text: "Webapp data"
-            href: "interfaces/webapp_data/index.md"
-      - section: "Ingest"
+        contents: "interfaces"
+      - text: "Ingest"
+        href: "index.md"
         contents:
           - text: "TODO"
             href: "index.md"

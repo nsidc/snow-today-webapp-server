@@ -31,13 +31,13 @@ Perhaps the NoData mask will have its own JSON config file.
 
 <details>
 <summary>Schema</summary>
-```{.json include="schema/variablesIndex.json"}
+```{.json include="../schema/variablesIndex.json"}
 ```
 </details>
 
 <details>
 <summary>File contents</summary>
-```{.json filename="variables.json" include="static/variables.json"}
+```{.json filename="variables.json" include="../static/variables.json"}
 ```
 </details>
 
