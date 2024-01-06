@@ -25,8 +25,8 @@ services:
     container_name: "ingest"
     <<: *common
     volumes:
+      - "${STORAGE_DIR:?STORAGE_DIR must be set}:/storage:rw"
       - "${STORAGE_DIR:?STORAGE_DIR must be set}/incoming:/storage/incoming:ro"
-      - "${STORAGE_DIR:?STORAGE_DIR must be set}/ingest-wip:/storage/ingest-wip:rw"
     environment:
       # Timezone is critical because the ingest code cares about the date for
       # generating dynamic legends
