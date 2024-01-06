@@ -13,19 +13,8 @@ services:
     image: "nsidc/snow-today-webapp-server:${SERVER_VERSION:-latest}"
     container_name: "data-server"
     <<: *common
-    # NB: These volumes are being mounted _over top of_ the data in this repo's
-    # "data" directory, which is baked into the image at build time.
-    # TODO: Still true?? Could just mount `${STORAGE_DIR}/live`...
     volumes:
-      - "${STORAGE_DIR}/live/regions:/usr/share/nginx/html/regions:ro"
-      - "${STORAGE_DIR}/live/cogs:/usr/share/nginx/html/cogs:ro"
-      - "${STORAGE_DIR}/live/plots:/usr/share/nginx/html/plots:ro"
-      - "${STORAGE_DIR}/live/points:/usr/share/nginx/html/points:ro"
-      # Mount dynamic legends underneath the static legends dir; we can't merge
-      # the static-versioned legends that are baked into the image with legends
-      # provided from an external process into the same directory. This seemed
-      # the least-bad.
-      - "${STORAGE_DIR}/dynamic_legends:/usr/share/nginx/html/legends/dynamic:ro"
+      - "${STORAGE_DIR:?STORAGE_DIR must be set}/live:/usr/share/nginx/html:ro"
     ports:
       - "80:80"
       - "443:443"
@@ -36,8 +25,8 @@ services:
     container_name: "ingest"
     <<: *common
     volumes:
-      - "${STORAGE_DIR}/incoming:/storage/incoming:ro"
-      - "${STORAGE_DIR}/ingest-wip:/storage/ingest-wip:rw"
+      - "${STORAGE_DIR:?STORAGE_DIR must be set}/incoming:/storage/incoming:ro"
+      - "${STORAGE_DIR:?STORAGE_DIR must be set}/ingest-wip:/storage/ingest-wip:rw"
     environment:
       # Timezone is critical because the ingest code cares about the date for
       # generating dynamic legends

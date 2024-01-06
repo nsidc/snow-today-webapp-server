@@ -4,10 +4,13 @@ services:
 
   data-server:
     image: "nsidc/snow-today-webapp-server:dev"
-    build: .
-    volumes:
-      - "./static/variables.json:/usr/share/nginx/html/variables.json:ro"
-      - "./static/colormaps.json:/usr/share/nginx/html/colormaps.json:ro"
+    build: "."
+    volumes: !reset
+      # TODO: This entry is copied from the main compose file, because if it's
+      # read-only, the subdirs will fail to mount!
+      - "${STORAGE_DIR:?STORAGE_DIR must be set}/live:/usr/share/nginx/html"
+      - "./static/variables.json:/usr/share/nginx/html/snow-surface-properties/variables.json:ro"
+      - "./static/colormaps.json:/usr/share/nginx/html/snow-surface-properties/colormaps.json:ro"
     restart: "on-failure"
 
 

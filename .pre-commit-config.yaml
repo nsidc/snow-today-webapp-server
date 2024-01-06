@@ -42,6 +42,8 @@ repos:
       - id: check-merge-conflict
       - id: check-symlinks
       - id: check-yaml
+        # Without --unsafe, !reset in compose YAML triggers error
+        args: ["--unsafe"]
       - id: debug-statements
       # - id: end-of-file-fixer
       # - id: mixed-line-ending
