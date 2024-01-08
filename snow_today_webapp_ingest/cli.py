@@ -35,14 +35,14 @@ tasks_arg = click.argument(
     help="Set logging level",
     show_default=True,
 )
-def cli(log_level: LogLevel) -> None:
+def cli(log_level: int) -> None:
     from snow_today_webapp_ingest.constants.paths import (
         STORAGE_DIR,
         storage_dir_default,
     )
 
     logger.remove()
-    logger.add(sys.stderr, level=int(log_level))
+    logger.add(sys.stderr, level=log_level)
     logger.level("INFO", color="<white>")
 
     if str(STORAGE_DIR) == storage_dir_default:
