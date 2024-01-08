@@ -42,7 +42,7 @@ def cli(log_level: LogLevel) -> None:
     )
 
     logger.remove()
-    logger.add(sys.stderr, level=log_level)
+    logger.add(sys.stderr, level=str(log_level))
     logger.level("INFO", color="<white>")
 
     if str(STORAGE_DIR) == storage_dir_default:
