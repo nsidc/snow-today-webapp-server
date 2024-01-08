@@ -7,7 +7,6 @@ CRITICAL: This code currently only expects and handles a single region of SWE da
 """
 import csv
 import io
-import json
 from pathlib import Path
 from typing import Literal, cast, get_args
 
@@ -75,9 +74,11 @@ def _normalize_metadata(metadata: str) -> SweMetadata:
     """Read the SWE CSV metadata header, which coincidentally is readable as YAML."""
     metadata_dict = yaml.safe_load(metadata)
 
-    return {
-        "lastDateWithData": metadata_dict["SnowToday Calculated SWE Summary Data"],
-    }
+    return SweMetadata.parse_obj(
+        {
+            "lastDateWithData": metadata_dict["SnowToday Calculated SWE Summary Data"],
+        }
+    )
 
 
 def ingest_swe_json(
@@ -102,23 +103,14 @@ def ingest_swe_json(
     )
 
     csv_dicts = _csv_as_list_of_dicts(csv_text)
-    normalized = _normalize_csv_dicts(csv_dicts)
 
-    output: SweJson = {
-        "metadata": _normalize_metadata(stripped_text),
-        "data": normalized,
-    }
+    output = SweJson(
+        metadata=_normalize_metadata(stripped_text),
+        data=_normalize_csv_dicts(csv_dicts),
+    )
 
     output_fp = to_path / 'swe.json'
     output_fp.parent.mkdir(parents=True, exist_ok=True)
-    output_fp.write_text(
-        json.dumps(
-            output,
-            # TODO: Why is `allow_nan` not the default (True)?
-            allow_nan=False,
-            # For un-serializable items (i.e. dates), convert with this `str`:
-            default=str,
-        )
-    )
+    output_fp.write_text(output.model_dump_json())
 
     logger.success(f'SWE JSON written: {output_fp}')

@@ -21,7 +21,7 @@ class SweDataPoint(TypedDict):
 
 
 class SweMetadata(BaseModel):
-    date: dt.date
+    lastDateWithData: dt.date
 
 
 SweJson = JsonMetadataAndData[SweMetadata, list[SweDataPoint]]
