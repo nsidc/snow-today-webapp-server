@@ -14,7 +14,7 @@ import yaml
 from loguru import logger
 
 import snow_today_webapp_ingest.util.field_transformers as xfr
-from snow_today_webapp_ingest.types_.swe import SweDataPoint, SweJson, SweMetadata
+from snow_today_webapp_ingest.types_.swe import SweDataPoint, SweMetadata, SwePayload
 from snow_today_webapp_ingest.util.csv import read_csv_and_strip_before_header
 from snow_today_webapp_ingest.util.error import UnexpectedInputError
 
@@ -53,7 +53,7 @@ def _normalize_csv_dict(csv_dict: CsvDict) -> SweDataPoint:
 
 def _normalize_csv_dicts(csv_dicts: list[CsvDict]) -> list[SweDataPoint]:
     normalized = [_normalize_csv_dict(d) for d in csv_dicts]
-    ordered = sorted(normalized, key=lambda d: d['name'])
+    ordered = sorted(normalized, key=lambda d: d.name)
     return ordered
 
 
@@ -74,10 +74,8 @@ def _normalize_metadata(metadata: str) -> SweMetadata:
     """Read the SWE CSV metadata header, which coincidentally is readable as YAML."""
     metadata_dict = yaml.safe_load(metadata)
 
-    return SweMetadata.parse_obj(
-        {
-            "lastDateWithData": metadata_dict["SnowToday Calculated SWE Summary Data"],
-        }
+    return SweMetadata(
+        last_date_with_data=metadata_dict["SnowToday Calculated SWE Summary Data"],
     )
 
 
@@ -104,7 +102,7 @@ def ingest_swe_json(
 
     csv_dicts = _csv_as_list_of_dicts(csv_text)
 
-    output = SweJson(
+    output = SwePayload(
         metadata=_normalize_metadata(stripped_text),
         data=_normalize_csv_dicts(csv_dicts),
     )

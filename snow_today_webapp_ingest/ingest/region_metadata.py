@@ -21,24 +21,26 @@ class SchemaMatcher(TypedDict):
     matcher: Pattern
 
 
-schemas_by_filename_regex: list[SchemaMatcher] = [
-    {
-        'schema': json.loads(REGIONS_INDEX_SCHEMA_FP.read_text()),
-        'matcher': re.compile(fr'^{INCOMING_REGIONS_ROOT_JSON.name}$'),
-    },
-    {
-        'schema': json.loads(SUB_REGION_COLLECTIONS_INDEX_SCHEMA_FP.read_text()),
-        'matcher': re.compile(r'^collections.json$'),
-    },
-    {
-        'schema': json.loads(SUB_REGIONS_INDEX_SCHEMA_FP.read_text()),
-        'matcher': re.compile(r'^\d+.json$'),
-    },
-    {
-        'schema': json.loads(SUB_REGIONS_HIERARCHY_SCHEMA_FP.read_text()),
-        'matcher': re.compile(r'^\d+_hierarchy.json$'),
-    },
-]
+# TODO: Extract -> schema.py
+def schemas_by_filename_regex() -> list[SchemaMatcher]:
+    return [
+        {
+            'schema': json.loads(REGIONS_INDEX_SCHEMA_FP.read_text()),
+            'matcher': re.compile(fr'^{INCOMING_REGIONS_ROOT_JSON.name}$'),
+        },
+        {
+            'schema': json.loads(SUB_REGION_COLLECTIONS_INDEX_SCHEMA_FP.read_text()),
+            'matcher': re.compile(r'^collections.json$'),
+        },
+        {
+            'schema': json.loads(SUB_REGIONS_INDEX_SCHEMA_FP.read_text()),
+            'matcher': re.compile(r'^\d+.json$'),
+        },
+        {
+            'schema': json.loads(SUB_REGIONS_HIERARCHY_SCHEMA_FP.read_text()),
+            'matcher': re.compile(r'^\d+_hierarchy.json$'),
+        },
+    ]
 
 
 def ingest_region_metadata(
@@ -51,7 +53,7 @@ def ingest_region_metadata(
     for file in from_path.glob("*"):
         # Validate the JSON with the appropriate schema
         try:
-            for schema_matcher in schemas_by_filename_regex:
+            for schema_matcher in schemas_by_filename_regex():
                 if schema_matcher["matcher"].match(file.name):
                     logger.debug(f"Validating '{file.name}'...")
                     file_json = json.loads(file.read_text())

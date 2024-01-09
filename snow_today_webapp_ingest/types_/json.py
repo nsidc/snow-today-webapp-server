@@ -1,6 +1,6 @@
 from typing import Generic, TypeVar
 
-from pydantic import BaseModel
+from snow_today_webapp_ingest.types_.base import BaseModel
 
 MetadataT = TypeVar("MetadataT")
 DataT = TypeVar("DataT")

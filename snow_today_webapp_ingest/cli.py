@@ -3,6 +3,7 @@
 NOTE: imports are done in functions to avoid needing to evaluate code within those
 imports when doing `--help`.
 """
+import json
 import sys
 from datetime import date
 from pathlib import Path
@@ -16,6 +17,11 @@ from loguru import logger
 from snow_today_webapp_ingest.ingest.tasks import (
     ssp_ingest_tasks,
     swe_ingest_tasks,
+)
+from snow_today_webapp_ingest.schema import (
+    SCHEMAS,
+    get_jsonschema,
+    validate_against_schema,
 )
 from snow_today_webapp_ingest.types_.data_sources import DataSource
 
@@ -52,10 +58,24 @@ def cli(log_level: int) -> None:
     pass
 
 
+@cli.command()
+@click.argument("schema", type=click.Choice(SCHEMAS))
+def show_schema(schema) -> None:
+    """Show SCHEMA in jsonschema format."""
+    print(json.dumps(get_jsonschema(schema), indent=2))
+
+
+@cli.command()
+@click.option("schema_name", "--schema", type=click.Choice(SCHEMAS))
+@click.argument("file", type=click.Path(exists=True))
+def validate(*, schema_name: str, file: str) -> None:
+    validate_against_schema(Path(file), schema_name=schema_name)
+
+
 # TODO: Add validate command to validate an output directory.
 
 
-@cli.group(help="Ingest data payload to update the webapp")
+@cli.group()
 @click.option(
     "--dry-run",
     is_flag=True,
@@ -66,6 +86,7 @@ def cli(log_level: int) -> None:
 )
 @click.pass_context
 def ingest(ctx, dry_run: bool) -> None:
+    """Ingest data payload to update the webapp."""
     if dry_run:
         logger.warning("Starting dry-run; output will remain in WIP directory!")
 

@@ -1,12 +1,10 @@
 import datetime as dt
 
-from pydantic import BaseModel
-from typing_extensions import TypedDict
-
+from snow_today_webapp_ingest.types_.base import BaseModel
 from snow_today_webapp_ingest.types_.json import JsonMetadataAndData
 
 
-class SweDataPoint(TypedDict):
+class SweDataPoint(BaseModel):
     """A SWE station's data structure in the JSON output."""
 
     name: str
@@ -21,7 +19,9 @@ class SweDataPoint(TypedDict):
 
 
 class SweMetadata(BaseModel):
-    lastDateWithData: dt.date
+    last_date_with_data: dt.date
 
 
-SweJson = JsonMetadataAndData[SweMetadata, list[SweDataPoint]]
+# TODO: Better name. Data isn't appropriate, because metadata also included. But we're
+# using the term "Data" to refer to e.g. SWE, Plots, COGs, ...
+SwePayload = JsonMetadataAndData[SweMetadata, list[SweDataPoint]]
