@@ -2,31 +2,26 @@
   "3701": {
     "longName": "Alberta",
     "shortName": "CA-AB",
-    "subRegionCollectionId": "adm1",
     "shapeRelativePath": "regions/shapes/37/3701.geojson"
   },
   "24989": {
     "longName": "Catchment HYD78268",
     "shortName": "HYD78268",
-    "subRegionCollectionId": "hydro5",
     "shapeRelativePath": "regions/shapes/24/24989.geojson"
   },
   "17376": {
     "longName": "Catchment HYD7821",
     "shortName": "HYD7821",
-    "subRegionCollectionId": "hydro4",
     "shapeRelativePath": "regions/shapes/17/17376.geojson"
   },
   "17381": {
     "longName": "Catchment HYD7826",
     "shortName": "HYD7826",
-    "subRegionCollectionId": "hydro4",
     "shapeRelativePath": "regions/shapes/17/17381.geojson"
   },
   "15269": {
     "longName": "Catchment HYD782",
     "shortName": "HYD782",
-    "subRegionCollectionId": "hydro3",
     "shapeRelativePath": "regions/shapes/15/15269.geojson"
   }
 }

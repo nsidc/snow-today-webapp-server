@@ -10,22 +10,22 @@
     "historicSource": "JPL modscag/drfs",
     "variables": {
       "51": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [65, 85],
         "geotiffRelativePath": "regions/cogs/26100_51.tif"
       },
       "45": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [1, 91],
         "geotiffRelativePath": "regions/cogs/26100_45.tif"
       },
       "40": {
-        "default": "true",
+        "default": true,
         "dataValueRange": [1, 100],
         "geotiffRelativePath": "regions/cogs/26100_40.tif"
       },
       "44": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [0, 100],
         "geotiffRelativePath": "regions/cogs/26100_44.tif"
       }
@@ -45,22 +45,22 @@
     "historicSource": "JPL modscag/drfs",
     "variables": {
       "51": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [65, 85],
         "geotiffRelativePath": "regions/cogs/26004_51.tif"
       },
       "45": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [1, 91],
         "geotiffRelativePath": "regions/cogs/26004_45.tif"
       },
       "40": {
-        "default": "true",
+        "default": true,
         "dataValueRange": [1, 100],
         "geotiffRelativePath": "regions/cogs/26004_40.tif"
       },
       "44": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [0, 100],
         "geotiffRelativePath": "regions/cogs/26004_44.tif"
       }
@@ -80,22 +80,22 @@
     "historicSource": "JPL modscag/drfs",
     "variables": {
       "51": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [65, 85],
         "geotiffRelativePath": "regions/cogs/26101_51.tif"
       },
       "45": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [1, 91],
         "geotiffRelativePath": "regions/cogs/26101_45.tif"
       },
       "40": {
-        "default": "true",
+        "default": true,
         "dataValueRange": [1, 100],
         "geotiffRelativePath": "regions/cogs/26101_40.tif"
       },
       "44": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [0, 100],
         "geotiffRelativePath": "regions/cogs/26101_44.tif"
       }
@@ -115,22 +115,22 @@
     "historicSource": "JPL modscag/drfs",
     "variables": {
       "51": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [65, 85],
         "geotiffRelativePath": "regions/cogs/26002_51.tif"
       },
       "45": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [1, 91],
         "geotiffRelativePath": "regions/cogs/26002_45.tif"
       },
       "40": {
-        "default": "true",
+        "default": true,
         "dataValueRange": [1, 100],
         "geotiffRelativePath": "regions/cogs/26002_40.tif"
       },
       "44": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [0, 100],
         "geotiffRelativePath": "regions/cogs/26002_44.tif"
       }
@@ -150,22 +150,22 @@
     "historicSource": "JPL modscag/drfs",
     "variables": {
       "51": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [65, 85],
         "geotiffRelativePath": "regions/cogs/26000_51.tif"
       },
       "45": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [1, 91],
         "geotiffRelativePath": "regions/cogs/26000_45.tif"
       },
       "40": {
-        "default": "true",
+        "default": true,
         "dataValueRange": [1, 100],
         "geotiffRelativePath": "regions/cogs/26000_40.tif"
       },
       "44": {
-        "default": "false",
+        "default": false,
         "dataValueRange": [0, 100],
         "geotiffRelativePath": "regions/cogs/26000_44.tif"
       }

@@ -2,43 +2,36 @@
   "11725": {
     "longName": "California",
     "shortName": "US-CA",
-    "subRegionCollectionId": "adm1",
     "shapeRelativePath": "regions/shapes/11/11725.geojson"
   },
   "11726": {
     "longName": "Colorado",
     "shortName": "US-CO",
-    "subRegionCollectionId": "adm1",
     "shapeRelativePath": "regions/shapes/11/11726.geojson"
   },
   "12516": {
     "longName": "Pacific Northwest",
     "shortName": "HUC17",
-    "subRegionCollectionId": "huc2",
     "shapeRelativePath": "regions/shapes/12/12516.geojson"
   },
   "12517": {
     "longName": "California",
     "shortName": "HUC18",
-    "subRegionCollectionId": "huc2",
     "shapeRelativePath": "regions/shapes/12/12517.geojson"
   },
   "12807": {
     "longName": "Lower Columbia",
     "shortName": "HUC1708",
-    "subRegionCollectionId": "huc4",
     "shapeRelativePath": "regions/shapes/12/12807.geojson"
   },
   "12809": {
     "longName": "Oregon-Washington Coastal",
     "shortName": "HUC1710",
-    "subRegionCollectionId": "huc4",
     "shapeRelativePath": "regions/shapes/12/12809.geojson"
   },
   "12815": {
     "longName": "San Joaquin",
     "shortName": "HUC1804",
-    "subRegionCollectionId": "huc4",
     "shapeRelativePath": "regions/shapes/12/12815.geojson"
   }
 }
