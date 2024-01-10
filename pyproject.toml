@@ -59,6 +59,7 @@ select = [
   "B",    # flake8-bugbear
   "A",    # flake8-builtins
   "T10",  # flake8-debugger
+  "TID",  # flake8-tidy-imports
   "RUF",  # ruff-specific rules
 ]
 
@@ -70,6 +71,13 @@ ignore = [
   # RUF010: !a, !r, !s are too magical for me.
   "D1", "D203", "D213", "E731", "RUF010",
 ]
+
+[tool.ruff.per-file-ignores]
+"snow_today_webapp_ingest/types_/base.py" = ["TID251"]
+
+[tool.ruff.flake8-tidy-imports.banned-api]
+"pydantic.BaseModel".msg = "Use `snow_today_webapp_ingest.types_.base.BaseModel` instead."
+"pydantic.RootModel".msg = "Use `snow_today_webapp_ingest.types_.base.RootModel` instead."
 
 [tool.ruff.isort]
 known-first-party = ["snow_today_webapp_ingest"]

@@ -2,12 +2,9 @@ from pydantic import BaseModel, ConfigDict, Extra, RootModel
 from pydantic.alias_generators import to_camel
 
 
-# Redefining BaseModel was not a clear choice:
-#   - It won't be obvious at a glance if a class inherits from pydantic.BaseModel vs
-#     this one (as opposed to calling it e.g. SnowTodayBaseModel)
-#   - But it also won't be possible to import pydantic.BaseModel from this module, which
-#     I did accidentally and severely confused myself :)
-# Is there a better way to prevent re-exports, perhaps with a checking tool?
+# NOTE: this module is the only one allowed (by Ruff) to import pydantic.BaseModel or
+#       pydantic.RootModel. That protects us from accidental use without our global
+#       configs.
 class BaseModel(BaseModel):  # type:ignore[no-redef]
     model_config = ConfigDict(
         alias_generator=to_camel,
