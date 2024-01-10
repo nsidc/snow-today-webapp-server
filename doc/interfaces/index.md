@@ -16,6 +16,14 @@ The terms **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **MAY**, and **OPT
 are defined by [RFC2119](https://www.ietf.org/rfc/rfc2119.txt).
 
 
+### Domain terminology
+
+* **Water year**: An annual period that corresponds with regional precipitation patterns
+  rather than the start and end of the calendar year. Each Super Region's water year can
+  be different (e.g. the Western US water year starts on October 1), and this info is
+  passed by the supercomputer as metadata.
+
+
 ### Technical components
 
 * **webapp**: Because the webapp has a client and server component, avoid the confusing
@@ -49,12 +57,12 @@ are defined by [RFC2119](https://www.ietf.org/rfc/rfc2119.txt).
           percentile)
 
 
-### Misc.
+### Storage locations
 
-* **Incoming directory**: Where the supercomputer pushes files. Notated as
+* **Incoming directory**: Where external data providers push files. Notated as
   `{incomingDir}` in the spec, this directory is usually
-  `incoming/snow-surface-properties`, with the exception of SWE point data which goes to
-  `incoming/snow-water-equivalent` directory instead.
+  `incoming/snow-surface-properties/`, with the exception of SWE point data which goes to
+  `incoming/snow-water-equivalent/` directory instead.
 
   :::{.callout-note}
   On NSIDC infrastructure there are separate incoming directories available for testing
@@ -63,13 +71,8 @@ are defined by [RFC2119](https://www.ietf.org/rfc/rfc2119.txt).
 
 * **Live directory**: Where the ingest application writes files for the webapp to
   access. Notated as `{liveDir}` in the spec, this directory is usually
-  `live/snow-surface-properties`, with the exception of SWE point data which goes to
-  `live/snow-water-equivalent` directory instead.
-
-* **Water year**: An annual period that corresponds with regional precipitation patterns
-  rather than the start and end of the calendar year. Each Super Region's water year can
-  be different (e.g. the Western US water year starts on October 1), and this info is
-  passed by the supercomputer as metadata.
+  `live/snow-surface-properties/`, with the exception of SWE point data which goes to
+  `live/snow-water-equivalent/` directory instead.
 
 
 ## Specifications
