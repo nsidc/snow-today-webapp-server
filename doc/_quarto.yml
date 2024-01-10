@@ -6,6 +6,7 @@ website:
   title: "Snow Today Webapp Server Docs"
   site-url: "https://nsidc.github.io/snow-today-webapp-server"
   repo-url: "https://github.com/nsidc/snow-today-webapp-server"
+  repo-subdir: "doc"
   repo-actions:
     - "edit"
     - "source"
