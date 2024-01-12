@@ -8,12 +8,6 @@ repos:
   - repo: "https://github.com/python-jsonschema/check-jsonschema"
     rev: "0.27.3"
     hooks:
-      - id: "check-jsonschema"
-        files: "static/variables.json"
-        args: ["--schemafile", "schema/variablesIndex.json"]
-      - id: "check-jsonschema"
-        files: "static/colormaps.json"
-        args: ["--schemafile", "schema/colormapsIndex.json"]
       - id: "check-github-workflows"
       # TODO: Re-enable. The checker and the docs say `build.tools` is
       #       required, but we're doing a fully custom build and don't actually

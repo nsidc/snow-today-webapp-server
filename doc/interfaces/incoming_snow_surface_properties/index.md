@@ -13,7 +13,7 @@ listing:
   sort-ui: false
   filter-ui: false
   contents:
-    - "*.md"
+    - "."
   fields:
     - "title"
     - "description"

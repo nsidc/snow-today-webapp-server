@@ -52,7 +52,11 @@ display.
 
 <details>
 <summary>Schema</summary>
-```{.json include="../schema/regionsIndex.json"}
+```{python}
+#| echo: false
+from snow_today_webapp_ingest.schema import display_jsonschema_markdown
+
+display_jsonschema_markdown("superRegionsIndex")
 ```
 </details>
 
@@ -78,7 +82,9 @@ itself).
 
 <details>
 <summary>Schema</summary>
-```{.json include="../schema/subRegionsIndex.json"}
+```{python}
+#| echo: false
+display_jsonschema_markdown("subRegionsIndex")
 ```
 </details>
 
@@ -101,7 +107,9 @@ A collection containing Sub Regions.
 
 <details>
 <summary>Schema</summary>
-```{.json include="../schema/subRegionCollectionsIndex.json"}
+```{python}
+#| echo: false
+display_jsonschema_markdown("subRegionCollectionsIndex")
 ```
 </details>
 
@@ -132,7 +140,9 @@ The hierarchy can be arbitrarily deep.
 
 <details>
 <summary>Schema</summary>
-```{.json include="../schema/subRegionsHierarchy.json"}
+```{python}
+#| echo: false
+display_jsonschema_markdown("subRegionsHierarchy")
 ```
 </details>
 
@@ -158,7 +168,7 @@ GeoJSON files representing the shapes of regions.
 - Region Shapes **MUST** be provided for each defined Super Region and Sub Region.
 
 <details>
-<summary>Example</summary>
+<summary>Example (truncated for readability)</summary>
 ```{.json filename="regions/shapes/26/26000.geojson" include="example_data/regions/shapes/26/26000.geojson"}
 ```
 </details>

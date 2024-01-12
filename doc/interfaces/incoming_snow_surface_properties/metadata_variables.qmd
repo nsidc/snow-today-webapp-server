@@ -31,7 +31,11 @@ Perhaps the NoData mask will have its own JSON config file.
 
 <details>
 <summary>Schema</summary>
-```{.json include="../schema/variablesIndex.json"}
+```{python}
+#| echo: false
+from snow_today_webapp_ingest.schema import display_jsonschema_markdown
+
+display_jsonschema_markdown("variablesIndex")
 ```
 </details>
 

@@ -29,6 +29,16 @@ differences between the supercomputer interface and this one are:
 ## SWE transformation
 
 <details>
+<summary>Schema</summary>
+```{python}
+#| echo: false
+from snow_today_webapp_ingest.schema import display_jsonschema_markdown
+
+display_jsonschema_markdown("swePointsJson")
+```
+</details>
+
+<details>
 <summary>Example</summary>
 ```{.json filename="snow-water-equivalent/points/swe.json (example)" include="example_data/live/snow-water-equivalent/points/swe.json"}
 ```

@@ -1,5 +1,24 @@
+[project]
+name = "snow_today_webapp_ingest"
+description = "Ingest tool for data backing the Snow Today viewer webapp"
+readme = "README.md"
+# TODO: Version bumping
+version = "0.0.0"
+
+[project.urls]
+repository = "https://github.com/nsidc/snow-today-webapp-server"
+
+[project.scripts]
+snow-today-webapp-ingest = "snow_today_webapp_ingest.cli:cli"
+
+
+[tool.setuptools.packages.find]
+include = ["snow_today_webapp_ingest"]
+namespaces = false
+
+
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.12"
 incremental = true
 # follow_imports = silent
 show_error_codes = true
@@ -38,7 +57,7 @@ warn_required_dynamic_aliases = true
 
 
 [tool.black]
-target-version = ['py310']
+target-version = ['py312']
 skip-string-normalization = true
 
 

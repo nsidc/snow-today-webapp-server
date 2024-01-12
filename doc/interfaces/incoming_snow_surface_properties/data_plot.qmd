@@ -17,7 +17,11 @@ provider: "Supercomputer"
 
 <details>
 <summary>Schema</summary>
-```{.json include="../schema/plotData.json"}
+```{python}
+#| echo: false
+from snow_today_webapp_ingest.schema import display_jsonschema_markdown
+
+display_jsonschema_markdown("plotsJson")
 ```
 </details>
 

@@ -24,4 +24,5 @@ class SweMetadata(BaseModel):
 
 # TODO: Better name. Data isn't appropriate, because metadata also included. But we're
 # using the term "Data" to refer to e.g. SWE, Plots, COGs, ...
+# TODO: Description
 SwePayload = JsonMetadataAndData[SweMetadata, list[SweDataPoint]]

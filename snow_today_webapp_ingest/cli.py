@@ -3,8 +3,6 @@
 NOTE: imports are done in functions to avoid needing to evaluate code within those
 imports when doing `--help`.
 """
-import json
-import sys
 from datetime import date
 from pathlib import Path
 from tempfile import mkdtemp
@@ -13,15 +11,12 @@ import click
 from click_loglevel import LogLevel
 from loguru import logger
 
+from snow_today_webapp_ingest.data_classes import VALIDATABLE_OUTPUT_DATA_CLASS_NAMES
+
 # These aren't local imports because they're needed for a click decorator.
 from snow_today_webapp_ingest.ingest.tasks import (
     ssp_ingest_tasks,
     swe_ingest_tasks,
-)
-from snow_today_webapp_ingest.schema import (
-    SCHEMAS,
-    get_jsonschema,
-    validate_against_schema,
 )
 from snow_today_webapp_ingest.types_.data_sources import DataSource
 
@@ -46,10 +41,9 @@ def cli(log_level: int) -> None:
         STORAGE_DIR,
         storage_dir_default,
     )
+    from snow_today_webapp_ingest.logging_ import setup_logger
 
-    logger.remove()
-    logger.add(sys.stderr, level=log_level)
-    logger.level("INFO", color="<white>")
+    setup_logger(logger, log_level=log_level)
 
     if str(STORAGE_DIR) == storage_dir_default:
         logger.warning(
@@ -59,17 +53,29 @@ def cli(log_level: int) -> None:
 
 
 @cli.command()
-@click.argument("schema", type=click.Choice(SCHEMAS))
+@click.argument("schema", type=click.Choice(VALIDATABLE_OUTPUT_DATA_CLASS_NAMES))
 def show_schema(schema) -> None:
     """Show SCHEMA in jsonschema format."""
-    print(json.dumps(get_jsonschema(schema), indent=2))
+    from snow_today_webapp_ingest.schema import get_jsonschema_str
+
+    print(get_jsonschema_str(schema))
 
 
 @cli.command()
-@click.option("schema_name", "--schema", type=click.Choice(SCHEMAS))
+# TODO: The idea of not taking a schema option isn't very sensible IMO; we can't always
+#       rely on the filename to know what schema to use. We should get rid of it and
+#       instead allow ingest functions to accept a callable that returns a path or
+#       paths, or accept a regex as an optional kwarg.
 @click.argument("file", type=click.Path(exists=True))
-def validate(*, schema_name: str, file: str) -> None:
-    validate_against_schema(Path(file), schema_name=schema_name)
+def validate_json(*, file: str) -> None:
+    """Validate FILE (JSON) against given schema.
+
+    TODO: Pass just filename and use pattern matching to detect the schema?
+    """
+    from snow_today_webapp_ingest.schema import validate_against_schema
+
+    validate_against_schema(Path(file))
+    logger.success("JSON is valid!")
 
 
 # TODO: Add validate command to validate an output directory.
@@ -158,7 +164,7 @@ def _ingest(
 
     tmpdir = Path(mkdtemp(dir=INGEST_WIP_DIR, prefix=f"{date.today()}_"))
     for ingest_task in tasks_to_run.values():
-        ingest_task.run(ingest_tmpdir=tmpdir)
+        ingest_task.ingest(ingest_tmpdir=tmpdir)
 
     if dry_run:
         logger.success(f"🎉 Ingested to '{tmpdir}'")

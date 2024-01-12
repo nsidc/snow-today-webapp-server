@@ -5,7 +5,7 @@ from typing import Literal
 from pydantic import Field
 
 from snow_today_webapp_ingest.types_.base import BaseModel, RootModel
-from snow_today_webapp_ingest.types_.misc import NumericIdentifier
+from snow_today_webapp_ingest.types_.misc import NumericIdentifier, StringIdentifier
 
 ###############################################################################
 # Types for region input things (e.g. magic strings in shapefiles)
@@ -18,26 +18,44 @@ ShapefileCategory = Literal['HUC2', 'HUC4', 'State']
 ###############################################################################
 # Types for region output things (e.g. magic strings, the JSON region index)
 ###############################################################################
+VariableIdentifier = NumericIdentifier
+RegionIdentifier = NumericIdentifier
+SubRegionCollectionIdentifier = StringIdentifier
 
 
-class Region(BaseModel):
-    """Common fields for regions and super regions."""
+# NOTE: SuperRegion inherits from this class, careful about changes :)
+class SubRegion(BaseModel):
+    """A region that is not a super region.
+
+    Must be a member of a SubRegionCollection.
+    """
 
     long_name: str
     short_name: str
     shape_relative_path: Path
 
 
-class SubRegion(Region):
-    """A region that is not a super region.
+class SubRegionsIndex(RootModel):
+    """An index, with numeric keys, of sub-region definitions."""
 
-    Must be a member of a SubRegionCollection.
+    root: dict[RegionIdentifier, SubRegion]
+
+
+class SubRegionCollection(BaseModel):
+    """A collection of sub-regions.
+
+    This is only a definition of a collection, and does not include its relationships.
+    See SubRegionsHierarchy for relationships.
     """
 
-    pass
+    long_name: str
+    short_name: str
 
 
-SubRegionsIndex = RootModel[dict[NumericIdentifier, SubRegion]]
+class SubRegionCollectionsIndex(RootModel):
+    """An index, with numeric keys, of sub-region collection definitions."""
+
+    root: dict[SubRegionCollectionIdentifier, SubRegionCollection]
 
 
 class SuperRegionVariable(BaseModel):
@@ -55,7 +73,7 @@ class SuperRegionVariable(BaseModel):
     geotiff_relative_path: Path
 
 
-class SuperRegion(Region):
+class SuperRegion(SubRegion):
     """A large region representing a top-level choice in the web application.
 
     Sub-region choices will be presented depending on the super region choice.
@@ -82,17 +100,12 @@ class SuperRegion(Region):
     historic_source: str = Field(description="The source of the climatology")
     sub_regions_relative_path: Path
     sub_regions_hierarchy_relative_path: Path
-    variables: dict[NumericIdentifier, SuperRegionVariable] = Field(
+    variables: dict[VariableIdentifier, SuperRegionVariable] = Field(
         description="The variables available for this region",
     )
 
 
-# Using the type alias method of defining the root model gives an ugly title in the
-# jsonschema output. The docstring also auto-populates "description".
-#    Ugly: RootModel[dict[Annotated[str, StringConstraints], SuperRegion]]
-#    Pretty: SuperRegionsIndex
-#    https://docs.pydantic.dev/2.3/usage/model_config/#change-behaviour-globally
 class SuperRegionsIndex(RootModel):
     """An index of Super Regions by numeric identifier."""
 
-    root: dict[NumericIdentifier, SuperRegion]
+    root: dict[RegionIdentifier, SuperRegion]

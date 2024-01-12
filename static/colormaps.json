@@ -3,7 +3,7 @@
     "name": "Raster not-processed area",
     "colors": [
       [0, 0, 0, 0],
-      [208, 207, 212]
+      [208, 207, 212, 255]
     ]
   },
   "1": {

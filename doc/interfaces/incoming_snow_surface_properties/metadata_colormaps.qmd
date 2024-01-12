@@ -15,7 +15,11 @@ provider: "Version control"
 
 <details>
 <summary>Schema</summary>
-```{.json include="../schema/colormapsIndex.json"}
+```{python}
+#| echo: false
+from snow_today_webapp_ingest.schema import display_jsonschema_markdown
+
+display_jsonschema_markdown("colormapsIndex")
 ```
 </details>
 

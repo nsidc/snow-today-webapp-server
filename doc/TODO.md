@@ -25,6 +25,7 @@
       since much of the JSON is ingested at runtime.
     - [ ] Make a unit test that validates data files that are stored in the repo.
     - [x] For JSON that isn't ingested at run-time, use pre-commit to validate.
+- [ ] Automatically validate example data in documentation during CI
 
 
 ### Supercomputer interface specification

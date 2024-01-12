@@ -7,7 +7,7 @@ platforms:
   # Temporarily disabled osx due to weird JSON parsing errors when enabled.
   # - osx-64
 dependencies:
-  - python ~=3.10.5
+  - python ~=3.12.1
 
 
   ###########################################
@@ -18,9 +18,10 @@ dependencies:
   - click-loglevel ~=0.5.0
   # For data models:
   - pydantic ~=2.5
+  - annotated-types ~=0.6.0
   # For making Cloud-Optimized GeoTIFFs (pinned more strictly because GDAL is
   # brittle):
-  - gdal ~=3.5.1
+  - gdal ~=3.8.3
   # For making legends:
   - matplotlib-base ~=3.8
   # For comparing JSON changes:
@@ -48,3 +49,7 @@ dependencies:
 
   # TODO:
   # - pytest ~=7.1
+  
+  # docs:
+  - quarto
+  - jupyter
