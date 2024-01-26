@@ -29,21 +29,18 @@ a future version of the spec.
 Perhaps the NoData mask will have its own JSON config file.
 :::
 
-<details>
-<summary>Schema</summary>
 ```{python}
 #| echo: false
-from snow_today_webapp_ingest.schema import display_jsonschema_markdown
+from snow_today_webapp_ingest.schema import display_jsonschema_and_example_markdown
+from snow_today_webapp_ingest.types_.variables import VariablesIndex 
+import os
 
-display_jsonschema_markdown("variablesIndex")
+display_jsonschema_and_example_markdown(
+  example_fp="../static/variables.json",
+  model=VariablesIndex,
+  base_dir=os.path.abspath(''),
+)
 ```
-</details>
-
-<details>
-<summary>File contents</summary>
-```{.json filename="variables.json" include="../static/variables.json"}
-```
-</details>
 
 
 ## Gridded data variables

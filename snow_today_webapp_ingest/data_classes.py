@@ -1,18 +1,20 @@
 """Classes of data that this application deals with.
 
-NOT to be confused with dataclasses (no underscore).
+NOT to be confused with dataclasses (no underscore). I'm sorry.
 
 TODO: Better name! "Data types" isn't much better. "Data kinds"?
 """
 import re
 from dataclasses import dataclass
+from functools import partial
 from pathlib import Path
-from typing import Any, Final, Literal, ParamSpec, Protocol, TypeVar
+from typing import Final, Literal, ParamSpec, Protocol, TypeVar
 
 from loguru import logger
 
 from snow_today_webapp_ingest.constants.paths import (
     INCOMING_PLOT_JSON_DIR,
+    INCOMING_REGIONS_COLLECTIONS_JSON,
     INCOMING_REGIONS_DIR,
     INCOMING_REGIONS_ROOT_JSON,
     INCOMING_SHAPES_DIR,
@@ -30,12 +32,11 @@ from snow_today_webapp_ingest.constants.paths import (
 from snow_today_webapp_ingest.ingest.cogs import ingest_cogs
 from snow_today_webapp_ingest.ingest.copy_files import copy_files
 from snow_today_webapp_ingest.ingest.legends import generate_legends
-from snow_today_webapp_ingest.ingest.plot_json import ingest_plot_json
 from snow_today_webapp_ingest.ingest.swe_json import ingest_swe_json
 from snow_today_webapp_ingest.ingest.validate_and_copy_json import (
     validate_and_copy_json,
+    validate_and_copy_json_matching_pattern,
 )
-from snow_today_webapp_ingest.types_.base import BaseModel, RootModel
 from snow_today_webapp_ingest.types_.colormaps import ColormapsIndex
 from snow_today_webapp_ingest.types_.data_sources import DataSource
 from snow_today_webapp_ingest.types_.plot import PlotPayload
@@ -47,8 +48,8 @@ from snow_today_webapp_ingest.types_.regions import (
 from snow_today_webapp_ingest.types_.subregion_hierarchy import (
     SubRegionsHierarchy,
 )
-from snow_today_webapp_ingest.types_.swe import SwePayload
 from snow_today_webapp_ingest.types_.variables import VariablesIndex
+from snow_today_webapp_ingest.util.misc import partition_dict_on_key
 
 P = ParamSpec("P")
 FromPath = TypeVar("FromPath", Path, dict[str, Path], contravariant=True)
@@ -77,54 +78,45 @@ class OutputDataClassIngestTask:
     # Source to ingest from; if multiple, pass by name in a dict.
     from_path: Path | dict[str, Path]
 
-    # Data will be ingested to a tempdir. Which subdir _within that tmpdir_ should this
-    # task write to?
-    to_relative_path: str
+    # Data will be ingested to a tempdir. This attribute defines which subdir _within
+    # that tmpdir_ this class of data will be written.
+    to_relative_path: Path | str
 
     # The function that is executed to ingest data.
     ingest_func: IngestFunc
 
-    # Extra kwargs to the ingest func (TODO: Are creating partial functions a better
-    # solution, less complex? :shrug:)
-    ingest_kwargs: dict[str, Any] | None = None
-
 
 @dataclass
-class OutputDataClassValidationMetadata:
-    """Information needed to validate a JSON output data file."""
+class OutputDataClass:
+    """A class, or type, of output data.
 
-    model: type[BaseModel] | type[RootModel]
-    filename_pattern: re.Pattern
+    Often a single class of output data consists of a single file, but some classes
+    consist of many files following a naming pattern.
 
+    Most classes of data are received from an external source and copied in to place,
+    but some are stored in the version control repository alongside this code, and some
+    are generated or derived.
 
-@dataclass
-class OutputDataClassMetadata:
+    Most classes of data can be validated, but that's not appropriate for all.
+    """
+
     description: str
     data_source: DataSource
     ingest_task: OutputDataClassIngestTask
-    # TODO: Express this as a type so the type system can narrow on whether a class of
-    #       data is validatable?
-    validation_metadata: OutputDataClassValidationMetadata | None = None
 
-    def ingest(
-        self,
-        *,
-        ingest_tmpdir: Path,
-    ) -> None:
-        ingest_kwargs: dict = self.ingest_task.ingest_kwargs or {}
+    def ingest(self, *, ingest_tmpdir: Path) -> None:
+        """Run the ingest task associated with this data class.
 
+        Expects to be passed a temporary directory in which to write outputs.
+        """
         logger.info(f"🏃🏃🏃 Executing task - {self.description} 🏃🏃🏃")
-        self.ingest_func(
+        self.ingest_task.ingest_func(
             from_path=self.ingest_task.from_path,
             to_path=ingest_tmpdir / self.ingest_task.to_relative_path,
-            **ingest_kwargs,
         )
-        # TODO: Validation of output using self.model? Pass self.model in to
-        # self.ingest_func? Run self._validate() if validation_metadata present?
         logger.success(f"✅✅✅ Completed task - {self.description} ✅✅✅")
 
 
-_ValidationMetadata = OutputDataClassValidationMetadata
 _IngestTask = OutputDataClassIngestTask
 OutputDataClassName = Literal[
     "colormapsIndex",
@@ -133,179 +125,176 @@ OutputDataClassName = Literal[
     "subRegionsIndex",
     "subRegionCollectionsIndex",
     "subRegionsHierarchy",
-    "swePoints",
-    "plots",
+    "swePointsJson",
+    "plotsJson",
     "regionShapes",
     "cogs",
     "legends",
 ]
-OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClassMetadata]] = {
+OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClass]] = {
     # NOTE: We ingest some static data every day, like colormaps and variables, because
     # we want the ingests to be idempotent. The previous model wrote dynamic data next
     # to static data in the final output location, and didn't account for the
     # possibility of static data getting clobbered.
-    "colormapsIndex": OutputDataClassMetadata(
+    "colormapsIndex": OutputDataClass(
         description="Ingest metadata: version-controlled colormaps JSON",
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
-            ingest_func=validate_and_copy_json,
+            ingest_func=partial(
+                validate_and_copy_json,
+                model=ColormapsIndex,
+            ),
             from_path=REPO_STATIC_COLORMAPS_INDEX_FP,
             to_relative_path=REPO_STATIC_COLORMAPS_INDEX_FP.name,
         ),
-        validation_metadata=_ValidationMetadata(
-            model=ColormapsIndex,
-            filename_pattern=re.compile(r'^colormaps.json$'),
-        ),
     ),
-    "variablesIndex": OutputDataClassMetadata(
+    "variablesIndex": OutputDataClass(
         description="Ingest metadata: version-controlled variable JSON",
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
             # TODO: Filter to only the variables that we care about (based on what are
             #       shown in `regions/root.json`). This means passing in additional
             #       `from_path`s and using a more complex `ingest_func`.
-            ingest_func=validate_and_copy_json,
+            ingest_func=partial(
+                validate_and_copy_json,
+                model=VariablesIndex,
+            ),
             from_path=REPO_STATIC_VARIABLES_INDEX_FP,
             to_relative_path=REPO_STATIC_VARIABLES_INDEX_FP.name,
         ),
-        validation_metadata=_ValidationMetadata(
-            model=VariablesIndex,
-            filename_pattern=re.compile(r'^variables.json$'),
-        ),
     ),
-    "superRegionsIndex": OutputDataClassMetadata(
+    "superRegionsIndex": OutputDataClass(
         description="Ingest metadata: index of super-regions JSON",
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
-            # TODO: ingest_func... paths wrong...
-            ingest_func=...,
-            from_path=INCOMING_REGIONS_DIR,
-            to_relative_path=OUTPUT_REGIONS_SUBDIR,
-        ),
-        validation_metadata=_ValidationMetadata(
-            model=SuperRegionsIndex,
-            filename_pattern=re.compile(fr'^{INCOMING_REGIONS_ROOT_JSON.name}$'),
+            ingest_func=partial(
+                validate_and_copy_json,
+                model=SuperRegionsIndex,
+            ),
+            from_path=INCOMING_REGIONS_ROOT_JSON,
+            to_relative_path=OUTPUT_REGIONS_SUBDIR / INCOMING_REGIONS_ROOT_JSON.name,
         ),
     ),
-    "subRegionsIndex": OutputDataClassMetadata(
-        description="Ingest metadata: index of sub-regions within a super-region",
+    "subRegionsIndex": OutputDataClass(
+        # TODO: Mention JSON format in description
+        description="Ingest metadata: indexes of sub-regions within each super-region",
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
-            # TODO: ingest_func... paths wrong...
-            ingest_func=...,
+            ingest_func=partial(
+                validate_and_copy_json_matching_pattern,
+                model=SubRegionsIndex,
+                pattern=re.compile(r'^\d+.json$'),
+            ),
             from_path=INCOMING_REGIONS_DIR,
             to_relative_path=OUTPUT_REGIONS_SUBDIR,
         ),
-        validation_metadata=_ValidationMetadata(
-            model=SubRegionsIndex,
-            filename_pattern=re.compile(r'^\d+.json$'),
-        ),
     ),
-    "subRegionCollectionsIndex": OutputDataClassMetadata(
+    "subRegionCollectionsIndex": OutputDataClass(
+        # TODO: Mention JSON format in description
         description="Ingest metadata: index of sub-region collections",
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
-            # TODO: ingest_func... paths wrong...
-            ingest_func=...,
-            from_path=INCOMING_REGIONS_DIR,
-            to_relative_path=OUTPUT_REGIONS_SUBDIR,
-        ),
-        validation_metadata=_ValidationMetadata(
-            model=SubRegionCollectionsIndex,
-            filename_pattern=re.compile(r'^collections.json$'),
+            ingest_func=partial(
+                validate_and_copy_json,
+                model=SubRegionCollectionsIndex,
+            ),
+            from_path=INCOMING_REGIONS_COLLECTIONS_JSON,
+            to_relative_path=(
+                OUTPUT_REGIONS_SUBDIR / INCOMING_REGIONS_COLLECTIONS_JSON.name
+            ),
         ),
     ),
-    "subRegionsHierarchy": OutputDataClassMetadata(
+    "subRegionsHierarchy": OutputDataClass(
+        # TODO: Mention JSON format in description
         description=(
             "Ingest metadata: hierarchical structure of sub-regions in a super-region"
         ),
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
-            # TODO: ingest_func... paths wrong...
-            ingest_func=...,
+            ingest_func=partial(
+                validate_and_copy_json_matching_pattern,
+                model=SubRegionsHierarchy,
+                pattern=re.compile(r'^\d+_hierarchy.json$'),
+            ),
             from_path=INCOMING_REGIONS_DIR,
             to_relative_path=OUTPUT_REGIONS_SUBDIR,
         ),
-        validation_metadata=_ValidationMetadata(
-            model=SubRegionsHierarchy,
-            filename_pattern=re.compile(r'^\d+_hierarchy.json$'),
-        ),
     ),
-    "swePointsJson": OutputDataClassMetadata(
+    "swePointsJson": OutputDataClass(
         description="Ingest data: Snow Water Equivalent points JSON",
         data_source="snow-water-equivalent",
         ingest_task=_IngestTask(
+            ingest_func=ingest_swe_json,
             from_path=INCOMING_SWE_POINTS_DIR,
             to_relative_path=OUTPUT_POINTS_SUBDIR,
-            ingest_func=ingest_swe_json,
-        ),
-        validation_metadata=_ValidationMetadata(
-            model=SwePayload,
-            filename_pattern=re.compile(r'^swe.json$'),
         ),
     ),
     # NOTE: Plot JSON files are not referenced anywhere, but they exist for each region
     #       (super- or sub-) and variable combination.
     # TODO: Update some metadata file so it references these files.
-    "plotsJson": OutputDataClassMetadata(
+    "plotsJson": OutputDataClass(
         description="Ingest data: Plot JSON for each region/variable",
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
+            ingest_func=partial(
+                validate_and_copy_json_matching_pattern,
+                model=PlotPayload,
+                pattern=re.compile(r'\d+_\d{2}.json'),
+            ),
             from_path=INCOMING_PLOT_JSON_DIR,
             to_relative_path=OUTPUT_PLOTS_SUBDIR,
-            ingest_func=ingest_plot_json,
-        ),
-        validation_metadata=_ValidationMetadata(
-            model=PlotPayload,
-            # WARNING: This pattern is pretty brittle; this could be anything related to
-            # a region and variable, not necessarily a plot! See other TODOs about
-            # replacing filename_pattern (e.g. cli.py)...
-            filename_pattern=re.compile(r'^\d{5}_\d{2}.json$'),
         ),
     ),
     # TODO: Should shape data be ingested based on the contents of `regions/root.json`
     #       and `regions/[0-9]+.json`? E.g. look at those files, build up a plan, then
     #       ingest? Mark any extra shapes as warning, missing shapes as error.
     # TODO: Should shape data outputs be validated as GeoJSON?
-    "regionShapes": OutputDataClassMetadata(
+    "regionShapes": OutputDataClass(
         description="Ingest data: Region shapes GeoJSON",
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
+            ingest_func=copy_files,
             from_path=INCOMING_SHAPES_DIR,
             to_relative_path=OUTPUT_REGIONS_SHAPES_SUBDIR,
-            ingest_func=copy_files,
         ),
     ),
     # TODO: Should COGs be ingested based on the contents of regions/root.json, as
     #       opposed to globbing for files?
-    "cogs": OutputDataClassMetadata(
+    "cogs": OutputDataClass(
         description=(
             "Ingest data: Cloud-Optimized GeoTIFFs for each super-region/variable"
         ),
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
+            ingest_func=ingest_cogs,
             from_path=INCOMING_TIF_DIR,
             to_relative_path=OUTPUT_REGIONS_COGS_SUBDIR,
-            ingest_func=ingest_cogs,
         ),
     ),
     # TODO: Consider generating legends in JS. These are generated entirely based on
     #       data available to the webapp already.
-    "legends": OutputDataClassMetadata(
+    "legends": OutputDataClass(
         description=(
             "Ingest metadata: legends (static and dynamic) SVG for each"
             " super-region/variable"
         ),
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
+            ingest_func=generate_legends,
             from_path=INCOMING_REGIONS_ROOT_JSON,
             to_relative_path=OUTPUT_LEGENDS_SUBDIR,
-            ingest_func=generate_legends,
         ),
     ),
 }
-VALIDATABLE_OUTPUT_DATA_CLASSES = {
-    k: v for k, v in OUTPUT_DATA_CLASSES.items() if v.validation_metadata is not None
-}
-OUTPUT_DATA_CLASS_NAMES = list(OUTPUT_DATA_CLASSES.keys())
-VALIDATABLE_OUTPUT_DATA_CLASS_NAMES = list(VALIDATABLE_OUTPUT_DATA_CLASSES)
+SWE_OUTPUT_DATA_CLASSES, SSP_OUTPUT_DATA_CLASSES = partition_dict_on_key(
+    OUTPUT_DATA_CLASSES,
+    # TODO: Brittle. Add a boolean or enum field that defines the data class class?
+    # Desperately need better terminology than "data class" because there are classes of
+    # data classes, and that's way too confusing.
+    predicate=lambda key: key.startswith("swe"),
+)
+
+OUTPUT_DATA_CLASS_NAMES, SWE_OUTPUT_DATA_CLASS_NAMES, SSP_OUTPUT_DATA_CLASS_NAMES = (
+    list(dct.keys())
+    for dct in (OUTPUT_DATA_CLASSES, SWE_OUTPUT_DATA_CLASSES, SSP_OUTPUT_DATA_CLASSES)
+)

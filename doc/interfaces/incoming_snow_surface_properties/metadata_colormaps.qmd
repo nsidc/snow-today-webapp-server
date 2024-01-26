@@ -13,18 +13,15 @@ provider: "Version control"
 * Colormaps definition file **MUST** be ingested by copying `static/colormaps.json` from
   this repository, as this source-controlled file is the source of truth.
 
-<details>
-<summary>Schema</summary>
 ```{python}
 #| echo: false
-from snow_today_webapp_ingest.schema import display_jsonschema_markdown
+from snow_today_webapp_ingest.schema import display_jsonschema_and_example_markdown
+from snow_today_webapp_ingest.types_.colormaps import ColormapsIndex
+import os
 
-display_jsonschema_markdown("colormapsIndex")
+display_jsonschema_and_example_markdown(
+  example_fp="../static/colormaps.json",
+  model=ColormapsIndex,
+  base_dir=os.path.abspath(''),
+)
 ```
-</details>
-
-<details>
-<summary>File contents</summary>
-```{.json filename="colormaps.json" include="../static/colormaps.json"}
-```
-</details>

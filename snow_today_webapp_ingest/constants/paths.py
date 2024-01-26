@@ -29,14 +29,15 @@ REPO_STATIC_SCHEMAS_DIR = REPO_ROOT_DIR / 'schema'
 # Where this program will write temporary directories to store WIP ingest outputs
 INGEST_WIP_DIR = STORAGE_DIR / 'ingest-wip'
 
-# These are strings instead of Paths because they will be created inside temporary
-# directories within INGEST_WIP_DIR
-OUTPUT_REGIONS_SUBDIR = 'regions'
-OUTPUT_REGIONS_SHAPES_SUBDIR = f'{OUTPUT_REGIONS_SUBDIR}/shapes'
-OUTPUT_REGIONS_COGS_SUBDIR = f'{OUTPUT_REGIONS_SUBDIR}/cogs'
-OUTPUT_LEGENDS_SUBDIR = 'legends'
-OUTPUT_PLOTS_SUBDIR = 'plots'
-OUTPUT_POINTS_SUBDIR = 'points'
+# These are relative Paths because they will be created inside temporary WIP
+# directories, so we don't know their parents yet.
+# TODO: This is a really unreadable way to express directory structure.
+OUTPUT_REGIONS_SUBDIR = Path('regions')
+OUTPUT_REGIONS_SHAPES_SUBDIR = OUTPUT_REGIONS_SUBDIR / "shapes"
+OUTPUT_REGIONS_COGS_SUBDIR = OUTPUT_REGIONS_SUBDIR / "cogs"
+OUTPUT_LEGENDS_SUBDIR = Path('legends')
+OUTPUT_PLOTS_SUBDIR = Path('plots')
+OUTPUT_POINTS_SUBDIR = Path('points')
 
 # Where the live data goes after ingest is successful
 OUTPUT_LIVE_DIR = STORAGE_DIR / 'live'
@@ -55,6 +56,7 @@ INCOMING_DIR = STORAGE_DIR / 'incoming'
 INCOMING_SSP_DIR = INCOMING_DIR / 'snow-surface-properties'
 INCOMING_REGIONS_DIR = INCOMING_SSP_DIR / 'regions'
 INCOMING_REGIONS_ROOT_JSON = INCOMING_REGIONS_DIR / 'root.json'
+INCOMING_REGIONS_COLLECTIONS_JSON = INCOMING_REGIONS_DIR / 'collections.json'
 INCOMING_TIF_DIR = INCOMING_SSP_DIR / 'geotiffs'
 INCOMING_SHAPES_DIR = INCOMING_SSP_DIR / 'shapes'
 INCOMING_PLOT_JSON_DIR = INCOMING_SSP_DIR / 'plots'

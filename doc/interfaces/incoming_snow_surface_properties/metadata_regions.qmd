@@ -50,21 +50,18 @@ display.
     - Alaska: `26100`
     - Canada: `26101`
 
-<details>
-<summary>Schema</summary>
 ```{python}
 #| echo: false
-from snow_today_webapp_ingest.schema import display_jsonschema_markdown
+from snow_today_webapp_ingest.schema import display_jsonschema_and_example_markdown
+from snow_today_webapp_ingest.types_.regions import SuperRegionsIndex
+import os
 
-display_jsonschema_markdown("superRegionsIndex")
+display_jsonschema_and_example_markdown(
+  example_fp="example_data/regions/root.json",
+  model=SuperRegionsIndex,
+  base_dir=os.path.abspath(''),
+)
 ```
-</details>
-
-<details>
-<summary>Example</summary>
-```{.json filename="regions/root.json (example)" include="example_data/regions/root.json"}
-```
-</details>
 
 
 ### Sub Regions
@@ -80,19 +77,18 @@ itself).
 - Sub Regions **MUST** be a member of a Region Collection.
 - Sub Regions **MAY** contain one or more Sub Region Collections.
 
-<details>
-<summary>Schema</summary>
 ```{python}
 #| echo: false
-display_jsonschema_markdown("subRegionsIndex")
-```
-</details>
+from snow_today_webapp_ingest.schema import display_jsonschema_and_example_markdown
+from snow_today_webapp_ingest.types_.regions import SubRegionsIndex
+import os
 
-<details>
-<summary>Example</summary>
-```{.json filename="regions/26000.json" include="example_data/regions/26000.json"}
+display_jsonschema_and_example_markdown(
+  example_fp="example_data/regions/26000.json",
+  model=SubRegionsIndex,
+  base_dir=os.path.abspath(''),
+)
 ```
-</details>
 
 
 ## Sub Region Collections
@@ -105,19 +101,18 @@ A collection containing Sub Regions.
   incoming directory, e.g. `{incomingDir}/regions/collections.json`.
 - A collection **MUST** contain one or many Sub Region members.
 
-<details>
-<summary>Schema</summary>
 ```{python}
 #| echo: false
-display_jsonschema_markdown("subRegionCollectionsIndex")
-```
-</details>
+from snow_today_webapp_ingest.schema import display_jsonschema_and_example_markdown
+from snow_today_webapp_ingest.types_.regions import SubRegionCollectionsIndex
+import os
 
-<details>
-<summary>Example</summary>
-```{.json filename="regions/collections.json" include="example_data/regions/collections.json"}
+display_jsonschema_and_example_markdown(
+  example_fp="example_data/regions/collections.json",
+  model=SubRegionCollectionsIndex,
+  base_dir=os.path.abspath(''),
+)
 ```
-</details>
 
 
 ## Sub Region Hierarchy
@@ -138,19 +133,18 @@ The hierarchy can be arbitrarily deep.
   subdirectory of the incoming directory, e.g.
   `{incomingDir}/regions/26000_hierarchy.json`.
 
-<details>
-<summary>Schema</summary>
 ```{python}
 #| echo: false
-display_jsonschema_markdown("subRegionsHierarchy")
-```
-</details>
+from snow_today_webapp_ingest.schema import display_jsonschema_and_example_markdown
+from snow_today_webapp_ingest.types_.subregion_hierarchy import SubRegionsHierarchy
+import os
 
-<details>
-<summary>Example</summary>
-```{.json filename="regions/26000_hierarchy.json" include="example_data/regions/26000_hierarchy.json"}
+display_jsonschema_and_example_markdown(
+  example_fp="example_data/regions/26000_hierarchy.json",
+  model=SubRegionsHierarchy,
+  base_dir=os.path.abspath(''),
+)
 ```
-</details>
 
 
 ## Region Shapes
