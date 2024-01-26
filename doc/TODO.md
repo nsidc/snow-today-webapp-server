@@ -5,34 +5,11 @@
 - [ ] Review docs for out-of-date information
 
 
-### Ingest
-
-- [ ] Do validation implicitly at the right times for each ingest task. The schemas
-      should validate input files as well as output files, so we can run the validation
-      both before input **and** after output?
-
-
 ### VM provisioning
 
 - [ ] Ensure provisioning code is creating the `live` and `ingest-wip` directories.
     - [ ] Manually create them in all prod/pre-prod envs
     - [ ] Cleanup OBE storage dirs in all envs
-
-
-### Testing
-
-- [x] Remove "validate" invoke task? It should instead be part of the runtime behavior,
-      since much of the JSON is ingested at runtime.
-    - [ ] Make a unit test that validates data files that are stored in the repo.
-    - [x] For JSON that isn't ingested at run-time, use pre-commit to validate.
-- [ ] Automatically validate example data in documentation during CI
-
-
-### Supercomputer interface specification
-
-- [x] Clarify which data is sent by supercomputer and which is a static part of this
-      repository. e.g. supercomputer SHOULD NOT send colormap and variable definition
-      data. **Use a new field in the Quarto doc and expose it in the listing**
 
 
 #### Misc. notes
@@ -44,10 +21,6 @@
 
 ### Schemas, validation, and Python types
 
-They really represent a lot of overlapping information.
-
-- [ ] Use Pydantic types to generate JSON schemas:
-      <https://docs.pydantic.dev/latest/concepts/json_schema/>
 - [ ] Validate relationships between json files
 
 
