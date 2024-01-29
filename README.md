@@ -66,7 +66,10 @@ docker-compose up -d data-server
 
 ## Troubleshooting
 
-*TODO*
+### Webserver `403` errors
+
+Permissions on a directory are not set correctly. Need `ugo+rx`. In an NSIDC deployment,
+an operator can correct this on the storage back-end.
 
 
 ## License
