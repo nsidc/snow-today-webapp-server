@@ -177,6 +177,9 @@ def _ingest(
         ]
 
     tmpdir = Path(mkdtemp(dir=INGEST_WIP_DIR, prefix=f"{TODAY}_"))
+    # NOTE: mkdtemp always creates directories with 0700. Therefore:
+    tmpdir.chmod(0o755)
+
     for ingest_task in tasks_to_run:
         ingest_task.ingest(ingest_tmpdir=tmpdir)
 
