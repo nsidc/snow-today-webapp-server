@@ -106,3 +106,7 @@ max-complexity = 8
 
 [tool.ruff.flake8-quotes]
 inline-quotes = "double"
+
+
+[tool.vulture]
+paths = ["snow_today_webapp_ingest"]

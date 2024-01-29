@@ -67,6 +67,11 @@ repos:
       - id: ruff
         args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
 
+  - repo: https://github.com/jendrikseipp/vulture
+    rev: "v2.11"
+    hooks:
+      - id: vulture
+
   # Does it make sense to run MyPy with pre-commit? I thought I'd seen the
   # authors advise against.
   # - repo: https://github.com/pre-commit/mirrors-mypy
