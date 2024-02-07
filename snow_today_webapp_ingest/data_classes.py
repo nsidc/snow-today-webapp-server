@@ -30,7 +30,7 @@ from snow_today_webapp_ingest.constants.paths import (
     REPO_STATIC_VARIABLES_INDEX_FP,
 )
 from snow_today_webapp_ingest.ingest.cogs import ingest_cogs
-from snow_today_webapp_ingest.ingest.copy_files import copy_files
+from snow_today_webapp_ingest.ingest.geojson import fix_and_ingest_geojson
 from snow_today_webapp_ingest.ingest.legends import generate_legends
 from snow_today_webapp_ingest.ingest.swe_json import ingest_swe_json
 from snow_today_webapp_ingest.ingest.validate_and_copy_json import (
@@ -253,7 +253,10 @@ OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClass]] = {
         description="Ingest data: Region shapes GeoJSON",
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
-            ingest_func=copy_files,
+            # TODO: Restore. This was temporarily commented because the incoming GeoJSON
+            #       had some compatibility problems.
+            # ingest_func=copy_files,
+            ingest_func=fix_and_ingest_geojson,
             from_path=INCOMING_SHAPES_DIR,
             to_relative_path=OUTPUT_REGIONS_SHAPES_SUBDIR,
         ),
