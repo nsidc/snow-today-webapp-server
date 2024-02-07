@@ -8,7 +8,7 @@ class ColormapColors(RootModel):
     """A list of RGB (3-tuple) or RGBA (4-tuple) colors in this colormap."""
 
     # TODO: Represent as constraints instead of union?
-    root: list[tuple[int, int, int]] | list[tuple[int, int, int, int]]
+    root: list[tuple[int, int, int] | tuple[int, int, int, int]]
 
 
 class Colormap(BaseModel):
