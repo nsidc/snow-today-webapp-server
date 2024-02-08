@@ -76,6 +76,7 @@ def _fix(input_geojson: dict) -> dict:
         output_features = [
             {
                 "type": "Feature",
+                "properties": {},
                 "geometry": {**geom, "coordinates": [geom["coordinates"]]},
             }
             for geom in input_geojson['features']['geometry']
