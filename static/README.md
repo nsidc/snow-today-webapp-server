@@ -32,4 +32,4 @@ webapp doesn't have to download all the "unreleased" variables that aren't ready
 
 ### `variables.json
 
-Variable IDs must match column names coming from external provider.
+_IMPORTANT:_ Variable IDs must match column names coming from external provider.
