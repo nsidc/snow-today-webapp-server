@@ -27,11 +27,15 @@ from snow_today_webapp_ingest.constants.paths import (
     OUTPUT_REGIONS_SHAPES_SUBDIR,
     OUTPUT_REGIONS_SUBDIR,
     REPO_STATIC_COLORMAPS_INDEX_FP,
-    REPO_STATIC_VARIABLES_INDEX_FP,
+    REPO_STATIC_SSP_VARIABLES_INDEX_FP,
+    REPO_STATIC_SWE_VARIABLES_INDEX_FP,
 )
 from snow_today_webapp_ingest.ingest.cogs import ingest_cogs
 from snow_today_webapp_ingest.ingest.geojson import fix_and_ingest_geojson
-from snow_today_webapp_ingest.ingest.legends import generate_legends
+from snow_today_webapp_ingest.ingest.legends import (
+    generate_ssp_legends,
+    generate_swe_legends,
+)
 from snow_today_webapp_ingest.ingest.swe_json import ingest_swe_json
 from snow_today_webapp_ingest.ingest.validate_and_copy_json import (
     validate_and_copy_json,
@@ -48,8 +52,10 @@ from snow_today_webapp_ingest.types_.regions import (
 from snow_today_webapp_ingest.types_.subregion_hierarchy import (
     SubRegionsHierarchy,
 )
-from snow_today_webapp_ingest.types_.variables import VariablesIndex
-from snow_today_webapp_ingest.util.misc import partition_dict_on_key
+from snow_today_webapp_ingest.types_.variables import (
+    SatelliteVariablesIndex,
+    SweVariablesIndex,
+)
 
 P = ParamSpec("P")
 FromPath = TypeVar("FromPath", Path, dict[str, Path], contravariant=True)
@@ -126,10 +132,12 @@ OutputDataClassName = Literal[
     "subRegionCollectionsIndex",
     "subRegionsHierarchy",
     "swePointsJson",
+    "sweVariablesJson",
     "plotsJson",
     "regionShapes",
     "cogs",
-    "legends",
+    "sweLegends",
+    "sspLegends",
 ]
 OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClass]] = {
     # NOTE: We ingest some static data every day, like colormaps and variables, because
@@ -138,7 +146,7 @@ OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClass]] = {
     # possibility of static data getting clobbered.
     "colormapsIndex": OutputDataClass(
         description="Ingest metadata: version-controlled colormaps JSON",
-        data_source="snow-surface-properties",
+        data_source="common",
         ingest_task=_IngestTask(
             ingest_func=partial(
                 validate_and_copy_json,
@@ -149,7 +157,7 @@ OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClass]] = {
         ),
     ),
     "variablesIndex": OutputDataClass(
-        description="Ingest metadata: version-controlled variable JSON",
+        description="Ingest metadata: version-controlled ssp variable JSON",
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
             # TODO: Filter to only the variables that we care about (based on what are
@@ -157,10 +165,10 @@ OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClass]] = {
             #       `from_path`s and using a more complex `ingest_func`.
             ingest_func=partial(
                 validate_and_copy_json,
-                model=VariablesIndex,
+                model=SatelliteVariablesIndex,
             ),
-            from_path=REPO_STATIC_VARIABLES_INDEX_FP,
-            to_relative_path=REPO_STATIC_VARIABLES_INDEX_FP.name,
+            from_path=REPO_STATIC_SSP_VARIABLES_INDEX_FP,
+            to_relative_path=REPO_STATIC_SSP_VARIABLES_INDEX_FP.name,
         ),
     ),
     "superRegionsIndex": OutputDataClass(
@@ -220,6 +228,18 @@ OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClass]] = {
             to_relative_path=OUTPUT_REGIONS_SUBDIR,
         ),
     ),
+    "sweVariablesJson": OutputDataClass(
+        description="Ingest metadata: Snow Water Equivalent variables JSON",
+        data_source="snow-water-equivalent",
+        ingest_task=_IngestTask(
+            ingest_func=partial(
+                validate_and_copy_json,
+                model=SweVariablesIndex,
+            ),
+            from_path=REPO_STATIC_SWE_VARIABLES_INDEX_FP,
+            to_relative_path=REPO_STATIC_SWE_VARIABLES_INDEX_FP.name,
+        ),
+    ),
     "swePointsJson": OutputDataClass(
         description="Ingest data: Snow Water Equivalent points JSON",
         data_source="snow-water-equivalent",
@@ -276,28 +296,40 @@ OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClass]] = {
     ),
     # TODO: Consider generating legends in JS. These are generated entirely based on
     #       data available to the webapp already.
-    "legends": OutputDataClass(
-        description=(
-            "Ingest metadata: legends (static and dynamic) SVG for each"
-            " super-region/variable"
-        ),
+    "sspLegends": OutputDataClass(
+        description="Ingest metadata: legends SVG for each super-region/variable",
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
-            ingest_func=generate_legends,
+            ingest_func=generate_ssp_legends,
             from_path=INCOMING_REGIONS_ROOT_JSON,
             to_relative_path=OUTPUT_LEGENDS_SUBDIR,
         ),
     ),
+    "sweLegends": OutputDataClass(
+        description="Ingest metadata: legends SVG for each SWE variable",
+        data_source="snow-water-equivalent",
+        ingest_task=_IngestTask(
+            ingest_func=generate_swe_legends,
+            from_path=REPO_STATIC_SWE_VARIABLES_INDEX_FP,
+            to_relative_path=OUTPUT_LEGENDS_SUBDIR,
+        ),
+    ),
 }
-SWE_OUTPUT_DATA_CLASSES, SSP_OUTPUT_DATA_CLASSES = partition_dict_on_key(
-    OUTPUT_DATA_CLASSES,
-    # TODO: Brittle. Add a boolean or enum field that defines the data class class?
-    # Desperately need better terminology than "data class" because there are classes of
-    # data classes, and that's way too confusing.
-    predicate=lambda key: key.startswith("swe"),
+SWE_OUTPUT_DATA_CLASSES, SSP_OUTPUT_DATA_CLASSES, COMMON_OUTPUT_DATA_CLASSES = (
+    {k: v for k, v in OUTPUT_DATA_CLASSES.items() if v.data_source == data_source}
+    for data_source in ["snow-water-equivalent", "snow-surface-properties", "common"]
 )
-
-OUTPUT_DATA_CLASS_NAMES, SWE_OUTPUT_DATA_CLASS_NAMES, SSP_OUTPUT_DATA_CLASS_NAMES = (
+(
+    OUTPUT_DATA_CLASS_NAMES,
+    SWE_OUTPUT_DATA_CLASS_NAMES,
+    SSP_OUTPUT_DATA_CLASS_NAMES,
+    COMMON_OUTPUT_DATA_CLASS_NAMES,
+) = (
     list(dct.keys())
-    for dct in (OUTPUT_DATA_CLASSES, SWE_OUTPUT_DATA_CLASSES, SSP_OUTPUT_DATA_CLASSES)
+    for dct in (
+        OUTPUT_DATA_CLASSES,
+        SWE_OUTPUT_DATA_CLASSES,
+        SSP_OUTPUT_DATA_CLASSES,
+        COMMON_OUTPUT_DATA_CLASSES,
+    )
 )

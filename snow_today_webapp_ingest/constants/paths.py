@@ -14,8 +14,13 @@ REPO_ROOT_DIR = Path(__file__).parent.parent.parent.absolute()
 
 # Dir where static data is stored
 REPO_STATIC_DATA_DIR = REPO_ROOT_DIR / 'static'
-REPO_STATIC_COLORMAPS_INDEX_FP = REPO_STATIC_DATA_DIR / 'colormaps.json'
-REPO_STATIC_VARIABLES_INDEX_FP = REPO_STATIC_DATA_DIR / 'variables.json'
+REPO_STATIC_COLORMAPS_INDEX_FP = REPO_STATIC_DATA_DIR / 'common' / 'colormaps.json'
+REPO_STATIC_SSP_VARIABLES_INDEX_FP = (
+    REPO_STATIC_DATA_DIR / 'snow-surface-properties' / 'variables.json'
+)
+REPO_STATIC_SWE_VARIABLES_INDEX_FP = (
+    REPO_STATIC_DATA_DIR / 'snow-water-equivalent' / 'variables.json'
+)
 
 # Dir where schemas are stored
 # TODO: Move schemas in to ingest package?
@@ -43,6 +48,7 @@ OUTPUT_POINTS_SUBDIR = Path('points')
 OUTPUT_LIVE_DIR = STORAGE_DIR / 'live'
 OUTPUT_LIVE_SSP_DIR = OUTPUT_LIVE_DIR / 'snow-surface-properties'
 OUTPUT_LIVE_SWE_DIR = OUTPUT_LIVE_DIR / 'snow-water-equivalent'
+OUTPUT_LIVE_COMMON_DIR = OUTPUT_LIVE_DIR / 'common'
 
 # Every successful ingest also creates a backup
 OUTPUT_BKP_DIR = STORAGE_DIR / 'bkp'

@@ -7,12 +7,16 @@ This data is "ingested" by copying it (and potentially also filtering it dependi
 other data that comes in that day) during the ingest process.
 
 
-## `colormaps.json`
+## `common/`
 
-These change rarely.
+### `colormaps.json`
+
+These change rarely. They apply to both SSP and SWE data.
 
 
-## `variables.json`
+## `snow-surface-properties/`
+
+### `variables.json`
 
 These change rarely, but only because we enumerate every possible variable in this file.
 The ingest process must filter down to only the variables available for that day, so the
@@ -22,3 +26,10 @@ webapp doesn't have to download all the "unreleased" variables that aren't ready
 >
 > The above paragraph actually lies a little bit; the `variables.json` file doesn't
 > actually enumerate every possible variable _yet_. Sebastien is on it!
+
+
+## `snow-water-equivalent/`
+
+### `variables.json
+
+Variable IDs must match column names coming from external provider.

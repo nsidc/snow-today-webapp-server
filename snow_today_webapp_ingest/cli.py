@@ -14,6 +14,8 @@ from loguru import logger
 # shared between functions.
 from snow_today_webapp_ingest.constants.date import TODAY
 from snow_today_webapp_ingest.data_classes import (
+    COMMON_OUTPUT_DATA_CLASS_NAMES,
+    COMMON_OUTPUT_DATA_CLASSES,
     SSP_OUTPUT_DATA_CLASS_NAMES,
     SSP_OUTPUT_DATA_CLASSES,
     SWE_OUTPUT_DATA_CLASS_NAMES,
@@ -22,6 +24,11 @@ from snow_today_webapp_ingest.data_classes import (
 )
 from snow_today_webapp_ingest.types_.data_sources import DataSource
 
+common_tasks_arg = click.argument(
+    "common_tasks",
+    type=click.Choice(tuple(COMMON_OUTPUT_DATA_CLASS_NAMES)),
+    nargs=-1,
+)
 swe_tasks_arg = click.argument(
     "swe_tasks",
     type=click.Choice(tuple(SWE_OUTPUT_DATA_CLASS_NAMES)),
@@ -112,6 +119,21 @@ def ingest(ctx, dry_run: bool) -> None:
 
 
 @ingest.command()
+@common_tasks_arg
+@click.pass_context
+def common(ctx, *, common_tasks: tuple[str, ...]) -> None:
+    """Run common ingest tasks.
+
+    If TASKS are passed, only run those.
+    """
+    _ingest(
+        dry_run=ctx.obj["dry_run"],
+        source="common",
+        tasks_include=common_tasks,
+    )
+
+
+@ingest.command()
 @ssp_tasks_arg
 @click.pass_context
 def snow_surface_properties(ctx, *, ssp_tasks: tuple[str, ...]) -> None:
@@ -150,6 +172,7 @@ def _ingest(
     from snow_today_webapp_ingest.constants.paths import (
         INGEST_WIP_DIR,
         OUTPUT_BKP_DIR,
+        OUTPUT_LIVE_COMMON_DIR,
         OUTPUT_LIVE_SSP_DIR,
         OUTPUT_LIVE_SWE_DIR,
     )
@@ -161,6 +184,9 @@ def _ingest(
     elif source == "snow-water-equivalent":
         data_class_set = SWE_OUTPUT_DATA_CLASSES
         output_dir = OUTPUT_LIVE_SWE_DIR
+    elif source == "common":
+        data_class_set = COMMON_OUTPUT_DATA_CLASSES
+        output_dir = OUTPUT_LIVE_COMMON_DIR
     else:
         # TODO: Can we get exhaustiveness checking from mypy?
         raise RuntimeError("Programmer error.")
