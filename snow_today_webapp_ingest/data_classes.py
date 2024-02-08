@@ -126,13 +126,13 @@ class OutputDataClass:
 _IngestTask = OutputDataClassIngestTask
 OutputDataClassName = Literal[
     "colormapsIndex",
-    "variablesIndex",
+    "sspVariablesIndex",
+    "sweVariablesIndex",
     "superRegionsIndex",
     "subRegionsIndex",
     "subRegionCollectionsIndex",
     "subRegionsHierarchy",
     "swePointsJson",
-    "sweVariablesJson",
     "plotsJson",
     "regionShapes",
     "cogs",
@@ -156,8 +156,8 @@ OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClass]] = {
             to_relative_path=REPO_STATIC_COLORMAPS_INDEX_FP.name,
         ),
     ),
-    "variablesIndex": OutputDataClass(
-        description="Ingest metadata: version-controlled ssp variable JSON",
+    "sspVariablesIndex": OutputDataClass(
+        description="Ingest metadata: version-controlled SSP variable JSON",
         data_source="snow-surface-properties",
         ingest_task=_IngestTask(
             # TODO: Filter to only the variables that we care about (based on what are
@@ -169,6 +169,18 @@ OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClass]] = {
             ),
             from_path=REPO_STATIC_SSP_VARIABLES_INDEX_FP,
             to_relative_path=REPO_STATIC_SSP_VARIABLES_INDEX_FP.name,
+        ),
+    ),
+    "sweVariablesIndex": OutputDataClass(
+        description="Ingest metadata: version-controlled SWE variable JSON",
+        data_source="snow-water-equivalent",
+        ingest_task=_IngestTask(
+            ingest_func=partial(
+                validate_and_copy_json,
+                model=SweVariablesIndex,
+            ),
+            from_path=REPO_STATIC_SWE_VARIABLES_INDEX_FP,
+            to_relative_path=REPO_STATIC_SWE_VARIABLES_INDEX_FP.name,
         ),
     ),
     "superRegionsIndex": OutputDataClass(
@@ -226,18 +238,6 @@ OUTPUT_DATA_CLASSES: Final[dict[OutputDataClassName, OutputDataClass]] = {
             ),
             from_path=INCOMING_REGIONS_DIR,
             to_relative_path=OUTPUT_REGIONS_SUBDIR,
-        ),
-    ),
-    "sweVariablesJson": OutputDataClass(
-        description="Ingest metadata: Snow Water Equivalent variables JSON",
-        data_source="snow-water-equivalent",
-        ingest_task=_IngestTask(
-            ingest_func=partial(
-                validate_and_copy_json,
-                model=SweVariablesIndex,
-            ),
-            from_path=REPO_STATIC_SWE_VARIABLES_INDEX_FP,
-            to_relative_path=REPO_STATIC_SWE_VARIABLES_INDEX_FP.name,
         ),
     ),
     "swePointsJson": OutputDataClass(
