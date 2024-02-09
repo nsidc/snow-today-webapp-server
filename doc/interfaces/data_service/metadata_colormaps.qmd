@@ -12,6 +12,8 @@ provider: "Version control"
 * Colormaps definition file **MUST** be in compliance with the schema.
 * Colormaps definition file **MUST** be ingested by copying `static/colormaps.json` from
   this repository, as this source-controlled file is the source of truth.
+* `colormaps.json` is places in `live/common` directory, as its values are
+  useful to both Snow Surface Properties and Snow Water Equivalent.
 
 ```{python}
 #| echo: false

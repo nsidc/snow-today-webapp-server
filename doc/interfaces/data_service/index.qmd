@@ -7,6 +7,16 @@ author:
 citation: true
 filters:
   - "include-code-files"
+order: 0
+listing:
+  type: "table"
+  sort-ui: false
+  filter-ui: false
+  contents:
+    - "."
+  fields:
+    - "title"
+    - "description"
 ---
 
 The data service interface represents the **output** of the `snow_today_webapp_ingest`
@@ -40,3 +50,7 @@ display_jsonschema_and_example_markdown(
   base_dir=os.path.abspath(''),
 )
 ```
+
+
+## Specification
+
