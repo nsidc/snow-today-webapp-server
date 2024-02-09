@@ -86,9 +86,10 @@ def generate_ssp_legends(
                 colormap=colormap,
                 # This value range could be static every day, or it could change
                 # day-by-day. For example, "snow cover days" variable has a colormap
-                # that changes each day.
-                colormap_value_range=tuple(variable_params["valueRange"]),
-                data_value_range=tuple(region_variable_params["dataValueRange"]),
+                # that changes each day, and differs for each region.
+                # TODO: This naming is very confusing. Fix it.
+                colormap_value_range=tuple(region_variable_params["dataValueRange"]),
+                data_value_range=tuple(variable_params["valueRange"]),
                 label=variable_params["labelMapLegend"],
                 transparent_zero=variable_params["transparentZero"],
                 output_fp=output_fp,
