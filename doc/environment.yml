@@ -1,6 +1,0 @@
-name: "snow-today-webapp-server-docs"
-channels:
-  - "conda-forge"
-  - "nodefaults"
-dependencies:
-  - "quarto"

@@ -8,15 +8,31 @@ version: 2
 
 build:
   os: "ubuntu-22.04"
+  tools:
+    python: "mambaforge-22.9"
   # TODO: There must be a more readable way to express this...
   commands:
-    # Install Quarto ( https://quarto.org/docs/download/tarball.html)
+    # HACK: Install Quarto from tarball
+    # (https://quarto.org/docs/download/tarball.html)
+    # TODO: Remove this and install with Quarto once 1.4 is on conda-forge
     - "wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.534/quarto-1.4.534-linux-amd64.tar.gz"
     - "mkdir ~/opt && tar -C ~/opt -xvzf quarto*.tar.gz"
     - "mkdir ~/bin && ln -s ~/opt/quarto-1.4.534/bin/quarto ~/bin/quarto"
 
+    # Install our deps and source code
+    - "conda env create"
+
+    # HACK: Remove conda-installed Quarto to avoid conflict
+    - "conda remove -n snow-today quarto"
+
+    - "conda run -n snow-today which pip"
+
+    # Install our source code
+    - "conda run -n snow-today pip install --editable ."
+
     # Render site
-    - "cd doc && ~/bin/quarto render"
+    # TODO: Switch to conda install of Quarto once 1.4 available
+    - "cd doc && conda run -n snow-today ~/bin/quarto render"
 
     # Put the rendered site in place
     - "mkdir --parents $READTHEDOCS_OUTPUT/html/"

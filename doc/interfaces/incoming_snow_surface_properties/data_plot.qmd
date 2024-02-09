@@ -1,0 +1,28 @@
+---
+title: "Data: plots"
+filters:
+  - "include-code-files"
+# A custom field for listing display:
+provider: "Supercomputer"
+---
+
+**Plot data** (JSON) that are displayed on the **map** user interface component.
+
+* Plot data files **MUST** be named according to their region and variable ID
+  following the pattern `{regionId}_{variableId}.json`.
+* Plot data files **MUST** be in compliance with the schema.
+* Plot data files **MUST** be pushed to the `plots/` subdirectory of the incoming
+  directory, e.g. `{incomingDir}/plots/11726_40.json`.
+
+```{python}
+#| echo: false
+from snow_today_webapp_ingest.schema import display_jsonschema_and_example_markdown
+from snow_today_webapp_ingest.types_.plot import PlotPayload
+import os
+
+display_jsonschema_and_example_markdown(
+  example_fp="example_data/plots/11726_40.json",
+  model=PlotPayload,
+  base_dir=os.path.abspath(''),
+)
+```

@@ -1,0 +1,31 @@
+---
+title: "Metadata: colormaps"
+filters:
+  - "include-code-files"
+# A custom field for listing display:
+provider: "Version control"
+---
+
+**Color gradients** used for visualizing a data variable.
+
+* Colormaps definition file **MUST** be named `colormaps.json`.
+* Colormaps definition file **MUST** be in compliance with the schema.
+* Colormaps definition file **MUST** be ingested by copying
+  `static/common/colormaps.json` from this repository, as this
+  source-controlled file is the source of truth.
+* `colormaps.json` **MUST** be placed in `live/common` directory, as its values
+  are referenced by both Snow Surface Properties and Snow Water Equivalent
+  data.
+
+```{python}
+#| echo: false
+from snow_today_webapp_ingest.schema import display_jsonschema_and_example_markdown
+from snow_today_webapp_ingest.types_.colormaps import ColormapsIndex
+import os
+
+display_jsonschema_and_example_markdown(
+  example_fp="../static/common/colormaps.json",
+  model=ColormapsIndex,
+  base_dir=os.path.abspath(''),
+)
+```

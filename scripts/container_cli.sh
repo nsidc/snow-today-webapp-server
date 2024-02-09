@@ -17,4 +17,4 @@ DOCKER_IMAGE="nsidc/snow-today-webapp-server-ingest:${SERVER_VERSION}"
 if [[ "$(docker images -q "${DOCKER_IMAGE}" 2>/dev/null)" == "" ]]; then
     echo "Docker image ${DOCKER_IMAGE} not found. Did you deploy it?"
 fi
-docker-compose run --rm ingest "$@"
+docker compose run --rm ingest "$@"

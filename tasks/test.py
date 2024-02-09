@@ -1,23 +1,11 @@
+import sys
+
 from invoke import task
+from loguru import logger
 
 from .util import REPO_ROOT_DIR, print_and_run
 
-
-@task(aliases=('jsonschema', 'validate'))
-def validate_json(ctx):
-    """Validate JSON against schemas.
-
-    TODO: Add runtime validations that jsonschema can't do:
-        * Only one variable is set `default: true`
-        * Only one variable is set to `type: notprocessed`, and the rest
-          `type: variable`
-    """
-    print_and_run(
-        'jsonschema'
-        f' -i {REPO_ROOT_DIR}/data/variables.json'
-        f' {REPO_ROOT_DIR}/schema/variablesIndex.json'
-    )
-    print("✔️ JSON validation passed.")
+sys.path.append(str(REPO_ROOT_DIR))
 
 
 @task(aliases=('mypy',))
@@ -26,10 +14,10 @@ def typecheck(ctx):
     mypy_cfg_fp = REPO_ROOT_DIR / 'pyproject.toml'
 
     print_and_run(f'mypy --config-file={mypy_cfg_fp} .')
-    print('🦆 Type checking passed.')
+    logger.success('🦆 Type checking passed.')
 
 
-@task(default=True, pre=[validate_json, typecheck])
+@task(default=True, pre=[typecheck])
 def static(ctx):
     """Run all static analysis tasks."""
-    print("🎉🎉🎉 All static analysis passed.")
+    logger.success("🎉🎉🎉 All static analysis passed! 🎉🎉🎉")

@@ -1,9 +1,11 @@
-from collections.abc import Callable
+import datetime as dt
+from pathlib import Path
 from typing import Literal
 
-# TODO: After upgrading to 3.11 (PEP655), can use builtin TypedDict again.
-#       https://peps.python.org/pep-0655/#usage-in-python-3-11
-from typing_extensions import NotRequired, TypedDict
+from pydantic import Field
+
+from snow_today_webapp_ingest.types_.base import BaseModel, RootModel
+from snow_today_webapp_ingest.types_.misc import NumericIdentifier, StringIdentifier
 
 ###############################################################################
 # Types for region input things (e.g. magic strings in shapefiles)
@@ -16,74 +18,94 @@ ShapefileCategory = Literal['HUC2', 'HUC4', 'State']
 ###############################################################################
 # Types for region output things (e.g. magic strings, the JSON region index)
 ###############################################################################
-
-# The final categorization of shapes will be:
-SubRegionCollectionName = Literal['HUC', 'State']
-
-# SuperRegionName = Literal['USwest', 'HMA']
-SuperRegionName = Literal['USwest']
+VariableIdentifier = NumericIdentifier
+RegionIdentifier = NumericIdentifier
+SubRegionCollectionIdentifier = StringIdentifier
 
 
-class SubRegion(TypedDict):
-    """A member of a sub-region collection."""
+# NOTE: SuperRegion inherits from this class, careful about changes :)
+class SubRegion(BaseModel):
+    """A region that is not a super region.
 
-    longname: str
-    shortname: str
-    shape_path: str
-    enabled: NotRequired[bool]
-
-
-SubRegionIndex = dict[str, SubRegion]
-
-
-class SubRegionCollection(TypedDict):
-    """A collection of sub-regions (`items`) of a particular type.
-
-    e.g.:
-        * States
-        * Hydrologic Unit Codes
-        * Countries
+    Must be a member of a SubRegionCollection.
     """
 
-    longname: str
-    shortname: str
-    items: SubRegionIndex
+    long_name: str
+    short_name: str
+    shape_relative_path: Path
 
 
-SubRegionCollectionIndex = dict[SubRegionCollectionName, SubRegionCollection]
+class SubRegionsIndex(RootModel):
+    """An index, with numeric keys, of sub-region definitions."""
+
+    root: dict[RegionIdentifier, SubRegion]
 
 
-class SuperRegion(TypedDict):
-    """A large primary region containing many collections of sub-regions."""
+class SubRegionCollection(BaseModel):
+    """A collection of sub-regions.
 
-    longname: str
-    shortname: str
-    shape_path: str
-    subregion_collections: SubRegionCollectionIndex
+    This is only a definition of a collection, and does not include its relationships.
+    See SubRegionsHierarchy for relationships.
+    """
 
-
-RegionIndex = dict[str, SuperRegion]
-
-
-###############################################################################
-# Types used in processing input -> output
-###############################################################################
+    long_name: str
+    short_name: str
 
 
-class SubRegionCollectionProcessingParams(TypedDict):
-    longname: str
-    shortname: str
-    subregion_items_fn: Callable[[], SubRegionIndex]
+class SubRegionCollectionsIndex(RootModel):
+    """An index, with numeric keys, of sub-region collection definitions."""
+
+    root: dict[SubRegionCollectionIdentifier, SubRegionCollection]
 
 
-class RegionProcessingParams(TypedDict):
-    longname: str
-    shortname: str
-    super_region_geojson_fn: Callable[[], str]  # Returns the "shape_path" string
-    subregion_collections: dict[
-        SubRegionCollectionName,
-        SubRegionCollectionProcessingParams,
-    ]
+class SuperRegionVariable(BaseModel):
+    """A variable available in this super region."""
+
+    default: bool = Field(
+        description=(
+            "Whether this variable is the default selection for the super region"
+            " (IMPORTANT: there should only be default variable per super region)"
+        ),
+    )
+    data_value_range: tuple[int, int] = Field(
+        description="The range of data values that the colormap will span",
+    )
+    geotiff_relative_path: Path
 
 
-RegionProcessingStruct = dict[SuperRegionName, RegionProcessingParams]
+class SuperRegion(SubRegion):
+    """A large region representing a top-level choice in the web application.
+
+    Sub-region choices will be presented depending on the super region choice.
+    Coordinate reference system, water year, available variables, and more are defined
+    at the super region level and inherited by sub-regions.
+    """
+
+    crs: str = Field(description="The coordinate reference system for this region")
+    # TODO: Available basemap(s)
+    water_year: int = Field(
+        description="The current water year",
+        ge=1900,
+        le=3000,
+    )
+    water_year_start_date: dt.date = Field(
+        description="The first day of the current water year"
+    )
+    historic_start_water_year: int = Field(
+        description="The water year at the start of available climatology",
+        ge=1900,
+        le=3000,
+    )
+    last_date_with_data: dt.date
+    historic_source: str = Field(description="The source of the climatology")
+    sub_regions_relative_path: Path
+    sub_regions_hierarchy_relative_path: Path
+    variables: dict[VariableIdentifier, SuperRegionVariable] = Field(
+        description="The variables available for this region",
+    )
+
+
+class SuperRegionsIndex(RootModel):
+    """An index of Super Regions by numeric identifier."""
+
+    root: dict[RegionIdentifier, SuperRegion]

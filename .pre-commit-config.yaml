@@ -5,6 +5,16 @@ ci:
   autoupdate_schedule: "quarterly"
 
 repos:
+  - repo: "https://github.com/python-jsonschema/check-jsonschema"
+    rev: "0.27.3"
+    hooks:
+      - id: "check-github-workflows"
+      # TODO: Re-enable. The checker and the docs say `build.tools` is
+      #       required, but we're doing a fully custom build and don't actually
+      #       need it.
+      #         https://docs.readthedocs.io/en/stable/config-file/v2.html#build-tools
+      # - id: "check-readthedocs"
+
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: "23.12.1"
     hooks:
@@ -26,6 +36,8 @@ repos:
       - id: check-merge-conflict
       - id: check-symlinks
       - id: check-yaml
+        # Without --unsafe, !reset in compose YAML triggers error
+        args: ["--unsafe"]
       - id: debug-statements
       # - id: end-of-file-fixer
       # - id: mixed-line-ending
@@ -71,7 +83,13 @@ repos:
     rev: "v2.2.6"
     hooks:
       - id: codespell
-        exclude: "^.*\\.bin$|^.*\\.ipynb$|^.*json"
+        exclude: >
+          (?x)^(
+            ^.*/example_data/.*
+            |^.*\\.bin
+            |^.*\\.ipynb
+            |^.*json
+          )$
 
   # TODO: ENABLE SHELLCHECK!
   # - repo: https://github.com/shellcheck-py/shellcheck-py

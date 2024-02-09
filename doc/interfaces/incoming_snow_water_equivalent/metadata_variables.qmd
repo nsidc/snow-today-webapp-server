@@ -1,0 +1,29 @@
+---
+title: "Metadata: variables"
+filters:
+  - "include-code-files"
+# A custom field for listing display:
+provider: "Version control"
+---
+
+Variables which are available for display **SWE station points** on the **map** user
+interface component.
+
+* Variables definition file **MUST** be named `variables.json`.
+* Variables definition file **MUST** be in compliance with the schema.
+* Variables definition file **MUST** be ingested by copying
+  `static/snow-water-equivalent/variables.json` from this repository, as this
+  source-controlled file is the source of truth.
+
+```{python}
+#| echo: false
+from snow_today_webapp_ingest.schema import display_jsonschema_and_example_markdown
+from snow_today_webapp_ingest.types_.variables import SweVariablesIndex 
+import os
+
+display_jsonschema_and_example_markdown(
+  example_fp="../static/snow-water-equivalent/variables.json",
+  model=SweVariablesIndex,
+  base_dir=os.path.abspath(''),
+)
+```

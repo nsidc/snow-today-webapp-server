@@ -1,0 +1,57 @@
+---
+title: "Data service"
+date: "2024-01-05"
+author:
+  - name: "Matt Fisher"
+    orcid: "0000-0003-3260-5445"
+citation: true
+filters:
+  - "include-code-files"
+order: 0
+listing:
+  type: "table"
+  sort-ui: false
+  filter-ui: false
+  contents:
+    - "."
+  fields:
+    - "title"
+    - "description"
+---
+
+The data service interface represents the **output** of the `snow_today_webapp_ingest`
+Python code in this repository, and the **input** of the
+[`snow-today-webapp` application](https://github.com/nsidc/snow-today-webapp).
+
+This output is written to a directory hosted by a web server so that the files can be
+accessed by the browsers of users using the webapp.
+
+This interface has been vastly simplified since the previous iteration of this
+application, as external providers now send data largely ready-to-go. The major
+differences between the provider interfaces and this one are:
+
+* We dynamically generate **legends** based on the data sent by providers and
+  metadata in this repository.
+* We convert GeoTIFFs sent by providers to **Cloud Optimized GeoTIFFs**.
+* We copy over some **static** data from this repository (in the `static/` directory).
+* SWE data is transformed. More below.
+
+
+## SWE transformation
+
+```{python}
+#| echo: false
+from snow_today_webapp_ingest.schema import display_jsonschema_and_example_markdown
+from snow_today_webapp_ingest.types_.swe import SwePayload
+import os
+
+display_jsonschema_and_example_markdown(
+  example_fp="example_data/live/snow-water-equivalent/points/swe.json",
+  model=SwePayload,
+  base_dir=os.path.abspath(''),
+)
+```
+
+
+## Specification
+

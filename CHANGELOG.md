@@ -1,3 +1,9 @@
+# v0.17.0 (2024-02-08)
+
+* Overhaul and document interfaces with Snow Surface Properties and Snow Water
+  Equivalent providers.
+
+
 # v0.16.0 (2022-12-13)
 
 * Tweak text for Normalized SWE legend and longname

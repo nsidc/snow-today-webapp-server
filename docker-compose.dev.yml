@@ -4,11 +4,15 @@ services:
 
   data-server:
     image: "nsidc/snow-today-webapp-server:dev"
-    build: .
-    volumes:
-      - "./data/variables.json:/usr/share/nginx/html/variables.json:ro"
-      - "./data/regions:/usr/share/nginx/html/regions:ro"
-      - "./data/shapes:/usr/share/nginx/html/shapes:ro"
+    build: "."
+    volumes: !override
+      # TODO: This entry is copied from the main compose file to override as rw
+      # read-only, the subdirs will fail to mount!
+      - "${STORAGE_DIR:?STORAGE_DIR must be set}/live:/usr/share/nginx/html:rw"
+      # In case we're developing this data, mount in the repo versions instead
+      # of requiring a full ingest for each change!
+      - "./static/variables.json:/usr/share/nginx/html/snow-surface-properties/variables.json:ro"
+      - "./static/colormaps.json:/usr/share/nginx/html/snow-surface-properties/colormaps.json:ro"
     restart: "on-failure"
 
 
@@ -19,4 +23,5 @@ services:
       dockerfile: "Dockerfile.ingest"
     volumes:
       - "./snow_today_webapp_ingest:/snow-today-webapp-server-ingest/snow_today_webapp_ingest:ro"
-      - "./data:/snow-today-webapp-server-ingest/data:rw"
+      - "./static:/snow-today-webapp-server-ingest/static:rw"
+      - "./schema:/snow-today-webapp-server-ingest/schema:ro"
