@@ -32,7 +32,7 @@ creating Cloud-Optimized GeoTIFFs.
 ## Installation
 
 ```
-docker-compose build
+docker compose build
 ```
 
 
@@ -52,7 +52,7 @@ arrive, and `cogs` and `plots` directories, where outputs will be written.
 ### Start the data server
 
 ```
-docker-compose up -d data-server
+docker compose up -d data-server
 ```
 
 ### Ingest data

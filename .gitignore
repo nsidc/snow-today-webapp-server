@@ -1,5 +1,5 @@
 # Docker stuff
-docker-compose.override.yml
+*compose.override.yml
 
 # Python stuff
 __pycache__

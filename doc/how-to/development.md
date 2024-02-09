@@ -16,6 +16,6 @@ python ./snow_today_webapp_ingest/cli.py
 Override compose configuration with the dev compose-file:
 
 ```
-ln -s docker-compose.dev.yml docker-compose.override.yml
+ln -s compose.dev.yml compose.override.yml
 ./scripts/container_cli.sh
 ```
