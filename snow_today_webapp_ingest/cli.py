@@ -4,6 +4,7 @@ NOTE: imports are done in functions to avoid needing to evaluate code within tho
 imports when doing `--help`.
 """
 from pathlib import Path
+from shutil import rmtree
 from tempfile import mkdtemp
 
 import click
@@ -107,8 +108,16 @@ def cli(log_level: int) -> None:
         " location."
     ),
 )
+@click.option(
+    "--keep-backup",
+    is_flag=True,
+    help=(
+        "On success, copy pre-existing data to a backup directory."
+        " If not set, pre-existing data will be replaced with results of ingest.."
+    ),
+)
 @click.pass_context
-def ingest(ctx, dry_run: bool) -> None:
+def ingest(ctx, dry_run: bool, keep_backup: bool) -> None:
     """Ingest data payload to update the webapp."""
     if dry_run:
         logger.warning("Starting dry-run; output will remain in WIP directory!")
@@ -116,6 +125,7 @@ def ingest(ctx, dry_run: bool) -> None:
     # Set up some context for sub-commands
     ctx.ensure_object(dict)
     ctx.obj['dry_run'] = dry_run
+    ctx.obj['keep_backup'] = keep_backup
 
 
 @ingest.command()
@@ -128,6 +138,7 @@ def common(ctx, *, common_tasks: tuple[str, ...]) -> None:
     """
     _ingest(
         dry_run=ctx.obj["dry_run"],
+        keep_backup=ctx.obj["keep_backup"],
         source="common",
         tasks_include=common_tasks,
     )
@@ -143,6 +154,7 @@ def snow_surface_properties(ctx, *, ssp_tasks: tuple[str, ...]) -> None:
     """
     _ingest(
         dry_run=ctx.obj["dry_run"],
+        keep_backup=ctx.obj["keep_backup"],
         source="snow-surface-properties",
         tasks_include=ssp_tasks,
     )
@@ -158,14 +170,16 @@ def snow_water_equivalent(ctx, *, swe_tasks: tuple[str, ...]) -> None:
     """
     _ingest(
         dry_run=ctx.obj["dry_run"],
+        keep_backup=ctx.obj["keep_backup"],
         source="snow-water-equivalent",
         tasks_include=swe_tasks,
     )
 
 
-def _ingest(
+def _ingest(  # noqa: C901
     *,
     dry_run: bool,
+    keep_backup: bool,
     source: DataSource,
     tasks_include: tuple[str, ...],
 ) -> None:
@@ -221,16 +235,21 @@ def _ingest(
 
     bkp_dir = _unique_backup_dir(OUTPUT_BKP_DIR / source)
     if output_dir.is_dir():
-        # Do a swap: Live -> backup
-        bkp_dir.parent.mkdir(parents=True, exist_ok=True)
-        output_dir.rename(bkp_dir)
+        if keep_backup:
+            # Swap: Live -> backup
+            bkp_dir.parent.mkdir(parents=True, exist_ok=True)
+            output_dir.rename(bkp_dir)
+            logger.info(f"Backed up '{output_dir}' to '{bkp_dir}'.")
+        else:
+            # Delete: Live
+            rmtree(output_dir)
     else:
-        # If it doesn't exist, we can't be sure its parents do:
+        # If it doesn't exist, ensure its parents do:
         output_dir.parent.mkdir(parents=True, exist_ok=True)
 
-    # Then another swap: New -> Live
+    # Swap: New -> Live
     tmpdir.rename(output_dir)
-    logger.success(f"🎉 Ingested to '{output_dir}'. Backup: '{bkp_dir}'")
+    logger.success(f"🎉 Ingested to '{output_dir}'.")
 
 
 def _unique_backup_dir(parent: Path) -> Path:
