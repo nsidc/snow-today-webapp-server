@@ -27,11 +27,12 @@ This output is written to a directory hosted by a web server so that the files c
 accessed by the browsers of users using the webapp.
 
 This interface has been vastly simplified since the previous iteration of this
-application, as the supercomputer now sends data largely ready-to-go. The major
-differences between the supercomputer interface and this one are:
+application, as external providers now send data largely ready-to-go. The major
+differences between the provider interfaces and this one are:
 
-* We dynamically generate **legends** based on the data sent by the supercomputer.
-* We convert GeoTIFFs sent by the super computer to **Cloud Optimized GeoTIFFs**.
+* We dynamically generate **legends** based on the data sent by providers and
+  metadata in this repository.
+* We convert GeoTIFFs sent by providers to **Cloud Optimized GeoTIFFs**.
 * We copy over some **static** data from this repository (in the `static/` directory).
 * SWE data is transformed. More below.
 

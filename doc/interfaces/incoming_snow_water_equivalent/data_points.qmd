@@ -1,0 +1,31 @@
+
+---
+title: "Data: points (CSV)" 
+# A custom field for listing display:
+provider: "External"
+---
+
+**Point data** (CSV) that are displayed on the **map** user interface component.
+
+* SWE data is currently provided in a non-compliant CSV format, following the example
+  below. It consists of two parts.
+    * Data **MUST** include a YAML-parseable front-matter including a key
+      `"SnowToday_USwest_20230920_SWEsummary.txt"`, whose value is a `YYYY-MM-DD` string
+      representing the date the CSV data represents.
+    * Data **MUST** include a CSV-parseable body, immediately following the front-matter
+      with no separator, and continuing until the end of the file. The beginning of the
+      body is indicated by a standard CSV header row.
+* SWE data files **MUST** be named `SnowToday_USwest_{YYYYMMDD}_SWEsummary.txt`, e.g.
+  `SnowToday_USwest_20230920_SWEsummary.txt`.
+* SWE data files **MUST** be pushed, one at a time, to the incoming dir, e.g.
+  `{incomingDir}/SnowToday_USwest_20230920_SWEsummary.txt`.
+* SWE CSV data **MUST** include `Name`, `Lat`, `Lon`, `Elev_m`, `SWE`, `normSWE`,
+  `dSWE` columns.
+    * SWE CSV data **MAY** include additional columns, but the ingest process will drop
+      them.
+
+<details>
+<summary>Example</summary>
+```{.yaml filename="SnowToday_USwest_20230920_SWEsummary.txt (example)" include="example_data/SnowToday_USwest_20230920_SWEsummary.txt"}
+```
+</details>
