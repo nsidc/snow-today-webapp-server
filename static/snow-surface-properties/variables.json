@@ -1,4 +1,21 @@
 {
+  "36": {
+    "sensor": "modis",
+    "platform": "terra",
+    "algorithm": "scagdrfs/stc",
+    "layerType": "raster",
+    "longName": "Viewable Snow Cover Percent",
+    "longNamePlot": "",
+    "labelMapLegend": "Snow Cover (>=10%)",
+    "labelPlotYaxis": "Area (thousands of square kilometers)",
+    "helpText": "",
+    "valuePrecision": 0,
+    "colormapId": 6,
+    "transparentZero": true,
+    "source": "MODIS (Terra) scagdrfs/stc",
+    "noDataValue": 255,
+    "valueRange": [0, 100]
+  },
   "40": {
     "sensor": "modis",
     "platform": "terra",
@@ -101,6 +118,23 @@
     "noDataValue": 255,
     "valueRange": [0, 100]
   },
+  "54": {
+    "sensor": "modis",
+    "platform": "terra",
+    "algorithm": "spires",
+    "layerType": "raster",
+    "longName": "Viewable Snow Cover Percent",
+    "longNamePlot": "",
+    "labelMapLegend": "Snow Cover (>=10%)",
+    "labelPlotYaxis": "Area (thousands of square kilometers)",
+    "helpText": "",
+    "valuePrecision": 0,
+    "colormapId": 6,
+    "transparentZero": true,
+    "source": "MODIS (Terra) spires",
+    "noDataValue": 255,
+    "valueRange": [0, 100]
+  },
   "55": {
     "sensor": "modis",
     "platform": "terra",
@@ -168,5 +202,39 @@
     "source": "MODIS (Terra) spires",
     "noDataValue": 65535,
     "valueRange": [0, 366]
+  },
+  "62": {
+    "sensor": "modis",
+    "platform": "terra",
+    "algorithm": "spires",
+    "layerType": "raster",
+    "longName": "Snow Albedo",
+    "longNamePlot": "Average Snow Albedo",
+    "labelMapLegend": "Snow Albedo (%, for Snow >=10%)",
+    "labelPlotYaxis": "Albedo (%)",
+    "helpText": "Fresh, clean snow with a high albedo appears bright, while old or dirty snow tends to have a lower albedo and appears darker. The snow albedo measurement is a non-dimensional, unitless quantity that measures how well a surface reflects solar energy, ranging from 0 to 1. A value of 0 means the surface is a perfect absorber, where all incoming energy is absorbed, while a value of 1 means the surface is a perfect reflector, where all incoming energy is reflected and none is absorbed. This quantity can also be expressed as a percent with a range from 0 to 100, with zero percent absorbing all incoming energy and 100 percent reflecting all energy.",
+    "valuePrecision": 0,
+    "colormapId": 1,
+    "transparentZero": false,
+    "source": "MODIS (Terra) spires",
+    "noDataValue": 255,
+    "valueRange": [0, 100]
+  },
+  "63": {
+    "sensor": "modis",
+    "platform": "terra",
+    "algorithm": "spires",
+    "layerType": "raster",
+    "longName": "Snow Radiative Forcing",
+    "longNamePlot": "Average Snow Radiative Forcing",
+    "labelMapLegend": "Energy (W m^2, for Snow >=10%)",
+    "labelPlotYaxis": "Energy (Watts per square meter)",
+    "helpText": "When snow impurities such as dust or soot fall on snow, its surface darkens and absorbs more solar energy. Snow radiative forcing is a measure of the additional absorption of solar radiation from light absorbing particles (LAP) such as dust or soot. Units of measure are Watts per square meter (W/m2) and values can range from 0 to 500 W/m2. This maximum value depends on incoming solar radiation (elevation, direct sun vs shaded) and the amount of dust or soot. A value of 0 means no additional radiation is being absorbed. A value of 500 means nearly all of the solar energy is absorbed (depends on latitude, elevation, clouds). Radiative forcing is calculated by the difference between the net (downward minus upward) radiative fluxes (irradiance) with and without LAP.",
+    "valuePrecision": 0,
+    "colormapId": 4,
+    "transparentZero": false,
+    "source": "MODIS (Terra) spires",
+    "noDataValue": 65535,
+    "valueRange": [0, 500]
   }
 }
