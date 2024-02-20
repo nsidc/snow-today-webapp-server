@@ -14,10 +14,7 @@
     "transparentZero": true,
     "source": "MODIS (Terra) scagdrfs/stc",
     "noDataValue": 255,
-    "valueRange": [
-      0,
-      100
-    ]
+    "valueRange": [0, 100]
   },
   "41": {
     "sensor": "modis",
@@ -34,10 +31,7 @@
     "transparentZero": false,
     "source": "MODIS (Terra) scagdrfs/stc",
     "noDataValue": 65535,
-    "valueRange": [
-      10,
-      1100
-    ]
+    "valueRange": [10, 1100]
   },
   "43": {
     "sensor": "modis",
@@ -54,10 +48,7 @@
     "transparentZero": false,
     "source": "MODIS (Terra) scagdrfs/stc",
     "noDataValue": 255,
-    "valueRange": [
-      0,
-      75
-    ]
+    "valueRange": [0, 75]
   },
   "44": {
     "sensor": "modis",
@@ -74,10 +65,7 @@
     "transparentZero": false,
     "source": "MODIS (Terra) scagdrfs/stc",
     "noDataValue": 65535,
-    "valueRange": [
-      0,
-      500
-    ]
+    "valueRange": [0, 500]
   },
   "45": {
     "sensor": "modis",
@@ -94,10 +82,7 @@
     "transparentZero": true,
     "source": "MODIS (Terra) scagdrfs/stc",
     "noDataValue": 65535,
-    "valueRange": [
-      0,
-      366
-    ]
+    "valueRange": [0, 366]
   },
   "51": {
     "sensor": "modis",
@@ -114,10 +99,7 @@
     "transparentZero": false,
     "source": "MODIS (Terra) scagdrfs/stc",
     "noDataValue": 255,
-    "valueRange": [
-      0,
-      100
-    ]
+    "valueRange": [0, 100]
   },
   "55": {
     "sensor": "modis",
@@ -134,10 +116,7 @@
     "transparentZero": true,
     "source": "MODIS (Terra) spires",
     "noDataValue": 255,
-    "valueRange": [
-      0,
-      100
-    ]
+    "valueRange": [0, 100]
   },
   "59": {
     "sensor": "modis",
@@ -154,10 +133,7 @@
     "transparentZero": false,
     "source": "MODIS (Terra) scagdrfs/stc",
     "noDataValue": 255,
-    "valueRange": [
-      0,
-      1
-    ]
+    "valueRange": [0, 1]
   },
   "60": {
     "sensor": "modis",
@@ -174,10 +150,7 @@
     "transparentZero": false,
     "source": "MODIS (Terra) spires",
     "noDataValue": 255,
-    "valueRange": [
-      0,
-      1
-    ]
+    "valueRange": [0, 1]
   },
   "61": {
     "sensor": "modis",
@@ -194,9 +167,6 @@
     "transparentZero": true,
     "source": "MODIS (Terra) spires",
     "noDataValue": 65535,
-    "valueRange": [
-      0,
-      366
-    ]
+    "valueRange": [0, 366]
   }
 }
