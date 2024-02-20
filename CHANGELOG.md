@@ -1,4 +1,8 @@
-# v0.17.0 (2024-02-08)
+# v0.17.1 (2024-02-20)
+
+* Change of variable ids.
+*
+* # v0.17.0 (2024-02-08)
 
 * Overhaul and document interfaces with Snow Surface Properties and Snow Water
   Equivalent providers.
