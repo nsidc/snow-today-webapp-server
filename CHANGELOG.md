@@ -1,7 +1,13 @@
+# v0.17.2 (2024-02-22)
+
+* Only 1 variable in the configuration file should have the raster_notprocessed attribute.
+
+
 # v0.17.1 (2024-02-20)
 
 * Change of variable ids.
-*
+
+
 * # v0.17.0 (2024-02-08)
 
 * Overhaul and document interfaces with Snow Surface Properties and Snow Water
