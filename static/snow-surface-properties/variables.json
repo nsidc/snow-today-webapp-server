@@ -193,7 +193,7 @@
     "layerType": "raster",
     "longName": "Snow Cover Duration",
     "longNamePlot": "Average Snow Cover Duration",
-    "labelMapLegend": "Snow Cover Duration (days, >=14)",
+    "labelMapLegend": "Snow Cover Duration (days, >= 14)",
     "labelPlotYaxis": "Snow Cover Duration (days)",
     "helpText": "The number of days a region has been covered with snow as identified with snow cover percent greater than a snow cover percent threshold since a starting time. Our data uses 15% as the snow percent threshold and October 1 as the starting date for these maps.",
     "valuePrecision": 3,
