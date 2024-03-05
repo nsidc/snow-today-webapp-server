@@ -156,7 +156,7 @@
     "sensor": "modis",
     "platform": "terra",
     "algorithm": "scagdrfs/stc",
-    "layerType": "raster",
+    "layerType": "raster_notprocessed",
     "longName": "Not Processed",
     "longNamePlot": "",
     "labelMapLegend": "",
