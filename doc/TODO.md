@@ -5,6 +5,14 @@
 - [ ] Review docs for out-of-date information
 
 
+### Example data
+
+- [ ] Unify all example data in one directory. E.g.:
+    * `interfaces/incoming/example-data`. Referenced by docs:
+    * `interfaces/incoming/snow-surface-properties`
+    * `interfaces/incoming/snow-water-equivalent`
+
+
 ### VM provisioning
 
 - [ ] Ensure provisioning code is creating the `live` and `ingest-wip` directories.

@@ -5,7 +5,11 @@ from typing import Literal
 from pydantic import Field
 
 from snow_today_webapp_ingest.types_.base import BaseModel, RootModel
-from snow_today_webapp_ingest.types_.misc import NumericIdentifier, StringIdentifier
+from snow_today_webapp_ingest.types_.misc import (
+    NumericIdentifier,
+    StringIdentifier,
+    Year,
+)
 
 ###############################################################################
 # Types for region input things (e.g. magic strings in shapefiles)
@@ -61,6 +65,7 @@ class SubRegionCollectionsIndex(RootModel):
 class SuperRegionVariable(BaseModel):
     """A variable available in this super region."""
 
+    last_date_with_data: dt.date
     default: bool = Field(
         description=(
             "Whether this variable is the default selection for the super region"
@@ -70,6 +75,18 @@ class SuperRegionVariable(BaseModel):
     data_value_range: tuple[int, int] = Field(
         description="The range of data values that the colormap will span",
     )
+    water_year: int = Field(
+        description="The current water year",
+        ge=1900,
+        le=3000,
+    )
+    water_year_start_date: dt.date = Field(
+        description="The first day of the current water year"
+    )
+    historic_water_year_range: tuple[Year, Year] = Field(
+        description="The water years at the start and end of available climatology",
+    )
+    historic_source: str = Field(description="The source of the climatology")
     geotiff_relative_path: Path
 
 
@@ -83,21 +100,6 @@ class SuperRegion(SubRegion):
 
     crs: str = Field(description="The coordinate reference system for this region")
     # TODO: Available basemap(s)
-    water_year: int = Field(
-        description="The current water year",
-        ge=1900,
-        le=3000,
-    )
-    water_year_start_date: dt.date = Field(
-        description="The first day of the current water year"
-    )
-    historic_start_water_year: int = Field(
-        description="The water year at the start of available climatology",
-        ge=1900,
-        le=3000,
-    )
-    last_date_with_data: dt.date
-    historic_source: str = Field(description="The source of the climatology")
     sub_regions_relative_path: Path
     sub_regions_hierarchy_relative_path: Path
     variables: dict[VariableIdentifier, SuperRegionVariable] = Field(
