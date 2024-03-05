@@ -61,6 +61,7 @@ class SubRegionCollectionsIndex(RootModel):
 class SuperRegionVariable(BaseModel):
     """A variable available in this super region."""
 
+    last_date_with_data: dt.date
     default: bool = Field(
         description=(
             "Whether this variable is the default selection for the super region"
@@ -70,19 +71,6 @@ class SuperRegionVariable(BaseModel):
     data_value_range: tuple[int, int] = Field(
         description="The range of data values that the colormap will span",
     )
-    geotiff_relative_path: Path
-
-
-class SuperRegion(SubRegion):
-    """A large region representing a top-level choice in the web application.
-
-    Sub-region choices will be presented depending on the super region choice.
-    Coordinate reference system, water year, available variables, and more are defined
-    at the super region level and inherited by sub-regions.
-    """
-
-    crs: str = Field(description="The coordinate reference system for this region")
-    # TODO: Available basemap(s)
     water_year: int = Field(
         description="The current water year",
         ge=1900,
@@ -96,8 +84,20 @@ class SuperRegion(SubRegion):
         ge=1900,
         le=3000,
     )
-    last_date_with_data: dt.date
     historic_source: str = Field(description="The source of the climatology")
+    geotiff_relative_path: Path
+
+
+class SuperRegion(SubRegion):
+    """A large region representing a top-level choice in the web application.
+
+    Sub-region choices will be presented depending on the super region choice.
+    Coordinate reference system, water year, available variables, and more are defined
+    at the super region level and inherited by sub-regions.
+    """
+
+    crs: str = Field(description="The coordinate reference system for this region")
+    # TODO: Available basemap(s)
     sub_regions_relative_path: Path
     sub_regions_hierarchy_relative_path: Path
     variables: dict[VariableIdentifier, SuperRegionVariable] = Field(
