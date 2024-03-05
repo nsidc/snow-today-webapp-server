@@ -5,7 +5,11 @@ from typing import Literal
 from pydantic import Field
 
 from snow_today_webapp_ingest.types_.base import BaseModel, RootModel
-from snow_today_webapp_ingest.types_.misc import NumericIdentifier, StringIdentifier
+from snow_today_webapp_ingest.types_.misc import (
+    NumericIdentifier,
+    StringIdentifier,
+    Year,
+)
 
 ###############################################################################
 # Types for region input things (e.g. magic strings in shapefiles)
@@ -79,10 +83,8 @@ class SuperRegionVariable(BaseModel):
     water_year_start_date: dt.date = Field(
         description="The first day of the current water year"
     )
-    historic_start_water_year: int = Field(
-        description="The water year at the start of available climatology",
-        ge=1900,
-        le=3000,
+    historic_water_year_range: tuple[Year, Year] = Field(
+        description="The water years at the start and end of available climatology",
     )
     historic_source: str = Field(description="The source of the climatology")
     geotiff_relative_path: Path
