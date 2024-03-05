@@ -74,7 +74,7 @@
     "layerType": "raster",
     "longName": "Snow Radiative Forcing",
     "longNamePlot": "Average Snow Radiative Forcing",
-    "labelMapLegend": "Snow Radiative Forcing (W/m^2, for snow >=10%)",
+    "labelMapLegend": "Snow Radiative Forcing (W/m^2, for snow >= 10%)",
     "labelPlotYaxis": "Average Snow Radiative Forcing (W/m^2)",
     "helpText": "When snow impurities such as dust or soot fall on snow, its surface darkens and absorbs more solar energy. Snow radiative forcing is a measure of the additional absorption of solar radiation from light absorbing particles (LAP) such as dust or soot. Units of measure are Watts per square meter (W/m2) and values can range from 0 to 500 W/m2. This maximum value depends on incoming solar radiation (elevation, direct sun vs shaded) and the amount of dust or soot. A value of 0 means no additional radiation is being absorbed. A value of 500 means nearly all of the solar energy is absorbed (depends on latitude, elevation, clouds). Radiative forcing is calculated by the difference between the net (downward minus upward) radiative fluxes (irradiance) with and without LAP.",
     "valuePrecision": 0,
