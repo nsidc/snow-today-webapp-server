@@ -1,3 +1,9 @@
+# v0.18.1 (2024-03-05)
+
+* Add `legendRelativePath` to `snow-surface-properties/regions/root.json` at the
+  variable level.
+
+
 # v0.18.0 (2024-03-04)
 
 * Change `historicStartWaterYear` -> `historicWaterYearRange`, a tuple including end
