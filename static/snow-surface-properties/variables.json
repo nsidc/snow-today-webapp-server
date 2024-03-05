@@ -40,7 +40,7 @@
     "layerType": "raster",
     "longName": "Snow Grain Size",
     "longNamePlot": "",
-    "labelMapLegend": "Snow Grain Size (µm, for Snow >=10%)",
+    "labelMapLegend": "Snow Grain Size (µm, for Snow >= 10%)",
     "labelPlotYaxis": "Snow Grain Size (µm)",
     "helpText": "",
     "valuePrecision": 0,
