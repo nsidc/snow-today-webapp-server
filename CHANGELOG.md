@@ -1,3 +1,11 @@
+# v0.19.0 (2024-03-05)
+
+* Set `Cache-Control: max-age=900` header in NGINX server
+* Add `legendRelativePath` to `snow-surface-properties/regions/root.json` at the
+  variable level.
+* Update some variable-level labels, names, other text.
+
+
 # v0.18.0 (2024-03-04)
 
 * Change `historicStartWaterYear` -> `historicWaterYearRange`, a tuple including end

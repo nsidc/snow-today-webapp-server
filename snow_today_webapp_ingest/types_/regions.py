@@ -88,6 +88,7 @@ class SuperRegionVariable(BaseModel):
     )
     historic_source: str = Field(description="The source of the climatology")
     geotiff_relative_path: Path
+    legend_relative_path: Path
 
 
 class SuperRegion(SubRegion):
