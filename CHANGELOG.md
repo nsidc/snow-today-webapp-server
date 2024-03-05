@@ -2,6 +2,7 @@
 
 * Add `legendRelativePath` to `snow-surface-properties/regions/root.json` at the
   variable level.
+* Update some variable-level labels, names, other text.
 
 
 # v0.18.0 (2024-03-04)
