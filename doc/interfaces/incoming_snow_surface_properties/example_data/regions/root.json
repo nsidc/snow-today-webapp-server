@@ -3,30 +3,45 @@
     "longName": "Alaska",
     "shortName": "USAlaskaWAleutian",
     "crs": "EPSG:3857",
-    "waterYear": 2024,
-    "waterYearStartDate": "2023-10-01",
-    "lastDateWithData": "2023-04-03",
-    "historicStartWaterYear": 2001,
-    "historicSource": "JPL modscag/drfs",
     "variables": {
       "51": {
         "default": false,
         "dataValueRange": [65, 85],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26100_51.tif"
       },
       "45": {
         "default": false,
         "dataValueRange": [1, 91],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26100_45.tif"
       },
       "40": {
         "default": true,
         "dataValueRange": [1, 100],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26100_40.tif"
       },
       "44": {
         "default": false,
         "dataValueRange": [0, 100],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26100_44.tif"
       }
     },
@@ -38,30 +53,45 @@
     "longName": "Andes",
     "shortName": "AMAndes",
     "crs": "EPSG:3857",
-    "waterYear": 2024,
-    "waterYearStartDate": "2023-04-01",
-    "lastDateWithData": "2023-04-03",
-    "historicStartWaterYear": 2018,
-    "historicSource": "JPL modscag/drfs",
     "variables": {
       "51": {
         "default": false,
         "dataValueRange": [65, 85],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-04-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2018, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26004_51.tif"
       },
       "45": {
         "default": false,
         "dataValueRange": [1, 91],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-04-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2018, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26004_45.tif"
       },
       "40": {
         "default": true,
         "dataValueRange": [1, 100],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-04-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2018, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26004_40.tif"
       },
       "44": {
         "default": false,
         "dataValueRange": [0, 100],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-04-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2018, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26004_44.tif"
       }
     },
@@ -73,30 +103,45 @@
     "longName": "Canada",
     "shortName": "AMCanadaW",
     "crs": "EPSG:3857",
-    "waterYear": 2024,
-    "waterYearStartDate": "2023-10-01",
-    "lastDateWithData": "2023-04-03",
-    "historicStartWaterYear": 2001,
-    "historicSource": "JPL modscag/drfs",
     "variables": {
       "51": {
         "default": false,
         "dataValueRange": [65, 85],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26101_51.tif"
       },
       "45": {
         "default": false,
         "dataValueRange": [1, 91],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26101_45.tif"
       },
       "40": {
         "default": true,
         "dataValueRange": [1, 100],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26101_40.tif"
       },
       "44": {
         "default": false,
         "dataValueRange": [0, 100],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26101_44.tif"
       }
     },
@@ -108,30 +153,45 @@
     "longName": "High Mountain Asia",
     "shortName": "ASHimalayas",
     "crs": "EPSG:3857",
-    "waterYear": 2024,
-    "waterYearStartDate": "2023-10-01",
-    "lastDateWithData": "2023-04-03",
-    "historicStartWaterYear": 2001,
-    "historicSource": "JPL modscag/drfs",
     "variables": {
       "51": {
         "default": false,
         "dataValueRange": [65, 85],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26002_51.tif"
       },
       "45": {
         "default": false,
         "dataValueRange": [1, 91],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26002_45.tif"
       },
       "40": {
         "default": true,
         "dataValueRange": [1, 100],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26002_40.tif"
       },
       "44": {
         "default": false,
         "dataValueRange": [0, 100],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26002_44.tif"
       }
     },
@@ -143,30 +203,45 @@
     "longName": "Western United States",
     "shortName": "USwest",
     "crs": "EPSG:3857",
-    "waterYear": 2024,
-    "waterYearStartDate": "2023-10-01",
-    "lastDateWithData": "2023-04-03",
-    "historicStartWaterYear": 2001,
-    "historicSource": "JPL modscag/drfs",
     "variables": {
       "51": {
         "default": false,
         "dataValueRange": [65, 85],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26000_51.tif"
       },
       "45": {
         "default": false,
         "dataValueRange": [1, 91],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26000_45.tif"
       },
       "40": {
         "default": true,
         "dataValueRange": [1, 100],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26000_40.tif"
       },
       "44": {
         "default": false,
         "dataValueRange": [0, 100],
+        "waterYear": 2024,
+        "waterYearStartDate": "2023-10-01",
+        "lastDateWithData": "2023-04-03",
+        "historicWaterYearRange": [2001, 2020],
+        "historicSource": "JPL modscag/drfs",
         "geotiffRelativePath": "regions/cogs/26000_44.tif"
       }
     },
