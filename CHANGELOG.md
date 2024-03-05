@@ -1,3 +1,15 @@
+# v0.18.0 (2024-03-04)
+
+* Change `historicStartWaterYear` -> `historicWaterYearRange`, a tuple including end
+  year.
+* SSP: `regions/root.json` migrate variables from region level to region-variable level:
+    * `lastDateWithData`
+    * `historicWaterYearRange`
+		* `historicSource`
+    * `waterYear`
+    * `waterYearStartDate`
+
+
 # v0.17.2 (2024-02-22)
 
 * Only 1 variable in the configuration file should have the raster_notprocessed attribute.
