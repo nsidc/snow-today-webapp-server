@@ -1,3 +1,8 @@
+# v0.19.1 (2024-03-06)
+
+* Fix ingest code to put legends in the location mandated by the specification.
+
+
 # v0.19.0 (2024-03-05)
 
 * Set `Cache-Control: max-age=900` header in NGINX server
