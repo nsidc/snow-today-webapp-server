@@ -25,6 +25,7 @@ CsvColumnName = Literal[
     'Elev_m',
     'SWE',
     'normSWE',
+    'percentPeakSWE',
     'dSWE',
     'State',
     'HUC02',
