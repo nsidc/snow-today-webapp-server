@@ -27,7 +27,7 @@ def generate_swe_legends(
         colormap_id = variable_params["colormapId"]
         colormap = colormaps_json[str(colormap_id)]["colors"]
 
-        to_path.mkdir(exist_ok=True)
+        to_path.mkdir(exist_ok=True, parents=True)
         make_legend(
             colormap=colormap,
             # This value range could be static every day, or it could change
@@ -81,7 +81,7 @@ def generate_ssp_legends(
             output_fn = f"{region_id}_{variable_id}.svg"
             output_fp = to_path / output_fn
 
-            to_path.mkdir(exist_ok=True)
+            to_path.mkdir(exist_ok=True, parents=True)
             make_legend(
                 colormap=colormap,
                 # This value range could be static every day, or it could change

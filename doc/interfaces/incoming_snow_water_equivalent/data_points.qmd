@@ -16,9 +16,9 @@ provider: "External"
       with no separator, and continuing until the end of the file. The beginning of the
       body is indicated by a standard CSV header row.
 * SWE data files **MUST** be named `SnowToday_USwest_{YYYYMMDD}_SWEsummary.txt`, e.g.
-  `SnowToday_USwest_20230920_SWEsummary.txt`.
+  `SnowToday_USwest_20240305_SWEsummary.txt`.
 * SWE data files **MUST** be pushed, one at a time, to the incoming dir, e.g.
-  `{incomingDir}/SnowToday_USwest_20230920_SWEsummary.txt`.
+  `{incomingDir}/SnowToday_USwest_20240305_SWEsummary.txt`.
 * SWE CSV data **MUST** include `Name`, `Lat`, `Lon`, `Elev_m`, `SWE`, `normSWE`,
   `dSWE` columns.
     * SWE CSV data **MAY** include additional columns, but the ingest process will drop
@@ -26,6 +26,6 @@ provider: "External"
 
 <details>
 <summary>Example</summary>
-```{.yaml filename="SnowToday_USwest_20230920_SWEsummary.txt (example)" include="example_data/SnowToday_USwest_20230920_SWEsummary.txt"}
+```{.yaml filename="SnowToday_USwest_20240305_SWEsummary.txt (example)" include="example_data/SnowToday_USwest_20240305_SWEsummary.txt"}
 ```
 </details>
