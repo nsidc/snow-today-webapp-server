@@ -1,3 +1,8 @@
+# v0.21.0 (2024-03-12)
+
+* Update some variable text for sensors, platforms, and algorithms
+
+
 # v0.20.0 (2024-03-06)
 
 * Support new SWE column: `percentPeakSWE`.
