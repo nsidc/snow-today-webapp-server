@@ -1,4 +1,5 @@
 """Convert non-CO GeoTIFFs to Cloud-Optimized GeoTIFFs."""
+
 import subprocess
 from pathlib import Path
 from pprint import pformat

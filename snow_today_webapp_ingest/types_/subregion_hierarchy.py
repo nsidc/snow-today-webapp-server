@@ -15,10 +15,13 @@ class SubRegionsHierarchyCollectionRegionsIndex(RootModel):
 
 class SubRegionsHierarchyCollectionRegion(BaseModel):
     # TODO: Will this output as {} or null?
-    collections: None | dict[
-        SubRegionCollectionIdentifier,
-        SubRegionsHierarchyCollectionRegionsIndex,
-    ] = None
+    collections: (
+        None
+        | dict[
+            SubRegionCollectionIdentifier,
+            SubRegionsHierarchyCollectionRegionsIndex,
+        ]
+    ) = None
 
 
 class SubRegionsHierarchyCollection(BaseModel):

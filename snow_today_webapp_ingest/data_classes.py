@@ -4,6 +4,7 @@ NOT to be confused with dataclasses (no underscore). I'm sorry.
 
 TODO: Better name! "Data types" isn't much better. "Data kinds"?
 """
+
 import re
 from dataclasses import dataclass
 from functools import partial

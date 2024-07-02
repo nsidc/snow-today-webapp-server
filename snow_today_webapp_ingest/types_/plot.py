@@ -51,13 +51,13 @@ class PlotData(BaseModel):
     year_to_date: PlotPointColumn = Field(
         description="Observed values for the current water year to date",
     )
-    min: PlotPointColumn = Field(  # noqa: A003
+    min: PlotPointColumn = Field(
         description=(
             "Observed values for the minimum water year (as specified in"
             " `metadata.minYear`)"
         ),
     )
-    max: PlotPointColumn = Field(  # noqa: A003
+    max: PlotPointColumn = Field(
         description=(
             "Observed values for the maximum water year (as specified in"
             " `metadata.maxYear`)"
