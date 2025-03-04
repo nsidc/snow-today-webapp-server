@@ -8,7 +8,8 @@
     "transparentZero": false,
     "noDataValue": 255,
     "valueRange": [0, 100],
-    "colormapValueRange": [0, 50]
+    "colormapValueRange": [0, 50],
+    "unit": "cm"
   },
   "swe_delta_inches": {
     "longName": "Change in Snow Water Equivalent",
@@ -19,7 +20,8 @@
     "transparentZero": false,
     "noDataValue": 255,
     "valueRange": [-4, 4],
-    "colormapValueRange": [-2, 2]
+    "colormapValueRange": [-2, 2],
+    "unit": "cm"
   },
   "swe_normalized_pct": {
     "longName": "Percentage of Median Snow Water Equivalent",
@@ -30,6 +32,7 @@
     "transparentZero": false,
     "noDataValue": 255,
     "valueRange": [0, 200],
-    "colormapValueRange": [45, 155]
+    "colormapValueRange": [45, 155],
+    "unit": "%"
   }
 }

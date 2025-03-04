@@ -27,6 +27,7 @@ class SweVariable(BaseModel):
     no_data_value: int
     colormap_id: int
     transparent_zero: bool
+    unit: str
 
 
 class SweVariablesIndex(RootModel):
