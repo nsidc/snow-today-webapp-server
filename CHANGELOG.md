@@ -1,3 +1,8 @@
+# v0.21.1 (2024-03-18)
+
+* Add a field `unit` to the SweVariable type
+* Add these units to the static SWE variables
+
 # v0.21.0 (2024-03-12)
 
 * Update some variable text for sensors, platforms, and algorithms
