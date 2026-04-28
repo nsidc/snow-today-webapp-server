@@ -236,5 +236,22 @@
     "source": "MODIS (Terra) SPIRES",
     "noDataValue": 65535,
     "valueRange": [0, 500]
+  },
+  "77": {
+    "sensor": "MODIS",
+    "platform": "Terra",
+    "algorithm": "SPIRES",
+    "layerType": "raster",
+    "longName": "Days Without Observation",
+    "longNamePlot": "",
+    "labelMapLegend": "Days since Last Observation (days)",
+    "labelPlotYaxis": "",
+    "helpText": "The number of days covering the pixel/day which don't have observations. 0 if the day has observation, > 0 if day without observation. E.g. 10 if the day belongs to a series of 10 days without observation by the sensor.",
+    "valuePrecision": 0,
+    "colormapId": 8,
+    "transparentZero": true,
+    "source": "MODIS (Terra) SPIRES",
+    "noDataValue": 65535,
+    "valueRange": [0, 50]
   }
 }
