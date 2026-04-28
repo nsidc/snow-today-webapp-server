@@ -1,3 +1,7 @@
+# v0.21.3 (2026-04-28)
+
+* Add days without observation to variables.json and add grayscale colormap to colormaps.json
+
 # v0.21.2 (2026-01-20)
 
 * Change snow cover units to "sq km"
