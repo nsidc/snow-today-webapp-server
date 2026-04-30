@@ -51,14 +51,14 @@ Because updates to this repo make changes to the web facing application, we must
 
     - Navigate to the snow-today-webapp repository on GitHub: <https://github.com/nsidc/snow-today-webapp>
     - Click on Releases then Draft a new release
-    - Enter your desired Tag version and a Release title. Example:
+    - In the **Choose a tag** dropdown menu, type a name for your new tag (e.g., v1.0.0) and click **Create new tag**.
+    - Enter your desired Release title and description. Example:
       - Title: "Merge pull request #82: Remove days_without_observation"
       - Description: "Remove days_without_observation from plot dropdown menu. Upversion to v0.18.5"
-
     - Click Publish release
     - Immediately after publishing, delete the release. The tag will persist, but without a release entry.
 
-- **Run the Jenkins deployment job depending on environment**. The appropriate Jenkins job can now be run. Generally done by Ops; put in a Jira ticket for this work (e.g. <https://nsidc.atlassian.net/browse/PCT-3558>).
+- **Run the Jenkins deployment job depending on environment**. The appropriate Jenkins job can now be run. Generally done by Ops; put in a Jira PCT ticket for this work (e.g. <https://nsidc.atlassian.net/browse/PCT-3558>).
   - Integration:  
      <http://ci.jenkins-cd.apps.int.nsidc.org:8080/job/Deploy_Project_with_Garrison/>  
      This one is run by developers while testing their code changes
@@ -102,7 +102,7 @@ Here are the steps for releasing and deploying the snow-today-webapp-server afte
     - Create tag: git tag vX.Y.Z
     - Push tag: git push origin vX.Y.Z
 
-- **Run the Jenkins deployment job** depending on environment. The appropriate Jenkins job can now be run. Generally done by Ops, put in a Jira ticket for this work (e.g. <https://nsidc.atlassian.net/browse/PCT-3558>).
+- **Run the Jenkins deployment job** depending on environment. The appropriate Jenkins job can now be run. Generally done by Ops, put in a Jira PCT ticket for this work (e.g. <https://nsidc.atlassian.net/browse/PCT-3558>).
   - Integration:  
      <http://ci.jenkins-cd.apps.int.nsidc.org:8080/job/Deploy_Project_with_Garrison/>
   - Production:  
