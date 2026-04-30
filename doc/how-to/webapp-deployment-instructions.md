@@ -58,7 +58,7 @@ Because updates to this repo make changes to the web facing application, we must
     - Click Publish release
     - Immediately after publishing, delete the release. The tag will persist, but without a release entry.
 
-- **Run the Jenkins deployment job depending on environment**. The appropriate Jenkins job can now be run. Generally done by Ops; put in a Jira PCT ticket for this work (e.g. <https://nsidc.atlassian.net/browse/PCT-3558>).
+- **Run the Jenkins deployment job depending on environment**. The appropriate Jenkins job can now be run. Generally done by Ops; put in a Jira PCT ticket for this work (e.g. <https://nsidc.atlassian.net/browse/PCT-3565>).
   - Integration:  
      <http://ci.jenkins-cd.apps.int.nsidc.org:8080/job/Deploy_Project_with_Garrison/>  
      This one is run by developers while testing their code changes
