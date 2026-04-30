@@ -51,7 +51,10 @@ Because updates to this repo make changes to the web facing application, we must
 
     - Navigate to the snow-today-webapp repository on GitHub: <https://github.com/nsidc/snow-today-webapp>
     - Click on Releases then Draft a new release
-    - Enter your desired Tag version and a Release title
+    - Enter your desired Tag version and a Release title. Example:
+      - Title: "Merge pull request #82: Remove days_without_observation"
+      - Description: "Remove days_without_observation from plot dropdown menu. Upversion to v0.18.5"
+
     - Click Publish release
     - Immediately after publishing, delete the release. The tag will persist, but without a release entry.
 
