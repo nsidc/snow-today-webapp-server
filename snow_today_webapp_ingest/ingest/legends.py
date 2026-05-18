@@ -64,6 +64,11 @@ def generate_ssp_legends(
         # relationship, e.g. a given region's default variable. `variable_params` is the
         # whole config for the variable, and is much larger.
         for variable_id, region_variable_params in region_params["variables"].items():
+            # Skip variable 77 (days_without_observation) - removed from plots
+            if str(variable_id) == '77':
+                logger.debug(f"Skipping variable {variable_id}; it has been removed.")
+                continue
+
             variable_params = variables_json[str(variable_id)]
 
             # Only some types of variables get legends:

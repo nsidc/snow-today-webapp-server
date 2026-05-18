@@ -1,3 +1,7 @@
+# v0.21.4 (2026-05-18)
+
+* Remove plot legend for days without observation.
+
 # v0.21.3 (2026-04-28)
 
 * Add days without observation to variables.json and add grayscale colormap to colormaps.json
