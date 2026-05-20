@@ -89,9 +89,12 @@ Here are the steps for releasing and deploying the snow-today-webapp-server afte
 - **Submit a Pull Request (PR)** - update version in following files as part of pull request
   - Update VERSION.env with new version
   - Update CHANGELOG.md following existing pattern
-- **Review and merge the PR**: Another NSIDC developer (if the updates are extensive) or the Project Manager (if the changes are minor) can review and merge the PR. The latest image on Dockerhub will be updated with each commit to main.
-  - Commit
-  - Merge to main
+- **Review and merge the PR to main**: Another NSIDC developer (if the updates are extensive) or the Project Manager (if the changes are minor) can review and merge the PR. The latest image on Dockerhub will be updated with each commit to main.
+  - Navigate to the main page of snow-today-webapp-server repository on GitHub (<https://github.com/nsidc/snow-today-webapp-server>)
+  - Click "Pull Requests" in top level navigation menu.
+  - Click on the appropriate pull request to open it
+  - Take a quick look at the changes in the "Files Changed" tab
+  - If all checks have passed, click green "Merge Pull Request", add description if needed, then click "Confirm merge"
 - **Tag main branch**  
    To release a new tagged image to DockerHub:
 
