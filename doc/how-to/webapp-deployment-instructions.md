@@ -29,7 +29,13 @@ Each environment has its own set of URLs. One for the web application "instance"
      <https://nsidc.org/snow-today/snow-viewer>
 
 ## Deployment
+
+#### ************************************************************************************************
+
 #### Snow-today-web-app
+
+#### ************************************************************************************************
+
 Because updates to this repo make changes to the web facing application, we must submit a web team request in Jira (e.g. SCG-4106) for these updates to be seen on the application embedded in the web site. Note: The web team will update all environments when they do their deployment: QA, integration, staging, and production. Note, we don't really utilize QA or staging. Here are the steps for releasing and deploying the snow-today-webapp after you've made updates to the repo:
 - **Submit a Pull Request (PR)** - update version in the following files as part of pull request:
   - Update version in package.json
@@ -70,7 +76,11 @@ Because updates to this repo make changes to the web facing application, we must
 
 - **Submit a web team request** in Jira (e.g. SCG-4106) so the updated app will be pushed and embedded in the Snow Today web page.
 
+#### ************************************************************************************************
+
 #### Snow-today-webapp-server
+
+#### ************************************************************************************************
 
 For these updates to be seen on the web site, we do NOT have to submit a web team ticket but we do have to run 2 other Jenkins data ingest jobs.
 
