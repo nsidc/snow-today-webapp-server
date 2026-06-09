@@ -115,7 +115,7 @@ Here are the steps for releasing and deploying the snow-today-webapp-server afte
     - Create tag: git tag vX.Y.Z
     - Push tag: git push origin vX.Y.Z
 
-- **Run the Jenkins deployment job** depending on environment. The appropriate Jenkins job can now be run. Generally done by Ops, put in a Jira PCT ticket for this work (e.g. <https://nsidc.atlassian.net/browse/PCT-3558>).
+- **Run the Jenkins deployment job** depending on environment. The appropriate Jenkins job can now be run. Generally done by Ops (but can be run by a dev for integration), put in a Jira PCT ticket for this work (e.g. <https://nsidc.atlassian.net/browse/PCT-3558>).
   - Integration:  
      <http://ci.jenkins-cd.apps.int.nsidc.org:8080/job/Deploy_Project_with_Garrison/>
   - Production:  
