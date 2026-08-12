@@ -11,8 +11,10 @@ services:
       - "${STORAGE_DIR:?STORAGE_DIR must be set}/live:/usr/share/nginx/html:rw"
       # In case we're developing this data, mount in the repo versions instead
       # of requiring a full ingest for each change!
+      # For the first two, ensure that the variables and colormaps files exsit in ./static~
       # - "./static/variables.json:/usr/share/nginx/html/snow-surface-properties/variables.json:ro"
       # - "./static/colormaps.json:/usr/share/nginx/html/snow-surface-properties/colormaps.json:ro"
+      # For these two, just map to the files locations on the share drive
       # - "${STORAGE_DIR}/live/snow-surface-properties/variables.json::/usr/share/nginx/html/snow-surface-properties/variables.json:ro"
       # - "${STORAGE_DIR}/live/common/colormaps.json:/usr/share/nginx/html/snow-surface-properties/colormaps.json:ro"
     restart: "on-failure"

@@ -57,6 +57,7 @@ docker compose up -d data-server
 
 ### Ingest data
 
+## TODO UPDATE THESE, THEY DON'T SEEM TO BE ACCURATE?
 ```
 ./scripts/container_cli.sh --help
 ./scripts/container_cli.sh make-cogs-daily
