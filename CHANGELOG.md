@@ -1,3 +1,8 @@
+# v0.22.0 (2026-08-12)
+
+* Minor changes to update dev docker compose file to not use static mounts for variables and
+  colormap files.
+
 # v0.21.4 (2026-05-18)
 
 * Remove plot legend for days without observation.
