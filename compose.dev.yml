@@ -13,8 +13,8 @@ services:
       # of requiring a full ingest for each change!
       # - "./static/variables.json:/usr/share/nginx/html/snow-surface-properties/variables.json:ro"
       # - "./static/colormaps.json:/usr/share/nginx/html/snow-surface-properties/colormaps.json:ro"
-      - "${STORAGE_DIR}/live/snow-surface-properties/variables.json::/usr/share/nginx/html/snow-surface-properties/variables.json:ro"
-      - "${STORAGE_DIR}/live/common/colormaps.json:/usr/share/nginx/html/snow-surface-properties/colormaps.json:ro"
+      # - "${STORAGE_DIR}/live/snow-surface-properties/variables.json::/usr/share/nginx/html/snow-surface-properties/variables.json:ro"
+      # - "${STORAGE_DIR}/live/common/colormaps.json:/usr/share/nginx/html/snow-surface-properties/colormaps.json:ro"
     restart: "on-failure"
     ports:
       - "0.0.0.0:80:80"
