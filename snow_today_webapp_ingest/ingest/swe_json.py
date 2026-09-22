@@ -47,8 +47,11 @@ def _normalize_csv_dict(csv_dict: CsvDict) -> SweDataPoint:
         lat=float(csv_dict['Lat']),
         elevation_meters=float(csv_dict['Elev_m']),
         swe_inches=xfr.float_nan_normalized(csv_dict['SWE']),
+        swe_cm=xfr.float_nan_normalized(csv_dict['SWE']),
         swe_normalized_pct=xfr.float_nan_normalized(csv_dict['normSWE']),
+        swe_max_pct=xfr.float_nan_normalized(csv_dict['percentPeakSWE']),
         swe_delta_inches=xfr.float_nan_normalized(csv_dict['dSWE']),
+        swe_delta_cm=xfr.float_nan_normalized(csv_dict['dSWE']),
     )
     return normalized
 

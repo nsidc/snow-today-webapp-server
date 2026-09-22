@@ -1,7 +1,7 @@
 {
   "swe_inches": {
     "longName": "Snow Water Equivalent",
-    "labelMapLegend": "Snow Water Equivalent (inches)",
+    "labelMapLegend": "Snow Water Equivalent (cm)",
     "helpText": "",
     "valuePrecision": 0,
     "colormapId": 3,
@@ -13,7 +13,31 @@
   },
   "swe_delta_inches": {
     "longName": "Change in Snow Water Equivalent",
-    "labelMapLegend": "Change in SWE (inches) in past 24 hours",
+    "labelMapLegend": "Change in SWE (cm) in past 24 hours",
+    "helpText": "",
+    "valuePrecision": 0,
+    "colormapId": 7,
+    "transparentZero": false,
+    "noDataValue": 255,
+    "valueRange": [-4, 4],
+    "colormapValueRange": [-2, 2],
+    "unit": "cm"
+  },
+  "swe_cm": {
+    "longName": "Snow Water Equivalent",
+    "labelMapLegend": "Snow Water Equivalent (cm)",
+    "helpText": "",
+    "valuePrecision": 0,
+    "colormapId": 3,
+    "transparentZero": false,
+    "noDataValue": 255,
+    "valueRange": [0, 100],
+    "colormapValueRange": [0, 50],
+    "unit": "cm"
+  },
+  "swe_delta_cm": {
+    "longName": "Change in Snow Water Equivalent",
+    "labelMapLegend": "Change in SWE (cm) in past 24 hours",
     "helpText": "",
     "valuePrecision": 0,
     "colormapId": 7,
@@ -32,6 +56,18 @@
     "transparentZero": false,
     "noDataValue": 255,
     "valueRange": [0, 200],
+    "colormapValueRange": [45, 155],
+    "unit": "%"
+  },
+  "swe_max_pct": {
+    "longName": "Percentage of Maximum Snow Water Equivalent",
+    "labelMapLegend": "Percentage of Maximum Snow Water Equivalent (%)",
+    "helpText": "",
+    "valuePrecision": 0,
+    "colormapId": 7,
+    "transparentZero": false,
+    "noDataValue": 255,
+    "valueRange": [0, 100],
     "colormapValueRange": [45, 155],
     "unit": "%"
   }

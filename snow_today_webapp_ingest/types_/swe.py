@@ -12,10 +12,14 @@ class SweDataPoint(BaseModel):
     lat: float
     elevation_meters: float
     swe_inches: float | None
+    swe_cm: float | None
     # SWE delta: current SWE - previous day's SWE
     swe_delta_inches: float | None
+    swe_delta_cm: float | None
     # SWE normalized: current SWE / average SWE for this date of each year
     swe_normalized_pct: float | None
+    # SWE max pct: Current SWE / max SWE for this date of each year
+    swe_max_pct: float | None
 
 
 class SweMetadata(BaseModel):
