@@ -1,4 +1,4 @@
-# v0.23.0
+# v0.23.0 (2026-09-24)
 
 * Added support for a "percent of maximum SWE" in the swe.json file
 * Modified the swe.json and colorbar images to show cm instead of inches for the swe and
