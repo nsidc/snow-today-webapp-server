@@ -1,3 +1,10 @@
+# v0.23.0
+
+* Added support for a "percent of maximum SWE" in the swe.json file
+* Modified the swe.json and colorbar images to show cm instead of inches for the swe and
+  swe_delta fields.  (NOTE: The values were always in CM, just that the labels were
+  incorrect)
+
 # v0.22.0 (2026-08-12)
 
 * Minor changes to update dev docker compose file to not use static mounts for variables and
