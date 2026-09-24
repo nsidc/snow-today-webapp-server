@@ -43,7 +43,7 @@
     "colormapId": 7,
     "transparentZero": false,
     "noDataValue": 255,
-    "valueRange": [0, 100],
+    "valueRange": [0, 200],
     "colormapValueRange": [45, 155],
     "unit": "%"
   }
