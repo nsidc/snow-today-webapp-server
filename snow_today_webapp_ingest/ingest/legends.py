@@ -45,6 +45,7 @@ def generate_swe_legends(
 def generate_ssp_legends(
     from_path: Path,
     to_path: Path,
+    historic: bool = True
 ):
     """Generate legends based on variable and super-region metadata."""
     # TODO: TYPES!!! We should use Pydantic to define types and generate JSON schemas
@@ -86,6 +87,12 @@ def generate_ssp_legends(
             output_fn = f"{region_id}_{variable_id}.svg"
             output_fp = to_path / output_fn
 
+            data_value_range = (
+                tuple(variable_params["historicDataValueRange"])
+                if historic 
+                else tuple(region_variable_params["dataValueRange"])
+            )
+
             to_path.mkdir(exist_ok=True, parents=True)
             make_legend(
                 colormap=colormap,
@@ -93,7 +100,10 @@ def generate_ssp_legends(
                 # day-by-day. For example, "snow cover days" variable has a colormap
                 # that changes each day, and differs for each region.
                 # TODO: This naming is very confusing. Fix it.
-                colormap_value_range=tuple(region_variable_params["dataValueRange"]),
+                # colormap_value_range is the one that can change day-by-day, data_value_range
+                # is the true data boundary range that should never change.
+                # colormap_value_range=tuple(region_variable_params["dataValueRange"]),
+                colormap_value_range=tuple(data_value_range),
                 data_value_range=tuple(variable_params["valueRange"]),
                 label=variable_params["labelMapLegend"],
                 transparent_zero=variable_params["transparentZero"],

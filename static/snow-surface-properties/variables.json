@@ -150,7 +150,8 @@
     "transparentZero": true,
     "source": "MODIS (Terra) SPIRES",
     "noDataValue": 255,
-    "valueRange": [0, 100]
+    "valueRange": [0, 100],
+    "historicDataValueRange": [0, 100]
   },
   "59": {
     "sensor": "MODIS",
@@ -201,7 +202,8 @@
     "transparentZero": true,
     "source": "MODIS (Terra) SPIRES",
     "noDataValue": 65535,
-    "valueRange": [0, 366]
+    "valueRange": [0, 366],
+    "historicDataValueRange": [1, 210]
   },
   "62": {
     "sensor": "MODIS",
@@ -218,7 +220,8 @@
     "transparentZero": false,
     "source": "MODIS (Terra) SPIRES",
     "noDataValue": 255,
-    "valueRange": [0, 100]
+    "valueRange": [0, 100],
+    "historicDataValueRange": [50, 85]
   },
   "63": {
     "sensor": "MODIS",
@@ -235,7 +238,8 @@
     "transparentZero": false,
     "source": "MODIS (Terra) SPIRES",
     "noDataValue": 65535,
-    "valueRange": [0, 500]
+    "valueRange": [0, 500],
+    "historicDataValueRange": [1, 100]
   },
   "77": {
     "sensor": "MODIS",
