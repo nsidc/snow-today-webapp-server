@@ -151,7 +151,7 @@
     "source": "MODIS (Terra) SPIRES",
     "noDataValue": 255,
     "valueRange": [0, 100],
-    "historicDataValueRange": [0, 100]
+    "historicDataValueRange": [1, 100]
   },
   "59": {
     "sensor": "MODIS",
